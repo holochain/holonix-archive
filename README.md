@@ -15,8 +15,8 @@ Where `nix-shell` is supported Holonix is the standard approach for:
 - Installing situational tooling (e.g. `cargo-edit` for versioning)
 - Release management, automation and deploying official binaries
 - BAU automation and reporting tasks**
-- Downloading prebuilt official binaries from github**
-- Managing and updating binaries across official releases**
+- Downloading prebuilt official binaries from github
+- Managing and updating binaries across official releases
 
 ** Coming Soon!
 
