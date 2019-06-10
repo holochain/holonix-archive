@@ -1,5 +1,5 @@
 {
- build =
+ buildInputs =
  let
   flush = import ./src/flush.nix;
   test = import ./src/test.nix;
@@ -31,4 +31,6 @@
  darwin = import ./darwin/config.nix;
  openssl = import ./openssl/config.nix;
  rust = import ./rust/config.nix;
+ hc = import ./dist/cli/build.nix;
+ holochain = import ./dist/conductor/build.nix;
 }
