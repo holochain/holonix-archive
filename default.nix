@@ -24,7 +24,6 @@
  ++ import ./node/build.nix
  ++ import ./openssl/build.nix
  ++ import ./qt/build.nix
- ++ import ./release/build.nix
  ++ import ./rust/build.nix;
 
  pkgs = import ./nixpkgs/nixpkgs.nix;
