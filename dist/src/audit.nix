@@ -1,9 +1,8 @@
+{ pkgs, config }:
 let
-  pkgs = import ../../nixpkgs/nixpkgs.nix;
   rust = import ../../rust/config.nix;
 
   dist = import ../config.nix;
-  release = import ../../release/config.nix;
 
   cli = import ../cli/config.nix;
   conductor = import ../conductor/config.nix;
@@ -18,7 +17,7 @@ let
   echo "All the important dist vars:"
   echo
 
-  echo "Release version is ${release.core.version.current}"
+  echo "Release version is ${config.version}"
   echo "Binary version is ${dist.version}"
 
   echo

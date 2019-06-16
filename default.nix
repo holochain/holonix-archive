@@ -1,3 +1,6 @@
+let
+ pkgs = import ./nixpkgs/nixpkgs.nix;
+in
 {
  buildInputs =
  let
@@ -19,14 +22,14 @@
  ++ import ./cli/build.nix
  ++ import ./conductor/build.nix
  ++ import ./darwin/build.nix
- ++ import ./dist/build.nix
+ ++ pkgs.callPackage ./dist { }
  ++ import ./git/build.nix
  ++ import ./node/build.nix
  ++ import ./openssl/build.nix
  ++ import ./qt/build.nix
  ++ import ./rust/build.nix;
 
- pkgs = import ./nixpkgs/nixpkgs.nix;
+ pkgs = pkgs;
  darwin = import ./darwin/config.nix;
  openssl = import ./openssl/config.nix;
  rust = import ./rust/config.nix;
