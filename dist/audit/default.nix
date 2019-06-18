@@ -7,7 +7,7 @@
  lib,
 }:
 let
-  name = "hc-dist-audit";
+  name = "hn-dist-audit";
 
   script = pkgs.writeShellScriptBin name
   ''
@@ -18,33 +18,27 @@ let
   echo "Binary version is ${dist.version}"
 
   echo
-
-  echo "CLI linux hash is ${cli.sha256.linux}"
-  echo "CLI darwin hash is ${cli.sha256.darwin}"
-
-  echo
-
-  echo "Conductor linux hash is ${conductor.sha256.linux}"
-  echo "Conductor darwin hash is ${conductor.sha256.darwin}"
-
-  echo
   echo "All the prefetching:"
   echo
 
-  echo "CLI linux prefetch:"
-  nix-prefetch-url ${lib.artifact-url { name = cli.name; target = ( lib.normalize-artifact-target rust.generic-linux-target ); }}
-  echo
-
-  echo "CLI darwin prefetch:"
+  echo "Darwin CLI hash is currently ${cli.sha256.darwin}"
+  echo "Darwin CLI prefetch:"
   nix-prefetch-url ${lib.artifact-url { name = cli.name; target = ( lib.normalize-artifact-target rust.generic-mac-target ); }}
   echo
 
-  echo "Conductor linux prefetch:"
-  nix-prefetch-url ${lib.artifact-url { name = conductor.name; target = ( lib.normalize-artifact-target rust.generic-linux-target ); }}
+  echo "Darwin conductor hash is currently ${conductor.sha256.darwin}"
+  echo "Darwin conductor prefetch:"
+  nix-prefetch-url ${lib.artifact-url { name = conductor.name; target = ( lib.normalize-artifact-target rust.generic-mac-target ); }}
   echo
 
-  echo "Conductor darwin prefetch:"
-  nix-prefetch-url ${lib.artifact-url { name = conductor.name; target = ( lib.normalize-artifact-target rust.generic-mac-target ); }}
+  echo "Linux CLI hash is currently ${cli.sha256.linux}"
+  echo "Linux CLI prefetch:"
+  nix-prefetch-url ${lib.artifact-url { name = cli.name; target = ( lib.normalize-artifact-target rust.generic-linux-target ); }}
+  echo
+
+  echo "Linux conductor hash is currently ${conductor.sha256.linux}"
+  echo "Linux conductor prefetch:"
+  nix-prefetch-url ${lib.artifact-url { name = conductor.name; target = ( lib.normalize-artifact-target rust.generic-linux-target ); }}
   echo
   '';
 in

@@ -2,10 +2,11 @@
 let
  config = import ./config.nix;
 in
-config // {
+config // rec {
+ derivation = (lib.binary-derivation config);
  buildInputs =
  [
-  (lib.binary-derivation config)
+  derivation
  ]
  ;
 }

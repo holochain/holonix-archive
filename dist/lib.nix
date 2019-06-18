@@ -2,7 +2,7 @@
 rec {
  artifact-name = args: "${args.name}-v${dist.version}-${args.target}";
 
- artifact-url = args: "https://github.com/${dist.github.repo}/releases/download/v${dist.version}/${artifact-name args}.tar.gz";
+ artifact-url = args: "${dist.github.base-url}/releases/download/v${dist.version}/${artifact-name args}.tar.gz";
 
  normalize-artifact-target = target:
   builtins.replaceStrings

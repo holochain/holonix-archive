@@ -41,4 +41,8 @@ in
  shell = holonix-shell;
  # override and overrideDerivation cannot be handled by mkDerivation
  main = pkgs.stdenv.mkDerivation (removeAttrs holonix-shell ["override" "overrideDerivation"]);
+
+ # needed for nix-env to discover install attributes
+ hc = dist.cli.derivation;
+ holochain = dist.conductor.derivation;
 }

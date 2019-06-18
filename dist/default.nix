@@ -16,6 +16,10 @@ let
  };
 in
 {
+ # exposed derivations to allow nix-env install
+ cli = cli;
+ conductor = conductor;
+
  buildInputs =
  [
    pkgs.nix-prefetch-scripts
