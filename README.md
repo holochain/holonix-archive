@@ -1,10 +1,23 @@
 # Holonix
 
-Comprehensive Holochain Core ops tooling (build/test/release) for use in nix compatible environments (NixOS and anywhere `nix-shell` runs).
+Base Holochain development environment & tooling.
+
+NixOS derivation based.
+Usable in every nix compatible environment.
+
+Linux & Mac OS X run `nix-shell` natively.
+Get it from `https://nixos.org/nix/download.html`.
+
+Windows et. al. can use docker or vagrant to get a nix VM.
+
+- docker hub coords: `holochain/holochain-rust`
+- vagrant box url: `https://holochain.love/box`
+
+See the `holochain-rust` repository for docker/vagrant examples.
 
 ## Scope
 
-Where `nix-shell` is supported Holonix is the standard approach for:
+Holonix provides an extensible and standard dev environment for:
 
 - Installing dependencies
 - Running tests
@@ -14,24 +27,9 @@ Where `nix-shell` is supported Holonix is the standard approach for:
 - Conductor management
 - Installing situational tooling (e.g. `cargo-edit` for versioning)
 - Release management, automation and deploying official binaries
-- BAU automation and reporting tasks**
+- BAU automation and reporting tasks
 - Downloading prebuilt official binaries from github
 - Managing and updating binaries across official releases
-
-** Coming Soon!
-
-### Supported environments
-
-NixOS is a dedicated linux distro and so is standalone by its nature.
-
-`nix-shell` is a cli tool supported across Mac OS and Linux distros.
-
-https://nixos.org/nix/download.html
-
-There is theoretical support for `nix-shell` in Windows Subsystem Linux (WSL).
-WSL support is currently broken upstream https://github.com/NixOS/nix/issues/1203
-
-**Use `nix-shell` if you are on anything other than Windows!**
 
 ### Why nix?
 
@@ -64,65 +62,70 @@ And other benefits:
 - Available in shebang form as `#! /usr/bin/env nix-shell`
   - http://iam.travishartwell.net/2015/06/17/nix-shell-shebang/
 
-## Installation
-
-Follow the instructions to install `nix-shell` from:
-
-https://nixos.org/nix/download.html
-
-Once installed run `nix-shell` from the `holochain-rust` repository root.
-The `nix-shell` command will detect the `shell.nix` file and build everything.
-
-The first run will be slow as nix downloads, builds and caches dependencies.
-Everything is downloaded to `/nix/store/...` and re-used on subsequent runs.
-
 ## Contributing
 
 The structure of our nix derivations is designed to be as modular as possible.
 
-The folder structure is a basic heirarchy, something like:
+The folder structure is something like:
 
 ```
 holonix
- |_github
- |  |_config.nix
+ |_app-spec
+ |  |_test
+ |  | |_default.nix
+ |  |_...
+ |  |_default.nix
  |_nixpkgs
  | |_nixpkgs.nix
  |_node
- | |_src
- | | |_flux.nix
- | | |_...
- | |_build.nix
+ | |_flush
+ | | |_default.nix
+ | |_default.nix
  |_...
-shell.nix
+default.nix
 ```
 
-The `shell.nix` file is used by `nix-shell` automatically by default.
-This consumes `holonix/**` and does not provide any new derivations.
-End-users should not need to interact with `holonix/**` outside `shell.nix`.
+The `default.nix` file is used by `nix-shell` automatically.
+This consumes `holonix/**` and provides several new derivations.
+
+- `main`: used to construct the development environment in the nix shell
+- `holochain.hc`: used to install latest `hc` binary with `nix-env`
+- `holochain.holochain`: used to install latest `holochain` binary with `nix-env`
+
+e.g. install binaries globally with:
+
+```shell
+nix-env -f https://holochain.love -iA holochain.hc holochain.holochain
+```
+
+## Contributions and extension
+
+Holonix is designed to be used as a base layer and extended in other repos.
+
+See `holochain-rust` for examples.
 
 There are a few basic conventions to follow:
 
 - Nest folders according to theme/tech/specificity
   - e.g. conductor management for conductor `x` sits under `conductor/x/**`
 - All configuration strings and other primitives sit in a local `config.nix`
+  - this is not a function it should be a constant set
+  - use it with `import ./config.nix` and merge with returned vals
 - Structure configuration as nested `foo.bar` rather than `foo-bar`
-  - e.g. `holonix/release/config.nix` has a few good examples of this
-- All used and generated inputs to build the nix derivations sit in a local `build.nix`
-  - `build.nix` files should "bubble up" to the root one level at a time
-    - e.g. `build.nix` imports `conductor/build.nix` imports `conductor/node/build.nix`
-  - root `build.nix` and `src` should only aggregate deeper derivations
-- Scripts for binaries sit in named `foo.nix` files under `thing/src/foo.nix`
+- All used and generated inputs to build the nix derivations sit in a local `default.nix`
+  - `default.nix` files should "bubble up" to the root one level at a time
+    - e.g. `default.nix` imports `conductor/default.nix` imports `conductor/node/default.nix`
+  - root `default.nix` should only aggregate one level deeper derivations
+  - use the nix convention pointing to the folder for `callPackage` and `import`
+- Scripts for `foo` binaries sit in named `default.nix` files under `thing/foo/default.nix`
   - There is standard boilerplate for this, see an existing file for examples
   - Use `pkgs.writeShellScriptBin` by default
-  - derived nix CLI commands are named following the path sans `src`
-    - e.g. `holonix/foo/bar/src/baz.nix` becomes `hc-foo-bar-baz`
-- Make liberal use of `let .. in ..` scoping constructs in `.nix` files
+  - derived nix CLI commands are named following the path
+    - e.g. `holonix/foo/bar/baz/default.nix` becomes `hn-foo-bar-baz`
 - Put functions for builds in `lib.nix` files
-  - e.g. `holonix/dist/rust/src/lib.nix`
-- File names can stutter but command names should not
-  - e.g. `holonix/rust/fmt/src/fmt.nix` for `hc-rust-fmt`
-- Use `install.nix` for scripts that install things outside of what nix manages
+  - e.g. `holonix/dist/lib.nix`
+- Try not to stutter file names or commands
+- Use `x/y/z/install/default.nix` for scripts that install things outside of what nix manages
   - Try to minimise use of additional install scripts, nix should handle as
     much as possible.
   - e.g. cargo installs things to the user's home directory
