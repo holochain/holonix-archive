@@ -8,4 +8,6 @@ let
   (cd cli && cargo test);
   '';
 in
-script
+{
+ buildInputs = [ script ];
+}

@@ -1,10 +1,12 @@
 { pkgs, dist }:
 let
-  name = "hc-dist-flush";
+ name = "hc-dist-flush";
 
-  script = pkgs.writeShellScriptBin name
-  ''
-  rm -rf ${dist.path}
-  '';
+ script = pkgs.writeShellScriptBin name
+ ''
+ rm -rf ${dist.path}
+ '';
 in
-script
+{
+ buildInputs = [ script ];
+}

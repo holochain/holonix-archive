@@ -8,4 +8,6 @@ let
    ./scripts/build_nodejs_conductor.sh
   '';
 in
-script
+{
+ buildInputs = [ script ];
+}

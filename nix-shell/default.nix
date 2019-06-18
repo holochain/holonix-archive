@@ -1,16 +1,16 @@
 {
  pkgs,
  app-spec,
- # app-spec-cluster,
- # cli,
- # conductor,
+ app-spec-cluster,
+ cli,
+ conductor,
  darwin,
- # dist,
- # git,
- # n3h,
- # node,
+ dist,
+ git,
+ n3h,
+ node,
  openssl,
- # qt,
+ qt,
  rust,
 }:
 {
@@ -47,17 +47,17 @@
   (pkgs.callPackage ./flush { })
   (pkgs.callPackage ./test { })
  ]
- # ++ app-spec.buildInputs
- # ++ app-spec-cluster.buildInputs
- # ++ cli.buildInputs
- # ++ conductor.buildInputs
- # ++ darwin.buildInputs
- # ++ dist.buildInputs
- # ++ git.buildInputs
- # ++ n3h.buildInputs
- # ++ node.buildInputs
- # ++ openssl.buildInputs
- # ++ qt.buildInputs
- # ++ rust.buildInputs
+ ++ app-spec.buildInputs
+ ++ app-spec-cluster.buildInputs
+ ++ cli.buildInputs
+ ++ conductor.buildInputs
+ ++ darwin.buildInputs
+ ++ dist.buildInputs
+ ++ git.buildInputs
+ ++ n3h.buildInputs
+ ++ node.buildInputs
+ ++ openssl.buildInputs
+ ++ qt.buildInputs
+ ++ rust.buildInputs
  ;
 }

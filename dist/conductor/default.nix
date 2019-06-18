@@ -1,11 +1,11 @@
 { pkgs, lib }:
 let
-  config = import ./config.nix;
+ config = import ./config.nix;
 in
 config // {
  buildInputs =
  [
-   (lib.binary-derivation config)
+  (lib.binary-derivation config)
  ]
  ;
 }

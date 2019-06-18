@@ -7,4 +7,6 @@ let
   cargo uninstall wasm-bindgen-cli
   '';
 in
-script
+{
+ buildInputs = [ script ];
+}

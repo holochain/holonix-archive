@@ -1,6 +1,5 @@
+{ pkgs }:
 let
-  pkgs = import ../../nixpkgs/nixpkgs.nix;
-
   name = "hc-node-flush";
 
   script = pkgs.writeShellScriptBin name
@@ -12,4 +11,6 @@ let
   find . -wholename "./nodejs_conductor/dist" | xargs -I {} rm -rf {};
   '';
 in
-script
+{
+ buildInputs = [ script ];
+}

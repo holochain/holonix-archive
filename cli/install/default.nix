@@ -7,4 +7,6 @@ let
   cargo build -p hc --release && cargo install -f --path cli
   '';
 in
-script
+{
+ buildInputs = [ script ];
+}

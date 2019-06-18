@@ -1,10 +1,8 @@
 { pkgs }:
 {
- buildInputs =
- [
-   (pkgs.callPackage ./nix/check.nix { })
-   (pkgs.callPackage ./nix/fmt.nix { })
-   (pkgs.callPackage ./nix/install.nix { })
- ]
+ buildInputs = []
+ ++ (pkgs.callPackage ./check { }).buildInputs
+ ++ (pkgs.callPackage ./fmt { }).buildInputs
+ ++ (pkgs.callPackage ./install { }).buildInputs
  ;
 }

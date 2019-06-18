@@ -1,7 +1,4 @@
 { pkgs }:
-let
-  flush = import ./nix/flush.nix;
-in
 {
  buildInputs =
  [
@@ -15,8 +12,7 @@ in
 
    # needed by node-gyp
    pkgs.python
-
-   flush
  ]
+ ++ (pkgs.callPackage ./flush { }).buildInputs
  ;
 }

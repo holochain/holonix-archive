@@ -1,10 +1,12 @@
 { pkgs }:
 let
-  name = "hc-rust-fmt";
+ name = "hc-rust-fmt";
 
-  script = pkgs.writeShellScriptBin name
-  ''
-  cargo fmt
-  '';
+ script = pkgs.writeShellScriptBin name
+ ''
+ cargo fmt
+ '';
 in
-script
+{
+ buildInputs = [ script ];
+}

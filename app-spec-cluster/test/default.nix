@@ -11,4 +11,6 @@ let
    ( EMULATION_HOLOCHAIN_BIN_PATH=./.cargo/bin/holochain node ./app_spec/cluster_test/index.js 2)
   '';
 in
-script
+{
+ buildInputs = [ script ];
+}

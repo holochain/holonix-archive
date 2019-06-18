@@ -17,4 +17,6 @@ let
  hc-rust-manifest-list-unpinned
  '';
 in
-script
+{
+ buildInputs = [ script ];
+}

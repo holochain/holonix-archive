@@ -8,4 +8,6 @@ let
   ( cd ./conductor_wasm/npm_package && npm install && npm test );
   '';
 in
-script
+{
+ buildInputs = [ script ];
+}

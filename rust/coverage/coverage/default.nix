@@ -9,4 +9,6 @@ let
   cargo tarpaulin --ignore-tests --timeout 600 --all --out Xml -v -e holochain_core_api_c_binding -e hdk -e hc -e holochain_core_types_derive
   '';
 in
-script
+{
+ buildInputs = [ script ];
+}

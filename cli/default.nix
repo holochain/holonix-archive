@@ -1,14 +1,8 @@
 { pkgs }:
-let
-  install = pkgs.callPackage ./install { };
-  test = pkgs.callPackage ./test { };
-  uninstall = pkgs.callPackage ./uninstall { };
-in
 {
- buildInputs =
- [
-   install
-   test
-   uninstall
- ];
+ buildInputs = []
+ ++ (pkgs.callPackage ./install { }).buildInputs
+ ++ (pkgs.callPackage ./test { }).buildInputs
+ ++ (pkgs.callPackage ./uninstall { }).buildInputs
+ ;
 }

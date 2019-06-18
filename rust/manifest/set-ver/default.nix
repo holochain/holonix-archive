@@ -9,4 +9,6 @@ let
  find . -name "Cargo.toml" | xargs -I {} cargo upgrade "$1" --all --manifest-path {}
  '';
 in
-script
+{
+ buildInputs = [ script ];
+}

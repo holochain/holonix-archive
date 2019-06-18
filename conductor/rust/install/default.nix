@@ -7,4 +7,6 @@ let
   cargo build -p holochain --release && cargo install -f --path conductor
   '';
 in
-script
+{
+ buildInputs = [ script ];
+}

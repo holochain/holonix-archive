@@ -7,7 +7,6 @@ in
 {
  frameworks = frameworks;
  ld-flags = ld-flags;
- buildInputs =
- []
+ buildInputs = []
  ++ pkgs.lib.optionals pkgs.stdenv.isDarwin [ frameworks.Security frameworks.CoreFoundation frameworks.CoreServices ];
 }

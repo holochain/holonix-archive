@@ -8,4 +8,6 @@ let
    ( cd app_spec_proc_macro && ./build_and_test.sh )
   '';
 in
-script
+{
+ buildInputs = [ script ];
+}

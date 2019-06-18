@@ -1,9 +1,10 @@
 { pkgs, rust, git }:
 let
- config = pkgs.callPackage ./config.nix { };
+ config = import ./config.nix;
 
  lib = pkgs.callPackage ./lib.nix {
   dist = config;
+  rust = rust;
  };
 
  cli = pkgs.callPackage ./cli {
@@ -18,20 +19,20 @@ in
  buildInputs =
  [
    pkgs.nix-prefetch-scripts
-
-   pkgs.callPackage ./audit {
-    dist = config;
-    cli = cli;
-    conductor = conductor;
-    lib = lib;
-   }
-
-   pkgs.callPackage ./dist { }
-
-   pkgs.callPackage ./flush {
-    dist = config;
-   }
  ]
+ ++ (pkgs.callPackage ./audit {
+  dist = config;
+  cli = cli;
+  conductor = conductor;
+  lib = lib;
+  rust = rust;
+ }).buildInputs
+
+ ++ (pkgs.callPackage ./dist { }).buildInputs
+
+ ++ (pkgs.callPackage ./flush {
+  dist = config;
+ }).buildInputs
 
  ++ cli.buildInputs
 

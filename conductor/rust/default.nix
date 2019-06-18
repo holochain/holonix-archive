@@ -1,9 +1,7 @@
 { pkgs }:
 {
- buildInputs =
- [
-   pkgs.callPackage ./install { }
-   pkgs.callPackage ./uninstall { }
- ]
+ buildInputs = []
+ ++ (pkgs.callPackage ./install { }).buildInputs
+ ++ (pkgs.callPackage ./uninstall { }).buildInputs
  ;
 }

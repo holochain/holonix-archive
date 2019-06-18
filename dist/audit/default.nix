@@ -15,7 +15,6 @@ let
   echo "All the important dist vars:"
   echo
 
-  echo "Release version is ${config.version}"
   echo "Binary version is ${dist.version}"
 
   echo
@@ -33,20 +32,22 @@ let
   echo
 
   echo "CLI linux prefetch:"
-  nix-prefetch-url ${lib.artifact-url { name = cli.name; target = ( dist.normalize-artifact-target rust.generic-linux-target ); }}
+  nix-prefetch-url ${lib.artifact-url { name = cli.name; target = ( lib.normalize-artifact-target rust.generic-linux-target ); }}
   echo
 
   echo "CLI darwin prefetch:"
-  nix-prefetch-url ${lib.artifact-url { name = cli.name; target = ( dist.normalize-artifact-target rust.generic-mac-target ); }}
+  nix-prefetch-url ${lib.artifact-url { name = cli.name; target = ( lib.normalize-artifact-target rust.generic-mac-target ); }}
   echo
 
   echo "Conductor linux prefetch:"
-  nix-prefetch-url ${lib.artifact-url { name = conductor.name; target = ( dist.normalize-artifact-target rust.generic-linux-target ); }}
+  nix-prefetch-url ${lib.artifact-url { name = conductor.name; target = ( lib.normalize-artifact-target rust.generic-linux-target ); }}
   echo
 
   echo "Conductor darwin prefetch:"
-  nix-prefetch-url ${lib.artifact-url { name = conductor.name; target = ( dist.normalize-artifact-target rust.generic-mac-target ); }}
+  nix-prefetch-url ${lib.artifact-url { name = conductor.name; target = ( lib.normalize-artifact-target rust.generic-mac-target ); }}
   echo
   '';
 in
-script
+{
+ buildInputs = [ script ];
+}

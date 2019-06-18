@@ -9,4 +9,6 @@ let
   wasm-bindgen target/wasm32-unknown-unknown/release/holochain_conductor_wasm.wasm --out-dir conductor_wasm/npm_package/gen --nodejs
   '';
 in
-script
+{
+ buildInputs = [ script ];
+}

@@ -5,7 +5,7 @@ in
 config // {
  buildInputs =
  [
-   (lib.binary-derivation config)
+  (lib.binary-derivation config)
  ]
  ;
 }

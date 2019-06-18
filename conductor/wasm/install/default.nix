@@ -28,4 +28,6 @@ let
   wasm-bindgen -V;
   '';
 in
-script
+{
+ buildInputs = [ script ];
+}

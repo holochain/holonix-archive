@@ -8,4 +8,6 @@ let
    rm -f $CARGO_HOME/bin/holochain
   '';
 in
-script
+{
+ buildInputs = [ script ];
+}

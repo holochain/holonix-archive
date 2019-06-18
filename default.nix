@@ -2,29 +2,34 @@ let
  pkgs = import ./nixpkgs/nixpkgs.nix;
 
  app-spec = pkgs.callPackage ./app-spec { };
- # app-spec-cluster = pkgs.callPackage ./app-spec-cluster { };
- # cli = pkgs.callPackage ./cli { };
- # conductor = pkgs.callPackage ./conductor { };
+ app-spec-cluster = pkgs.callPackage ./app-spec-cluster { };
+ cli = pkgs.callPackage ./cli { };
+ conductor = pkgs.callPackage ./conductor { };
  darwin = pkgs.callPackage ./darwin { };
- # dist = pkgs.callPackage ./dist { };
- # n3h = pkgs.callPackage ./n3h { };
- # node = pkgs.callPackage ./node { };
- openssl = pkgs.callPackage ./openssl { };
- # qt = pkgs.callPackage ./qt { };
  rust = pkgs.callPackage ./rust { };
+ git = pkgs.callPackage ./git { };
+ dist = pkgs.callPackage ./dist {
+  rust = rust;
+  git = git;
+ };
+ n3h = pkgs.callPackage ./n3h { };
+ node = pkgs.callPackage ./node { };
+ openssl = pkgs.callPackage ./openssl { };
+ qt = pkgs.callPackage ./qt { };
 
  holonix-shell = pkgs.callPackage ./nix-shell {
   pkgs = pkgs;
   app-spec = app-spec;
-  # app-spec-cluster = app-spec-cluster;
-  # cli = cli;
-  # conductor = conductor;
+  app-spec-cluster = app-spec-cluster;
+  cli = cli;
+  conductor = conductor;
   darwin = darwin;
-  # dist = dist;
-  # n3h = n3h;
-  # node = node;
+  dist = dist;
+  git = git;
+  n3h = n3h;
+  node = node;
   openssl = openssl;
-  # qt = qt;
+  qt = qt;
   rust = rust;
  };
 in

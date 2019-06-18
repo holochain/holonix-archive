@@ -1,12 +1,14 @@
 { pkgs }:
 let
-  name = "hc-dist";
+ name = "hc-dist";
 
-  script = pkgs.writeShellScriptBin name
-  ''
-  hc-cli-dist
-  hc-conductor-node-dist
-  hc-conductor-rust-dist
-  '';
+ script = pkgs.writeShellScriptBin name
+ ''
+ hc-cli-dist
+ hc-conductor-node-dist
+ hc-conductor-rust-dist
+ '';
 in
-script
+{
+ buildInputs = [ script ];
+}

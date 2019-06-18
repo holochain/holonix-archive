@@ -8,4 +8,6 @@ let
   hc-rust-coverage-install && hc-rust-coverage && bash <(curl -s https://codecov.io/bash);
   '';
 in
-script
+{
+ buildInputs = [ script ];
+}

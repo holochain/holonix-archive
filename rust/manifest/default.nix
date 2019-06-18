@@ -1,11 +1,9 @@
 { pkgs }:
 {
- buildInputs =
- [
-  (pkgs.callPackage ./install { })
-  (pkgs.callPackage ./list-unpinned { })
-  (pkgs.callPackage ./set-ver { })
-  (pkgs.callPackage ./test-ver { })
- ]
+ buildInputs = []
+ ++ (pkgs.callPackage ./install { }).buildInputs
+ ++ (pkgs.callPackage ./list-unpinned { }).buildInputs
+ ++ (pkgs.callPackage ./set-ver { }).buildInputs
+ ++ (pkgs.callPackage ./test-ver { }).buildInputs
  ;
 }
