@@ -32,15 +32,17 @@ let
   qt = qt;
   rust = rust;
  };
+
+ # override and overrideDerivation cannot be handled by mkDerivation
+ derivation-safe-holonix-shell = (removeAttrs holonix-shell ["override" "overrideDerivation"]);
 in
 {
  pkgs = pkgs;
  # export the set used to build shell alongside the main derivation
  # downstream devs can extend/override the shell as needed
  # holonix-shell provides canonical dev shell for generic work
- shell = holonix-shell;
- # override and overrideDerivation cannot be handled by mkDerivation
- main = pkgs.stdenv.mkDerivation (removeAttrs holonix-shell ["override" "overrideDerivation"]);
+ shell = derivation-safe-holonix-shell;
+ main = pkgs.stdenv.mkDerivation derivation-safe-holonix-shell;
 
  # needed for nix-env to discover install attributes
  hc = dist.cli.derivation;
