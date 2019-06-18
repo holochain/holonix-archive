@@ -49,4 +49,7 @@ in
   hc = dist.cli.derivation;
   holochain = dist.conductor.derivation;
  };
+
+ # expose other things
+ rust = rust;
 }
