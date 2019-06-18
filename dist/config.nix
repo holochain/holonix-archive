@@ -1,7 +1,4 @@
-let
- pkgs = import ../nixpkgs/nixpkgs.nix;
- rust = import ../rust/config.nix;
-in rec
+{ pkgs, rust }:
 {
 
  path = "dist";
