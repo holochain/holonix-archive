@@ -6,7 +6,7 @@ let
   channel-holo-host = fetchgit {
    url = "https://github.com/NixOs/nixpkgs.git";
    rev = "40baa1f2de4abda35dc93d5dacedcccc2d72238a";
-   # sha256 = "07glx6r08l8hwzh8xzj8i0hj6ak42iswqfb9hbhs75rqq56zq43a";
+   sha256 = "19sksk1i7q92x7h8q655l68ykrgknmxc3drlk0cjzjn2mp3np5xs";
   };
 
   # the mozilla rust overlay
