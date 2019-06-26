@@ -1,5 +1,5 @@
 let
- pkgs = import ./nixpkgs/nixpkgs.nix;
+ pkgs = import ./nixpkgs;
 
  app-spec = pkgs.callPackage ./app-spec { };
  app-spec-cluster = pkgs.callPackage ./app-spec-cluster { };
