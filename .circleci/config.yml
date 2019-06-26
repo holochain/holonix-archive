@@ -10,4 +10,4 @@ jobs:
   steps:
    - checkout
    # smoke test
-   - run: nix-shell -vvvvv --run echo
+   - run: nix-shell -vvvv --run echo
