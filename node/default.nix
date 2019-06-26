@@ -7,7 +7,7 @@
    # - app spec tests
    # - deploy scripts
    # - node conductor management
-   pkgs.nodejs-8_x
+   pkgs.nodejs-12_x
    pkgs.yarn
 
    # needed by node-gyp
