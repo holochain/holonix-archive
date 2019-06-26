@@ -35,8 +35,16 @@
  shellHook = ''
  # cargo should install binaries into this repo rather than globally
  # https://github.com/rust-lang/rustup.rs/issues/994
- export CARGO_HOME=`pwd`/.cargo
- export CARGO_INSTALL_ROOT=`pwd`/.cargo
+ #
+ # cargo should NOT install binaries into this repo in vagrant as this breaks
+ # under windows with virtualbox shared folders
+ if [[ $( whoami ) = "vagrant" ]]
+  then export NIX_ENV_PREFIX=/home/vagrant
+  else export NIX_ENV_PREFIX=`pwd`
+ fi
+
+ export CARGO_HOME="$NIX_ENV_PREFIX/.cargo"
+ export CARGO_INSTALL_ROOT="$NIX_ENV_PREFIX/.cargo"
  export PATH="$CARGO_INSTALL_ROOT/bin:$PATH"
  export HC_TARGET_PREFIX=~/nix-holochain/
  export NIX_LDFLAGS="${darwin.ld-flags}$NIX_LDFLAGS"
