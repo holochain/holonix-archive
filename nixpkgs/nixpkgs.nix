@@ -4,9 +4,9 @@ let
 
   # nixos holo-host channel @ 2019-04-02
   channel-holo-host = fetchgit {
-   url = "https://github.com/Holo-Host/nixpkgs-channels.git";
-   rev = "680f9d7ea90dd0b48b51f29899c3110196b0e913";
-   sha256 = "07glx6r08l8hwzh8xzj8i0hj6ak42iswqfb9hbhs75rqq56zq43a";
+   url = "https://github.com/NixOs/nixpkgs.git";
+   rev = "40baa1f2de4abda35dc93d5dacedcccc2d72238a";
+   # sha256 = "07glx6r08l8hwzh8xzj8i0hj6ak42iswqfb9hbhs75rqq56zq43a";
   };
 
   # the mozilla rust overlay
