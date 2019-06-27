@@ -9,4 +9,6 @@ let
  hc-qt-c-bindings-flush
  '';
 in
-script
+{
+ buildInputs = [ script ];
+}

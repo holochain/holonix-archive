@@ -1,9 +1,10 @@
 { pkgs }:
 let
- name = "hc-rust-fmt-check";
+ name = "hn-rust-fmt-check";
 
  script = pkgs.writeShellScriptBin name
  ''
+ echo "checking rust formatting"
  cargo fmt -- --check
  '';
 in

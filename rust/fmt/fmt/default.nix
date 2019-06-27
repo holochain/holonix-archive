@@ -1,6 +1,6 @@
 { pkgs }:
 let
- name = "hc-rust-fmt";
+ name = "hn-rust-fmt";
 
  script = pkgs.writeShellScriptBin name
  ''
