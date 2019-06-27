@@ -3,7 +3,7 @@ let
 
     # our rust nightly version
     nightly = {
-      date = "2019-01-24";
+      date = "2019-06-27";
     };
 
     # the target used by rust when compiling wasm
