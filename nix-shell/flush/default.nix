@@ -1,12 +1,11 @@
 { pkgs }:
 let
- name = "hc-flush";
+ name = "hn-flush";
 
  script = pkgs.writeShellScriptBin name
  ''
- hc-node-flush
- hc-rust-flush
- hc-qt-c-bindings-flush
+ hn-node-flush
+ hn-rust-flush
  '';
 in
 {
