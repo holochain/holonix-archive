@@ -13,7 +13,9 @@ rust //
   pkgs.gnumake
   pkgs.openssl
   pkgs.pkgconfig
+  pkgs.carnix
  ]
+ ++ (pkgs.callPackage ./clippy { }).buildInputs
  ++ (pkgs.callPackage ./coverage { }).buildInputs
  ++ (pkgs.callPackage ./fmt { }).buildInputs
  ++ (pkgs.callPackage ./manifest { }).buildInputs
