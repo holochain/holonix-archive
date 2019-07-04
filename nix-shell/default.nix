@@ -9,6 +9,7 @@
  git,
  n3h,
  node,
+ envoy,
  openssl,
  qt,
  rust,
@@ -61,6 +62,7 @@
  ++ git.buildInputs
  ++ n3h.buildInputs
  ++ node.buildInputs
+ ++ envoy.buildInputs
  ++ openssl.buildInputs
  ++ qt.buildInputs
  ++ rust.buildInputs

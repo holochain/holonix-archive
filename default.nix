@@ -14,6 +14,7 @@ let
  };
  n3h = pkgs.callPackage ./n3h { };
  node = pkgs.callPackage ./node { };
+ envoy = pkgs.callPackage ./envoy { };
  openssl = pkgs.callPackage ./openssl { };
  qt = pkgs.callPackage ./qt { };
 
@@ -28,6 +29,7 @@ let
   git = git;
   n3h = n3h;
   node = node;
+  envoy = envoy;
   openssl = openssl;
   qt = qt;
   rust = rust;
