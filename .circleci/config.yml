@@ -3,7 +3,7 @@ version: 2
 jobs:
  build:
   docker:
-   - image: holochain:holonix:latest
+   - image: holochain/holonix:latest
   steps:
    - checkout
    # smoke test
