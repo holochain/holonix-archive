@@ -50,11 +50,8 @@
  export NIX_LDFLAGS="${darwin.ld-flags}$NIX_LDFLAGS"
  '';
 
- buildInputs =
- [
-  (pkgs.callPackage ./flush { })
-  (pkgs.callPackage ./test { })
- ]
+ buildInputs = []
+ ++ (pkgs.callPackage ./flush { }).buildInputs
  ++ app-spec.buildInputs
  ++ app-spec-cluster.buildInputs
  ++ cli.buildInputs
