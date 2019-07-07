@@ -3,6 +3,7 @@ let
   inherit (import <nixpkgs> {}) fetchgit;
 
   # nixos channel latest 19.03 2019-06-26
+  # keep the Dockerfile in sync with this!
   channel = fetchgit {
    url = "https://github.com/NixOs/nixpkgs-channels.git";
    rev = "8634c3b619909db7fc747faf8c03592986626e21";
