@@ -44,6 +44,8 @@ ${heading-placeholder}
   prepend=''${template/$heading_placeholder/$heading}
   current=$( cat ./CHANGELOG.md | sed -e '1,4d' )
   echo "timestamping and retemplating changelog"
+  touch ${changelog-path}
+  touch ${unreleased-path}
   printf '%s\n\n%s\n' "$prepend" "$current" > ${changelog-path}
   echo '${template}' > '${unreleased-path}'
   '';
