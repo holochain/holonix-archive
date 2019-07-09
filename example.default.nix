@@ -11,14 +11,14 @@ let
 
   # true = use a github repository as the holonix base (recommended)
   # false = use a local copy of holonix (useful for debugging)
-  use-github = true;
+  use-github = false;
 
   # configure the remote holonix github when use-github = true
   github = {
 
    # can be any github ref
    # branch, tag, commit, etc.
-   ref = "0.0.5";
+   ref = "0.0.7";
 
    # the sha of what is downloaded from the above ref
    # note: even if you change the above ref it will not be redownloaded until
@@ -60,7 +60,7 @@ with holonix.pkgs;
  dev-shell = stdenv.mkDerivation (holonix.shell // {
   name = "dev-shell";
 
-  buildInputs = []
+  buildInputs = [ ]
    ++ holonix.shell.buildInputs
   ;
  });

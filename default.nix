@@ -28,7 +28,7 @@ let
  openssl = pkgs.callPackage ./openssl { };
  qt = pkgs.callPackage ./qt { };
  release = pkgs.callPackage ./release {
-  release = if config ? release then config.release else { };
+  config = config;
  };
 
  holonix-shell = pkgs.callPackage ./nix-shell {

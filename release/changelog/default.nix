@@ -1,4 +1,4 @@
-{ pkgs, release }:
+{ pkgs, config }:
 let
   name = "hn-release-changelog";
 
@@ -34,8 +34,8 @@ ${heading-placeholder}
 
   # bash expression to generate the heading
   heading-generator =
-  if release ? version
-  then "## [${release.version.current}] - $(date --iso --u)"
+  if config.release ? version
+  then "## [${config.release.version.current}] - $(date --iso --u)"
   else "## $(date --iso=seconds --u)";
 
   # cat ${unreleased-path} | sed "s/\[Unreleased\]/${template}\#\# \[${release.core.version.current}\] - $(date --iso --u)/"
