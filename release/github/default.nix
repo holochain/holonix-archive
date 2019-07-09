@@ -29,7 +29,7 @@ let
  echo
  echo 'Injecting medium summary/highlights into github release notes'
  echo
- github-release -v edit --tag ${config.release.tag} --name ${config.release.tag} --description "${description-generator}"
+ github-release -v release --tag ${config.release.tag} --name ${config.release.tag} --description "${description-generator}"
  '';
 in
 {
