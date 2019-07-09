@@ -21,7 +21,7 @@ let
     echo
     echo "tagging ${config.release.tag}"
     git tag -a ${config.release.tag} -m "Version ${config.release.tag}"
-    git push ${release.upstream} ${config.release.tag}
+    git push ${config.release.upstream} ${config.release.tag}
     echo
     echo "release tags pushed"
    else
