@@ -1,3 +1,7 @@
+# This is the default nix file FOR HOLONIX
+# This file is what nix will find when hitting this repo as a tarball
+# This means that downstream consumers should pkgs.callPackage this file
+# See example.default.nix for an example of how to consume this file downstream
 {
  # allow consumers to pass in their own config
  # fallback to empty sets
@@ -24,7 +28,7 @@ let
  openssl = pkgs.callPackage ./openssl { };
  qt = pkgs.callPackage ./qt { };
  release = pkgs.callPackage ./release {
-  release = config.release;
+  release = if config ? release then config.release else { };
  };
 
  holonix-shell = pkgs.callPackage ./nix-shell {
