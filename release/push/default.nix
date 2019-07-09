@@ -22,14 +22,15 @@ let
     git push ${config.release.upstream} ${config.release.tag}
     echo
     echo "release tags pushed"
+
+    # finish on a fresh develop
+    git checkout develop
+    git pull
+
    else
     echo "current branch is not ${config.release.branch}!";
-    echo "try running hn-release-cut for the full process or hn-release-branch"
     exit 1;
   fi
-
-  git checkout master
-  git pull
   '';
 in
 {
