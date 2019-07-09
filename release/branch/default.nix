@@ -23,6 +23,8 @@ let
     git pull;
    else git checkout ${config.release.commit}
     git checkout -b ${config.release.branch}
+    git pull ${config.release.upstream} master
+    git pull ${config.release.upstream} develop
     git push -u ${config.release.upstream} ${config.release.branch};
   fi;
   echo

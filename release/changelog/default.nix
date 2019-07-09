@@ -34,7 +34,7 @@ ${heading-placeholder}
 
   script = pkgs.writeShellScriptBin name
   ''
-  set -euxo pipefail
+  set -euo pipefail
   # locking off changelog version
 
   # ensure required files exist
