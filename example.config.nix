@@ -41,14 +41,19 @@
  # configure the release process
  release = {
   hook = {
+   # sanity checks before deploying
+   # to stop the release
+   # exit 1
    preflight = ''
 hn-release-hook-preflight-manual
 '';
 
+   # bump versions in the repo
    version = ''
 hn-release-hook-version-readme
 '';
 
+   # publish artifacts to the world
    publish = ''
 echo "All finished!!!"
 '';
@@ -63,8 +68,8 @@ echo "All finished!!!"
   # the previous version will be scanned/bumped by release scripts
   # the current version is what the release scripts bump *to*
   version = {
-   current = "0.0.16";
-   previous = "0.0.15";
+   current = "0.0.17";
+   previous = "0.0.16";
   };
 
   github = {

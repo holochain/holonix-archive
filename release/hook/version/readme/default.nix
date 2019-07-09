@@ -3,7 +3,7 @@ let
  name = "hn-release-hook-version-readme";
 
  script = pkgs.writeShellScriptBin name ''
-echo "bumping core versions from ${config.release.version.previous} to ${config.release.version.current} in readmes"
+echo "bumping versions from ${config.release.version.previous} to ${config.release.version.current} in readmes"
 find . \
  -iname "readme.md" \
  -not -path "**/.git/**" \
