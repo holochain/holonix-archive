@@ -23,6 +23,7 @@ let
  description-generator = "$( ${notes-name} )";
  script = pkgs.writeShellScriptBin name
  ''
+ set -euo pipefail
  export GITHUB_USER='${config.release.github.owner}'
  export GITHUB_REPO='${config.release.github.repo}'
  export GITHUB_TOKEN=$( git config --get hub.oauthtoken )

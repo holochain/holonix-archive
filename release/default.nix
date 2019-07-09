@@ -25,11 +25,17 @@ in
   config = release-config;
  }).buildInputs
 
+ ++ (pkgs.callPackage ./cut {
+  config = release-config;
+ }).buildInputs
+
  ++ (pkgs.callPackage ./github {
   config = release-config;
  }).buildInputs
 
- ++ (pkgs.callPackage ./cut { }).buildInputs
+ ++ (pkgs.callPackage ./hook {
+  config = release-config;
+ }).buildInputs
 
  ++ (pkgs.callPackage ./push {
   config = release-config;

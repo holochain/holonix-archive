@@ -21,7 +21,7 @@
    #       the sha here changes (the sha is the cache key for downloads)
    # note: to get a new sha, get nix to try and download a bad sha
    #       it will complain and tell you the right sha
-   sha256 = "1hlfd2vr8x0faa8d8zhrnkqadvn6wmvwnl9zl920vb1p08qg24ka";
+   sha256 = "0pxlfz6pvzxlqjh6dz8lgrgc3k5s62zm7d0gllqmdvfw4qy3ffqy";
 
    # the github owner of the holonix repo
    owner = "holochain";
@@ -40,6 +40,20 @@
 
  # configure the release process
  release = {
+  hook = {
+   preflight = ''
+hn-release-hook-preflight-manual
+'';
+
+   version = ''
+hn-release-hook-version-readme
+'';
+
+   publish = ''
+echo "All finished!!!"
+'';
+  };
+
   # the commit hash that the release process should target
   # this will always be behind what ends up being deployed
   # the release process needs to add some commits for changelog etc.
@@ -49,8 +63,8 @@
   # the previous version will be scanned/bumped by release scripts
   # the current version is what the release scripts bump *to*
   version = {
-   current = "0.0.15";
-   previous = "0.0.14";
+   current = "0.0.16";
+   previous = "0.0.15";
   };
 
   github = {

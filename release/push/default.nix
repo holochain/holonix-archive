@@ -4,7 +4,7 @@ let
 
   script = pkgs.writeShellScriptBin name
   ''
-  set -euxo pipefail
+  set -euo pipefail
   echo
   echo "kicking off release ${config.release.tag}"
   echo
