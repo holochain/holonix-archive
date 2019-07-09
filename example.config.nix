@@ -3,14 +3,14 @@
   # the commit hash that the release process should target
   # this will always be behind what ends up being deployed
   # the release process needs to add some commits for changelog etc.
-  commit = "a73cf77909ea41a409af48c2a3d3dcd11789bd78";
+  commit = "6706e3ce3cb723c74ed9874bb71c186d825aa9c6";
 
   # the semver for prev and current releases
   # the previous version will be scanned/bumped by release scripts
   # the current version is what the release scripts bump *to*
   version = {
-   current = "0.0.11";
-   previous = "0.0.10";
+   current = "0.0.12";
+   previous = "0.0.11";
   };
 
   github = {

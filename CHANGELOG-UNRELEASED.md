@@ -14,7 +14,5 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ### Fixed
 
-- release command no longer references medium
-- github template no longer includes legacy placeholder
-
 ### Security
+
