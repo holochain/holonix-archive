@@ -14,6 +14,5 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ### Fixed
 
-- fixed release cutting without github syncs
-
 ### Security
+
