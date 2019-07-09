@@ -7,6 +7,7 @@ let
 
   script = pkgs.writeShellScriptBin name
   ''
+  set -euxo pipefail
   echo
   echo 'preparing release branch'
   echo

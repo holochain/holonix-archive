@@ -32,21 +32,15 @@ ${heading-placeholder}
   changelog-path = "./CHANGELOG.md";
   unreleased-path = "./CHANGELOG-UNRELEASED.md";
 
-  # bash expression to generate the heading
-  heading-generator =
-  if config.release ? version
-  then "## [${config.release.version.current}] - $(date --iso --u)"
-  else "## $(date --iso=seconds --u)";
-
-  # cat ${unreleased-path} | sed "s/\[Unreleased\]/${template}\#\# \[${release.core.version.current}\] - $(date --iso --u)/"
   script = pkgs.writeShellScriptBin name
   ''
+  set -euxo pipefail
   echo
   echo "locking off changelog version"
   echo
   template="$(cat ${unreleased-path})"
   heading_placeholder="${heading-placeholder}"
-  heading="${heading-generator}"
+  heading="## [${config.release.version.current}] - $(date --iso --u)"
   prepend=''${template/$heading_placeholder/$heading}
   current=$( cat ./CHANGELOG.md | sed -e '1,4d' )
   echo "timestamping and retemplating changelog"

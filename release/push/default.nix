@@ -4,9 +4,9 @@ let
 
   script = pkgs.writeShellScriptBin name
   ''
+  set -euxo pipefail
   echo
-  echo
-  echo "kicking off release"
+  echo "kicking off release ${config.release.tag}"
   echo
   if [ "$(git rev-parse --abbrev-ref HEAD)" == "${config.release.branch}" ]
    then
@@ -16,8 +16,6 @@ let
     git push ${config.release.upstream} HEAD:master
     git pull ${config.release.upstream} develop
     git push ${config.release.upstream} HEAD:develop
-    echo
-    echo "releasing core ${config.release.tag}"
     echo
     echo "tagging ${config.release.tag}"
     git tag -a ${config.release.tag} -m "Version ${config.release.tag}"
@@ -29,7 +27,6 @@ let
     echo "try running hn-release-cut for the full process or hn-release-branch"
     exit 1;
   fi
-
 
   git checkout master
   git pull

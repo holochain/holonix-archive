@@ -4,6 +4,7 @@ let
 
   script = pkgs.writeShellScriptBin name
   ''
+  set -euxo pipefail
   echo
   read -r -p "Are you sure you want to cut a new release based on the current config? [y/N] " response
   case "$response" in
