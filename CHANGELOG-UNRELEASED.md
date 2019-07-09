@@ -6,11 +6,7 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ### Added
 
-- added an extension point for buildInputs in example.config.nix
-
 ### Changed
-
-- moved holonix configuration to example.config.nix
 
 ### Deprecated
 
@@ -18,6 +14,5 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ### Fixed
 
-- fixed touching missing changelog files early enough in release
-
 ### Security
+
