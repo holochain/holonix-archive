@@ -36,7 +36,7 @@ ${heading-placeholder}
   heading-generator =
   if release ? version
   then "## [${release.version.current}] - $(date --iso --u)"
-  else "## $(date --iso --u)";
+  else "## $(date --iso=seconds --u)";
 
   # cat ${unreleased-path} | sed "s/\[Unreleased\]/${template}\#\# \[${release.core.version.current}\] - $(date --iso --u)/"
   script = pkgs.writeShellScriptBin name
