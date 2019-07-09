@@ -7,7 +7,7 @@
 
   # true = use a github repository as the holonix base (recommended)
   # false = use a local copy of holonix (useful for debugging)
-  use-github = true;
+  use-github = false;
 
   # configure the remote holonix github when use-github = true
   github = {
@@ -68,8 +68,8 @@ echo "All finished!!!"
   # the previous version will be scanned/bumped by release scripts
   # the current version is what the release scripts bump *to*
   version = {
-   current = "0.0.17";
-   previous = "0.0.16";
+   current = "0.0.18";
+   previous = "0.0.17";
   };
 
   github = {
