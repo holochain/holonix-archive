@@ -1,3 +1,10 @@
+{
+ # allow consumers to pass in their own config
+ # fallback to empty sets
+ config ? {
+  release = { };
+ }
+}:
 let
  pkgs = import ./nixpkgs;
 
@@ -16,6 +23,9 @@ let
  node = pkgs.callPackage ./node { };
  openssl = pkgs.callPackage ./openssl { };
  qt = pkgs.callPackage ./qt { };
+ release = pkgs.callPackage ./release {
+  release = config.release;
+ };
 
  holonix-shell = pkgs.callPackage ./nix-shell {
   pkgs = pkgs;
@@ -30,6 +40,7 @@ let
   node = node;
   openssl = openssl;
   qt = qt;
+  release = release;
   rust = rust;
  };
 

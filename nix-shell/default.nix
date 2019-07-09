@@ -11,6 +11,7 @@
  node,
  openssl,
  qt,
+ release,
  rust,
 }:
 {
@@ -63,6 +64,7 @@
  ++ node.buildInputs
  ++ openssl.buildInputs
  ++ qt.buildInputs
+ ++ release.buildInputs
  ++ rust.buildInputs
  ;
 }
