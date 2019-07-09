@@ -5,55 +5,19 @@ let
 
  # point this to your local config.nix file for this project
  # example.config.nix shows and documents a lot of the options
- project-config = import ./example.config.nix;
-
- config = {
-
-  # true = use a github repository as the holonix base (recommended)
-  # false = use a local copy of holonix (useful for debugging)
-  use-github = true;
-
-  # configure the remote holonix github when use-github = true
-  github = {
-
-   # can be any github ref
-   # branch, tag, commit, etc.
-   ref = "0.0.12";
-
-   # the sha of what is downloaded from the above ref
-   # note: even if you change the above ref it will not be redownloaded until
-   #       the sha here changes (the sha is the cache key for downloads)
-   # note: to get a new sha, get nix to try and download a bad sha
-   #       it will complain and tell you the right sha
-   sha256 = "1hlfd2vr8x0faa8d8zhrnkqadvn6wmvwnl9zl920vb1p08qg24ka";
-
-   # the github owner of the holonix repo
-   owner = "holochain";
-
-   # the name of the holonix repo
-   repo = "holonix";
-  };
-
-  # configuration for when use-github = false
-  local = {
-   # the path to the local holonix copy
-   path = ./.;
-  };
-
- };
+ config = import ./example.config.nix;
 
  # START HOLONIX IMPORT BOILERPLATE
  holonix = import (
-  if ! config.use-github
-  then config.local.path
+  if ! config.holonix.use-github
+  then config.holonix.local.path
   else fetchTarball {
-   url = "https://github.com/${config.github.owner}/${config.github.repo}/tarball/${config.github.ref}";
-   sha256 = config.github.sha256;
+   url = "https://github.com/${config.holonix.github.owner}/${config.holonix.github.repo}/tarball/${config.holonix.github.ref}";
+   sha256 = config.holonix.github.sha256;
   }
- ) { config = project-config; };
+ ) { config = config; };
  # END HOLONIX IMPORT BOILERPLATE
 
- # holonix = callPackage ../holonix { config = (import ./config.nix) };
 in
 with holonix.pkgs;
 {
@@ -62,6 +26,7 @@ with holonix.pkgs;
 
   buildInputs = [ ]
    ++ holonix.shell.buildInputs
+   ++ config.buildInputs
   ;
  });
 }

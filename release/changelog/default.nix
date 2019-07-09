@@ -35,17 +35,18 @@ ${heading-placeholder}
   script = pkgs.writeShellScriptBin name
   ''
   set -euxo pipefail
-  echo
-  echo "locking off changelog version"
-  echo
+  # locking off changelog version
+
+  # ensure required files exist
+  touch ${changelog-path}
+  touch ${unreleased-path}
+
   template="$(cat ${unreleased-path})"
   heading_placeholder="${heading-placeholder}"
   heading="## [${config.release.version.current}] - $(date --iso --u)"
   prepend=''${template/$heading_placeholder/$heading}
   current=$( cat ./CHANGELOG.md | sed -e '1,4d' )
   echo "timestamping and retemplating changelog"
-  touch ${changelog-path}
-  touch ${unreleased-path}
   printf '%s\n\n%s\n' "$prepend" "$current" > ${changelog-path}
   echo '${template}' > '${unreleased-path}'
   '';
