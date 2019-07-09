@@ -6,6 +6,22 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ### Added
 
+- scripts to update github repository for cut releases
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [0.0.8] - 2019-07-09
+
+### Added
+
 ### Changed
 
 ### Deprecated
