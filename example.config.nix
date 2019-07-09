@@ -18,8 +18,6 @@
    # there is some basic string substitution {{ xxx }}
    # - {{ changelog }} will inject the changelog as at the target commit
    template = ''
-{{ version-heading }}
-
 {{ changelog }}
 
 # Installation

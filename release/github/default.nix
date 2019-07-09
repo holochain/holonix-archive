@@ -27,7 +27,7 @@ let
  export GITHUB_REPO='${config.release.github.repo}'
  export GITHUB_TOKEN=$( git config --get hub.oauthtoken )
  echo
- echo 'Injecting medium summary/highlights into github release notes'
+ echo 'Creating github release'
  echo
  github-release -v release --tag ${config.release.tag} --name ${config.release.tag} --description "${description-generator}"
  '';
