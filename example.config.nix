@@ -62,7 +62,7 @@ echo "All finished!!!"
   # the commit hash that the release process should target
   # this will always be behind what ends up being deployed
   # the release process needs to add some commits for changelog etc.
-  commit = "572f4184aa2a53e37da38ef8fa9e4522696e4cad";
+  commit = "1cdf11b7bf64e3406f6c3f0521308ee959f53cc7";
 
   # the semver for prev and current releases
   # the previous version will be scanned/bumped by release scripts
