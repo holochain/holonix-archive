@@ -5,9 +5,7 @@
 {
  # allow consumers to pass in their own config
  # fallback to empty sets
- config ? {
-  release = { };
- }
+ config ? import ./config.nix
 }:
 let
  pkgs = import ./nixpkgs;

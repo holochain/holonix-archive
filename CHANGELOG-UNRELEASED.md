@@ -8,11 +8,14 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ### Changed
 
+- bumped to `0.0.23-alpha1` binaries for conductor and cli
+
 ### Deprecated
 
 ### Removed
 
 ### Fixed
 
-### Security
+- fixed missing config in default.nix
 
+### Security
