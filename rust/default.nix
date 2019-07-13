@@ -14,6 +14,7 @@ rust //
   pkgs.openssl
   pkgs.pkgconfig
   pkgs.carnix
+  pkgs.rustup
  ]
  ++ (pkgs.callPackage ./clippy { }).buildInputs
  ++ (pkgs.callPackage ./coverage { }).buildInputs
