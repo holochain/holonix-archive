@@ -8,7 +8,7 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ### Changed
 
-- bumped rust nightly to `2019-07-11`
+- bumped rust nightly to `2019-07-01`
 
 ### Deprecated
 

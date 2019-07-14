@@ -7,7 +7,7 @@ let
     # read more about version management
     # https://hackmd.io/ShgxFyDVR52gnqK7oQsuiQ
     nightly = {
-      date = "2019-07-11";
+      date = "2019-07-01";
     };
 
     # the target used by rust when compiling wasm
