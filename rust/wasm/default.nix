@@ -7,6 +7,5 @@
    pkgs.binaryen
    pkgs.wasm-gc
  ]
- ++ (pkgs.callPackage ./compile { }).buildInputs
  ;
 }
