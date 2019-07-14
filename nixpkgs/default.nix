@@ -14,7 +14,7 @@ let
   # allows us to track cargo nightlies in a nixos friendly way
   # avoids rustup
   # not compatible with parallel rustup installation
-  moz-overlay = import (builtins.fetchTarball https://github.com/mozilla/nixpkgs-mozilla/tarball/50bae918794d3c283aeb335b209efd71e75e3954);
+  moz-overlay = import (builtins.fetchTarball https://github.com/mozilla/nixpkgs-mozilla/tarball/200cf0640fd8fdff0e1a342db98c9e31e6f13cd7);
 
   pkgs = import channel {
    overlays = [ moz-overlay ];
