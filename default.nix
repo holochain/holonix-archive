@@ -10,9 +10,7 @@
 let
  pkgs = import ./nixpkgs;
 
- app-spec = pkgs.callPackage ./app-spec { };
  app-spec-cluster = pkgs.callPackage ./app-spec-cluster { };
- cli = pkgs.callPackage ./cli { };
  conductor = pkgs.callPackage ./conductor { };
  darwin = pkgs.callPackage ./darwin { };
  rust = pkgs.callPackage ./rust { };
@@ -31,9 +29,7 @@ let
 
  holonix-shell = pkgs.callPackage ./nix-shell {
   pkgs = pkgs;
-  app-spec = app-spec;
   app-spec-cluster = app-spec-cluster;
-  cli = cli;
   conductor = conductor;
   darwin = darwin;
   dist = dist;

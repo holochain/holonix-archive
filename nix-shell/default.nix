@@ -1,8 +1,6 @@
 {
  pkgs,
- app-spec,
  app-spec-cluster,
- cli,
  conductor,
  darwin,
  dist,
@@ -53,9 +51,7 @@
 
  buildInputs = []
  ++ (pkgs.callPackage ./flush { }).buildInputs
- ++ app-spec.buildInputs
  ++ app-spec-cluster.buildInputs
- ++ cli.buildInputs
  ++ conductor.buildInputs
  ++ darwin.buildInputs
  ++ dist.buildInputs
