@@ -6,18 +6,13 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ### Added
 
-- add wabt to rust/wasm/default.nix
-
 ### Changed
-
-- bumped rust nightly to `2019-07-14`
 
 ### Deprecated
 
 ### Removed
 
-- many core-only scripts moved to core
-
 ### Fixed
 
 ### Security
+
