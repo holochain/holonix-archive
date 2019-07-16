@@ -1,8 +1,8 @@
 { pkgs, rust, dist, git }:
 rec {
- artifact-name = args: "${args.name}-v${dist.version}-${args.target}";
+ artifact-name = args: "${args.name}-${dist.version}-${args.target}";
 
- artifact-url = args: "${dist.github.base-url}/releases/download/v${dist.version}/${artifact-name args}.tar.gz";
+ artifact-url = args: "${dist.github.base-url}/releases/download/${dist.version}/${artifact-name args}.tar.gz";
 
  normalize-artifact-target = target:
   builtins.replaceStrings
