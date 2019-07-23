@@ -28,6 +28,7 @@
  CARGO_INCREMENTAL = rust.compile.incremental;
  RUST_LOG = rust.log;
  NUM_JOBS = rust.compile.jobs;
+ RUST_BACKTRACE = rust.backtrace;
 
  OPENSSL_STATIC = openssl.static;
 
