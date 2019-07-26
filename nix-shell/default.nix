@@ -11,6 +11,7 @@
  qt,
  release,
  rust,
+ test
 }:
 {
  name = "holonix-shell";
@@ -63,5 +64,6 @@
  ++ qt.buildInputs
  ++ release.buildInputs
  ++ rust.buildInputs
+ ++ test.buildInputs
  ;
 }

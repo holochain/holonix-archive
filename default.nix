@@ -26,6 +26,9 @@ let
  release = pkgs.callPackage ./release {
   config = config;
  };
+ test = pkgs.callPackage ./test {
+   pkgs = pkgs;
+ };
 
  holonix-shell = pkgs.callPackage ./nix-shell {
   pkgs = pkgs;
@@ -40,6 +43,7 @@ let
   qt = qt;
   release = release;
   rust = rust;
+  test = test;
  };
 
  # override and overrideDerivation cannot be handled by mkDerivation

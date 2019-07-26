@@ -6,5 +6,28 @@ jobs:
    - image: holochain/holonix:latest
   steps:
    - checkout
-   # smoke test
-   - run: nix-shell -vvv --run echo
+   # warm nix
+   - run: nix-shell --run echo
+   # run tests
+   - run: nix-shell --run hn-test
+
+ mac:
+  macos:
+   xcode: "10.2.0"
+  steps:
+   - checkout
+   - run:
+      name: Warm nix
+      command: |
+       curl https://nixos.org/nix/install | sh
+       . /Users/distiller/.nix-profile/etc/profile.d/nix.sh
+       nix-shell --run echo
+  # run tests
+   - run: nix-shell --run hn-test
+
+workflows:
+ version: 2
+ tests:
+  jobs:
+   - build
+   - mac
