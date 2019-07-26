@@ -21,7 +21,8 @@ jobs:
        nix-shell -vvv --run hn-test
 
 workflows:
-  version: 2
-  tests:
-    - build
-    - mac
+ version: 2
+ tests:
+  jobs:
+   - build
+   - mac
