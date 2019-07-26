@@ -21,9 +21,7 @@ jobs:
       command: |
        curl https://nixos.org/nix/install | sh
        . /Users/distiller/.nix-profile/etc/profile.d/nix.sh
-       nix-shell --run echo
-  # run tests
-   - run: nix-shell --run hn-test
+       nix-shell --run hn-test
 
 workflows:
  version: 2
