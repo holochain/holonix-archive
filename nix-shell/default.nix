@@ -48,9 +48,18 @@
  export PATH="$CARGO_INSTALL_ROOT/bin:$PATH"
  export HC_TARGET_PREFIX=~/nix-holochain/
  export NIX_LDFLAGS="${darwin.ld-flags}$NIX_LDFLAGS"
+
+ # https://github.com/holochain/holonix/issues/12
+ export TMP=/tmp
+ export TMPDIR=$TMP
+ export TMP=$( mktemp -d )
+ export TMPDIR=$TMP
  '';
 
- buildInputs = []
+ buildInputs = [
+  # for mktemp
+  pkgs.coreutils
+ ]
  ++ (pkgs.callPackage ./flush { }).buildInputs
  ++ app-spec-cluster.buildInputs
  ++ conductor.buildInputs
