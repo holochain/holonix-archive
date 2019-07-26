@@ -7,9 +7,9 @@ jobs:
   steps:
    - checkout
    # warm nix
-   - run: nix-shell -vvv --run echo
+   - run: nix-shell --run echo
    # run tests
-   - run: nix-shell -vvv --run hn-test
+   - run: nix-shell --run hn-test
 
  mac:
   macos:
@@ -21,9 +21,9 @@ jobs:
       command: |
        curl https://nixos.org/nix/install | sh
        . /Users/distiller/.nix-profile/etc/profile.d/nix.sh
-       nix-shell -vvv --run echo
+       nix-shell --run echo
   # run tests
-   - run: nix-shell -vvv --run hn-test
+   - run: nix-shell --run hn-test
 
 workflows:
  version: 2
