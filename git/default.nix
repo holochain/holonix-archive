@@ -4,7 +4,8 @@
  [
   pkgs.git
   pkgs.gitAndTools.git-hub
-  pkgs.github-release
+  # need the haskellPackages version for darwin support
+  pkgs.haskellPackages.github-release
  ]
  ;
 }
