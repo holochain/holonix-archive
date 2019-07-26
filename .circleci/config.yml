@@ -6,6 +6,9 @@ jobs:
    - image: holochain/holonix:latest
   steps:
    - checkout
+   # warm nix
+   - run: nix-shell -vvv --run echo
+   # run tests
    - run: nix-shell -vvv --run hn-test
 
  mac:
@@ -14,11 +17,13 @@ jobs:
   steps:
    - checkout
    - run:
-      name: Install and run all tests via nix
+      name: Warm nix
       command: |
        curl https://nixos.org/nix/install | sh
        . /Users/distiller/.nix-profile/etc/profile.d/nix.sh
-       nix-shell -vvv --run hn-test
+       nix-shell -vvv --run echo
+  # run tests
+   - run: nix-shell -vvv --run hn-test
 
 workflows:
  version: 2
