@@ -50,9 +50,7 @@
  export NIX_LDFLAGS="${darwin.ld-flags}$NIX_LDFLAGS"
 
  # https://github.com/holochain/holonix/issues/12
- export TMP=/tmp
- export TMPDIR=$TMP
- export TMP=$( mktemp -d )
+ export TMP=$( mktemp -p /tmp -d )
  export TMPDIR=$TMP
  '';
 
