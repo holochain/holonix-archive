@@ -23,9 +23,22 @@ jobs:
        . /Users/distiller/.nix-profile/etc/profile.d/nix.sh
        nix-shell --run hn-test
 
+ ubuntu:
+  docker:
+   - image: ubuntu
+  steps:
+   - checkout
+   - run:
+      name: Warm nix
+      command: |
+       curl https://nixos.org/nix/install | sh
+       # . /Users/distiller/.nix-profile/etc/profile.d/nix.sh
+       # nix-shell --run hn-test
+
 workflows:
  version: 2
  tests:
   jobs:
    - build
    - mac
+   - ubuntu
