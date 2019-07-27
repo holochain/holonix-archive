@@ -34,7 +34,7 @@ jobs:
        export USER=$(id -u -n)
        apt-get update
        apt-get install -y curl
-       curl https://nixos.org/nix/install | sh
+       sh <(curl https://nixos.org/nix/install) --no-daemon
        # . /Users/distiller/.nix-profile/etc/profile.d/nix.sh
        # nix-shell --run hn-test
 
