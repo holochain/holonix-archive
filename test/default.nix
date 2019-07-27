@@ -5,7 +5,8 @@ let
  name = "hn-test";
 
  script = pkgs.writeShellScriptBin name ''
-bats ./test/test.bats
+bats ./test/github-release.bats
+bats ./test/nix-shell.bats
 '';
 
 in

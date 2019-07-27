@@ -9,6 +9,7 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 - Self tests command `hn-test`
 - Mac testing on Circle CI
 - `bats` for bash testing
+- export `$TMP` and `$TMPDIR` in nix shell as `/tmp/tmp.XXXXXXXXXX`
 
 ### Changed
 
