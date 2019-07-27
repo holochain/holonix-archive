@@ -46,12 +46,14 @@
  export CARGO_HOME="$NIX_ENV_PREFIX/.cargo"
  export CARGO_INSTALL_ROOT="$NIX_ENV_PREFIX/.cargo"
  export PATH="$CARGO_INSTALL_ROOT/bin:$PATH"
- export HC_TARGET_PREFIX=~/nix-holochain/
  export NIX_LDFLAGS="${darwin.ld-flags}$NIX_LDFLAGS"
 
  # https://github.com/holochain/holonix/issues/12
  export TMP=$( mktemp -p /tmp -d )
  export TMPDIR=$TMP
+
+ # prefix in front of --target used when compiling holochain artifacts
+ export HC_TARGET_PREFIX="$TMPDIR/nix-holochain/"
  '';
 
  buildInputs = [
