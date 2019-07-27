@@ -31,6 +31,7 @@ jobs:
    - run:
       name: Warm nix
       command: |
+       apt-get install curl
        curl https://nixos.org/nix/install | sh
        # . /Users/distiller/.nix-profile/etc/profile.d/nix.sh
        # nix-shell --run hn-test
