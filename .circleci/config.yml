@@ -32,7 +32,7 @@ jobs:
       name: Warm nix
       command: |
        apt-get update
-       apt-get install curl
+       apt-get install -y curl
        curl https://nixos.org/nix/install | sh
        # . /Users/distiller/.nix-profile/etc/profile.d/nix.sh
        # nix-shell --run hn-test
