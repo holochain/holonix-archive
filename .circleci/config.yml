@@ -31,7 +31,7 @@ jobs:
    - run:
       name: Warm nix
       command: |
-       USER=$(id -u -n)
+       export USER=$(id -u -n)
        apt-get update
        apt-get install -y curl
        curl https://nixos.org/nix/install | sh
