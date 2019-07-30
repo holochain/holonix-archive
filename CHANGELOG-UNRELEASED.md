@@ -15,6 +15,7 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 - Upgraded github-release for darwin support
 - Circle CI runs `hn-test`
+- Updated to holochain-rust v0.0.25-alpha1
 
 ### Deprecated
 
