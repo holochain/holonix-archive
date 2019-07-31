@@ -48,20 +48,20 @@ jobs:
        # You can extend this or use it directly from https://holochain.love.
        # Opening a shell from holochain.love downloads updates automatically.
        # To enter a nix shell environment open a new terminal window and run:
-       nix-shell https://holochain.love
+       nix-shell https://holochain.love --run echo
        
        # In the nix shell you can access Holochain dev tools:
        # - hc: A general purpose app development toolkit.
        # - holochain: Runs holochain apps.
        # You can see both are installed by checking their versions.
        # Inside a nix shell run:
-       hc --version
-       holochain --version
+       nix-shell https://holochain.love --run 'hc --version'
+       nix-shell https://holochain.love --run 'holochain --version'
        
        # Nix cleans up everything it adds when closed.
        # You need to re-enter the shell each time you want to work.
        # To close nix shell run this inside the shell:
-       exit
+       # exit
        
        # nix-env can be used to permanently install holochain tools.
        # This means that hc and holochain can be run at any time.
