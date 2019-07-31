@@ -34,10 +34,10 @@ jobs:
        curl https://nixos.org/nix/install | sh
        . /Users/distiller/.nix-profile/etc/profile.d/nix.sh
        nix-shell https://holochain.love | sh
-       hc init my_first_app
-       cd my_first_app
-       hc generate zomes/my_zome
-       hc test
+       nix-shell hc init my_first_app
+       nix-shell cd my_first_app
+       nix-shell hc generate zomes/my_zome
+       nix-shell hc test
 
 workflows:
  version: 2
