@@ -3,6 +3,7 @@
  app-spec-cluster,
  darwin,
  dist,
+ docs,
  git,
  n3h,
  node,
@@ -62,6 +63,7 @@
  ++ app-spec-cluster.buildInputs
  ++ darwin.buildInputs
  ++ dist.buildInputs
+ ++ docs.buildInputs
  ++ git.buildInputs
  ++ n3h.buildInputs
  ++ node.buildInputs

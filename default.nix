@@ -18,6 +18,7 @@ let
   rust = rust;
   git = git;
  };
+ docs = pkgs.callPackage ./docs { };
  n3h = pkgs.callPackage ./n3h { };
  node = pkgs.callPackage ./node { };
  openssl = pkgs.callPackage ./openssl { };
@@ -34,6 +35,7 @@ let
   app-spec-cluster = app-spec-cluster;
   darwin = darwin;
   dist = dist;
+  docs = docs;
   git = git;
   n3h = n3h;
   node = node;
