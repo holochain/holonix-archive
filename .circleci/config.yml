@@ -22,6 +22,12 @@ jobs:
        curl https://nixos.org/nix/install | sh
        . /Users/distiller/.nix-profile/etc/profile.d/nix.sh
        nix-shell --run hn-test
+       
+ quick-start:
+  macos:
+   xcode: "10.2.0"
+  steps:
+   - checkout
    - run: nix-shell https://holochain.love | sh
        . /Users/distiller/.nix-profile/etc/profile.d/nix.sh
        hc init my_first_app
@@ -36,3 +42,4 @@ workflows:
   jobs:
    - build
    - mac
+   - quick-start
