@@ -23,6 +23,10 @@ let
     # @see https://github.com/rust-lang/cargo/issues/4961#issuecomment-359189913
     log = "warnings";
 
+    # set this to "1" or "full" for rust backtraces
+    # this is on because we assume you are developing in the shell
+    backtrace = "1";
+
     compile = {
 
       # @see https://github.com/rust-unofficial/patterns/blob/master/anti_patterns/deny-warnings.md

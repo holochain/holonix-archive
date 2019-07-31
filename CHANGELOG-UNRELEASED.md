@@ -6,19 +6,15 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ### Added
 
-- Self tests command `hn-test`
-- Mac testing on Circle CI
-- `bats` for bash testing
-- export `$TMP` and `$TMPDIR` in nix shell as `/tmp/tmp.XXXXXXXXXX`
+- added `RUST_BACKTRACE=1` to nix shell for rust
 
 ### Changed
-
-- Upgraded github-release for darwin support
-- Circle CI runs `hn-test`
 
 ### Deprecated
 
 ### Removed
+
+- Removed conductor specific bin scripts
 
 ### Fixed
 

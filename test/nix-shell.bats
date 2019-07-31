@@ -9,3 +9,7 @@
 @test "hc target prefix" {
   [[ $HC_TARGET_PREFIX == /tmp/tmp.*/nix-holochain/ ]]
 }
+
+@test "rust backtrace is set in shell" {
+  [ "$RUST_BACKTRACE" == "1" ]
+}
