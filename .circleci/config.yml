@@ -28,8 +28,12 @@ jobs:
    xcode: "10.2.0"
   steps:
    - checkout
-   - run: nix-shell https://holochain.love | sh
+   - run: 
+      name: Run through quick start
+      command: |
+       curl https://nixos.org/nix/install | sh
        . /Users/distiller/.nix-profile/etc/profile.d/nix.sh
+       nix-shell https://holochain.love | sh
        hc init my_first_app
        cd my_first_app
        hc generate zomes/my_zome
