@@ -5,3 +5,7 @@
  [[ $TMPDIR == /tmp/tmp.* ]]
  [[ $TMP == $TMPDIR ]]
 }
+
+@test "watch is installed" {
+ [[ $( watch -v ) == "watch from procps-ng 3.3.15" ]]
+}
