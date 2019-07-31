@@ -35,7 +35,6 @@ jobs:
        hc generate zomes/my_zome
        hc test
 
-
 workflows:
  version: 2
  tests:
