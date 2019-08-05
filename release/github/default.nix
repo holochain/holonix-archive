@@ -33,7 +33,7 @@ let
   --description "${description-generator}" \
   --owner ${config.release.github.owner} \
   --repo ${config.release.github.repo} \
-  --token $( git config --get hub.oauthtoken )
+  --token "$( git config --get hub.oauthtoken )"
  '';
 in
 {
