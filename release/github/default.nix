@@ -28,12 +28,12 @@ let
  echo 'Creating github release'
  echo
  github-release release \
-  --tag ${config.release.tag} \
-  --title ${config.release.tag} \
+  --token "$( git config --get hub.oauthtoken )" \
+  --tag '${config.release.tag}' \
+  --title '${config.release.tag}' \
   --description "${description-generator}" \
-  --owner ${config.release.github.owner} \
-  --repo ${config.release.github.repo} \
-  --token "$( git config --get hub.oauthtoken )"
+  --owner '${config.release.github.owner}' \
+  --repo '${config.release.github.repo}'
  '';
 in
 {
