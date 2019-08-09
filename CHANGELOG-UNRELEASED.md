@@ -8,8 +8,6 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ### Changed
 
-- bump holochain and hc binaries to `0.0.27-alpha1`
-
 ### Deprecated
 
 ### Removed
