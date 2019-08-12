@@ -50,6 +50,20 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ### Changed
 
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [0.0.29] - 2019-08-12
+
+### Added
+
+### Changed
+
 - Fixed holonix release
 
 ### Deprecated
