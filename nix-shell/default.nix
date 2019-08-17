@@ -30,6 +30,9 @@
  NUM_JOBS = rust.compile.jobs;
  RUST_BACKTRACE = rust.backtrace;
 
+ RELEASE_VERSION = release.config.release.version.current;
+ RELEASE_TAG = release.config.release.tag;
+
  OPENSSL_STATIC = openssl.static;
 
  shellHook = ''
