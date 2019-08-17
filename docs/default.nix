@@ -3,7 +3,10 @@
  buildInputs =
  [
   pkgs.hugo
-  pkgs.mkdocs
+
+  (pkgs.writeShellScriptBin "hn-docs" ''
+(cd docs && hugo serve )
+  '')
  ]
  ++ (pkgs.callPackage ./github-pages { pkgs = pkgs; }).buildInputs
  ;
