@@ -5,7 +5,6 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 {{ version-heading }}
 
 ### Added
-- Bumped Holochain version to 0.0.28-alpha1
 
 ### Changed
 
