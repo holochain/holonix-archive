@@ -4,27 +4,18 @@ date: 2019-02-11T19:27:37+10:00
 weight: 3
 ---
 
-## Mac & Linux
+It is developed specifically to address common  and ongoing "works on my machine" style frustrations.  
+Holonix embodies lessons from the full spectrum of low level core development needs to ad-hoc beginner level hackathon explorations.
 
-A common myth is that NixOS is required to develop with Holonix.  
-This is not true.  
-Holonix is native to Mac _and_ Linux through the nix shell.  
-The nix shell is comparable to using `brew`, `apt-get` or `npm`.
+## Minimal assumptions
 
-This is all possible thanks to the awesome work by the [NixOS Foundation](https://nixos.org/nixos/foundation.html) and [Holochain](https://holochain.org) maintaining cross-platform binaries.
+Software projects typically make many assumptions about what the developer environment looks like.
 
-### Mac
+There are few options to provide dependencies and configuration needed at the system level.
 
-Holonix assumes [Xcode](https://developer.apple.com/xcode/) is installed.  
-Xcode is the official Mac developer toolkit so is likely to already be installed on a development
+This is due to many factors:
 
-
-## Windows
-
-Windows support is available through virtual machines (VMs), either [Vagrant](https://www.vagrantup.com/) or [Docker](https://www.docker.com/). This is similar to web development where local VMs imitate Linux production servers.
-
-The future of native Windows support is bright!  
-[May 2019](https://github.com/NixOS/nixpkgs/issues/30391#issuecomment-491350711) [@edolstra](https://github.com/edolstra) registered a Microsoft account for the NixOS foundation.  
-If all goes well NixOS will be a Windows Subsystem Linux 2 (WSL2) app.
-
-## NixOS
+- Package managers are locked to either a platform (max/linux/windows) or language (node/rust/etc.)
+- Dependencies and configuration are often global so projects bleed into each other, causing system degradation over time
+- Package managers try to be "helpful" with versioning by tracking "latest" (e.g. brew on mac) or unpinned semver logic in upstream transitive dependencies
+- Binaries look for shared libs that may or may not be installed or be changed by a third party without notice (e.g. Mac software updates)

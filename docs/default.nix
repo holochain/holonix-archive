@@ -3,6 +3,7 @@
  buildInputs =
  [
   pkgs.hugo
+  pkgs.asciinema
 
   (pkgs.writeShellScriptBin "hn-docs" ''
 (cd docs && hugo serve )
