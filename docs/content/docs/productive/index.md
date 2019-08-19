@@ -28,3 +28,16 @@ Workflows are achieved through a combination of:
 - virtual machines for continuous integration and extended platform support
 - conventions and project specific configuration
 - leveraging the [NixOS](https://nixos.org/) toolkit
+
+
+## Extending holonix
+
+Holonix can be consumed in three main ways:
+
+- A project-agnostic `https://holochain.love` 1-liner
+- A project-specific `default.nix` configuration
+- As a NixOS native overlay
+
+This allows for increasing levels of sophistication and control over Holonix usage.
+
+As developers gain familiarity with Holonix and NixOS in general they can progressively dive deeper to customise and leverage more.
