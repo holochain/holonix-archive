@@ -10,13 +10,13 @@
 
   hook = {
    preflight = ''
-   echo "<your preflight script here>"
+echo "<your preflight script here>"
    '';
    version = ''
-   echo "<your versioning script here>"
+echo "<your versioning script here>"
    '';
    publish = ''
-   echo "<your publishing script here>"
+echo "<your publishing script here>"
    '';
   };
 

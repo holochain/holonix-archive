@@ -1,7 +1,6 @@
 {
  pkgs,
  app-spec-cluster,
- conductor,
  darwin,
  dist,
  git,
@@ -29,6 +28,10 @@
  CARGO_INCREMENTAL = rust.compile.incremental;
  RUST_LOG = rust.log;
  NUM_JOBS = rust.compile.jobs;
+ RUST_BACKTRACE = rust.backtrace;
+
+ RELEASE_VERSION = release.config.release.version.current;
+ RELEASE_TAG = release.config.release.tag;
 
  OPENSSL_STATIC = openssl.static;
 
@@ -63,7 +66,6 @@
  ]
  ++ (pkgs.callPackage ./flush { }).buildInputs
  ++ app-spec-cluster.buildInputs
- ++ conductor.buildInputs
  ++ darwin.buildInputs
  ++ dist.buildInputs
  ++ git.buildInputs

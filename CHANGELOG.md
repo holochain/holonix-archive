@@ -2,6 +2,207 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.0.30] - 2019-08-18
+
+### Added
+- Bumped Holochain version to 0.0.28-alpha1
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [0.0.29] - 2019-08-12
+
+### Added
+
+### Changed
+
+
+### Deprecated
+
+### Removed
+
+### Fixed
+-Fixing release hashes for linux
+
+### Security
+
+## [0.0.29] - 2019-08-12
+
+### Added
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [0.0.29] - 2019-08-12
+
+### Added
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [0.0.29] - 2019-08-12
+
+### Added
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [0.0.29] - 2019-08-12
+
+### Added
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [0.0.29] - 2019-08-12
+
+### Added
+
+### Changed
+
+- Fixed holonix release
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [0.0.28] - 2019-08-09
+
+### Added
+
+### Changed
+
+- bump holochain and hc binaries to `0.0.27-alpha1`
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [0.0.27] - 2019-08-05
+
+### Added
+
+### Changed
+
+- bump holochain and hc binaries to `0.0.26-alpha1`
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [0.0.26] - 2019-08-05
+
+### Added
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+- Fixed github release process
+
+### Security
+
+## [0.0.25] - 2019-08-05
+
+### Added
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [0.0.24] - 2019-08-05
+
+### Added
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+- Fixed holonix release process
+
+### Security
+
+## [0.0.23] - 2019-08-05
+
+### Added
+
+- added `RUST_BACKTRACE=1` to nix shell for rust
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+- Removed conductor specific bin scripts
+
+### Fixed
+
+- Fixed the github release hook by removing `-v`
+
+### Security
+
 ## [0.0.22] - 2019-07-30
 
 ### Added

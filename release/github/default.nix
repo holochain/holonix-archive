@@ -24,13 +24,16 @@ let
  script = pkgs.writeShellScriptBin name
  ''
  set -euo pipefail
- export GITHUB_USER='${config.release.github.owner}'
- export GITHUB_REPO='${config.release.github.repo}'
- export GITHUB_TOKEN=$( git config --get hub.oauthtoken )
  echo
  echo 'Creating github release'
  echo
- github-release -v release --tag ${config.release.tag} --name ${config.release.tag} --description "${description-generator}"
+ github-release release \
+  --token "$( git config --get hub.oauthtoken )" \
+  --tag '${config.release.tag}' \
+  --title '${config.release.tag}' \
+  --description "${description-generator}" \
+  --owner '${config.release.github.owner}' \
+  --repo '${config.release.github.repo}'
  '';
 in
 {
