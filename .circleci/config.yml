@@ -23,6 +23,7 @@ jobs:
        . /Users/distiller/.nix-profile/etc/profile.d/nix.sh
        nix-shell --run hn-test
 
+ # https://circleci.com/blog/deploying-documentation-to-github-pages-with-continuous-integration/
  deploy-github-pages:
   docker:
    - image: holochain/holonix:latest
@@ -127,4 +128,4 @@ workflows:
    - build
    - mac
    - quick-start
-   - docs-deploy
+   - deploy-github-pages
