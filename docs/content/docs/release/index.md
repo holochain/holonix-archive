@@ -99,10 +99,12 @@ Before attempting a release ensure the following:
 - a `master` branch
 - a reference to holonix `0.0.30` or higher
 - a [github oath token](https://github.com/settings/tokens) added to git config locally
+
 ```bash
 git config --global hub.oauthtoken "xxxyourtokenxxx"
 git config --global hub.username "your-github-username"
 ```
+
 - a commit ready to release from the `develop` branch pulled and checked out locally
 - `cd` into the repository and **do not enter the nix shell**
 
