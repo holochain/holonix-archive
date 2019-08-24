@@ -10,6 +10,8 @@ Holonix defines a simple, language agnostic release workflow.
 
 It assumes a `develop` and `master` branch.
 
+It assumes a changelog.
+
 The `release.version.current` is read from `./config.nix` to create a tag `v${release.version.current` for the release.
 
 The workflow runs in three stages:
