@@ -108,8 +108,7 @@ links to tutorials  official &amp;ldquo;nix pills&amp;rdquo; https://nixos.org/n
       <pubDate>Mon, 11 Feb 2019 19:27:37 +1000</pubDate>
       
       <guid>/docs/bash/</guid>
-      <description>zzzzzzooo
-Writing a bash script Most repositories benefit from a set of &amp;ldquo;quality of life&amp;rdquo; scripts.
+      <description>Writing a bash script Most repositories benefit from a set of &amp;ldquo;quality of life&amp;rdquo; scripts.
 Bash is by far the lowest common denominator.
 It is easy to extend holonix with custom bash scripts.
 NixOS provides a function writeShellScriptBin that takes a name, any bash string, creates a binary and puts it on the PATH.
