@@ -4,8 +4,6 @@ date: 2019-02-11T19:27:37+10:00
 weight: 8
 ---
 
-zzzzzzooo
-
 ## Writing a bash script
 
 Most repositories benefit from a set of "quality of life" scripts.
