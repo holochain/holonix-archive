@@ -276,7 +276,7 @@ Set `holonix.use-github` to `true` and `holonix.github.owner` to the owner of th
 
 #### c.f. npm run
 
-It is possible to extend your local `default.nix` with [ad-hoc bash scripts](/bash) so that `nix-shell --run foo` works like a generalised version `npm run foo`.
+It is possible to extend your local `default.nix` with [ad-hoc bash scripts](/docs/bash) so that `nix-shell --run foo` works like a generalised version `npm run foo`.
 
 From https://docs.npmjs.com/cli/run-script
 
@@ -290,7 +290,7 @@ We recommend keeping `npm` _inside_ the nix shell rather than trying to "npmify"
 
 Set a version of `npm` that works for the holonixified project in the `buildInputs` for `./node/default.nix` and then use it inside a nix shell across the whole team, rather than ad-hoc `nvm` management.
 
-See the [node writeup](/node) for more info.
+See the [node writeup](/docs/node) for more info.
 
 #### c.f. makefiles
 
@@ -325,11 +325,11 @@ Wrapping make in nix `nix-shell --run 'make foo'`:
 - Can make mistakes and use the wrong shell for a project
 - Makefile does not work without implicit nix-shell
 
-See the [makefile writeup](/makefile) for more info.
+See the [makefile writeup](/docs/makefile) for more info.
 
 #### How to manage releases with holonix
 
-See [the releases writeup](/release).
+See [the releases writeup](/docs/release).
 
 ### Benefits
 

@@ -95,7 +95,7 @@ The standard way to access the binaries is to drop into a nix shell.
  async>
 </script>
 
-If this isn't working or the wrong version of a binary is being used see the [troubleshooting guide](/support).
+If this isn't working or the wrong version of a binary is being used see the [troubleshooting guide](/docs/support).
 
 ### Environment binaries
 

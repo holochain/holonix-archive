@@ -66,7 +66,7 @@ If we have a lot of scripts this will get unwieldy to keep in a single file.
 
 ### NixOS boilerplate
 
-One way to [extend holonix](/configure) without everything in a giant list of scripts is to split each implementation into three parts:
+One way to [extend holonix](/docs/configure) without everything in a giant list of scripts is to split each implementation into three parts:
 
 - the script derivation in a dedicated `./foo/default.nix` file
 - any top level configuration added to `./config.nix`

@@ -13,7 +13,7 @@ NixOS is an entire operating system but Holonix doesn't require this at all.
 Holonix targets the standalone "nix shell" tool.  
 Nix shell is comparable to using `brew`, `apt-get` or `npm` but is not locked to a single platform or language.
 
-Read the [installation](/install) and [configuration](/config) guides for details on _how_ this all works.
+Read the [installation](/docs/install) and [configuration](/docs/config) guides for details on _how_ this all works.
 
 ## Mac & Linux
 

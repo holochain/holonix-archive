@@ -19,7 +19,7 @@ This is incompatible with holonix for two reasons:
 - `npm run` and `npx` can attempt to create symlinks in `/nix/store/...` which is read-only by design because nix derivations are hashed and immutable (like holochain zomes)
 - `npm install` creates symlinks which are [not compatible with VirtualBox on Windows 10 without additional configuration per machine](https://superuser.com/questions/1115329/vagrant-shared-folder-and-symbolic-links-under-windows-10)
 
-A simple workaround is to "wrap" node binaries in a [nixified bash script](/bash) and pass cli arguments verbatim.
+A simple workaround is to "wrap" node binaries in a [nixified bash script](/docs/bash) and pass cli arguments verbatim.
 
 For example, the [ghost blogging platform](https://ghost.org/) normally expects to be installed globally with `npm install -g ghost` but can be wrapped locally in a nix shell.
 
