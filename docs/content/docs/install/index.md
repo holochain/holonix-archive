@@ -175,6 +175,14 @@ At the time of writing, WSL2 is DIY and/or Coming Soon.
 
 ### Dual Boot
 
+#### Linux dual boot
+
+A linux dual boot can be used with nix shell directly.
+
+Ubuntu + nix shell is a good option, especially for people new to holonix.
+
+#### NixOS dual boot
+
 The NixOS wiki lists instructions to [dual boot NixOS and Windows](https://nixos.wiki/wiki/Dual_Booting_NixOS_and_Windows).
 
 This seems to be technical but possible judging from various threads and articles:

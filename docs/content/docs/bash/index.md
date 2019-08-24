@@ -11,13 +11,11 @@ Most repositories benefit from a set of "quality of life" scripts.
 Bash is by far the lowest common denominator.  
 It is easy to extend holonix with custom bash scripts.
 
-### NixOS boilerplate
-
 NixOS provides a function `writeShellScriptBin` that takes a name, any bash string, creates a binary and puts it on the `PATH`.
 
 The name is literally what will be executed on the command line by users so must be globally unique.
 
-For example, if we had the following bash script:
+This is the example bash script to nixify:
 
 ```bash
 set -euo pipefail
@@ -25,9 +23,56 @@ set -euo pipefail
 zip -r my-assets.zip ./assets
 ```
 
-We can [extend holonix](/configure) like this:
+Nix helps us achieve a few things:
 
-`assets/default.nix`
+- ensuring the `zip` command exists when the script runs
+- version controlling the `zip` command with our code
+- use a version of `zip` compatible with holonix and HoloPortOS
+- centralizing config such as our assets path
+- manage permissions and the `PATH`
+- bundles everything in a format that can be re-used as a `buildInput` to other nix derivations downstream
+
+### Quick and dirty
+
+The absolute minimum is to add the `writeShellScriptBin` directly to the `buildInputs` in `./default.nix`.
+
+All this syntax is explained below.
+
+```nix
+{
+ # ...
+
+ buildInputs = [ ]
+  ++ holonix.shell.buildInputs
+  ++ config.buildInputs
+
+  ++ [
+      # zip assets script
+      (holonix.pkgs.writeShellScriptBin "assets-zip" ''
+        set -euo pipefail
+        zip -r assets.zip ./public/assets
+      '')
+
+      # the zip command pinned in holonix
+      holonix.pkgs.zip
+  ];
+}
+```
+
+This allows us to run the `assets-zip` command inside the nix shell.
+
+It also gives us all the benefits of version control.  
+If we have a lot of scripts this will get unwieldy to keep in a single file.
+
+### NixOS boilerplate
+
+One way to [extend holonix](/configure) without everything in a giant list of scripts is to split each implementation into three parts:
+
+- the script derivation in a dedicated `./foo/default.nix` file
+- any top level configuration added to `./config.nix`
+- calling `./foo/default.nix` from `./default.nix` and adding the returned `buildInputs`.
+
+#### `assets/default.nix`
 
 ```nix
 { pkgs, config }:
@@ -45,7 +90,17 @@ in
 }
 ```
 
-`./config.nix`
+- `pkgs` is passed in from `./default.nix` as an argument in `{ pkgs }:`
+- the `let` and `in` block binds some values for the following scope
+- `assets-path` and `zip-name` set some values we might want to change over time
+- `zip-script` uses `pkgs.writeShellScriptBin` to create a binary called `assets-zip` from our bash script
+- the bash script uses the `''` notation for a string literal block
+- the bash script uses `${...}` notation to interpolate nix values set earlier in the `let` block into the bash script string
+- `zip-script` is added to `buildInputs`
+- `pkgs.zip` is added to `buildInputs` **so that NixOS includes the `zip` command in the shell**
+
+
+#### `./config.nix`
 
 ```nix
 {
@@ -59,7 +114,11 @@ in
 }
 ```
 
-`./default.nix`
+- all additional config is added as key value pairs to the existing boilerplate
+- in this case the config is nested as `assets.path` and `assets.zip-name`
+- this config is only read at "compile time" when the nix shell is built
+
+#### `./default.nix`
 
 ```nix
 {
@@ -77,33 +136,6 @@ in
   }).buildInputs
 }
 ```
-
-### Explanation
-
-This asset zipping script is very minimal.  
-In a small project this level of boilerplate would be overkill.  
-The `writeShellScriptBin` could be added directly to the `buildInputs` list in `default.nix` along with `holonix.pkgs.zip`.
-
-The example is contrived to show:
-
-- Holonixifying a bash script as a raw string
-- Adding values to `./config.nix` to centralise values that may change over time and/or used by several different scripts
-- An example of setting up `let` blocks to scope values in a `default.nix` file
-- **Providing dependencies explicitly for bash scripts** that can't be assumed across all systems
-- Using the `holonix.pkgs` value so that the scripts used to build dependencies are pinned to holonix versions which **provides best compatibility with HoloPortOS**
-
-`assets/default.nix`:
-
-- `pkgs` is passed in from `./default.nix` as an argument in `{ pkgs }:`
-- the `let` and `in` block binds some values for the following scope
-- `assets-path` and `zip-name` set some values we might want to change over time
-- `zip-script` uses `pkgs.writeShellScriptBin` to create a binary called `assets-zip` from our bash script
-- the bash script uses the `''` notation for a string literal block
-- the bash script uses `${...}` notation to interpolate nix values set earlier in the `let` block into the bash script string
-- `zip-script` is added to `buildInputs`
-- `pkgs.zip` is added to `buildInputs` **so that NixOS includes the `zip` command in the shell**
-
-`default.nix`:
 
 - `default.nix` calls `assets/default.nix` as a function
 - `default.nix` passes the `holonix.pkgs` to `assets/default.nix` as the `pkgs` argument

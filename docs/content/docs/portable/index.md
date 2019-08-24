@@ -48,8 +48,6 @@ Even without native NixOS support, nix shell in an WSL2 ubuntu setup should work
 
 Many Windows machines can be configured to dual boot an entirely separate Linux machine alongside Windows.
 
-In this case, an Ubuntu dual boot can be used with nix shell directly.
-
 ## NixOS
 
 Of course, if you _are_ running NixOS as your development environment then Holonix will work great.
