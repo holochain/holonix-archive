@@ -4,17 +4,21 @@ date: 2019-02-11T19:27:37+10:00
 weight: 19
 ---
 
-@todo https://forum.holochain.org/t/im-spinning-up-some-docs-for-holonix-feedback-welcome/451/12?u=thedavidmeister
-
-## Forum
+## Holochain forum
 
 The [forum](https://forum.holochain.org/) is the best place to seek help for all things holochain.
 
 There is a [category dedicated to holonix discussion](https://forum.holochain.org/c/technical/holonix).
 
+## NixOS chat
+
+The NixOS community is active and helpful in IRC chat.
+
+Join the `#nixos` channel on `freenode.net` IRC servers.
+
 ## Troubleshooting
 
-### cruft on the path
+### cruft on the PATH
 
 Nix only manages the `PATH` that they are aware of, e.g. `/nix/store`.
 
@@ -50,7 +54,7 @@ Nix shell tries to mitigate the risk of cargo compiling binaries to a global loc
 
 For `rustup`, depending on the nature of the conflict it may be necessary to uninstall `cargo` versions or `rustup` itself.
 
-### shell isolation levels
+## shell isolation
 
 As the nix shell mostly _adds_ to the shell environment it is possible for existing environment state to bleed into the nix environment.
 
