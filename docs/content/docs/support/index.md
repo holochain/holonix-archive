@@ -54,7 +54,7 @@ Nix shell tries to mitigate the risk of cargo compiling binaries to a global loc
 
 For `rustup`, depending on the nature of the conflict it may be necessary to uninstall `cargo` versions or `rustup` itself.
 
-## shell isolation
+## Shell isolation
 
 As the nix shell mostly _adds_ to the shell environment it is possible for existing environment state to bleed into the nix environment.
 
