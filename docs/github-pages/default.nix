@@ -20,7 +20,7 @@ if [[ -n $(git status --porcelain) ]]
  else
    echo "Building hugo docs"
    hugo -s docs
-   if [[ -n $(git status --percelain) ]]
+   if [[ -n $(git status --porcelain) ]]
     then
      git add . && git commit -am'hugo build docs'
    fi
