@@ -19,7 +19,11 @@ if [[ -n $(git status --porcelain) ]]
  then echo "Repo is dirty! Commit changes before attempting to push to github pages." && exit 1
  else
    echo "Building hugo docs"
-   hugo -s docs && git add . && git commit -am'hugo build docs'
+   hugo -s docs
+   if [[ -n $(git status --percelain) ]]
+    then
+     git add . && git commit -am'hugo build docs'
+   fi
    echo "Pushing to github pages"
    git push ${upstream} `git subtree split --prefix ${path} ${from-branch}`:${to-branch} --force
 fi
