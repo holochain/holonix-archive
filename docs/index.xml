@@ -240,7 +240,11 @@ Nix shell only adds things to the PATH by default.</description>
       <pubDate>Mon, 11 Feb 2019 19:27:37 +1000</pubDate>
       
       <guid>/docs/contribute/</guid>
-      <description>@todo https://forum.holochain.org/t/im-spinning-up-some-docs-for-holonix-feedback-welcome/451/12?u=thedavidmeister</description>
+      <description>@todo https://forum.holochain.org/t/im-spinning-up-some-docs-for-holonix-feedback-welcome/451/12?u=thedavidmeister
+below all pulled verbatim from old readme
+Contributing The structure of our nix derivations is designed to be as modular as possible.
+The folder structure is something like:
+holonix |_app-spec | |_test | | |_default.nix | |_... | |_default.nix |_nixpkgs | |_nixpkgs.nix |_node | |_flush | | |_default.nix | |_default.nix |_... default.nix The default.nix file is used by nix-shell automatically. This consumes holonix/** and provides several new derivations.</description>
     </item>
     
   </channel>
