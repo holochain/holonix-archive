@@ -17,8 +17,9 @@ set -euo pipefail
 
 if [[ -n $(git status --porcelain) ]]
  then echo "Repo is dirty! Commit changes before attempting to push to github pages." && exit 1
- ( cd docs && hugo && git add . && git commit -am'hugo build docs' )
- else git push ${upstream} `git subtree split --prefix ${path} ${from-branch}`:${to-branch} --force
+ else
+   ( cd docs && hugo && git add . && git commit -am'hugo build docs' )
+   git push ${upstream} `git subtree split --prefix ${path} ${from-branch}`:${to-branch} --force
 fi
   '';
 in
