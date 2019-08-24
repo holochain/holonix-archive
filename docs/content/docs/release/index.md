@@ -48,6 +48,8 @@ A hook is simply a string in `./config.nix` that will be run as a bash script.
 Some standard hooks are offered by holonix.  
 New standard hooks are added from time to time.
 
+See the `holochain-rust` repository's [`./config.nix` file](https://github.com/holochain/holochain-rust/blob/develop/config.nix) for an example of a mix of standard holonix hook scripts and repo-specific scripts.
+
 ### Preflight
 
 Preflight hooks are sanity checks that must pass before the release is attempted.
