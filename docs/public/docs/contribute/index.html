@@ -179,7 +179,93 @@
           
 <h1 class="title">Contribute</h1>
 <div class="content">
-  <p>@todo <a href="https://forum.holochain.org/t/im-spinning-up-some-docs-for-holonix-feedback-welcome/451/12?u=thedavidmeister">https://forum.holochain.org/t/im-spinning-up-some-docs-for-holonix-feedback-welcome/451/12?u=thedavidmeister</a></p>
+  
+
+<p>@todo <a href="https://forum.holochain.org/t/im-spinning-up-some-docs-for-holonix-feedback-welcome/451/12?u=thedavidmeister">https://forum.holochain.org/t/im-spinning-up-some-docs-for-holonix-feedback-welcome/451/12?u=thedavidmeister</a></p>
+
+<p><strong>below all pulled verbatim from old readme</strong></p>
+
+<h2 id="contributing">Contributing</h2>
+
+<p>The structure of our nix derivations is designed to be as modular as possible.</p>
+
+<p>The folder structure is something like:</p>
+<div class="highlight"><pre class="chroma">holonix
+ |_app-spec
+ |  |_test
+ |  | |_default.nix
+ |  |_...
+ |  |_default.nix
+ |_nixpkgs
+ | |_nixpkgs.nix
+ |_node
+ | |_flush
+ | | |_default.nix
+ | |_default.nix
+ |_...
+default.nix</pre></div>
+<p>The <code>default.nix</code> file is used by <code>nix-shell</code> automatically.
+This consumes <code>holonix/**</code> and provides several new derivations.</p>
+
+<ul>
+<li><code>main</code>: used to construct the development environment in the nix shell</li>
+<li><code>holochain.hc</code>: used to install latest <code>hc</code> binary with <code>nix-env</code></li>
+<li><code>holochain.holochain</code>: used to install latest <code>holochain</code> binary with <code>nix-env</code></li>
+</ul>
+
+<p>e.g. install binaries globally with:</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">nix-env -f https://holochain.love -iA holochain.hc holochain.holochain</code></pre></div>
+<h2 id="contributions-and-extension">Contributions and extension</h2>
+
+<p>Holonix is designed to be used as a base layer and extended in other repos.</p>
+
+<p>See <code>holochain-rust</code> for examples.</p>
+
+<p>There are a few basic conventions to follow:</p>
+
+<ul>
+<li>Nest folders according to theme/tech/specificity
+
+<ul>
+<li>e.g. conductor management for conductor <code>x</code> sits under <code>conductor/x/**</code></li>
+</ul></li>
+<li>All configuration strings and other primitives sit in a local <code>config.nix</code>
+
+<ul>
+<li>this is not a function it should be a constant set</li>
+<li>use it with <code>import ./config.nix</code> and merge with returned vals</li>
+</ul></li>
+<li>Structure configuration as nested <code>foo.bar</code> rather than <code>foo-bar</code></li>
+<li>All used and generated inputs to build the nix derivations sit in a local <code>default.nix</code>
+
+<ul>
+<li><code>default.nix</code> files should &ldquo;bubble up&rdquo; to the root one level at a time</li>
+<li>e.g. <code>default.nix</code> imports <code>conductor/default.nix</code> imports <code>conductor/node/default.nix</code></li>
+<li>root <code>default.nix</code> should only aggregate one level deeper derivations</li>
+<li>use the nix convention pointing to the folder for <code>callPackage</code> and <code>import</code></li>
+</ul></li>
+<li>Scripts for <code>foo</code> binaries sit in named <code>default.nix</code> files under <code>thing/foo/default.nix</code>
+
+<ul>
+<li>There is standard boilerplate for this, see an existing file for examples</li>
+<li>Use <code>pkgs.writeShellScriptBin</code> by default</li>
+<li>derived nix CLI commands are named following the path</li>
+<li>e.g. <code>holonix/foo/bar/baz/default.nix</code> becomes <code>hn-foo-bar-baz</code></li>
+</ul></li>
+<li>Put functions for builds in <code>lib.nix</code> files
+
+<ul>
+<li>e.g. <code>holonix/dist/lib.nix</code></li>
+</ul></li>
+<li>Try not to stutter file names or commands</li>
+<li>Use <code>x/y/z/install/default.nix</code> for scripts that install things outside of what nix manages
+
+<ul>
+<li>Try to minimise use of additional install scripts, nix should handle as
+much as possible.</li>
+<li>e.g. cargo installs things to the user&rsquo;s home directory</li>
+</ul></li>
+</ul>
 
 </div>
 </div>
