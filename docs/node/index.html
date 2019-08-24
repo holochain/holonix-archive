@@ -198,7 +198,7 @@
 <li><code>npm install</code> creates symlinks which are <a href="https://superuser.com/questions/1115329/vagrant-shared-folder-and-symbolic-links-under-windows-10">not compatible with VirtualBox on Windows 10 without additional configuration per machine</a></li>
 </ul>
 
-<p>A simple workaround is to &ldquo;wrap&rdquo; node binaries in a <a href="/bash">nixified bash script</a> and pass cli arguments verbatim.</p>
+<p>A simple workaround is to &ldquo;wrap&rdquo; node binaries in a <a href="/docs/bash">nixified bash script</a> and pass cli arguments verbatim.</p>
 
 <p>For example, the <a href="https://ghost.org/">ghost blogging platform</a> normally expects to be installed globally with <code>npm install -g ghost</code> but can be wrapped locally in a nix shell.</p>
 
