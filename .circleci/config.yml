@@ -23,12 +23,17 @@ jobs:
        . /Users/distiller/.nix-profile/etc/profile.d/nix.sh
        nix-shell --run hn-test
 
- docs-deploy:
+ deploy-github-pages:
   docker:
    - image: holochain/holonix:latest
   steps:
    - checkout
-   - run: nix-shell --run hn-docs-github-pages
+   - run:
+      name: Deploy github pages
+      command: |
+       git config user.name "$GITHUB_PAGES_DEPLOY_USER"
+       git config user.email "$GITHUB_PAGES_DEPLOY_EMAIL"
+       nix-shell --run hn-docs-github-pages
 
  quick-start:
   macos:
