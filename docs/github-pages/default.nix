@@ -24,7 +24,7 @@ if [[ -n $(git status --porcelain) ]]
     then
      echo "Pushing to github pages"
      git add . && git commit -am'hugo build docs'
-     git push ${from-branch}
+     git push ${upstream} ${from-branch}
      git push ${upstream} `git subtree split --prefix ${path} ${from-branch}`:${to-branch} --force
    fi
 fi
