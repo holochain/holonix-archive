@@ -135,8 +135,8 @@ workflows:
    - mac
    - quick-start
    - deploy-github-pages:
-    filters:
-     branches:
-      only: 2019-07-31-docs
-    requires:
-     - build
+      filters:
+       branches:
+        only: 2019-07-31-docs
+      requires:
+       - build
