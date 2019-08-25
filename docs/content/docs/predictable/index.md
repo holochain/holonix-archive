@@ -4,7 +4,7 @@ date: 2019-02-11T19:27:37+10:00
 weight: 3
 ---
 
-Holonix is designed to avoid common  and fundamental "works on my machine" style frustrations.
+We designed Holonix to avoid common and fundamental "works on my machine" style frustrations, by focusing on predictability.
 
 It embodies lessons of the full spectrum from low level core development to ad-hoc beginner level hackathon explorations.
 
@@ -12,7 +12,7 @@ It embodies lessons of the full spectrum from low level core development to ad-h
 
 Software projects typically make many assumptions about what the developer environment looks like.
 
-This is because there are not many options to reliably provide dependencies and configuration needed at the system level.
+This happens because of the lack tooling that reliably provides the necessary dependency and configuration management at the system level.
 
 This is due to many factors:
 
