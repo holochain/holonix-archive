@@ -8,19 +8,19 @@ weight: 4
 
 ## Mac system dependencies
 
-Holonix assumes [Xcode](https://developer.apple.com/xcode/) is installed.  
+Holonix assumes [Xcode](https://developer.apple.com/xcode/) is installed.
 Xcode is the official Mac developer toolkit so is likely to already be installed on a development machine.
 
 Install it from the [Apple app store](https://apps.apple.com/in/app/xcode/id497799835) if needed.
 
-You may need to install the command line tools.  
+You may need to install the command line tools.
 Follow the instructions if prompted.
 
 ## Linux system dependencies
 
 Only `curl` and `sudo` are needed to install `nix-shell`.
 
-These are basic commands.  
+These are basic commands.
 Likely to already be installed on a development machine.
 
 Install with the default package manger on your system if needed.
@@ -29,9 +29,9 @@ Install with the default package manger on your system if needed.
 apt-get install -y sudo curl
 ```
 
-## Install NixOS
+## Install Nix Tooling
 
-[Linux NixOS installation](https://nixos.org/nix/download.html) is the same as Mac.
+[Nix installation](https://nixos.org/nix/download.html) is the same on Linux and Mac:
 
 ```bash
 curl https://nixos.org/nix/install | sh
@@ -51,10 +51,10 @@ This is everything needed to work with Holonix on Mac and Linux!
 
 ## System dependencies
 
-Windows does not have native support for `nix-shell`.  
+Windows does not have native support for `nix-shell`.
 There are a few different options each with its own dependencies and pros/cons.
 
-Holonix is tested against Windows 8+ with Powershell 2.0+.  
+Holonix is tested against Windows 8+ with Powershell 2.0+.
 Setting up virtualisation may be possible on older systems but is significantly more complex. It seems that at least some changes to the BIOS or additional downloads are needed.
 
 ### Virtualisation
@@ -109,7 +109,7 @@ Docker is available for Windows but has specific requirements *that likely cost 
 
 Docker *can* be a great option for development *if* you are familiar with how to use it. Docker is relatively low level and many behaviours like snapshots, volumes, detaching and pruning disk usage are unintuitive and inconvenient for casual usage.
 
-The "official" docker box for holonix is [on docker hub](https://hub.docker.com/r/holochain/holonix). It is the [NixOS community maintained Alpine Linux docker](https://github.com/nix-community/docker-nix) optimised for [Circle CI testing](https://hub.docker.com/r/nixorg/nix) with nixpkgs warmed and pinned for Holonix. This box should work equally well for local usage as for CI.
+The "official" docker box for holonix is [on docker hub](https://hub.docker.com/r/holochain/holonix). It is built on top of the [NixOS community maintained Alpine Linux docker](https://github.com/nix-community/docker-nix) optimised for [Circle CI testing](https://hub.docker.com/r/nixorg/nix) with nixpkgs warmed and pinned for Holonix. This box should work equally well for local usage as for CI.
 
 ##### Docker desktop
 
