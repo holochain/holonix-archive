@@ -60,6 +60,9 @@
  buildInputs = [
   # for mktemp
   pkgs.coreutils
+
+  # simple dev feedback loop
+  pkgs.unixtools.watch
  ]
  ++ (pkgs.callPackage ./flush { }).buildInputs
  ++ app-spec-cluster.buildInputs
