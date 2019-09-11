@@ -33,18 +33,28 @@ rec {
    chmod +x $out/bin/${args.binary}
    '';
 
+   patchelf = ''
+   patchelf --set-interpreter "$(cat $NIX_CC/nix-support/dynamic-linker)" $out/bin/${args.binary}
+   patchelf --shrink-rpath $out/bin/${args.binary}
+   '';
+
+   wrap-program = ''
+   wrapProgram $out/bin/${args.binary} --prefix PATH ":" "${pkgs.nodejs}/bin:${pkgs.cargo}/bin"
+   '';
+
    postFixup =
      if
        pkgs.stdenv.isDarwin
      then
        ''
-       echo;
+       # don't patchelf on darwin as binaries are all built on darwin upstream
+       ${wrap-program}
        ''
      else
        ''
-       patchelf --set-interpreter "$(cat $NIX_CC/nix-support/dynamic-linker)" $out/bin/${args.binary}
-       patchelf --shrink-rpath $out/bin/${args.binary}
-       wrapProgram $out/bin/${args.binary} --prefix PATH ":" "${pkgs.nodejs}/bin:${pkgs.cargo}/bin" ;
+       # need to patchelf as binaries are all built on ubuntu upstream
+       ${patchelf}
+       ${wrap-program}
        '';
   };
 
