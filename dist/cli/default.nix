@@ -1,12 +1,12 @@
 { pkgs, lib }:
 let
  config = import ./config.nix;
-in
-config // rec {
  derivation = (lib.binary-derivation config);
+in
+config // {
  buildInputs =
  [
-  derivation
- ]
- ;
+ derivation
+ ];
+ derivation = derivation;
 }

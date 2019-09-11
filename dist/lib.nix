@@ -22,26 +22,30 @@ rec {
     sha256 = if pkgs.stdenv.isDarwin then args.sha256.darwin else args.sha256.linux;
    };
 
-  unpackPhase = "tar --strip-components=1 -zxvf $src";
+   nativeBuildInputs = [ pkgs.makeWrapper ];
 
-  installPhase =
-  ''
-  mkdir -p $out/bin
-  mv ${args.binary} $out/bin/${args.binary}
-  '';
+   unpackPhase = "tar --strip-components=1 -zxvf $src";
 
-  postFixup =
-    if
-      pkgs.stdenv.isDarwin
-    then
-      ''
-      echo;
-      ''
-    else
-      ''
-      patchelf --set-interpreter "$(cat $NIX_CC/nix-support/dynamic-linker)" $out/bin/${args.binary}
-      patchelf --shrink-rpath $out/bin/${args.binary}
-      '';
+   installPhase =
+   ''
+   mkdir -p $out/bin
+   mv ${args.binary} $out/bin/${args.binary}
+   chmod +x $out/bin/${args.binary}
+   '';
+
+   postFixup =
+     if
+       pkgs.stdenv.isDarwin
+     then
+       ''
+       echo;
+       ''
+     else
+       ''
+       patchelf --set-interpreter "$(cat $NIX_CC/nix-support/dynamic-linker)" $out/bin/${args.binary}
+       patchelf --shrink-rpath $out/bin/${args.binary}
+       wrapProgram $out/bin/${args.binary} --prefix PATH ":" "${pkgs.nodejs}/bin:${pkgs.cargo}/bin" ;
+       '';
   };
 
 }
