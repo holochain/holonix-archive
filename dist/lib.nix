@@ -1,4 +1,4 @@
-{ pkgs, rust, dist, git }:
+{ pkgs, rust, node, dist, git }:
 rec {
  artifact-name = args: "${args.name}-${dist.version}-${args.target}";
 
@@ -14,6 +14,25 @@ rec {
  artifact-target = normalize-artifact-target ( if pkgs.stdenv.isDarwin then rust.generic-mac-target else rust.generic-linux-target );
 
  binary-derivation = args:
+  # define a few bash snippets to help define our phases
+  let
+   # binaries are built upstream in ubuntu so we need to fix the linker
+   patchelf = ''
+   patchelf --set-interpreter "$(cat $NIX_CC/nix-support/dynamic-linker)" $out/bin/${args.binary}
+   patchelf --shrink-rpath $out/bin/${args.binary}
+   '';
+
+   # at least hc needs node, cargo and git to function
+   # we want to reuse all the buildInputs for each of these namespaces from the
+   # nix-shell to keep everything consistent in the nix-env wrappers
+   hc-deps = []
+   ++ node.buildInputs
+   ++ rust.buildInputs
+   ++ git.buildInputs;
+   wrap-program = ''
+   wrapProgram $out/bin/${args.binary} --prefix PATH : ${pkgs.lib.makeBinPath hc-deps}
+   '';
+  in
   pkgs.stdenv.mkDerivation {
    name = "${args.binary}";
 
@@ -31,15 +50,6 @@ rec {
    mkdir -p $out/bin
    mv ${args.binary} $out/bin/${args.binary}
    chmod +x $out/bin/${args.binary}
-   '';
-
-   patchelf = ''
-   patchelf --set-interpreter "$(cat $NIX_CC/nix-support/dynamic-linker)" $out/bin/${args.binary}
-   patchelf --shrink-rpath $out/bin/${args.binary}
-   '';
-
-   wrap-program = ''
-   wrapProgram $out/bin/${args.binary} --prefix PATH ":" "${pkgs.nodejs}/bin:${pkgs.cargo}/bin"
    '';
 
    postFixup =

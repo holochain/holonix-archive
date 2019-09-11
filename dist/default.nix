@@ -1,9 +1,11 @@
-{ pkgs, rust, git }:
+{ pkgs, rust, node, git }:
 let
  config = import ./config.nix;
 
  lib = pkgs.callPackage ./lib.nix {
   dist = config;
+  node = node;
+  git = git;
   rust = rust;
  };
 
