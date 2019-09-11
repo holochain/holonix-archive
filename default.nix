@@ -19,6 +19,7 @@ let
   rust = rust;
   node = node;
   git = git;
+  darwin = darwin;
  };
  n3h = pkgs.callPackage ./n3h { };
  openssl = pkgs.callPackage ./openssl { };

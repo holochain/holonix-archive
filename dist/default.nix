@@ -1,4 +1,4 @@
-{ pkgs, rust, node, git }:
+{ pkgs, rust, node, git, darwin }:
 let
  config = import ./config.nix;
 
@@ -6,6 +6,7 @@ let
   dist = config;
   git = git;
   rust = rust;
+  darwin = darwin;
  };
 
  conductor = pkgs.callPackage ./conductor {
