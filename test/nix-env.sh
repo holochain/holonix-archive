@@ -1,6 +1,14 @@
 #! /usr/bin/env nix-shell
 #! nix-shell -i "bats -t" -p bats -p coreutils
 
+setup () {
+ nix-env -e holochain hc
+}
+
+teardown () {
+ nix-env -e holochain hc
+}
+
 @test "holochain conductor install" {
 
  echo '# holochain should not be installed at first' >&3
@@ -15,12 +23,16 @@
  [ -x "$(command -v holochain)" ]
  ! [ -x "$(command -v hc)" ]
 
+ version="$( holochain -V )"
+ echo "# smoke test holochain version result: $version" >&3
+ [[ "$version" == "holochain 0.0."* ]]
+
  echo '# uninstall holochain' >&3
  nix-env -e holochain
 
  echo '# holochain should not be installed now' >&3
- ! [ -x "$(command -v holochain)" ]
- ! [ -x "$(command -v hc)" ]
+ ! [ -x "$( command -v holochain )" ]
+ ! [ -x "$( command -v hc )" ]
 
 }
 
@@ -49,6 +61,10 @@
 
  echo '# hc should be installed now' >&3
  [ -x "$(command -v hc)" ]
+
+ version="$( hc -V )"
+ echo "# smoke test holochain version result: $version" >&3
+ [[ "$version" == "hc 0.0."* ]]
 
  echo '# hc deps should not be globally visible' >&3
  for i in ${!deps[@]}
