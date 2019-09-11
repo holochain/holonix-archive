@@ -1,4 +1,4 @@
-{ pkgs, rust, node, dist, git }:
+{ pkgs, dist, rust, git }:
 rec {
  artifact-name = args: "${args.name}-${dist.version}-${args.target}";
 
@@ -22,15 +22,8 @@ rec {
    patchelf --shrink-rpath $out/bin/${args.binary}
    '';
 
-   # at least hc needs node, cargo and git to function
-   # we want to reuse all the buildInputs for each of these namespaces from the
-   # nix-shell to keep everything consistent in the nix-env wrappers
-   hc-deps = []
-   ++ node.buildInputs
-   ++ rust.buildInputs
-   ++ git.buildInputs;
    wrap-program = ''
-   wrapProgram $out/bin/${args.binary} --prefix PATH : ${pkgs.lib.makeBinPath hc-deps}
+   wrapProgram $out/bin/${args.binary} --prefix PATH : ${pkgs.lib.makeBinPath args.deps}
    '';
   in
   pkgs.stdenv.mkDerivation {

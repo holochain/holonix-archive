@@ -4,17 +4,20 @@ let
 
  lib = pkgs.callPackage ./lib.nix {
   dist = config;
-  node = node;
   git = git;
   rust = rust;
  };
 
- cli = pkgs.callPackage ./cli {
+ conductor = pkgs.callPackage ./conductor {
   lib = lib;
  };
 
- conductor = pkgs.callPackage ./conductor {
+ cli = pkgs.callPackage ./cli {
   lib = lib;
+  conductor = conductor;
+  node = node;
+  git = git;
+  rust = rust;
  };
 in
 {
