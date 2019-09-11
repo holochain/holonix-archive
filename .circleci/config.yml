@@ -11,7 +11,7 @@ jobs:
    - run: nix-shell --run echo
 
    # run env tests
-   - run: ./tests/nix-env.sh
+   - run: ./test/nix-env.sh
 
    # run shell tests
    - run: nix-shell --run hn-test
@@ -26,7 +26,7 @@ jobs:
       command: |
        curl https://nixos.org/nix/install | sh
        . /Users/distiller/.nix-profile/etc/profile.d/nix.sh
-       ./tests/nix-env.sh
+       ./test/nix-env.sh
        nix-shell --run hn-test
 
  quick-start:
