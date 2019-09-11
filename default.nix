@@ -22,7 +22,6 @@ let
  };
  n3h = pkgs.callPackage ./n3h { };
  openssl = pkgs.callPackage ./openssl { };
- qt = pkgs.callPackage ./qt { };
  release = pkgs.callPackage ./release {
   config = config;
  };
@@ -39,7 +38,6 @@ let
   n3h = n3h;
   node = node;
   openssl = openssl;
-  qt = qt;
   release = release;
   rust = rust;
   test = test;
