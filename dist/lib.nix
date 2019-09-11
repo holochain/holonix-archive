@@ -1,4 +1,4 @@
-{ pkgs, dist, rust, git, darwin }:
+{ pkgs, dist, rust, git, node, darwin }:
 rec {
  artifact-name = args: "${args.name}-${dist.version}-${args.target}";
 
@@ -25,7 +25,8 @@ rec {
    wrap-program = ''
    wrapProgram $out/bin/${args.binary} \
     --prefix PATH : "${pkgs.lib.makeBinPath ( darwin.buildInputs ++ args.deps)}" \
-    --prefix NIX_LDFLAGS "" "${darwin.ld-flags}"
+    --prefix NIX_LDFLAGS "" "${darwin.ld-flags}" \
+    --set CXX ${node.clang}/bin/clang++
    '';
   in
   pkgs.stdenv.mkDerivation {

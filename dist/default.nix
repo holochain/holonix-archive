@@ -7,6 +7,7 @@ let
   git = git;
   rust = rust;
   darwin = darwin;
+  node = node;
  };
 
  conductor = pkgs.callPackage ./conductor {

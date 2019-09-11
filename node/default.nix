@@ -2,13 +2,9 @@
 let
  node = pkgs.nodejs-11_x;
  clang = pkgs.clang;
-
- npm-wrapper = pkgs.runCommand "npm" { nativeBuildInputs = [ pkgs.makeWrapper ]; } ''
-   makeWrapper ${node}/bin/npm $out/bin/npm \
-     --set CXX ${clang}/bin/clang++
- '';
 in
 {
+ clang = clang;
  buildInputs =
  [
    # node and yarn version used in:
@@ -18,7 +14,6 @@ in
    # - node conductor management
    node
    clang
-   npm-wrapper
    pkgs.yarn
 
    # needed by node-gyp
