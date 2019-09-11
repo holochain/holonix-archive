@@ -6,6 +6,7 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ### Added
 
+- Added `watch` cli commands
 - $USER is set in Dockerfile
 - hc cli tool has dependencies set e.g. for nix-env installations
 
