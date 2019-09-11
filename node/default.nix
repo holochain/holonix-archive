@@ -10,6 +10,9 @@
    pkgs.nodejs-11_x
    pkgs.yarn
 
+   # needed for building node_modules on mac
+   pkgs.clang
+
    # needed by node-gyp
    pkgs.python
  ]
