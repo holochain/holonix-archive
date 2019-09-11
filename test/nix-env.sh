@@ -28,6 +28,8 @@
  # https://github.com/holochain/holonix/issues/12
  export TMP=$( mktemp -p /tmp -d )
  export TMPDIR=$TMP
+ # this setting of $USER should not be needed once new docker is built
+ export USER=$(id -u -n)
  export deps=('holochain' 'npm' 'cargo')
  export app_name=my_first_app
  export zome_name=my_zome

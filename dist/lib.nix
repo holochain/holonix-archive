@@ -24,8 +24,7 @@ rec {
 
    wrap-program = ''
    wrapProgram $out/bin/${args.binary} \
-    --prefix PATH : ${pkgs.lib.makeBinPath args.deps} \
-    --run "export USER=\"$(id -u -n)\""
+    --prefix PATH : ${pkgs.lib.makeBinPath args.deps}
    '';
   in
   pkgs.stdenv.mkDerivation {
