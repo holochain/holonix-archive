@@ -25,8 +25,7 @@ rec {
    wrap-program = ''
    wrapProgram $out/bin/${args.binary} \
     --prefix PATH : "${pkgs.lib.makeBinPath ( darwin.buildInputs ++ args.deps)}" \
-    --prefix NIX_LDFLAGS "" "${darwin.ld-flags}" \
-    --set CXX clang++
+    --prefix NIX_LDFLAGS "" "${darwin.ld-flags}"
    '';
   in
   pkgs.stdenv.mkDerivation {
