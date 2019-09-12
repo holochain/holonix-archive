@@ -39,12 +39,6 @@ in
   rust = rust;
  }).buildInputs
 
- ++ (pkgs.callPackage ./dist { }).buildInputs
-
- ++ (pkgs.callPackage ./flush {
-  dist = config;
- }).buildInputs
-
  ++ cli.buildInputs
 
  ++ conductor.buildInputs
