@@ -13,15 +13,16 @@ let
  app-spec-cluster = pkgs.callPackage ./app-spec-cluster { };
  darwin = pkgs.callPackage ./darwin { };
  rust = pkgs.callPackage ./rust { };
+ node = pkgs.callPackage ./node { };
  git = pkgs.callPackage ./git { };
  dist = pkgs.callPackage ./dist {
   rust = rust;
+  node = node;
   git = git;
+  darwin = darwin;
  };
  n3h = pkgs.callPackage ./n3h { };
- node = pkgs.callPackage ./node { };
  openssl = pkgs.callPackage ./openssl { };
- qt = pkgs.callPackage ./qt { };
  release = pkgs.callPackage ./release {
   config = config;
  };
@@ -38,7 +39,6 @@ let
   n3h = n3h;
   node = node;
   openssl = openssl;
-  qt = qt;
   release = release;
   rust = rust;
   test = test;

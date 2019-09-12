@@ -1,5 +1,10 @@
 { pkgs }:
+let
+ node = pkgs.nodejs-11_x;
+ clang = pkgs.clang;
+in
 {
+ clang = clang;
  buildInputs =
  [
    # node and yarn version used in:
@@ -7,7 +12,8 @@
    # - app spec tests
    # - deploy scripts
    # - node conductor management
-   pkgs.nodejs-11_x
+   node
+   clang
    pkgs.yarn
 
    # needed by node-gyp

@@ -8,4 +8,5 @@
 
  binary = "holochain";
 
+ deps = [];
 }

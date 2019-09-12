@@ -7,7 +7,6 @@
  n3h,
  node,
  openssl,
- qt,
  release,
  rust,
  test
@@ -72,7 +71,6 @@
  ++ n3h.buildInputs
  ++ node.buildInputs
  ++ openssl.buildInputs
- ++ qt.buildInputs
  ++ release.buildInputs
  ++ rust.buildInputs
  ++ test.buildInputs

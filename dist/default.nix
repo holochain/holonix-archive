@@ -1,18 +1,25 @@
-{ pkgs, rust, git }:
+{ pkgs, rust, node, git, darwin }:
 let
  config = import ./config.nix;
 
  lib = pkgs.callPackage ./lib.nix {
   dist = config;
+  git = git;
   rust = rust;
- };
-
- cli = pkgs.callPackage ./cli {
-  lib = lib;
+  darwin = darwin;
+  node = node;
  };
 
  conductor = pkgs.callPackage ./conductor {
   lib = lib;
+ };
+
+ cli = pkgs.callPackage ./cli {
+  lib = lib;
+  conductor = conductor;
+  node = node;
+  git = git;
+  rust = rust;
  };
 in
 {
