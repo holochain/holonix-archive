@@ -6,22 +6,13 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ### Added
 
-- Added `watch` cli commands
-- $USER is set in Dockerfile
-- hc cli tool has dependencies set e.g. for nix-env installations
-
 ### Changed
-
-- conductor and cli versions 0.0.29-alpha2
 
 ### Deprecated
 
 ### Removed
 
-- qt removed
-
 ### Fixed
 
-- `hc-rust-manifest-list-unpinned` won't traverse `.cargo/` anymore which resulted in false positives [PR#58](https://github.com/holochain/holonix/pull/58)
-
 ### Security
+
