@@ -2,8 +2,8 @@
  name = "conductor";
 
  sha256 = {
-  linux = "1h3v9b2lq01g7kxp2fwg1wpr3slfjqyv7g86ghaa5zm1qv6r5dsj";
-  darwin = "0wdk3gnv52y5gq995ig02g971cm20csry39hcj10d5khy1yznqjb";
+  linux = "0x9b91hnyb8xkwb2ilxmrqwy0clx2f4nnj2zmc534yaj34d6i4ch";
+  darwin = "0s369666c41aflgf4y3qn21nd1c9mfixb1j116qi3pii4pw49f7l";
  };
 
  binary = "holochain";

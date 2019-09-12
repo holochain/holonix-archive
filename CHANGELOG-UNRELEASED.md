@@ -12,6 +12,8 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ### Changed
 
+- conductor and cli versions 0.0.29-alpha2
+
 ### Deprecated
 
 ### Removed
