@@ -10,7 +10,6 @@
 let
  pkgs = import ./nixpkgs;
 
- app-spec-cluster = pkgs.callPackage ./app-spec-cluster { };
  darwin = pkgs.callPackage ./darwin { };
  rust = pkgs.callPackage ./rust { };
  node = pkgs.callPackage ./node { };
@@ -32,7 +31,6 @@ let
 
  holonix-shell = pkgs.callPackage ./nix-shell {
   pkgs = pkgs;
-  app-spec-cluster = app-spec-cluster;
   darwin = darwin;
   dist = dist;
   git = git;

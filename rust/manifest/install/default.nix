@@ -1,6 +1,6 @@
 { pkgs }:
 let
- name = "hc-rust-manifest-install";
+ name = "hn-rust-manifest-install";
 
  script = pkgs.writeShellScriptBin name
  ''

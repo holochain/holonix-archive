@@ -1,6 +1,6 @@
 { pkgs }:
 let
-  name = "hc-rust-manifest-list-unpinned";
+  name = "hn-rust-manifest-list-unpinned";
 
   script = pkgs.writeShellScriptBin name
   ''

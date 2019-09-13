@@ -1,6 +1,5 @@
 {
  pkgs,
- app-spec-cluster,
  darwin,
  dist,
  git,
@@ -64,7 +63,6 @@
   pkgs.unixtools.watch
  ]
  ++ (pkgs.callPackage ./flush { }).buildInputs
- ++ app-spec-cluster.buildInputs
  ++ darwin.buildInputs
  ++ dist.buildInputs
  ++ git.buildInputs
