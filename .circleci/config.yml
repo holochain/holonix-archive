@@ -24,7 +24,6 @@ jobs:
 
    - run:
       command: |
-       curl https://nixos.org/nix/install | sh
        . /home/docker/.nix-profile/etc/profile.d/nix.sh
        nix-shell --run echo
        ./test/nix-env.sh
