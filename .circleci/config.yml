@@ -16,6 +16,14 @@ jobs:
    # run shell tests
    - run: nix-shell --run hn-test
 
+ debian:
+  docker:
+   - image: debian:buster
+  steps:
+   - checkout
+
+   - run: docker build ./Dockerfile.debian
+
  mac:
   macos:
    xcode: "10.2.0"
