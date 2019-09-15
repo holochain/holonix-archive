@@ -44,4 +44,5 @@ workflows:
  tests:
   jobs:
    - build
+   - debian
    - mac
