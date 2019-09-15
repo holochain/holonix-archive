@@ -1,18 +1,19 @@
-FROM debian:jessie
+FROM debian:buster
 
-RUN apt-get update --fix-missing
+# debian does not ship with these
+
+RUN apt-get update
 RUN apt-get install -y sudo xz-utils curl
 
+# nix does not work under root
+# add a docker user that can sudo and use it
 RUN adduser --disabled-password --gecos '' docker
 RUN adduser docker sudo
 RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
-
 USER docker
 ENV USER docker
 WORKDIR /home/docker
 
 # https://nixos.wiki/wiki/Nix_Installation_Guide#Single-user_install
-RUN sudo install -d -m755 -o $(id -u) -g $(id -g) /nix
-RUN curl https://nixos.org/nix/install | sh
-
-RUN nix-shell --run echo "it works!"
+# RUN sudo install -d -m755 -o $(id -u) -g $(id -g) /nix
+# RUN curl https://nixos.org/nix/install | sh

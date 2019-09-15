@@ -18,11 +18,17 @@ jobs:
 
  debian:
   docker:
-   - image: debian:buster
+   - image: holochain/holonix:debian
   steps:
    - checkout
 
-   - run: docker build ./Dockerfile.debian
+   - run:
+      command: |
+       curl https://nixos.org/nix/install | sh
+       . /home/docker/.nix-profile/etc/profile.d/nix.sh
+       nix-shell --run echo
+       ./test/nix-env.sh
+       nix-shell --run hn-test
 
  mac:
   macos:
@@ -30,11 +36,10 @@ jobs:
   steps:
    - checkout
    - run:
-      name: Warm nix
+      name: Standard tests
       command: |
        curl https://nixos.org/nix/install | sh
        . /Users/distiller/.nix-profile/etc/profile.d/nix.sh
-       # same as linux from here
        nix-shell --run echo
        ./test/nix-env.sh
        nix-shell --run hn-test
