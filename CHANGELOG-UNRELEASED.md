@@ -8,15 +8,11 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ### Changed
 
-- Moved hc-rust-manifest-* to hn-rust-manifest-*
-- holochain-rust version 0.0.30-alpha2
-
 ### Deprecated
 
 ### Removed
 
-- Removed all hc-* commands
-
 ### Fixed
 
 ### Security
+
