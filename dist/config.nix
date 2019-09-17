@@ -1,7 +1,7 @@
 {
 
  path = "dist";
- version = "0.0.30-alpha2";
+ version = "v0.0.30-alpha5";
 
  github = rec {
   user = "holochain";

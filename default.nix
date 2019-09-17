@@ -61,4 +61,5 @@ in
 
  # expose other things
  rust = rust;
+ darwin = darwin;
 }
