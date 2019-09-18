@@ -29,6 +29,19 @@ jobs:
        ./test/nix-env.sh
        nix-shell --run hn-test
 
+ ubuntu:
+  docker:
+   - image: holochain/holonix:ubuntu
+  steps:
+   - checkout
+
+   - run:
+      command: |
+       . /home/docker/.nix-profile/etc/profile.d/nix.sh
+       nix-shell --run echo
+       ./test/nix-env.sh
+       nix-shell --run hn-test
+
  mac:
   macos:
    xcode: "10.2.0"
@@ -49,4 +62,5 @@ workflows:
   jobs:
    - build
    - debian
+   - ubuntu
    - mac

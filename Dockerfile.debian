@@ -1,3 +1,4 @@
+# keep this in sync with Dockerfile.ubuntu
 FROM debian:buster
 
 # @see
