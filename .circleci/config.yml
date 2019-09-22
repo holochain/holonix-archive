@@ -1,6 +1,11 @@
 version: 2
 
 jobs:
+ on-a-plane-dont-want-to-buy-windows-pro-give-me-docker-please:
+  docker:
+     - image: ubuntu
+  setup_remote_docker: true
+
  build:
   docker:
    - image: holochain/holonix:latest
@@ -64,3 +69,4 @@ workflows:
    - debian
    - ubuntu
    - mac
+   - on-a-plane-dont-want-to-buy-windows-pro-give-me-docker-please
