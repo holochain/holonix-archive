@@ -3,10 +3,10 @@ version: 2
 jobs:
  on-a-plane-dont-want-to-buy-windows-pro-give-me-docker-please:
   docker:
-     - image: ubuntu
-  setup_remote_docker: true
+     - image: circleci/buildpack-deps:stretch
   steps:
     - checkout
+    - setup_remote_docker
 
  build:
   docker:
