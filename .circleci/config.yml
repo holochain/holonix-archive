@@ -5,6 +5,8 @@ jobs:
   docker:
      - image: ubuntu
   setup_remote_docker: true
+  steps:
+    - checkout
 
  build:
   docker:
