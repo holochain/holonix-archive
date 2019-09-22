@@ -5,7 +5,7 @@ FROM ubuntu:xenial
 # https://github.com/TerrorJack/pixie/blob/master/.circleci/debian.Dockerfile
 # https://github.com/NixOS/nix/issues/971#issuecomment-489398535
 
-# debian does not ship with much
+# linux docker does not ship with much
 RUN apt-get update
 RUN apt-get install -y sudo xz-utils curl
 
