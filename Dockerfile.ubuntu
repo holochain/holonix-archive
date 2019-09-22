@@ -33,4 +33,4 @@ WORKDIR /home/docker
 # https://nixos.wiki/wiki/Nix_Installation_Guide#Single-user_install
 RUN sudo install -d -m755 -o $(id -u) -g $(id -g) /nix
 RUN curl https://nixos.org/nix/install | sh
-RUN nix-channel --update
+RUN ["/bin/bash" "-c" "source /home/docker/.nix-profile/etc/profile.d/nix.sh"] nix-channel --update
