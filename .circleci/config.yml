@@ -1,13 +1,6 @@
 version: 2
 
 jobs:
- on-a-plane-dont-want-to-buy-windows-pro-give-me-docker-please:
-  docker:
-     - image: circleci/buildpack-deps:stretch
-  steps:
-    - checkout
-    - setup_remote_docker
-
  build:
   docker:
    - image: holochain/holonix:latest
@@ -71,4 +64,3 @@ workflows:
    - debian
    - ubuntu
    - mac
-   - on-a-plane-dont-want-to-buy-windows-pro-give-me-docker-please
