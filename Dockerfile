@@ -1,5 +1,10 @@
 FROM nixorg/nix:circleci
 
+# need $USER to be set for CI, cargo, etc.
+# it isn't set by default
+USER root
+ENV USER root
+
 # keep this matching nix-shell!
 ENV NIX_PATH nixpkgs=https://github.com/NixOs/nixpkgs-channels/tarball/8634c3b619909db7fc747faf8c03592986626e21
 ENV HC_TARGET_PREFIX /tmp/holochain

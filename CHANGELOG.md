@@ -2,6 +2,96 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.0.34] - 2019-09-18
+
+### Added
+
+### Changed
+
+- core v0.0.30-alpha6
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [0.0.33] - 2019-09-17
+
+### Added
+
+### Changed
+
+- bump to core v0.0.30-alpha5
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [0.0.32] - 2019-09-16
+
+### Added
+
+### Changed
+
+- Moved hc-rust-manifest-* to hn-rust-manifest-*
+- holochain-rust version 0.0.30-alpha2
+
+### Deprecated
+
+### Removed
+
+- Removed all hc-* commands
+
+### Fixed
+
+### Security
+
+## [0.0.31] - 2019-09-12
+
+### Added
+
+- Added `watch` cli commands
+- $USER is set in Dockerfile
+- hc cli tool has dependencies set e.g. for nix-env installations
+
+### Changed
+
+- conductor and cli versions 0.0.29-alpha2
+
+### Deprecated
+
+### Removed
+
+- qt removed
+
+### Fixed
+
+- `hc-rust-manifest-list-unpinned` won't traverse `.cargo/` anymore which resulted in false positives [PR#58](https://github.com/holochain/holonix/pull/58)
+
+### Security
+
+## [0.0.30] - 2019-08-18
+
+### Added
+- Bumped Holochain version to 0.0.28-alpha1
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
 ## [0.0.29] - 2019-08-12
 
 ### Added

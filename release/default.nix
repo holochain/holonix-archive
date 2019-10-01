@@ -4,7 +4,7 @@ let
  release-config = config // {
   release = config.release // {
    # release tag name
-   tag = config.release.version.current;
+   tag = "v${config.release.version.current}";
 
    # name of the branch used to facilitate release
    branch = "release-${config.release.version.current}";
@@ -41,4 +41,6 @@ in
   config = release-config;
  }).buildInputs
  ;
+
+ config = release-config;
 }

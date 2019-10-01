@@ -1,6 +1,5 @@
 {
  pkgs,
- app-spec-cluster,
  darwin,
  dist,
  docs,
@@ -8,7 +7,6 @@
  n3h,
  node,
  openssl,
- qt,
  release,
  rust,
  test
@@ -30,6 +28,9 @@
  RUST_LOG = rust.log;
  NUM_JOBS = rust.compile.jobs;
  RUST_BACKTRACE = rust.backtrace;
+
+ RELEASE_VERSION = release.config.release.version.current;
+ RELEASE_TAG = release.config.release.tag;
 
  OPENSSL_STATIC = openssl.static;
 
@@ -58,9 +59,11 @@
  buildInputs = [
   # for mktemp
   pkgs.coreutils
+
+  # simple dev feedback loop
+  pkgs.unixtools.watch
  ]
  ++ (pkgs.callPackage ./flush { }).buildInputs
- ++ app-spec-cluster.buildInputs
  ++ darwin.buildInputs
  ++ dist.buildInputs
  ++ docs.buildInputs
@@ -68,7 +71,6 @@
  ++ n3h.buildInputs
  ++ node.buildInputs
  ++ openssl.buildInputs
- ++ qt.buildInputs
  ++ release.buildInputs
  ++ rust.buildInputs
  ++ test.buildInputs
