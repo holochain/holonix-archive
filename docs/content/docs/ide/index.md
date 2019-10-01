@@ -64,10 +64,22 @@ The main drawback is that Holonix has no control over how any plugin works and a
 
 ## Rust support
 
-The biggest hurdle for Rust support is the common assumption that `rustup` is installed and used to manage `cargo`.
+The biggest hurdle for Rust support is the common assumption (by IDE plugin developers) that `rustup` is installed and used exclusively to manage `cargo`.
 
 Nix shell supports installing `rustup` but doesn't support parallel management of `cargo` from both the Mozilla Rust overlays and `rustup`.
 
 When `rustup` is installed it typically overrides the `cargo` version even inside the nix shell due to the default precedence of binaries on the `$PATH`.
 
-Normally it isn't recommended to try and use `rustup` and `nix-shell` at the same time, or at least to carefully construct a `$PATH` that makes sense for your local workflow.
+Normally it isn't recommended to try and use `rustup` and `nix-shell` at the same time, or to at least carefully construct a `$PATH` that makes sense for your local workflow.
+
+If an IDE plugin requires a `rustup` path then there isn't much that you can do other than use a different plugin or manually match the `nightly` dates.
+
+If you can provide a `cargo` binary directly this is the preferred approach (see above).
+
+### Visual Studio Code (Rust)
+
+There is a [discussion around Visual Studio Code support](https://github.com/holochain/holonix/pull/15) for Rust in the Holonix Github repository.
+
+The default configuration uses rustup but this must be disabled by setting `rust-client.disableRustup` in the Visual Studio Code configuration.
+
+That discussion also [refers to a marketplace plugin](https://marketplace.visualstudio.com/items?itemName=arrterian.nix-env-selector) that directly integrates Nix with the IDE.
