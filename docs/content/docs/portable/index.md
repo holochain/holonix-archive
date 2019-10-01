@@ -8,7 +8,7 @@ Holonix works on all major operating systems (mostly) without VMs.
 
 This is possible thanks to the awesome work by the [NixOS Foundation](https://nixos.org/nixos/foundation.html) and [Holochain](https://holochain.org) maintaining cross-platform binaries.
 
-NixOS is an entire operating system but Holonix doesn't require this at all.
+NixOS is an entire operating system but Holonix doesn't require a NixOS installation at all.
 
 Holonix targets the standalone "nix shell" tool.  
 Nix shell is comparable to using `brew`, `apt-get` or `npm` but is not locked to a single platform or language.

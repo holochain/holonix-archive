@@ -29,9 +29,9 @@ Install with the default package manger on your system if needed.
 apt-get install -y sudo curl
 ```
 
-## Install NixOS
+## Install Nix Tooling
 
-[Linux NixOS installation](https://nixos.org/nix/download.html) is the same as Mac.
+[Nix installation](https://nixos.org/nix/download.html) is the same on Linux and Mac:
 
 ```bash
 curl https://nixos.org/nix/install | sh
@@ -109,7 +109,7 @@ Docker is available for Windows but has specific requirements *that likely cost 
 
 Docker *can* be a great option for development *if* you are familiar with how to use it. Docker is relatively low level and many behaviours like snapshots, volumes, detaching and pruning disk usage are unintuitive and inconvenient for casual usage.
 
-The "official" docker box for holonix is [on docker hub](https://hub.docker.com/r/holochain/holonix). It is the [NixOS community maintained Alpine Linux docker](https://github.com/nix-community/docker-nix) optimised for [Circle CI testing](https://hub.docker.com/r/nixorg/nix) with nixpkgs warmed and pinned for Holonix. This box should work equally well for local usage as for CI.
+The "official" docker box for holonix is [on docker hub](https://hub.docker.com/r/holochain/holonix). It is built on top of the [NixOS community maintained Alpine Linux docker](https://github.com/nix-community/docker-nix) optimised for [Circle CI testing](https://hub.docker.com/r/nixorg/nix) with nixpkgs warmed and pinned for Holonix. This box should work equally well for local usage as for CI.
 
 ##### Docker desktop
 
