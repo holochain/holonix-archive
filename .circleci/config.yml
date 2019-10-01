@@ -16,17 +16,42 @@ jobs:
    # run shell tests
    - run: nix-shell --run hn-test
 
+ debian:
+  docker:
+   - image: holochain/holonix:debian
+  steps:
+   - checkout
+
+   - run:
+      command: |
+       . /home/docker/.nix-profile/etc/profile.d/nix.sh
+       nix-shell --run echo
+       ./test/nix-env.sh
+       nix-shell --run hn-test
+
+ ubuntu:
+  docker:
+   - image: holochain/holonix:ubuntu
+  steps:
+   - checkout
+
+   - run:
+      command: |
+       . /home/docker/.nix-profile/etc/profile.d/nix.sh
+       nix-shell --run echo
+       ./test/nix-env.sh
+       nix-shell --run hn-test
+
  mac:
   macos:
    xcode: "10.2.0"
   steps:
    - checkout
    - run:
-      name: Warm nix
+      name: Standard tests
       command: |
        curl https://nixos.org/nix/install | sh
        . /Users/distiller/.nix-profile/etc/profile.d/nix.sh
-       # same as linux from here
        nix-shell --run echo
        ./test/nix-env.sh
        nix-shell --run hn-test
@@ -36,4 +61,6 @@ workflows:
  tests:
   jobs:
    - build
+   - debian
+   - ubuntu
    - mac

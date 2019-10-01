@@ -32,10 +32,10 @@ rec {
   pkgs.stdenv.mkDerivation {
    name = "${args.binary}";
 
-   src = pkgs.fetchurl {
+   src = (pkgs.fetchurl {
     url = artifact-url ( { target = artifact-target; } // args );
     sha256 = if pkgs.stdenv.isDarwin then args.sha256.darwin else args.sha256.linux;
-   };
+   });
 
    nativeBuildInputs = [ pkgs.makeWrapper ];
 
