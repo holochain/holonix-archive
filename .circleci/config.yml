@@ -86,6 +86,6 @@ workflows:
    - deploy-github-pages:
       filters:
        branches:
-        only: 2019-07-31-docs
+        only: develop
       requires:
        - build
