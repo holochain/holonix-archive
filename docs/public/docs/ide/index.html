@@ -181,8 +181,6 @@
 <div class="content">
   
 
-<p>@todo <a href="https://forum.holochain.org/t/im-spinning-up-some-docs-for-holonix-feedback-welcome/451/12?u=thedavidmeister">https://forum.holochain.org/t/im-spinning-up-some-docs-for-holonix-feedback-welcome/451/12?u=thedavidmeister</a></p>
-
 <h2 id="overview">Overview</h2>
 
 <p>Every IDE has different functionality, assumptions and audience.</p>
@@ -203,16 +201,21 @@
 
 <p>Fortunately nix also hashes the result of everything it builds and locks it all as read only.</p>
 
-<p>This gives us two viable options for pointing an IDE at relevant binaries:</p>
+<p>This gives us three viable options for pointing an IDE at relevant binaries:</p>
 
 <ul>
 <li>Run the IDE from <em>inside</em> an active nix-shell session where the <code>$PATH</code> will be managed to include relevant binaries</li>
 <li>Configure the IDE to point directly at the nix store</li>
+<li>Create a dedicated IDE-specific plugin that is &ldquo;nix aware&rdquo;</li>
 </ul>
+
+<h3 id="active-nix-shell">Active nix-shell</h3>
 
 <p>The first option is simple and easy if it works for your IDE/plugin combination but likely won&rsquo;t work for everyone. It also adds mental overhead to the development workflow to keep track of various shell sessions.</p>
 
 <p>The main benefit of the first option is that it will always be as &ldquo;fresh&rdquo; as your shell session. I.e. you will never have a versioning discrepency between the binaries used by the IDE and on the cli.</p>
+
+<h3 id="absolute-path-configuration">Absolute path configuration</h3>
 
 <p>The second option provides more direct control and is more likely to be supported by the IDE.</p>
 
@@ -220,9 +223,29 @@
 
 <p>For example, to find the latest <code>cargo</code> binary from holonix master branch:</p>
 <div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">nix-shell https://holochain.love --run <span class="s1">&#39;command -v cargo&#39;</span></code></pre></div>
+<p>The main benefit of the second option is that it persists across many nix shell sessions.</p>
+
+<p>The main drawback is a direct consequence of this, the configuration will need to be handled manually moving forward. If a different version of a binary derivation is pulled into holonix (e.g. new Rust <code>nightly</code>) then the IDE will need to be reconfigured to match.</p>
+
+<h3 id="dedicated-plugin">Dedicated plugin</h3>
+
+<p>Depending on the IDE it may be possible to write (or find) a plugin for your language (e.g. Rust) that is &ldquo;nix aware&rdquo;.</p>
+
+<p>For example, there is a <a href="https://marketplace.visualstudio.com/items?itemName=arrterian.nix-env-selector">Nix plugin for Visual Studio Code</a> that was <a href="https://github.com/holochain/holonix/pull/15#issuecomment-535672266">discussed in the Holonix github</a>.</p>
+
+<p>The benefit of a dedicated plugin is the promise of deeply integrated support for many nix and language specfic features.</p>
+
+<p>The main drawback is that Holonix has no control over how any plugin works and all support/maintenance is through third parties (or yourself).</p>
+
 <h2 id="rust-support">Rust support</h2>
 
-<p>The bigges</p>
+<p>The biggest hurdle for Rust support is the common assumption that <code>rustup</code> is installed and used to manage <code>cargo</code>.</p>
+
+<p>Nix shell supports installing <code>rustup</code> but doesn&rsquo;t support parallel management of <code>cargo</code> from both the Mozilla Rust overlays and <code>rustup</code>.</p>
+
+<p>When <code>rustup</code> is installed it typically overrides the <code>cargo</code> version even inside the nix shell due to the default precedence of binaries on the <code>$PATH</code>.</p>
+
+<p>Normally it isn&rsquo;t recommended to try and use <code>rustup</code> and <code>nix-shell</code> at the same time, or at least to carefully construct a <code>$PATH</code> that makes sense for your local workflow.</p>
 
 </div>
 </div>
