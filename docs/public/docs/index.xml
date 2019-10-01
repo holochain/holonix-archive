@@ -208,7 +208,12 @@ The workflow runs in three stages:
       <pubDate>Mon, 11 Feb 2019 19:27:37 +1000</pubDate>
       
       <guid>/docs/ide/</guid>
-      <description>@todo https://forum.holochain.org/t/im-spinning-up-some-docs-for-holonix-feedback-welcome/451/12?u=thedavidmeister</description>
+      <description>@todo https://forum.holochain.org/t/im-spinning-up-some-docs-for-holonix-feedback-welcome/451/12?u=thedavidmeister
+Overview Every IDE has different functionality, assumptions and audience.
+Even ignoring nix we need to deal with interactions between languages, personal preferences and IDE plugin ecosystems.
+An example highlighting this for a single language (Rust) can be seen at https://areweideyet.com/
+The only difference between nix and not-nix for an IDE is how it discovers the underlying tooling.
+We can&amp;rsquo;t provide deep support for every IDE out there but we certainly want to shine a light on what people are doing to target popular setups.</description>
     </item>
     
     <item>
