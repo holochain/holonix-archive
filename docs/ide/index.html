@@ -179,7 +179,50 @@
           
 <h1 class="title">IDE support</h1>
 <div class="content">
-  <p>@todo <a href="https://forum.holochain.org/t/im-spinning-up-some-docs-for-holonix-feedback-welcome/451/12?u=thedavidmeister">https://forum.holochain.org/t/im-spinning-up-some-docs-for-holonix-feedback-welcome/451/12?u=thedavidmeister</a></p>
+  
+
+<p>@todo <a href="https://forum.holochain.org/t/im-spinning-up-some-docs-for-holonix-feedback-welcome/451/12?u=thedavidmeister">https://forum.holochain.org/t/im-spinning-up-some-docs-for-holonix-feedback-welcome/451/12?u=thedavidmeister</a></p>
+
+<h2 id="overview">Overview</h2>
+
+<p>Every IDE has different functionality, assumptions and audience.</p>
+
+<p>Even ignoring nix we need to deal with interactions between languages, personal preferences and IDE plugin ecosystems.</p>
+
+<p>An example highlighting this for a single language (Rust) can be seen at <a href="https://areweideyet.com/">https://areweideyet.com/</a></p>
+
+<p>The only difference between nix and not-nix for an IDE is how it discovers the underlying tooling.</p>
+
+<p>We can&rsquo;t provide deep support for every IDE out there but we certainly want to shine a light on what people are doing to target popular setups.</p>
+
+<p>A <a href="https://www.reddit.com/r/holochain/comments/cjme4a/whats_your_favorite_ide/">survey was conducted on reddit in 2019</a> showing the most popular IDEs are Visual Studio, Intellij Rust and Atom.</p>
+
+<h2 id="path-handling">$PATH handling</h2>
+
+<p>As <code>nix-shell</code> is designed to quarantine the changes it makes to a single shell session, there is no way for an IDE to &ldquo;see&rdquo; what nix is doing outside of that.</p>
+
+<p>Fortunately nix also hashes the result of everything it builds and locks it all as read only.</p>
+
+<p>This gives us two viable options for pointing an IDE at relevant binaries:</p>
+
+<ul>
+<li>Run the IDE from <em>inside</em> an active nix-shell session where the <code>$PATH</code> will be managed to include relevant binaries</li>
+<li>Configure the IDE to point directly at the nix store</li>
+</ul>
+
+<p>The first option is simple and easy if it works for your IDE/plugin combination but likely won&rsquo;t work for everyone. It also adds mental overhead to the development workflow to keep track of various shell sessions.</p>
+
+<p>The main benefit of the first option is that it will always be as &ldquo;fresh&rdquo; as your shell session. I.e. you will never have a versioning discrepency between the binaries used by the IDE and on the cli.</p>
+
+<p>The second option provides more direct control and is more likely to be supported by the IDE.</p>
+
+<p>If your IDE supports configuring the absolute path to a binary then drop into a nix shell and find it with <code>command</code>.</p>
+
+<p>For example, to find the latest <code>cargo</code> binary from holonix master branch:</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">nix-shell https://holochain.love --run <span class="s1">&#39;command -v cargo&#39;</span></code></pre></div>
+<h2 id="rust-support">Rust support</h2>
+
+<p>The bigges</p>
 
 </div>
 </div>
