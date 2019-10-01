@@ -12,7 +12,8 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ### Removed
 
+- remove $HC_TARGET_PREFIX (moved to holochain-rust)
+
 ### Fixed
 
 ### Security
-
