@@ -2,6 +2,7 @@
  pkgs,
  darwin,
  dist,
+ docs,
  git,
  n3h,
  node,
@@ -64,6 +65,7 @@
  ++ (pkgs.callPackage ./flush { }).buildInputs
  ++ darwin.buildInputs
  ++ dist.buildInputs
+ ++ docs.buildInputs
  ++ git.buildInputs
  ++ n3h.buildInputs
  ++ node.buildInputs

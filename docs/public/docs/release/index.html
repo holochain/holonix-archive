@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Release management - Hugo Whisper Theme</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="icon" href="/favicon.png">
+
+  
+  
+  <link rel="stylesheet" href="/css/style.min.6aa5eecd4ca7c47fb2ca9b0775a7bd787e3e64a2eadf0fef8c9f924498f49127.css">
+  
+
+  
+
+</head>
+
+<body class='page page-default-single'>
+  <div id="main-menu-mobile" class="main-menu-mobile">
+  <ul>
+    
+    
+    <li class="menu-item-home">
+      <a href="/">
+        <span>Home</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-docs">
+      <a href="/docs/">
+        <span>Docs</span>
+      </a>
+    </li>
+    
+  </ul>
+</div>
+  <div class="wrapper">
+    <div class='header'>
+  <div class="container">
+    <div class="logo">
+      <a href="/"><img alt="Logo" src="/images/logo.svg" /></a>
+    </div>
+    <div class="logo-mobile">
+      <a href="/"><img alt="Logo" src="/images/logo-mobile.svg" /></a>
+    </div>
+    <div id="main-menu" class="main-menu">
+  <ul>
+    
+    
+    <li class="menu-item-home">
+      <a href="/">
+        <span>Home</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-docs">
+      <a href="/docs/">
+        <span>Docs</span>
+      </a>
+    </li>
+    
+  </ul>
+</div>
+    <button id="toggle-main-menu-mobile" class="hamburger hamburger--slider" type="button">
+  <span class="hamburger-box">
+    <span class="hamburger-inner"></span>
+  </span>
+</button>
+  </div>
+</div>
+
+
+    
+    
+    
+    
+    
+    
+
+    
+    <div class="container pt-2 pt-md-6 pb-3 pb-md-6">
+      <div class="row">
+        <div class="col-12 col-md-3 mb-3">
+          <div class="sidebar">
+            
+<div class="docs-menu">
+  <h4>Docs</h4>
+  <ul>
+    
+    <li class="">
+      <a href="/docs/productive/">Productive</a>
+    </li>
+    
+    <li class="">
+      <a href="/docs/portable/">Portable</a>
+    </li>
+    
+    <li class="">
+      <a href="/docs/predictable/">Predictable</a>
+    </li>
+    
+    <li class="">
+      <a href="/docs/install/">Install holonix</a>
+    </li>
+    
+    <li class="">
+      <a href="/docs/configure/">Configure holonix</a>
+    </li>
+    
+    <li class="">
+      <a href="/docs/nix-shell/">The nix shell</a>
+    </li>
+    
+    <li class="">
+      <a href="/docs/nixos/">NixOS cheatsheet(s)</a>
+    </li>
+    
+    <li class="">
+      <a href="/docs/bash/">Bash scripts</a>
+    </li>
+    
+    <li class="">
+      <a href="/docs/holochain/">Holochain</a>
+    </li>
+    
+    <li class="">
+      <a href="/docs/rust/">Rust</a>
+    </li>
+    
+    <li class="">
+      <a href="/docs/node/">Node</a>
+    </li>
+    
+    <li class="">
+      <a href="/docs/zome/">Zome development</a>
+    </li>
+    
+    <li class="">
+      <a href="/docs/ui/">UI development</a>
+    </li>
+    
+    <li class="">
+      <a href="/docs/docs/">Documentation kit</a>
+    </li>
+    
+    <li class="">
+      <a href="/docs/ci/">Continuous integration</a>
+    </li>
+    
+    <li class="active ">
+      <a href="/docs/release/">Release management</a>
+    </li>
+    
+    <li class="">
+      <a href="/docs/ide/">IDE support</a>
+    </li>
+    
+    <li class="">
+      <a href="/docs/makefiles/">Makefiles</a>
+    </li>
+    
+    <li class="">
+      <a href="/docs/support/">Support &amp; debug</a>
+    </li>
+    
+    <li class="">
+      <a href="/docs/contribute/">Contribute</a>
+    </li>
+    
+  </ul>
+</div>
+
+          </div>
+        </div>
+        <div class="col-12 col-md-9">
+          
+<h1 class="title">Release management</h1>
+<div class="content">
+  
+
+<h2 id="workflow">workflow</h2>
+
+<p>Holonix defines a simple, language agnostic release workflow.</p>
+
+<p>It assumes a <code>develop</code> and <code>master</code> branch.</p>
+
+<p>It assumes a changelog.</p>
+
+<p>The <code>release.version.current</code> is read from <code>./config.nix</code> to create a tag <code>v${release.version.current</code> for the release.</p>
+
+<p>The workflow runs in three stages:</p>
+
+<ol>
+<li>Preflight</li>
+<li>Version</li>
+<li>Publish</li>
+</ol>
+
+<p>Each stage runs the hooks (bash scripts) defined in <code>./config.nix</code> with the same names:</p>
+
+<ul>
+<li><code>release.hook.preflight</code></li>
+<li><code>release.hook.version</code></li>
+<li><code>release.hook.publish</code></li>
+</ul>
+
+<div class="mermaid">
+graph TB;
+  preflight-hook[preflight hook] --> preflight-pass{error code?}
+  preflight-pass -->|Yes| exit-noop[exit with no-op]
+  preflight-pass -->|No| release-branch[create release branch]
+  release-branch --> changelog[release changelog]
+  changelog --> version-hook[version hook]
+  version-hook --> github-push[push to github]
+  github-push --> github-tag[tag and release on github]
+  github-tag --> publish-hook[publish hook]
+  style preflight-hook fill:white,stroke:red,stroke-width:3px
+  style version-hook fill:white,stroke:red,stroke-width:3px
+  style publish-hook fill:white,stroke:red,stroke-width:3px
+</div>
+
+<h2 id="hooks">hooks</h2>
+
+<p>A hook is simply a string in <code>./config.nix</code> that will be run as a bash script.</p>
+
+<p>Some standard hooks are offered by holonix.<br />
+New standard hooks are added from time to time.</p>
+
+<p>See the <code>holochain-rust</code> repository&rsquo;s <a href="https://github.com/holochain/holochain-rust/blob/develop/config.nix"><code>./config.nix</code> file</a> for an example of a mix of standard holonix hook scripts and repo-specific scripts.</p>
+
+<h3 id="preflight">Preflight</h3>
+
+<p>Preflight hooks are sanity checks that must pass before the release is attempted.</p>
+
+<p>Return an exit code other than <code>0</code> to cancel the release.</p>
+
+<p>Standard preflight hooks:</p>
+
+<ul>
+<li><code>hn-release-hook-preflight-manual</code>: prompts the user to type <code>Y</code> to confirm the release</li>
+</ul>
+
+<h3 id="version">Version</h3>
+
+<p>Version hooks are responsible for modifying files in place to move from <code>release.version.previous</code> to <code>release.version.current</code>.</p>
+
+<p>Holonix always copies and resets the contents of <code>CHANGELOG-UNRELEASED.md</code> to the top of <code>CHANGELOG.md</code> before version hooks run.</p>
+
+<p>Holonix creates a new git commit after running the version hook and pushes this to github in the release branch.</p>
+
+<p>Standard version hooks:</p>
+
+<ul>
+<li><code>hn-release-hook-version-rust</code>: updates <code>version</code> key in all <code>Cargo.toml</code> files for rust crates to <code>release.version.current</code></li>
+<li><code>hn-release-hook-version-readme</code>: updates all instances of <code>release.version.previous</code> to <code>release.version.current</code> in all files named <code>readme.md</code> (case insensitive)</li>
+</ul>
+
+<h3 id="publish">Publish</h3>
+
+<p>Publish hooks are responsible for any actions required to distribute release artifacts downstream.</p>
+
+<p>For example <a href="https://github.com/holochain/lib3h/blob/develop/scripts/nix/release/hook/publish/default.nix">the lib3h public hook</a> pushes crates to crates.io in dependency order.</p>
+
+<p>Holonix pushes the release branch to github, merges it into both <code>master</code> and <code>develop</code> and tags the <code>HEAD</code> of the release branch with the <code>v${release.version.current}</code>.</p>
+
+<p>Holonix always creates a release on github using the <code>release.github.template</code> markdown template.</p>
+
+<p>The <code>{{ changelog }}</code> placeholder in the release markdown template will be replaced with the changelog notes for this release.</p>
+
+<p>Standard publish hooks:</p>
+
+<ul>
+<li>{{ coming soon }}</li>
+</ul>
+
+<h2 id="how-to-do-a-release">how to do a release</h2>
+
+<h3 id="requirements">requirements</h3>
+
+<p>Before attempting a release ensure the following:</p>
+
+<ul>
+<li>a <code>develop</code> branch</li>
+<li>a <code>master</code> branch</li>
+<li>a reference to holonix <code>0.0.30</code> or higher</li>
+<li>a <a href="https://github.com/settings/tokens">github oath token</a> added to git config locally</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">git config --global hub.oauthtoken <span class="s2">&#34;xxxyourtokenxxx&#34;</span>
+git config --global hub.username <span class="s2">&#34;your-github-username&#34;</span></code></pre></div>
+<ul>
+<li>a commit ready to release from the <code>develop</code> branch pulled and checked out locally</li>
+<li><code>cd</code> into the repository and <strong>do not enter the nix shell</strong></li>
+</ul>
+
+<h3 id="process">process</h3>
+
+<p>Check all the above requirements are met.</p>
+
+<p>Review the <code>CHANGELOG-UNRELEASED.md</code> file if it exists (it will be created during the release if not).</p>
+
+<p>Update <code>./config.nix</code> so that <code>release.commit</code> is the commit hash to be released.</p>
+
+<p>The current commit hash can be found by running:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">git rev-parse HEAD</code></pre></div>
+<p>Update <code>./config.nix</code> so that <code>release.version.previous</code> is the old <code>release.version.current</code> value and <code>release.version.current</code> is now the new release version.</p>
+
+<p>Unlock your ssh key for convenience.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">ssh-add</code></pre></div>
+<p>Commit everything so the repository is clean.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">git add .
+git commit -am<span class="s1">&#39;release prep&#39;</span></code></pre></div>
+<p>Run the release command.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">nix-shell --run hn-release-cut</code></pre></div>
+</div>
+</div>
+
+        </div>
+      </div>
+    </div>
+    
+  </div>
+
+  <div class="sub-footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="sub-footer-inner">
+          <ul>
+            <li class="holochain"><a href="https://holochain.org">holochain.org</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/scripts.min.bf1e1f7ae8e03db5f012356e825843facdff51c0a559cb0d27fe2bbe1db405c2.js"></script>
+  
+
+  
+  
+  
+    
+  
+
+  <script src="https://unpkg.com/mermaid@8.2.3/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true});</script>
+
+
+</body>
+
+</html>

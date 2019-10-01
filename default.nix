@@ -20,6 +20,7 @@ let
   git = git;
   darwin = darwin;
  };
+ docs = pkgs.callPackage ./docs { };
  n3h = pkgs.callPackage ./n3h { };
  openssl = pkgs.callPackage ./openssl { };
  release = pkgs.callPackage ./release {
@@ -33,6 +34,7 @@ let
   pkgs = pkgs;
   darwin = darwin;
   dist = dist;
+  docs = docs;
   git = git;
   n3h = n3h;
   node = node;
