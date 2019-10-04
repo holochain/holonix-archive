@@ -2,6 +2,24 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.0.35] - 2019-10-04
+
+### Added
+
+- added github pages documentation
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+- remove $HC_TARGET_PREFIX (moved to holochain-rust)
+
+### Fixed
+
+### Security
+
 ## [0.0.34] - 2019-09-18
 
 ### Added
