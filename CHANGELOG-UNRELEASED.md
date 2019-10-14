@@ -6,8 +6,6 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ### Added
 
-- Holochain v0.0.32-alpha2
-
 ### Changed
 
 ### Deprecated
@@ -17,3 +15,4 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 ### Fixed
 
 ### Security
+
