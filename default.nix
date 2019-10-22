@@ -10,6 +10,7 @@
 let
  pkgs = import ./nixpkgs;
 
+ aws = pkgs.callPackage ./aws { };
  darwin = pkgs.callPackage ./darwin { };
  rust = pkgs.callPackage ./rust { };
  node = pkgs.callPackage ./node { };
@@ -32,6 +33,7 @@ let
 
  holonix-shell = pkgs.callPackage ./nix-shell {
   pkgs = pkgs;
+  aws = aws;
   darwin = darwin;
   dist = dist;
   docs = docs;
