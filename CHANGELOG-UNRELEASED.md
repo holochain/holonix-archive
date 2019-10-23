@@ -6,11 +6,7 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ### Added
 
-- added saml2aws tool
-
 ### Changed
-
-- conductor version v0.0.33-alpha5
 
 ### Deprecated
 
@@ -19,3 +15,4 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 ### Fixed
 
 ### Security
+
