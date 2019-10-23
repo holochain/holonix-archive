@@ -1,5 +1,6 @@
 {
  pkgs,
+ aws,
  darwin,
  dist,
  docs,
@@ -63,6 +64,7 @@
   pkgs.unixtools.watch
  ]
  ++ (pkgs.callPackage ./flush { }).buildInputs
+ ++ aws.buildInputs
  ++ darwin.buildInputs
  ++ dist.buildInputs
  ++ docs.buildInputs
