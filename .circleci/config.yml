@@ -86,6 +86,6 @@ workflows:
    - deploy-github-pages:
       filters:
        branches:
-        only: develop
+        only: master
       requires:
        - build
