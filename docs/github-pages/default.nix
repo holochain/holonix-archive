@@ -5,7 +5,7 @@ let
 
   path = "docs/public";
   upstream = "origin";
-  from-branch = "2019-07-31-docs";
+  from-branch = "master";
   to-branch = "gh-pages";
 
   # https://stackoverflow.com/questions/36782467/set-subdirectory-as-website-root-on-github-pages#36782614
