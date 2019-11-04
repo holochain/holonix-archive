@@ -2,8 +2,8 @@
  name = "cli";
 
  sha256 = {
-  linux = "0sjpr8c4cw87p16pmknc93g9r09nzmqpdsswc8cqka980jy5nx5l";
-  darwin = "0gxfq1bnhaqgjdgrnknqxabxr4f64nxx6nxb5ilhbll1njljvica";
+  linux = "0niaw9z2y0mld3471ld4l8ls6641mv4h8ss4la39bxx7zk5nk0sg";
+  darwin = "1x9ikgvkv0khsbn3khhgdvzk7qz3jd37w45k6smww44m5r950ahv";
  };
 
  binary = "hc";
