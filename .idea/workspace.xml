@@ -10,11 +10,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8b74f0a4-fb0e-4d7a-9aae-f0e30bef4549" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CHANGELOG-UNRELEASED.md" beforeDir="false" afterPath="$PROJECT_DIR$/CHANGELOG-UNRELEASED.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/cli/config.nix" beforeDir="false" afterPath="$PROJECT_DIR$/dist/cli/config.nix" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/conductor/config.nix" beforeDir="false" afterPath="$PROJECT_DIR$/dist/conductor/config.nix" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/config.nix" beforeDir="false" afterPath="$PROJECT_DIR$/dist/config.nix" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/example.config.nix" beforeDir="false" afterPath="$PROJECT_DIR$/example.config.nix" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -96,7 +91,7 @@
       </split-first>
       <split-second>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/CHANGELOG-UNRELEASED.md">
               <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
                 <state split_layout="SPLIT">
@@ -110,11 +105,11 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/example.config.nix">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="728">
-                  <caret line="71" column="21" selection-start-line="71" selection-start-column="21" selection-end-line="71" selection-end-column="21" />
+                <state relative-caret-position="532">
+                  <caret line="64" column="52" selection-start-line="64" selection-start-column="52" selection-end-line="64" selection-end-column="52" />
                 </state>
               </provider>
             </entry>
@@ -199,8 +194,8 @@
         <option value="$PROJECT_DIR$/dist/config.nix" />
         <option value="$PROJECT_DIR$/dist/cli/config.nix" />
         <option value="$PROJECT_DIR$/dist/conductor/config.nix" />
-        <option value="$PROJECT_DIR$/example.config.nix" />
         <option value="$PROJECT_DIR$/CHANGELOG-UNRELEASED.md" />
+        <option value="$PROJECT_DIR$/example.config.nix" />
       </list>
     </option>
   </component>
@@ -319,12 +314,12 @@
       <workItem from="1569242966321" duration="1000" />
       <workItem from="1571764251211" duration="756000" />
       <workItem from="1571838564701" duration="146000" />
-      <workItem from="1572909394683" duration="604000" />
+      <workItem from="1572909394683" duration="652000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="19097000" />
+    <option name="totallyTimeSpent" value="19145000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1750" y="27" width="1690" height="1413" extended-state="4" />
@@ -462,13 +457,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/example.config.nix">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="728">
-          <caret line="71" column="21" selection-start-line="71" selection-start-column="21" selection-end-line="71" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/CHANGELOG-UNRELEASED.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
         <state split_layout="SPLIT">
@@ -478,6 +466,13 @@
           <second_editor>
             <markdownNavigatorState />
           </second_editor>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/example.config.nix">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="532">
+          <caret line="64" column="52" selection-start-line="64" selection-start-column="52" selection-end-line="64" selection-end-column="52" />
         </state>
       </provider>
     </entry>
