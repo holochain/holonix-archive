@@ -95,8 +95,8 @@
             <entry file="file://$PROJECT_DIR$/CHANGELOG-UNRELEASED.md">
               <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
                 <state split_layout="SPLIT">
-                  <first_editor relative-caret-position="280">
-                    <caret line="10" selection-start-line="10" selection-end-line="10" />
+                  <first_editor relative-caret-position="252">
+                    <caret line="9" selection-start-line="9" selection-end-line="9" />
                   </first_editor>
                   <second_editor>
                     <markdownNavigatorState />
@@ -108,8 +108,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/example.config.nix">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="532">
-                  <caret line="64" column="52" selection-start-line="64" selection-start-column="52" selection-end-line="64" selection-end-column="52" />
+                <state relative-caret-position="644">
+                  <caret line="23" column="65" selection-start-line="23" selection-start-column="65" selection-end-line="23" selection-end-column="65" />
                 </state>
               </provider>
             </entry>
@@ -314,12 +314,12 @@
       <workItem from="1569242966321" duration="1000" />
       <workItem from="1571764251211" duration="756000" />
       <workItem from="1571838564701" duration="146000" />
-      <workItem from="1572909394683" duration="652000" />
+      <workItem from="1572909394683" duration="833000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="19145000" />
+    <option name="totallyTimeSpent" value="19326000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1750" y="27" width="1690" height="1413" extended-state="4" />
@@ -460,8 +460,8 @@
     <entry file="file://$PROJECT_DIR$/CHANGELOG-UNRELEASED.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="280">
-            <caret line="10" selection-start-line="10" selection-end-line="10" />
+          <first_editor relative-caret-position="252">
+            <caret line="9" selection-start-line="9" selection-end-line="9" />
           </first_editor>
           <second_editor>
             <markdownNavigatorState />
@@ -471,8 +471,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/example.config.nix">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="532">
-          <caret line="64" column="52" selection-start-line="64" selection-start-column="52" selection-end-line="64" selection-end-column="52" />
+        <state relative-caret-position="644">
+          <caret line="23" column="65" selection-start-line="23" selection-start-column="65" selection-end-line="23" selection-end-column="65" />
         </state>
       </provider>
     </entry>
