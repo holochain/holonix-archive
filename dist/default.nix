@@ -29,7 +29,9 @@ in
 
  buildInputs =
  [
+   pkgs.zlib
    pkgs.nix-prefetch-scripts
+   pkgs.openssh
  ]
  ++ (pkgs.callPackage ./audit {
   dist = config;
