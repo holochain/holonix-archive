@@ -5,7 +5,7 @@ let
   # hc needs holochain, node, cargo and git to function
   # we want to reuse all the buildInputs for each of these namespaces from the
   # nix-shell to keep everything consistent in the nix-env wrappers
-  deps = []
+  deps = [ pkgs.zlib ]
   ++ conductor.buildInputs
   ++ node.buildInputs
   ++ rust.buildInputs

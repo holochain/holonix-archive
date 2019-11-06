@@ -26,7 +26,10 @@ rec {
    wrapProgram $out/bin/${args.binary} \
     --prefix PATH : "${pkgs.lib.makeBinPath ( darwin.buildInputs ++ args.deps)}" \
     --prefix NIX_LDFLAGS "" "${darwin.ld-flags}" \
-    --set CXX ${node.clang}/bin/clang++
+    --set CXX ${node.clang}/bin/clang++ \
+    --prefix LD_LIBRARY_PATH : "${pkgs.stdenv.lib.makeLibraryPath [
+      pkgs.zlib
+     ]}"
    '';
   in
   pkgs.stdenv.mkDerivation {

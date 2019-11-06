@@ -29,6 +29,7 @@ in
 
  buildInputs =
  [
+   pkgs.zlib
    pkgs.nix-prefetch-scripts
  ]
  ++ (pkgs.callPackage ./audit {
