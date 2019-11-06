@@ -6,7 +6,7 @@ USER root
 ENV USER root
 
 # keep this matching nix-shell!
-ENV NIX_PATH nixpkgs=https://github.com/NixOs/nixpkgs-channels/tarball/8634c3b619909db7fc747faf8c03592986626e21
+ENV NIX_PATH nixpkgs=channel:nixos-19.09
 ENV HC_TARGET_PREFIX /tmp/holochain
 
 # run a no-op to warm the nix store

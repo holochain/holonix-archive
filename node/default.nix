@@ -1,6 +1,6 @@
 { pkgs }:
 let
- node = pkgs.nodejs-11_x;
+ node = pkgs.nodejs-12_x;
  clang = pkgs.clang;
 in
 {

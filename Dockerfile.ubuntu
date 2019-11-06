@@ -20,7 +20,7 @@ RUN addgroup --system nixbld
 RUN adduser docker nixbld
 
 # keep this matching nix-shell!
-ENV NIX_PATH nixpkgs=channel:nixos-19.03
+ENV NIX_PATH nixpkgs=channel:nixos-19.09
 
 # sandbox doesn't play nice with ubuntu (at least in docker)
 RUN mkdir -p /etc/nix && echo 'sandbox = false' > /etc/nix/nix.conf
