@@ -2,6 +2,23 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.0.41] - 2019-11-06
+
+### Added
+
+### Changed
+
+- using nodejs 12 instead of 11
+- using nixos 19.09 channel
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
 ## [0.0.41] - 2019-11-04
 
 ### Added
