@@ -8,6 +8,9 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ### Changed
 
+- using nodejs 12 instead of 11
+- using nixos 19.09 channel
+
 ### Deprecated
 
 ### Removed
@@ -15,4 +18,3 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 ### Fixed
 
 ### Security
-
