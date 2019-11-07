@@ -2,6 +2,24 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.0.44] - 2019-11-07
+
+### Added
+
+### Changed
+
+- bump to v0.0.44
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+- fixed url to github nixpkgs resource for 19.09
+
+### Security
+
 ## [0.0.43] - 2019-11-06
 
 ### Added

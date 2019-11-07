@@ -7,7 +7,7 @@
 
   # true = use a github repository as the holonix base (recommended)
   # false = use a local copy of holonix (useful for debugging)
-  use-github = true;
+  use-github = false;
 
   # configure the remote holonix github when use-github = true
   github = {
@@ -62,7 +62,7 @@ echo "All finished!!!"
   # the commit hash that the release process should target
   # this will always be behind what ends up being deployed
   # the release process needs to add some commits for changelog etc.
-  commit = "2ce8531c416cd4da464bd2aefb573d1c8cf20ce4";
+  commit = "4c1d84c85ebfc2cab9d1fc9f2dc6f6f7b213bb1f";
 
   # the semver for prev and current releases
   # the previous version will be scanned/bumped by release scripts
