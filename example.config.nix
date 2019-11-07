@@ -14,7 +14,7 @@
 
    # can be any github ref
    # branch, tag, commit, etc.
-   ref = "v0.0.43";
+   ref = "v0.0.44";
 
    # the sha of what is downloaded from the above ref
    # note: even if you change the above ref it will not be redownloaded until
