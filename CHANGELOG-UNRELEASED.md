@@ -8,12 +8,14 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ### Changed
 
-- bump to v0.0.37-alpha12
+- bump to v0.0.44
 
 ### Deprecated
 
 ### Removed
 
 ### Fixed
+
+- fixed url to github nixpkgs resource for 19.09
 
 ### Security
