@@ -14,6 +14,14 @@ let
   lib = lib;
  };
 
+ sim2h_server = pkgs.callPackage ./sim2h_server {
+  lib = lib;
+ };
+
+ trycp_server = pkgs.callPackage ./trycp_server {
+  lib = lib;
+ };
+
  cli = pkgs.callPackage ./cli {
   lib = lib;
   conductor = conductor;
@@ -26,6 +34,8 @@ in
  # exposed derivations to allow nix-env install
  cli = cli;
  conductor = conductor;
+ sim2h_server = sim2h_server;
+ trycp_server = trycp_server;
 
  buildInputs =
  [
@@ -37,12 +47,15 @@ in
   dist = config;
   cli = cli;
   conductor = conductor;
+  sim2h_server = sim2h_server;
+  trycp_server = trycp_server;
   lib = lib;
   rust = rust;
  }).buildInputs
 
  ++ cli.buildInputs
-
  ++ conductor.buildInputs
+ ++ sim2h_server.buildInputs
+ ++ trycp_server.buildInputs
  ;
 }
