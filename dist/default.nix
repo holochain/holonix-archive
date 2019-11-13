@@ -10,7 +10,7 @@ let
   node = node;
  };
 
- conductor = pkgs.callPackage ./conductor {
+ holochain = pkgs.callPackage ./holochain {
   lib = lib;
  };
 
@@ -24,7 +24,7 @@ let
 
  cli = pkgs.callPackage ./cli {
   lib = lib;
-  conductor = conductor;
+  holochain = holochain;
   node = node;
   git = git;
   rust = rust;
@@ -33,7 +33,7 @@ in
 {
  # exposed derivations to allow nix-env install
  cli = cli;
- conductor = conductor;
+ holochain = holochain;
  sim2h_server = sim2h_server;
  trycp_server = trycp_server;
 
@@ -46,7 +46,7 @@ in
  ++ (pkgs.callPackage ./audit {
   dist = config;
   cli = cli;
-  conductor = conductor;
+  holochain = holochain;
   sim2h_server = sim2h_server;
   trycp_server = trycp_server;
   lib = lib;
@@ -54,7 +54,7 @@ in
  }).buildInputs
 
  ++ cli.buildInputs
- ++ conductor.buildInputs
+ ++ holochain.buildInputs
  ++ sim2h_server.buildInputs
  ++ trycp_server.buildInputs
  ;

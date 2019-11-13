@@ -3,7 +3,7 @@
  dist,
  rust,
  cli,
- conductor,
+ holochain,
  sim2h_server,
  trycp_server,
  lib,
@@ -28,9 +28,9 @@ let
   nix-prefetch-url ${lib.artifact-url { name = cli.name; target = ( lib.normalize-artifact-target rust.generic-mac-target ); }}
   echo
 
-  echo "Darwin conductor hash is currently ${conductor.sha256.darwin}"
-  echo "Darwin conductor prefetch:"
-  nix-prefetch-url ${lib.artifact-url { name = conductor.name; target = ( lib.normalize-artifact-target rust.generic-mac-target ); }}
+  echo "Darwin holochain hash is currently ${holochain.sha256.darwin}"
+  echo "Darwin holochain prefetch:"
+  nix-prefetch-url ${lib.artifact-url { name = holochain.name; target = ( lib.normalize-artifact-target rust.generic-mac-target ); }}
   echo
 
   echo "Darwin sim2h_server hash is currently ${sim2h_server.sha256.darwin}"
@@ -48,9 +48,9 @@ let
   nix-prefetch-url ${lib.artifact-url { name = cli.name; target = ( lib.normalize-artifact-target rust.generic-linux-target ); }}
   echo
 
-  echo "Linux conductor hash is currently ${conductor.sha256.linux}"
-  echo "Linux conductor prefetch:"
-  nix-prefetch-url ${lib.artifact-url { name = conductor.name; target = ( lib.normalize-artifact-target rust.generic-linux-target ); }}
+  echo "Linux holochain hash is currently ${holochain.sha256.linux}"
+  echo "Linux holochain prefetch:"
+  nix-prefetch-url ${lib.artifact-url { name = holochain.name; target = ( lib.normalize-artifact-target rust.generic-linux-target ); }}
   echo
 
   echo "Linux sim2h_server hash is currently ${sim2h_server.sha256.linux}"
