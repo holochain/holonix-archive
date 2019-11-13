@@ -60,7 +60,7 @@ in
  # needed for nix-env to discover install attributes
  holochain = {
   hc = dist.cli.derivation;
-  holochain = dist.conductor.derivation;
+  holochain = dist.holochain.derivation;
  };
 
  # expose other things
