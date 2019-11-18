@@ -76,12 +76,11 @@ jobs:
        nix-shell --run hn-test
 
  docker.build.holonix:
-  docker:
-   - image: holochain/holonix:latest
+  machine: true
   steps:
    - checkout
    - setup_remote_docker
-   - run: nix-shell --run hn-docker-build-nix
+   - run: docker build ./docker -f ./docker/Dockerfile.nix --no-cache
 
 workflows:
  version: 2
