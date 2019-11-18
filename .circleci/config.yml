@@ -113,8 +113,18 @@ workflows:
         only: love
       requires:
        - build
-   - docker.build.ubuntu
-   - docker.build.debian
+   - docker.build.ubuntu:
+      filters:
+       branches:
+        only: love
+      requires:
+       - build
+   - docker.build.debian:
+      filters:
+       branches:
+        only: love
+      requires:
+       - build
    - deploy-github-pages:
       filters:
        branches:
