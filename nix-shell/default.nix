@@ -3,7 +3,6 @@
  aws,
  darwin,
  dist,
- docker,
  docs,
  git,
  n3h,
@@ -68,7 +67,6 @@
  ++ aws.buildInputs
  ++ darwin.buildInputs
  ++ dist.buildInputs
- ++ docker.buildInputs
  ++ docs.buildInputs
  ++ git.buildInputs
  ++ n3h.buildInputs
