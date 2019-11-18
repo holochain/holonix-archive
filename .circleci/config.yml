@@ -75,6 +75,12 @@ jobs:
        ./test/nix-env.sh
        nix-shell --run hn-test
 
+docker.build.holonix:
+ machine: true
+ steps:
+  - checkout
+  - ls
+
 workflows:
  version: 2
  tests:
