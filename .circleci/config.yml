@@ -89,6 +89,7 @@ workflows:
    - debian
    - ubuntu
    - mac
+   - docker.build.holonix
    - deploy-github-pages:
       filters:
        branches:
