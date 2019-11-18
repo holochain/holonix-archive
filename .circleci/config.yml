@@ -81,7 +81,7 @@ jobs:
   steps:
    - checkout
    - setup_remote_docker
-   - nix-shell --run hn-docker-build-nix
+   - run: nix-shell --run hn-docker-build-nix
 
 workflows:
  version: 2
