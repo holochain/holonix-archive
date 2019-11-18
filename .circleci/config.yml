@@ -79,7 +79,13 @@ jobs:
   machine: true
   steps:
    - checkout
-   - run: ls
+   - run:
+      name: Install nix and build docker
+      command: |
+       sudo install -d -m755 -o $(id -u) -g $(id -g) /nix
+       curl https://nixos.org/nix/install | sh
+       . /home/circleci/.nix-profile/etc/profile.d/nix.sh
+       nix-shell --run hn-docker-build-nix
 
 workflows:
  version: 2
