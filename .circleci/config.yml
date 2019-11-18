@@ -79,7 +79,7 @@ jobs:
   machine: true
   steps:
    - checkout
-   - ls
+   - run: ls
 
 workflows:
  version: 2
