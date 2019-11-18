@@ -76,16 +76,12 @@ jobs:
        nix-shell --run hn-test
 
  docker.build.holonix:
-  machine: true
+  docker:
+   - image: holochain/holonix:latest
   steps:
    - checkout
-   - run:
-      name: Install nix and build docker
-      command: |
-       sudo install -d -m755 -o $(id -u) -g $(id -g) /nix
-       curl https://nixos.org/nix/install | sh
-       . /home/circleci/.nix-profile/etc/profile.d/nix.sh
-       nix-shell --run hn-docker-build-nix
+   - setup_remote_docker
+   - nix-shell --run hn-docker-build-nix
 
 workflows:
  version: 2
