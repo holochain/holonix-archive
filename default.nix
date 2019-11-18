@@ -12,7 +12,6 @@ let
 
  aws = pkgs.callPackage ./aws { };
  darwin = pkgs.callPackage ./darwin { };
- docker = pkgs.callPackage ./docker { };
  rust = pkgs.callPackage ./rust { };
  node = pkgs.callPackage ./node { };
  git = pkgs.callPackage ./git { };
@@ -37,7 +36,6 @@ let
   aws = aws;
   darwin = darwin;
   dist = dist;
-  docker = docker;
   docs = docs;
   git = git;
   n3h = n3h;
