@@ -79,7 +79,9 @@ jobs:
   machine: true
   steps:
    - checkout
-   - run: docker build ./docker -f ./docker/Dockerfile.nix --no-cache
+   - run: echo "$DOCKER_PASS" | docker login --username $DOCKER_USER --password-stdin
+   - run: docker build ./docker -f ./docker/Dockerfile.nix --no-cache -t holochain/holonix:latest
+   - run: docker push holochain/holonix:latest
 
 workflows:
  version: 2
