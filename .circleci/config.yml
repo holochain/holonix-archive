@@ -75,6 +75,30 @@ jobs:
        ./test/nix-env.sh
        nix-shell --run hn-test
 
+ docker.build.holonix:
+  machine: true
+  steps:
+   - checkout
+   - run: echo "$DOCKER_PASS" | docker login --username $DOCKER_USER --password-stdin
+   - run: docker build ./docker -f ./docker/Dockerfile.nix --no-cache -t holochain/holonix:latest
+   - run: docker push holochain/holonix:latest
+
+ docker.build.ubuntu:
+  machine: true
+  steps:
+   - checkout
+   - run: echo "$DOCKER_PASS" | docker login --username $DOCKER_USER --password-stdin
+   - run: docker build ./docker -f ./docker/Dockerfile.ubuntu --no-cache -t holochain/holonix:ubuntu
+   - run: docker push holochain/holonix:ubuntu
+
+ docker.build.debian:
+  machine: true
+  steps:
+   - checkout
+   - run: echo "$DOCKER_PASS" | docker login --username $DOCKER_USER --password-stdin
+   - run: docker build ./docker -f ./docker/Dockerfile.debian --no-cache -t holochain/holonix:debian
+   - run: docker push holochain/holonix:debian
+
 workflows:
  version: 2
  tests:
@@ -83,9 +107,27 @@ workflows:
    - debian
    - ubuntu
    - mac
+   - docker.build.holonix:
+      filters:
+       branches:
+        only: love
+      requires:
+       - build
+   - docker.build.ubuntu:
+      filters:
+       branches:
+        only: love
+      requires:
+       - build
+   - docker.build.debian:
+      filters:
+       branches:
+        only: love
+      requires:
+       - build
    - deploy-github-pages:
       filters:
        branches:
-        only: master
+        only: love
       requires:
        - build
