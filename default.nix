@@ -61,6 +61,8 @@ in
  holochain = {
   hc = dist.cli.derivation;
   holochain = dist.holochain.derivation;
+  sim2h_server = dist.sim2h_server.derivation;
+  trycp_server = dist.trycp_server.derivation;
  };
 
  # expose other things

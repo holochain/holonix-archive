@@ -9,19 +9,65 @@ teardown () {
  nix-env -e holochain hc
 }
 
+@test "holochain trycp_server install" {
+
+ echo '# trycp_server should not be instaled at first' >&3
+ ! [ -x "$( command -v trycp_server )" ]
+
+ echo '# install trycp_server' >&3
+
+ nix-env -f . -iA holochain.trycp_server
+
+ echo '# trycp_server should be installed now' >&3
+ [ -x "$( command -v trycp_server )" ]
+
+ version="$( trycp_server -V )"
+ echo "# smoke test trycp_server version result: $version" >&3
+ [[ "$version" == "trycp_server 0.0."* ]]
+
+ echo '# uninstall trycp_server' >&3
+ nix-env -e trycp_server
+
+ echo '# trycp_server should not be installed now' >&3
+ ! [ -x "$( command -v trycp_server )" ]
+}
+
+@test "holochain sim2h_server install" {
+
+ echo '# sim2h_server should not be instaled at first' >&3
+ ! [ -x "$( command -v sim2h_server )" ]
+
+ echo '# install sim2h_server' >&3
+
+ nix-env -f . -iA holochain.sim2h_server
+
+ echo '# sim2h_server should be installed now' >&3
+ [ -x "$( command -v sim2h_server )" ]
+
+ version="$( sim2h_server -V )"
+ echo "# smoke test sim2h_server version result: $version" >&3
+ [[ "$version" == "sim2h_server 0.0."* ]]
+
+ echo '# uninstall sim2h_server' >&3
+ nix-env -e sim2h_server
+
+ echo '# sim2h_server should not be installed now' >&3
+ ! [ -x "$( command -v sim2h_server )" ]
+}
+
 @test "holochain conductor install" {
 
  echo '# holochain should not be installed at first' >&3
- ! [ -x "$(command -v holochain)" ]
- ! [ -x "$(command -v hc)" ]
+ ! [ -x "$( command -v holochain )" ]
+ ! [ -x "$( command -v hc )" ]
 
  echo '# install holochain without hc' >&3
 
  nix-env -f . -iA holochain.holochain
 
  echo '# holochain should be installed now' >&3
- [ -x "$(command -v holochain)" ]
- ! [ -x "$(command -v hc)" ]
+ [ -x "$( command -v holochain )" ]
+ ! [ -x "$( command -v hc )" ]
 
  version="$( holochain -V )"
  echo "# smoke test holochain version result: $version" >&3
