@@ -6,11 +6,7 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ### Added
 
-- Automatic rebuilds of nix/ubuntu/debian dockers on love branch pushes
-
 ### Changed
-
-- v0.0.39-alpha2 binaries
 
 ### Deprecated
 
@@ -19,3 +15,4 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 ### Fixed
 
 ### Security
+
