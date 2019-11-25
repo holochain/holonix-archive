@@ -17,11 +17,9 @@
       <pubDate>Mon, 11 Feb 2019 19:27:37 +1000</pubDate>
       
       <guid>/docs/productive/</guid>
-      <description>Holonix enables developer productivity in a FOSS and extensible way.
-Productivity comes from evolving conventions around a set of &amp;ldquo;golden workflows&amp;rdquo;.
+      <description>We designed Holonix to enable developer productivity in a FOSS and extensible way based on the assumption that productivity comes from evolving conventions around a set of &amp;ldquo;golden workflows&amp;rdquo;.
 These workflows are relevant to most projects in the Holochain ecosystem.
- building &amp;amp; testing zomes building &amp;amp; testing UIs documenting code releasing artifacts  The benefits of leveraging a well tested set of conventional scripts will usually outweigh reinventing the wheel here.
-Holonix dogfoods relevant golden workflows.</description>
+ building &amp;amp; testing zomes building &amp;amp; testing UIs documenting code releasing artifacts  The benefits of leveraging a well tested set of conventional scripts usually outweighs reinventing the wheel here.</description>
     </item>
     
     <item>
@@ -32,10 +30,9 @@ Holonix dogfoods relevant golden workflows.</description>
       <guid>/docs/portable/</guid>
       <description>Holonix works on all major operating systems (mostly) without VMs.
 This is possible thanks to the awesome work by the NixOS Foundation and Holochain maintaining cross-platform binaries.
-NixOS is an entire operating system but Holonix doesn&amp;rsquo;t require this at all.
+NixOS is an entire operating system but Holonix doesn&amp;rsquo;t require a NixOS installation at all.
 Holonix targets the standalone &amp;ldquo;nix shell&amp;rdquo; tool.
-Nix shell is comparable to using brew, apt-get or npm but is not locked to a single platform or language.
-Read the installation and configuration guides for details on how this all works.</description>
+Nix shell is comparable to using brew, apt-get or npm but is not locked to a single platform or language.</description>
     </item>
     
     <item>
@@ -44,11 +41,10 @@ Read the installation and configuration guides for details on how this all works
       <pubDate>Mon, 11 Feb 2019 19:27:37 +1000</pubDate>
       
       <guid>/docs/predictable/</guid>
-      <description>Holonix is designed to avoid common and fundamental &amp;ldquo;works on my machine&amp;rdquo; style frustrations.
+      <description>We designed Holonix to avoid common and fundamental &amp;ldquo;works on my machine&amp;rdquo; style frustrations, by focusing on predictability.
 It embodies lessons of the full spectrum from low level core development to ad-hoc beginner level hackathon explorations.
 Minimal assumptions Software projects typically make many assumptions about what the developer environment looks like.
-This is because there are not many options to reliably provide dependencies and configuration needed at the system level.
-This is due to many factors:</description>
+This happens of the lack of tooling that reliably provides the necessary dependency and configuration management needed at the system level.</description>
     </item>
     
     <item>
