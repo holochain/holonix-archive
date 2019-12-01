@@ -68,8 +68,8 @@ echo "All finished!!!"
   # the previous version will be scanned/bumped by release scripts
   # the current version is what the release scripts bump *to*
   version = {
-   current = "0.0.49";
-   previous = "0.0.48";
+   current = "0.0.50";
+   previous = "0.0.49";
   };
 
   github = {

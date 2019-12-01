@@ -2,8 +2,8 @@
  name = "holochain";
 
  sha256 = {
-  linux = "134msnajrh131ni5lh5dkdyf94ibpjhmkspcwb2j2bq3hr64jcld";
-  darwin = "1c288qyqn8hdkiikv2hnydy9g61ndsn4fhm4linpdjpq7ad7bp2p";
+  linux = "0bfai2va1r1qx7wkfwsgw0ynhfnsw4xyh2ph1pw8ihhc0ydgwkqy";
+  darwin = "18c3racfh697hxlzgr9mhs5qq5ksniijr8zh2j00shnia86xq7m1";
  };
 
  binary = "holochain";
