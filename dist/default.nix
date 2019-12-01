@@ -53,9 +53,9 @@ in
   rust = rust;
  }).buildInputs
 
- ++ cli.buildInputs
+ /* ++ cli.buildInputs
  ++ holochain.buildInputs
  ++ sim2h_server.buildInputs
- ++ trycp_server.buildInputs
+ ++ trycp_server.buildInputs */
  ;
 }

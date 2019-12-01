@@ -6,15 +6,18 @@ let
     # https://rust-lang.github.io/rustup-components-history/
     # read more about version management
     # https://hackmd.io/ShgxFyDVR52gnqK7oQsuiQ
-    nightly = {
-      date = "2019-07-14";
+    channel = {
+      name = "stable";
+      # the date needs to match a manifest date listed at
+      # https://static.rust-lang.org/manifests.txt
+      date = "2019-11-07";
     };
 
     # the target used by rust when compiling wasm
     wasm-target = "wasm32-unknown-unknown";
 
     # the target used by all linux when we don't have a specific target
-    generic-linux-target = "x86_64-unknown-linux-gnu";
+    generic-linux-target = "x86_64-unknown-linux-musl";
 
     # the target used by all mac
     generic-mac-target = "x86_64-apple-darwin";
@@ -71,13 +74,13 @@ let
 
   derived = {
 
-    nightly = base.nightly // {
-      version = "nightly-${base.nightly.date}";
+    channel = base.channel // {
+      version = "${base.channel.name}-${base.channel.date}";
     };
 
     compile = base.compile // {
       # @see https://llogiq.github.io/2017/06/01/perf-pitfalls.html
-      flags ="-D ${base.compile.deny} -Z external-macro-backtrace -Z ${base.compile.lto} -C codegen-units=${base.compile.codegen-units} -C opt-level=${base.compile.optimization-level}";
+      flags ="-D ${base.compile.deny} -C codegen-units=${base.compile.codegen-units} -C opt-level=${base.compile.optimization-level}";
     };
 
     test = {
