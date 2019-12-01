@@ -23,7 +23,7 @@
  # rust version through this environment variable.
  # https://github.com/rust-lang/rustup.rs#environment-variables
  # https://github.com/NixOS/nix/issues/903
- RUSTUP_TOOLCHAIN = rust.nightly.version;
+ RUSTUP_TOOLCHAIN = rust.channel.version;
  RUSTFLAGS = rust.compile.flags;
  CARGO_INCREMENTAL = rust.compile.incremental;
  RUST_LOG = rust.log;
