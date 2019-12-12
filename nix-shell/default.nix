@@ -41,9 +41,13 @@
  #
  # cargo should NOT install binaries into this repo in vagrant as this breaks
  # under windows with virtualbox shared folders
- if [[ $( whoami ) = "vagrant" ]]
-  then export NIX_ENV_PREFIX=/home/vagrant
-  else export NIX_ENV_PREFIX=`pwd`
+
+ if [[ -z $NIX_ENV_PREFIX ]]
+ then
+  if [[ $( whoami ) == "vagrant" ]]
+   then export NIX_ENV_PREFIX=/home/vagrant
+   else export NIX_ENV_PREFIX=`pwd`
+  fi
  fi
 
  export CARGO_HOME="$NIX_ENV_PREFIX/.cargo"
