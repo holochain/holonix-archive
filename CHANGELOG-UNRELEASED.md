@@ -8,8 +8,6 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ### Changed
 
-- The nix shell now respects any existing value for `$NIX_ENV_PREFIX`
-
 ### Deprecated
 
 ### Removed
@@ -17,3 +15,4 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 ### Fixed
 
 ### Security
+
