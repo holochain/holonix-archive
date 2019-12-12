@@ -12,6 +12,7 @@ jobs:
 
    # run env tests
    - run: ./test/nix-env.sh
+   - run: ./test/environment.sh
 
    # run shell tests
    - run: nix-shell --run hn-test
