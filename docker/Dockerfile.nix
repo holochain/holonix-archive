@@ -7,7 +7,6 @@ ENV USER root
 
 # keep this matching nix-shell!
 ENV NIX_PATH nixpkgs=channel:nixos-19.09
-ENV HC_TARGET_PREFIX /tmp/holochain
 
 # run a no-op to warm the nix store
 RUN nix-shell https://holochain.love --run "echo 1" --show-trace

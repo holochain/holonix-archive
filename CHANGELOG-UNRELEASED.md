@@ -8,6 +8,8 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ### Changed
 
+- $HC_TARGET_PREFIX is set in nix shell to $NIX_ENV_PREFIX
+
 ### Deprecated
 
 ### Removed
@@ -15,4 +17,3 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 ### Fixed
 
 ### Security
-
