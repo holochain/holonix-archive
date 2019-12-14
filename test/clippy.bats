@@ -10,4 +10,9 @@
 
 @test "clippy smoke test" {
  hn-rust-clippy
+
+ # the clippy target directory should have been created
+ clippy_target_dir="$HC_TARGET_PREFIX/target/clippy"
+ [[ "$clippy_target_dir" == "$PWD"/target/clippy ]]
+ [ -d "$clippy_target_dir" ]
 }
