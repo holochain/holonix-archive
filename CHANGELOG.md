@@ -2,6 +2,22 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.0.54] - 2019-12-14
+
+### Added
+
+### Changed
+
+- $HC_TARGET_PREFIX is set in nix shell to $NIX_ENV_PREFIX
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
 ## [0.0.53] - 2019-12-12
 
 ### Added
