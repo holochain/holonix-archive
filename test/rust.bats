@@ -8,14 +8,6 @@
  [[ "$result" == *2019-11-15* ]]
 }
 
-# the clippy version should be roughly the rustc version
-# most importantly clippy should exist
-@test "clippy version" {
- result="$( cargo clippy --version )"
- echo $result
- [[ "$result" == *2019-11-14* ]]
-}
-
 # the rust fmt version should be roughly the rustc version
 # most importantly fmt should exist
 @test "fmt version" {

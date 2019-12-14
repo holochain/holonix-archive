@@ -1,3 +1,5 @@
 result
 .bash_history
 .cargo
+Cargo.lock
+target

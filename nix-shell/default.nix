@@ -52,6 +52,7 @@
 
  export CARGO_HOME="$NIX_ENV_PREFIX/.cargo"
  export CARGO_INSTALL_ROOT="$NIX_ENV_PREFIX/.cargo"
+ export HC_TARGET_PREFIX=$NIX_ENV_PREFIX
  export PATH="$CARGO_INSTALL_ROOT/bin:$PATH"
  export NIX_LDFLAGS="${darwin.ld-flags}$NIX_LDFLAGS"
 
