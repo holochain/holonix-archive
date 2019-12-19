@@ -5,8 +5,6 @@ ARG DOCKER_BRANCH=master
 RUN mkdir /holonix
 
 WORKDIR /holonix
-ENV CARGO_HOME /holonix/.cargo
-ENV PATH "${CARGO_HOME}/bin:${PATH}"
 
 # need $USER to be set for CI, cargo, etc.
 # it isn't set by default
@@ -18,7 +16,6 @@ ENV shellfile ./default.nix
 # keep this matching nix-shell!
 ENV NIXPKGS_URL https://github.com/NixOs/nixpkgs-channels/archive/8634c3b619909db7fc747faf8c03592986626e21.tar.gz
 ENV NIX_PATH nixpkgs=$NIXPKGS_URL
-ENV HC_TARGET_PREFIX /tmp/holonix
 
 RUN nix-channel --add $NIXPKGS_URL nixpkgs
 RUN nix-channel --update

@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+set -euxo pipefail
+
+docker push "holochain/holonix:${1}.${2}"
