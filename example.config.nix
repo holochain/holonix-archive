@@ -14,14 +14,14 @@
 
    # can be any github ref
    # branch, tag, commit, etc.
-   ref = "v0.0.54";
+   ref = "v0.0.55";
 
    # the sha of what is downloaded from the above ref
    # note: even if you change the above ref it will not be redownloaded until
    #       the sha here changes (the sha is the cache key for downloads)
    # note: to get a new sha, get nix to try and download a bad sha
    #       it will complain and tell you the right sha
-   sha256 = "1z2pp6ba73f6n8svs0aql98d63v3prybw09rjf856xzzc34lhjga";
+   sha256 = "05l63bwqmh8v2v13c9c9320pniccdnp0rcv7ay7vd14j13pc7hcq";
 
    # the github owner of the holonix repo
    owner = "holochain";
