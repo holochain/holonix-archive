@@ -2,4 +2,7 @@
 
 set -euxo pipefail
 
-docker run --rm -d -p 9000:9000/tcp -p 9000:9000/udp --name ${1}.${2} -t "holochain/holonix:${1}.${2}"
+box=${1:-sim2h_server}
+branch=${2:-$( git rev-parse --abbrev-ref HEAD )}
+
+docker run --rm -d -p 9000:9000/tcp -p 9000:9000/udp --name $box.$branch -t "holochain/holonix:$box.$branch"
