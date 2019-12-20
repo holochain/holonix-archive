@@ -2,8 +2,8 @@
  name = "trycp_server";
 
  sha256 = {
-  linux = "0wgqv0d0hs0i7yr0bprnmr78h4z8a3sknn1ib2mgrasmbli7jskh";
-  darwin = "1pilq14d4434v3939cqk2xkcvhfqhyyspnw423qm4zn1n89s7gvh";
+  linux = "0wjkwjzm00dms89dcck6lf01y9p6hmcqmgkbhcqgx3k8icfzxxpa";
+  darwin = "094njwdzhzrf3y7pa38y2xnpbc8khjrydvy5ly6lh6q7r5mri13p";
  };
 
  binary = "trycp_server";
