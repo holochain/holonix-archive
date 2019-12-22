@@ -187,16 +187,6 @@ workflows:
    - docker-build-sim2h_server:
       requires:
        - docker-build-minimal
-   - docker.build.minimal:
-      filters:
-       branches:
-        only:
-         - love
-         - master
-         - develop
-         - 2019-12-19-exam-boxes
-      requires:
-       - build
    - deploy-github-pages:
       filters:
        branches:
