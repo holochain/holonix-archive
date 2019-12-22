@@ -20,6 +20,7 @@ let
 
  trycp_server = pkgs.callPackage ./trycp_server {
   lib = lib;
+  holochain = holochain;
  };
 
  cli = pkgs.callPackage ./cli {

@@ -1,4 +1,4 @@
-{ pkgs, lib }:
+{ pkgs, lib, holochain }:
 let
  config = import ./config.nix;
 in
