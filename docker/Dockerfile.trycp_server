@@ -5,7 +5,7 @@ ENV shellfile ./default.nix
 
 RUN echo $NIX_PATH
 
-RUN nix-env -i wget ps more killall gnugrep vim nano which
+RUN nix-env -i wget ps more killall gnugrep vim nano which websocat
 RUN nix-env -f $shellfile -iA holochain.trycp_server
 RUN nix-collect-garbage
 
@@ -13,6 +13,9 @@ RUN nix-collect-garbage
 FROM scratch
 COPY --from=build / /
 WORKDIR /holonix
+
+ENV NIXPKGS_URL https://github.com/NixOs/nixpkgs-channels/archive/36aa728f2cd2038923bb6d4a6e1cbdb9c0dcbca7.tar.gz
+ENV NIX_PATH nixpkgs=$NIXPKGS_URL
 
 RUN mkdir /tmp/trycp/conductors -p
 
