@@ -1,4 +1,19 @@
-version: 2
+version: 2.1
+
+commands:
+ build-docker:
+  description: "Build and deploy a docker box"
+  parameters:
+   box:
+    type: string
+    default: "minimal"
+  steps:
+   - checkout
+   - run: ./docker/login
+   - run:
+      no_output_timeout: 30m
+      command: ./docker/build << parameters.box >> $CIRCLE_BRANCH
+   - run: ./docker/push << parameters.box >> $CIRCLE_BRANCH
 
 jobs:
  build:
@@ -76,29 +91,47 @@ jobs:
        ./test/nix-env.sh
        nix-shell --run hn-test
 
- docker.build.holonix:
+ docker-build-latest:
+  resource_class: large
   machine: true
   steps:
-   - checkout
-   - run: echo "$DOCKER_PASS" | docker login --username $DOCKER_USER --password-stdin
-   - run: docker build ./docker -f ./docker/Dockerfile.nix --no-cache -t holochain/holonix:latest
-   - run: docker push holochain/holonix:latest
+   - build-docker:
+      box: latest
 
- docker.build.ubuntu:
+ docker-build-ubuntu:
+  resource_class: large
   machine: true
   steps:
-   - checkout
-   - run: echo "$DOCKER_PASS" | docker login --username $DOCKER_USER --password-stdin
-   - run: docker build ./docker -f ./docker/Dockerfile.ubuntu --no-cache -t holochain/holonix:ubuntu
-   - run: docker push holochain/holonix:ubuntu
+   - build-docker:
+      box: ubuntu
 
- docker.build.debian:
+ docker-build-debian:
+  resource_class: large
   machine: true
   steps:
-   - checkout
-   - run: echo "$DOCKER_PASS" | docker login --username $DOCKER_USER --password-stdin
-   - run: docker build ./docker -f ./docker/Dockerfile.debian --no-cache -t holochain/holonix:debian
-   - run: docker push holochain/holonix:debian
+   - build-docker:
+      box: debian
+
+ docker-build-minimal:
+  resource_class: large
+  machine: true
+  steps:
+   - build-docker:
+      box: minimal
+
+ docker-build-sim2h_server:
+  resource_class: large
+  machine: true
+  steps:
+   - build-docker:
+      box: sim2h_server
+
+ docker-build-trycp_server:
+  resource_class: large
+  machine: true
+  steps:
+   - build-docker:
+      box: trycp_server
 
 workflows:
  version: 2
@@ -108,22 +141,60 @@ workflows:
    - debian
    - ubuntu
    - mac
-   - docker.build.holonix:
+   - docker-build-latest:
       filters:
        branches:
-        only: love
+        only:
+         - love
+         - master
+         - develop
+         - 2019-12-19-exam-boxes
       requires:
        - build
-   - docker.build.ubuntu:
+   - docker-build-ubuntu:
       filters:
        branches:
-        only: love
+        only:
+         - love
+         - master
+         - develop
+         - 2019-12-19-exam-boxes
       requires:
        - build
-   - docker.build.debian:
+   - docker-build-debian:
       filters:
        branches:
-        only: love
+        only:
+         - love
+         - master
+         - develop
+         - 2019-12-19-exam-boxes
+      requires:
+       - build
+   - docker-build-minimal:
+      filters:
+       branches:
+        only:
+         - love
+         - master
+         - develop
+         - 2019-12-19-exam-boxes
+      requires:
+       - build
+   - docker-build-trycp-server:
+      requires:
+       - docker-build-minimal
+   - docker-build-sim2h-server:
+      requires:
+       - docker-build-minimal
+   - docker.build.minimal:
+      filters:
+       branches:
+        only:
+         - love
+         - master
+         - develop
+         - 2019-12-19-exam-boxes
       requires:
        - build
    - deploy-github-pages:
