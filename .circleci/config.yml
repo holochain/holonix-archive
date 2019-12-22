@@ -181,10 +181,10 @@ workflows:
          - 2019-12-19-exam-boxes
       requires:
        - build
-   - docker-build-trycp-server:
+   - docker-build-trycp_server:
       requires:
        - docker-build-minimal
-   - docker-build-sim2h-server:
+   - docker-build-sim2h_server:
       requires:
        - docker-build-minimal
    - docker.build.minimal:
