@@ -1,0 +1,11 @@
+# Won't work, see https://pastebin.com/FE98je25
+
+FROM samip537/manjaro
+
+RUN su user
+
+RUN sudo curl https://nixos.org/nix/install | sh
+
+RUN . /home/user/.nix-profile/etc/profile.d/nix.sh
+
+RUN nix-shell https://holochain.love --run echo
