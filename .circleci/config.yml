@@ -148,7 +148,7 @@ workflows:
          - love
          - master
          - develop
-         - 2019-12-19-exam-boxes
+         - 2019-12-24-docker-aws
       requires:
        - build
    - docker-build-ubuntu:
@@ -158,7 +158,7 @@ workflows:
          - love
          - master
          - develop
-         - 2019-12-19-exam-boxes
+         - 2019-12-24-docker-aws
       requires:
        - build
    - docker-build-debian:
@@ -168,7 +168,7 @@ workflows:
          - love
          - master
          - develop
-         - 2019-12-19-exam-boxes
+         - 2019-12-24-docker-aws
       requires:
        - build
    - docker-build-minimal:
@@ -178,7 +178,7 @@ workflows:
          - love
          - master
          - develop
-         - 2019-12-19-exam-boxes
+         - 2019-12-24-docker-aws
       requires:
        - build
    - docker-build-trycp_server:
