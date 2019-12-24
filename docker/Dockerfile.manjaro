@@ -1,11 +1,49 @@
-# Won't work, see https://pastebin.com/FE98je25
+FROM jonathonf/manjaro:latest
 
-FROM samip537/manjaro
+# make sure image is up-to-date
+# linux docker does not ship with much; update repositories
+# and install curl, tar, sudo if needed
+# output has warnings:
+# warning: dependency cycle detected:
+# warning: bashrc-manjaro will be installed before its bash dependency
+RUN pacman -Syuu --noconfirm --needed curl tar sudo
 
-RUN su user
+# nix does not work under root
+# add a docker user that can sudo
+RUN useradd docker
+RUN groupadd -r sudo
+RUN gpasswd -a docker sudo
+RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
-RUN sudo curl https://nixos.org/nix/install | sh
+# nix expects the nixbld group
+RUN groupadd -r nixbld
+RUN gpasswd -a docker nixbld
 
-RUN . /home/user/.nix-profile/etc/profile.d/nix.sh
+# keep this matching nix-shell! (This may not be needed.)
+# https://discourse.nixos.org/t/warning-nix-search-path-entry-nix-var-nix-profiles-per-user-root-channels-does-not-exist-ignoring/5170/4
+ENV NIX_PATH nixpkgs=channel:nixos-19.09
 
-RUN nix-shell https://holochain.love --run echo
+# sandbox may not play nice with manjaro (at least in docker)
+RUN mkdir -p /etc/nix && echo 'sandbox = false' > /etc/nix/nix.conf
+
+RUN cat /etc/passwd
+
+# use the docker user
+USER docker
+ENV USER docker
+WORKDIR /home/docker
+
+# https://nixos.wiki/wiki/Nix_Installation_Guide#Single-user_install
+# "sudo: setrlimit(RLIMIT_CORE): Operation not permitted"
+RUN sudo install -d -m755 -o $(id -u) -g $(id -g) /nix
+# warning: Nix search path entry '/home/docker/.nix-defexpr/channels' does not exist, ignoring
+# https://discourse.nixos.org/t/warning-nix-search-path-entry-nix-var-nix-profiles-per-user-root-channels-does-not-exist-ignoring/5170/4
+# error: opening lock file '/home/docker/.nix-profile.lock': Permission denied
+# /tmp/nix-binary-tarball-unpack.EIdivHyL1l/unpack/nix-2.3.1-x86_64-linux/install: unable to install Nix into your default profile
+RUN curl https://nixos.org/nix/install | sh
+
+# warm nix and avoid warnings about missing channels
+# https://github.com/NixOS/nixpkgs/issues/40165
+RUN . /home/docker/.nix-profile/etc/profile.d/nix.sh; \
+nix-channel --update; \
+nix-shell https://holochain.love --run echo
