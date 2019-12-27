@@ -43,6 +43,20 @@ jobs:
        ./test/nix-env.sh
        nix-shell --run hn-test
 
+ manjaro:
+  docker:
+   - image: jonathonf/manjaro:latest
+  steps:
+   - checkout
+
+   - run:
+      command: |
+      . /home/docker/.nix-profile/etc/profile.d/nix.sh
+      nix-shell --run echo
+      ./test/nix-env.sh
+      nix-shell --run hn-test
+
+
  # THIS IS SECURITY SENSITVE
  # READ THESE
  # https://circleci.com/blog/deploying-documentation-to-github-pages-with-continuous-integration/
@@ -100,6 +114,14 @@ jobs:
    - run: docker build ./docker -f ./docker/Dockerfile.debian --no-cache -t holochain/holonix:debian
    - run: docker push holochain/holonix:debian
 
+ docker.build.manjaro:
+  machine: true
+  steps:
+   - checkout
+   - run: echo "$DOCKER_PASS" | docker login --username $DOCKER_USER --password-stdin
+   - run: docker build ./docker -f ./docker/Dockerfile.manjaro --no-cache -t holochain/holonix:manjaro
+   - run: docker push holochain/holonix:manjaro
+
 workflows:
  version: 2
  tests:
@@ -108,6 +130,7 @@ workflows:
    - debian
    - ubuntu
    - mac
+   - manjaro
    - docker.build.holonix:
       filters:
        branches:
@@ -121,6 +144,12 @@ workflows:
       requires:
        - build
    - docker.build.debian:
+      filters:
+       branches:
+        only: love
+      requires:
+       - build
+   - docker.build.manjaro:
       filters:
        branches:
         only: love
