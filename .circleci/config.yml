@@ -1,6 +1,5 @@
 version: 2.1
 
-
 commands:
  build-docker:
   description: "Build and deploy a docker box"
@@ -15,7 +14,6 @@ commands:
       no_output_timeout: 30m
       command: ./docker/build << parameters.box >> $CIRCLE_BRANCH
    - run: ./docker/push << parameters.box >> $CIRCLE_BRANCH
-
 
 jobs:
  build:
@@ -118,14 +116,12 @@ jobs:
        ./test/nix-env.sh
        nix-shell --run hn-test
 
-
  docker-build-latest:
   resource_class: large
   machine: true
   steps:
    - build-docker:
       box: latest
-
 
  docker-build-ubuntu:
   resource_class: large
@@ -134,7 +130,6 @@ jobs:
    - build-docker:
       box: ubuntu
 
-
  docker-build-debian:
   resource_class: large
   machine: true
@@ -142,14 +137,20 @@ jobs:
    - build-docker:
       box: debian
 
-
+ docker-build-manjaro:
+  machine: true
+  steps:
+   - checkout
+   - run: echo "$DOCKER_PASS" | docker login --username $DOCKER_USER --password-stdin
+   - run: docker build ./docker -f ./docker/Dockerfile.manjaro --no-cache -t holochain/holonix:manjaro
+   - run: docker push holochain/holonix:manjaro
+ 
  docker-build-minimal:
   resource_class: large
   machine: true
   steps:
    - build-docker:
       box: minimal
-
 
  docker-build-sim2h_server:
   resource_class: large
@@ -158,23 +159,12 @@ jobs:
    - build-docker:
       box: sim2h_server
 
-
  docker-build-trycp_server:
   resource_class: large
   machine: true
   steps:
    - build-docker:
       box: trycp_server
-
-
- docker.build.manjaro:
-  machine: true
-  steps:
-   - checkout
-   - run: echo "$DOCKER_PASS" | docker login --username $DOCKER_USER --password-stdin
-   - run: docker build ./docker -f ./docker/Dockerfile.manjaro --no-cache -t holochain/holonix:manjaro
-   - run: docker push holochain/holonix:manjaro
-
 
 workflows:
  version: 2
@@ -215,7 +205,7 @@ workflows:
          - 2019-12-19-exam-boxes
       requires:
        - build
-   - docker.build.manjaro:
+   - docker.build-manjaro:
       filters:
        branches:
         only: 
