@@ -22,19 +22,15 @@ jobs:
   steps:
    - checkout
 
-
    # warm nix
    - run: nix-shell --run echo
-
 
    # run env tests
    - run: ./test/nix-env.sh
    - run: ./test/environment.sh
 
-
    # run shell tests
    - run: nix-shell --run hn-test
-
 
  debian:
   docker:
@@ -42,14 +38,12 @@ jobs:
   steps:
    - checkout
 
-
    - run:
       command: |
        . /home/docker/.nix-profile/etc/profile.d/nix.sh
        nix-shell --run echo
        ./test/nix-env.sh
        nix-shell --run hn-test
-
 
  ubuntu:
   docker:
@@ -57,7 +51,6 @@ jobs:
   steps:
    - checkout
 
-
    - run:
       command: |
        . /home/docker/.nix-profile/etc/profile.d/nix.sh
@@ -65,13 +58,11 @@ jobs:
        ./test/nix-env.sh
        nix-shell --run hn-test
 
-
  manjaro:
   docker:
    - image: jonathonf/manjaro:latest
   steps:
    - checkout
-
 
    - run:
       command: |
@@ -79,8 +70,6 @@ jobs:
       nix-shell --run echo
       ./test/nix-env.sh
       nix-shell --run hn-test
-
-
 
  # THIS IS SECURITY SENSITVE
  # READ THESE
@@ -100,7 +89,6 @@ jobs:
        git config user.name "$GITHUB_PAGES_DEPLOY_USER"
        git config user.email "$GITHUB_PAGES_DEPLOY_EMAIL"
        nix-shell --run hn-docs-github-pages
-
 
  mac:
   macos:
