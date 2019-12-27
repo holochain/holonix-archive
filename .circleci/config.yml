@@ -60,7 +60,7 @@ jobs:
 
  manjaro:
   docker:
-   - image: jonathonf/manjaro:latest
+   - image: holochain/holonix:manjaro
   steps:
    - checkout
 
