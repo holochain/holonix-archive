@@ -1,4 +1,4 @@
-FROM jonathonf/manjaro:latest
+FROM manjarolinux/base:latest
 
 # make sure image is up-to-date
 # linux docker does not ship with much; update repositories
@@ -27,6 +27,11 @@ ENV NIX_PATH nixpkgs=channel:nixos-19.09
 RUN mkdir -p /etc/nix && echo 'sandbox = false' > /etc/nix/nix.conf
 
 RUN cat /etc/passwd
+
+# prevents the output of the line "sudo: setrlimit(RLIMIT_CORE): Operation not permitted" to sudo commands
+# From https://ask.fedoraproject.org/t/sudo-setrlimit-rlimit-core-operation-not-permitted/4223
+RUN touch /etc/sudo.conf
+RUN echo 'Set disable_coredump false' > /etc/sudo.conf
 
 # use the docker user
 USER docker
