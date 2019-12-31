@@ -13,6 +13,7 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 - Changed docker tags to be {box}.{branch}
 - Dockers build on love/master/develop (e.g. holochain/holonix:latest.love)
+- Using binaries v0.0.42-alpha1
 
 ### Deprecated
 
