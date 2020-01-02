@@ -10,6 +10,8 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ### Changed
 
+- binaries version 0.0.42-alpha2
+
 ### Deprecated
 
 ### Removed
