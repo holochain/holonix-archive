@@ -6,11 +6,7 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ### Added
 
-- added $CARGO_TARGET_DIR and $CARGO_CACHE_RUSTC_INFO to shell from holochain-rust repo
-
 ### Changed
-
-- binaries version 0.0.42-alpha2
 
 ### Deprecated
 
@@ -19,3 +15,4 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 ### Fixed
 
 ### Security
+

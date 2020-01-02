@@ -2,6 +2,24 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.0.58] - 2020-01-02
+
+### Added
+
+- added $CARGO_TARGET_DIR and $CARGO_CACHE_RUSTC_INFO to shell from holochain-rust repo
+
+### Changed
+
+- binaries version 0.0.42-alpha2
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
 ## [0.0.57] - 2019-12-31
 
 ### Added
