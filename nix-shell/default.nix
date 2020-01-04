@@ -69,6 +69,9 @@
 
   # simple dev feedback loop
   pkgs.unixtools.watch
+
+  # ability to profile code
+  pkgs.linuxPackages.perf
  ]
  ++ (pkgs.callPackage ./flush { }).buildInputs
  ++ aws.buildInputs
