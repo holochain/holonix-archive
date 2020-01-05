@@ -2,6 +2,22 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.0.60] - 2020-01-05
+
+### Added
+
+### Changed
+
+- bump to v0.0.42-alpha3 binaries
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
 ## [0.0.59] - 2020-01-04
 
 ### Added
