@@ -5,6 +5,7 @@
  dist,
  docs,
  git,
+ linux,
  n3h,
  node,
  openssl,
@@ -69,9 +70,6 @@
 
   # simple dev feedback loop
   pkgs.unixtools.watch
-
-  # ability to profile code
-  pkgs.linuxPackages.perf
  ]
  ++ (pkgs.callPackage ./flush { }).buildInputs
  ++ aws.buildInputs
@@ -79,6 +77,7 @@
  ++ dist.buildInputs
  ++ docs.buildInputs
  ++ git.buildInputs
+ ++ linux.buildInputs
  ++ n3h.buildInputs
  ++ node.buildInputs
  ++ openssl.buildInputs

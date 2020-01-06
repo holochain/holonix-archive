@@ -15,6 +15,7 @@ let
  rust = pkgs.callPackage ./rust { };
  node = pkgs.callPackage ./node { };
  git = pkgs.callPackage ./git { };
+ linux = pkgs.callPackage ./linux { };
  dist = pkgs.callPackage ./dist {
   rust = rust;
   node = node;
@@ -38,6 +39,7 @@ let
   dist = dist;
   docs = docs;
   git = git;
+  linux = linux;
   n3h = n3h;
   node = node;
   openssl = openssl;
