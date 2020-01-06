@@ -9,7 +9,7 @@ bats ./test/aws.bats
 bats ./test/clippy.bats
 bats ./test/github-release.bats
 bats ./test/nix-shell.bats
-${pkgs.lib.optionals pkgs.stdenv.isLinux "bats ./test/perf.bats"}
+${if pkgs.stdenv.isLinux then "bats ./test/perf.bats" else ""}
 bats ./test/rust-manifest-list-unpinned.bats
 bats ./test/rust.bats
 '';
