@@ -14,5 +14,6 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ### Fixed
 
-### Security
+- fixed a bug preventing mac to use the nix-shell due to perf
 
+### Security
