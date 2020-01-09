@@ -2,6 +2,241 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.0.61] - 2020-01-07
+
+### Added
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+- fixed a bug preventing mac to use the nix-shell due to perf
+
+### Security
+
+## [0.0.60] - 2020-01-05
+
+### Added
+
+### Changed
+
+- bump to v0.0.42-alpha3 binaries
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [0.0.59] - 2020-01-04
+
+### Added
+
+- added perf to nix-shell
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [0.0.58] - 2020-01-02
+
+### Added
+
+- added $CARGO_TARGET_DIR and $CARGO_CACHE_RUSTC_INFO to shell from holochain-rust repo
+
+### Changed
+
+- binaries version 0.0.42-alpha2
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [0.0.57] - 2019-12-31
+
+### Added
+
+- Added dockerfiles for minimal/sim2h_server/trycp_server for binary boxes
+- Added utility scripts to make working with docker easier
+
+### Changed
+
+- Changed docker tags to be {box}.{branch}
+- Dockers build on love/master/develop (e.g. holochain/holonix:latest.love)
+- Using binaries v0.0.42-alpha1
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+- trycp_server binary is wrapped with holochain to support nix-env installation
+
+### Security
+
+## [0.0.56] - 2019-12-20
+
+### Added
+
+### Changed
+
+- bump to v0.0.41-alpha4 binaries
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [0.0.55] - 2019-12-19
+
+### Added
+
+### Changed
+
+- update to v0.0.41-alpha3 binaries
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [0.0.54] - 2019-12-14
+
+### Added
+
+### Changed
+
+- $HC_TARGET_PREFIX is set in nix shell to $NIX_ENV_PREFIX
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [0.0.53] - 2019-12-12
+
+### Added
+
+### Changed
+
+- The nix shell now respects any existing value for `$NIX_ENV_PREFIX`
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [0.0.52] - 2019-12-02
+
+### Added
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+- fix for incorrect rust nightly version in v51
+
+### Security
+
+## [0.0.51] - 2019-12-02
+
+### Added
+
+### Changed
+
+- bump rust to nightly-2019-11-25
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [0.0.50] - 2019-12-01
+
+### Added
+
+### Changed
+
+- bump to binaries v0.0.40-alpha1
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [0.0.49] - 2019-11-30
+
+### Added
+
+### Changed
+
+- binaries v0.0.39-alpha4
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [0.0.48] - 2019-11-25
+
+### Added
+
+- Automatic rebuilds of nix/ubuntu/debian dockers on love branch pushes
+
+### Changed
+
+- v0.0.39-alpha2 binaries
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
 ## [0.0.47] - 2019-11-13
 
 ### Added

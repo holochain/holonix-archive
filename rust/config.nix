@@ -6,8 +6,9 @@ let
     # https://rust-lang.github.io/rustup-components-history/
     # read more about version management
     # https://hackmd.io/ShgxFyDVR52gnqK7oQsuiQ
-    nightly = {
-      date = "2019-07-14";
+    channel = {
+      name = "nightly";
+      date = "2019-11-16";
     };
 
     # the target used by rust when compiling wasm
@@ -71,8 +72,8 @@ let
 
   derived = {
 
-    nightly = base.nightly // {
-      version = "nightly-${base.nightly.date}";
+    channel = base.channel // {
+      version = "${base.channel.name}-${base.channel.date}";
     };
 
     compile = base.compile // {

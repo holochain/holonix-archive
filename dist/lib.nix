@@ -29,6 +29,7 @@ rec {
     --set CXX ${node.clang}/bin/clang++ \
     --prefix LD_LIBRARY_PATH : "${pkgs.stdenv.lib.makeLibraryPath [
       pkgs.zlib
+      pkgs.openssl
      ]}"
    '';
   in

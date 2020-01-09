@@ -5,6 +5,7 @@
  dist,
  docs,
  git,
+ linux,
  n3h,
  node,
  openssl,
@@ -23,7 +24,7 @@
  # rust version through this environment variable.
  # https://github.com/rust-lang/rustup.rs#environment-variables
  # https://github.com/NixOS/nix/issues/903
- RUSTUP_TOOLCHAIN = rust.nightly.version;
+ RUSTUP_TOOLCHAIN = rust.channel.version;
  RUSTFLAGS = rust.compile.flags;
  CARGO_INCREMENTAL = rust.compile.incremental;
  RUST_LOG = rust.log;
@@ -41,13 +42,20 @@
  #
  # cargo should NOT install binaries into this repo in vagrant as this breaks
  # under windows with virtualbox shared folders
- if [[ $( whoami ) = "vagrant" ]]
-  then export NIX_ENV_PREFIX=/home/vagrant
-  else export NIX_ENV_PREFIX=`pwd`
+
+ if [[ -z $NIX_ENV_PREFIX ]]
+ then
+  if [[ $( whoami ) == "vagrant" ]]
+   then export NIX_ENV_PREFIX=/home/vagrant
+   else export NIX_ENV_PREFIX=`pwd`
+  fi
  fi
 
  export CARGO_HOME="$NIX_ENV_PREFIX/.cargo"
  export CARGO_INSTALL_ROOT="$NIX_ENV_PREFIX/.cargo"
+ export HC_TARGET_PREFIX=$NIX_ENV_PREFIX
+ export CARGO_TARGET_DIR="$HC_TARGET_PREFIX/target"
+ export CARGO_CACHE_RUSTC_INFO=1
  export PATH="$CARGO_INSTALL_ROOT/bin:$PATH"
  export NIX_LDFLAGS="${darwin.ld-flags}$NIX_LDFLAGS"
 
@@ -69,6 +77,7 @@
  ++ dist.buildInputs
  ++ docs.buildInputs
  ++ git.buildInputs
+ ++ linux.buildInputs
  ++ n3h.buildInputs
  ++ node.buildInputs
  ++ openssl.buildInputs

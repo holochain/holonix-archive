@@ -15,6 +15,7 @@ let
  rust = pkgs.callPackage ./rust { };
  node = pkgs.callPackage ./node { };
  git = pkgs.callPackage ./git { };
+ linux = pkgs.callPackage ./linux { };
  dist = pkgs.callPackage ./dist {
   rust = rust;
   node = node;
@@ -38,6 +39,7 @@ let
   dist = dist;
   docs = docs;
   git = git;
+  linux = linux;
   n3h = n3h;
   node = node;
   openssl = openssl;
@@ -61,6 +63,8 @@ in
  holochain = {
   hc = dist.cli.derivation;
   holochain = dist.holochain.derivation;
+  sim2h_server = dist.sim2h_server.derivation;
+  trycp_server = dist.trycp_server.derivation;
  };
 
  # expose other things

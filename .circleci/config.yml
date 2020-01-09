@@ -1,4 +1,19 @@
-version: 2
+version: 2.1
+
+commands:
+ build-docker:
+  description: "Build and deploy a docker box"
+  parameters:
+   box:
+    type: string
+    default: "minimal"
+  steps:
+   - checkout
+   - run: ./docker/login
+   - run:
+      no_output_timeout: 30m
+      command: ./docker/build << parameters.box >> $CIRCLE_BRANCH
+   - run: ./docker/push << parameters.box >> $CIRCLE_BRANCH
 
 jobs:
  build:
@@ -12,6 +27,7 @@ jobs:
 
    # run env tests
    - run: ./test/nix-env.sh
+   - run: ./test/environment.sh
 
    # run shell tests
    - run: nix-shell --run hn-test
@@ -75,6 +91,48 @@ jobs:
        ./test/nix-env.sh
        nix-shell --run hn-test
 
+ docker-build-latest:
+  resource_class: large
+  machine: true
+  steps:
+   - build-docker:
+      box: latest
+
+ docker-build-ubuntu:
+  resource_class: large
+  machine: true
+  steps:
+   - build-docker:
+      box: ubuntu
+
+ docker-build-debian:
+  resource_class: large
+  machine: true
+  steps:
+   - build-docker:
+      box: debian
+
+ docker-build-minimal:
+  resource_class: large
+  machine: true
+  steps:
+   - build-docker:
+      box: minimal
+
+ docker-build-sim2h_server:
+  resource_class: large
+  machine: true
+  steps:
+   - build-docker:
+      box: sim2h_server
+
+ docker-build-trycp_server:
+  resource_class: large
+  machine: true
+  steps:
+   - build-docker:
+      box: trycp_server
+
 workflows:
  version: 2
  tests:
@@ -83,9 +141,55 @@ workflows:
    - debian
    - ubuntu
    - mac
+   - docker-build-latest:
+      filters:
+       branches:
+        only:
+         - love
+         - master
+         - develop
+         - 2019-12-19-exam-boxes
+      requires:
+       - build
+   - docker-build-ubuntu:
+      filters:
+       branches:
+        only:
+         - love
+         - master
+         - develop
+         - 2019-12-19-exam-boxes
+      requires:
+       - build
+   - docker-build-debian:
+      filters:
+       branches:
+        only:
+         - love
+         - master
+         - develop
+         - 2019-12-19-exam-boxes
+      requires:
+       - build
+   - docker-build-minimal:
+      filters:
+       branches:
+        only:
+         - love
+         - master
+         - develop
+         - 2019-12-19-exam-boxes
+      requires:
+       - build
+   - docker-build-trycp_server:
+      requires:
+       - docker-build-minimal
+   - docker-build-sim2h_server:
+      requires:
+       - docker-build-minimal
    - deploy-github-pages:
       filters:
        branches:
-        only: master
+        only: love
       requires:
        - build
