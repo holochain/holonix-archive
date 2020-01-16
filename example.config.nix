@@ -14,14 +14,14 @@
 
    # can be any github ref
    # branch, tag, commit, etc.
-   ref = "v0.0.60";
+   ref = "v0.0.61";
 
    # the sha of what is downloaded from the above ref
    # note: even if you change the above ref it will not be redownloaded until
    #       the sha here changes (the sha is the cache key for downloads)
    # note: to get a new sha, get nix to try and download a bad sha
    #       it will complain and tell you the right sha
-   sha256 = "19n762db5cpl5hwqgh61d99ck71k6i53k46l3njh7algcs3mbnrs";
+   sha256 = "1swzx6jv99bx5dr4b4y9rs65xv07c2k7xf48smrk4x0b7lflw1b5";
 
    # the github owner of the holonix repo
    owner = "holochain";
@@ -62,14 +62,14 @@ echo "All finished!!!"
   # the commit hash that the release process should target
   # this will always be behind what ends up being deployed
   # the release process needs to add some commits for changelog etc.
-  commit = "144715708d80a79155915d3eabfa6ca2744f4603";
+  commit = "e5bb8dc7b4f40cde66ad18bd0b31afbc2b66fe48";
 
   # the semver for prev and current releases
   # the previous version will be scanned/bumped by release scripts
   # the current version is what the release scripts bump *to*
   version = {
-   current = "0.0.61";
-   previous = "0.0.60";
+   current = "0.0.62";
+   previous = "0.0.61";
   };
 
   github = {
