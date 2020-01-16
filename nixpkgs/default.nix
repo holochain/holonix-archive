@@ -1,9 +1,8 @@
 let
-  # nixos channel latest 19.09
   # keep the Dockerfile in sync with this!
-  nixpkgs = fetchTarball {
-    url = "https://github.com/NixOS/nixpkgs/archive/821c7ed030bca86c8217e6d20df1f01c6474adf4.tar.gz";
-    sha256 = "0varkgzi5nbx4kb6mjmllk1a48pc5nmad6jfikj627yqrb4wcyfw";
+  holo-nixpkgs = fetchTarball {
+    url = "https://github.com/Holo-Host/holo-nixpkgs/archive/7a3e5013e193434f4becd8ffd909d46128055a92.tar.gz";
+    sha256 = "0iw6fdlkk3ffwm4vnry61j58czlwyza75hdap34kvnsq4wqbr3sf";
   };
 
   # the mozilla rust overlay
@@ -16,6 +15,6 @@ let
   };
 in
 
-import nixpkgs {
+import holo-nixpkgs {
   overlays = [ (import nixpkgs-mozilla) ];
 }
