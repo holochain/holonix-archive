@@ -8,6 +8,7 @@ let
 bats ./test/aws.bats
 bats ./test/clippy.bats
 bats ./test/github-release.bats
+bats ./test/newrelic.bats
 bats ./test/nix-shell.bats
 ${if pkgs.stdenv.isLinux then "bats ./test/perf.bats" else ""}
 bats ./test/rust-manifest-list-unpinned.bats
