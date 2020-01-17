@@ -6,10 +6,6 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ### Added
 
-- docker builds push to AWS as well as docker hub
-- added flamegraph for performance profiling
-- added hc-release-hook-publish-crates-io script
-
 ### Changed
 
 ### Deprecated
@@ -19,3 +15,4 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 ### Fixed
 
 ### Security
+
