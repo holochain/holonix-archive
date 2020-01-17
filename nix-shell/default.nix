@@ -70,6 +70,9 @@
 
   # simple dev feedback loop
   pkgs.unixtools.watch
+
+  #flame graph dep
+  pkgs.flamegraph
  ]
  ++ (pkgs.callPackage ./flush { }).buildInputs
  ++ aws.buildInputs
