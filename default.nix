@@ -24,6 +24,7 @@ let
  };
  docs = pkgs.callPackage ./docs { };
  n3h = pkgs.callPackage ./n3h { };
+ newrelic = pkgs.callPackage ./newrelic { };
  openssl = pkgs.callPackage ./openssl { };
  release = pkgs.callPackage ./release {
   config = config;
@@ -41,6 +42,7 @@ let
   git = git;
   linux = linux;
   n3h = n3h;
+  newrelic = newrelic;
   node = node;
   openssl = openssl;
   release = release;

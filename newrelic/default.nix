@@ -1,0 +1,8 @@
+{ pkgs }:
+{
+ buildInputs =
+ [
+  pkgs.pcre
+ ]
+ ;
+}
