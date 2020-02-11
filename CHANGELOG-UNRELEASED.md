@@ -8,7 +8,7 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ### Changed
 
-- RUSTFLAGS has debuginfo set to 2
+- Updated to holochain v0.0.43-alpha3
 
 ### Deprecated
 
