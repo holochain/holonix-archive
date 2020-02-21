@@ -12,7 +12,8 @@
  openssl,
  release,
  rust,
- test
+ test,
+ happs
 }:
 {
  name = "holonix-shell";
@@ -97,5 +98,6 @@
  ++ release.buildInputs
  ++ rust.buildInputs
  ++ test.buildInputs
+ ++ happs.buildInputs
  ;
 }
