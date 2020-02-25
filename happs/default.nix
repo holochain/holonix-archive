@@ -17,5 +17,6 @@ in
    pkgs.yarn
  ]
  ++ (pkgs.callPackage ./create { }).buildInputs
+ ++ (pkgs.callPackage ./add-zome { }).buildInputs
  ;
 }

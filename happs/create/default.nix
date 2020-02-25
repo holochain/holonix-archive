@@ -4,7 +4,7 @@ let
 
   script = pkgs.writeShellScriptBin name
   ''
-    curl -L -o happ-template.tar.gz https://github.com/holochain/react-graphql-template/archive/convenient-scripts.tar.gz
+    curl -L -o happ-template.tar.gz https://github.com/holochain/react-graphql-template/archive/hn-happ-add-zome.tar.gz
     mkdir happ-template
     tar -zxvf happ-template.tar.gz --strip-components=1 -C ./happ-template
     rm happ-template.tar.gz
