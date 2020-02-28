@@ -4,11 +4,11 @@ let
 
   script = pkgs.writeShellScriptBin name
   ''
-    curl -L -o happ-template.tar.gz https://github.com/holochain/react-graphql-template/archive/hn-happ-add-zome.tar.gz
-    mkdir happ-template
-    tar -zxvf happ-template.tar.gz --strip-components=1 -C ./happ-template
+    curl -L -o happ-template.tar.gz https://github.com/holochain/react-graphql-template/archive/master.tar.gz
+    mkdir "''${1:-"Notes-hApp-Template"}"
+    tar -zxvf happ-template.tar.gz --strip-components=1 -C ./"''${1:-"Notes-hApp-Template"}"
     rm happ-template.tar.gz
-    cd happ-template
+    cd ''${1:-"Notes-hApp-Template"}
     cp ui_src/.env.example ui_src/.env
     yarn hc:install
     yarn start
