@@ -7,8 +7,8 @@ let
     # read more about version management
     # https://hackmd.io/ShgxFyDVR52gnqK7oQsuiQ
     channel = {
-      name = "nightly";
-      date = "2019-11-16";
+      name = "stable";
+      date = "2020-02-27";
     };
 
     # the target used by rust when compiling wasm
@@ -32,8 +32,6 @@ let
 
       # @see https://github.com/rust-unofficial/patterns/blob/master/anti_patterns/deny-warnings.md
       deny = "warnings";
-
-      lto = "thinlto";
 
       # significantly improves cache hit rate when recompiling
       # much more reliable than default timestamp based compiler caching
@@ -80,7 +78,7 @@ let
 
     compile = base.compile // {
       # @see https://llogiq.github.io/2017/06/01/perf-pitfalls.html
-      flags ="-D ${base.compile.deny} -Z external-macro-backtrace -Z ${base.compile.lto} -C codegen-units=${base.compile.codegen-units} -C opt-level=${base.compile.optimization-level} -C debuginfo=${base.compile.debug-level}";
+      flags ="-D ${base.compile.deny} -C codegen-units=${base.compile.codegen-units} -C opt-level=${base.compile.optimization-level} -C debuginfo=${base.compile.debug-level}";
     };
 
     test = {
