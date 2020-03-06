@@ -31,7 +31,10 @@ let
     compile = {
 
       # @see https://github.com/rust-unofficial/patterns/blob/master/anti_patterns/deny-warnings.md
-      deny = "warnings";
+      deny = (builtins.foldl' (x: y: x + " -D " + y) "" [
+        "warnings"
+        "missing_docs"
+      ]);
 
       lto = "thinlto";
 
@@ -80,7 +83,7 @@ let
 
     compile = base.compile // {
       # @see https://llogiq.github.io/2017/06/01/perf-pitfalls.html
-      flags ="-D ${base.compile.deny} -Z external-macro-backtrace -Z ${base.compile.lto} -C codegen-units=${base.compile.codegen-units} -C opt-level=${base.compile.optimization-level} -C debuginfo=${base.compile.debug-level}";
+      flags ="${base.compile.deny} -Z external-macro-backtrace -Z ${base.compile.lto} -C codegen-units=${base.compile.codegen-units} -C opt-level=${base.compile.optimization-level} -C debuginfo=${base.compile.debug-level}";
     };
 
     test = {
