@@ -14,7 +14,7 @@
 
    # can be any github ref
    # branch, tag, commit, etc.
-   ref = "v0.0.67";
+   ref = "v0.0.69";
 
    # the sha of what is downloaded from the above ref
    # note: even if you change the above ref it will not be redownloaded until
@@ -68,8 +68,8 @@ echo "All finished!!!"
   # the previous version will be scanned/bumped by release scripts
   # the current version is what the release scripts bump *to*
   version = {
-   current = "0.0.68";
-   previous = "0.0.67";
+   current = "0.0.69";
+   previous = "0.0.68";
   };
 
   github = {
