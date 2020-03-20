@@ -14,7 +14,10 @@ rust //
   pkgs.openssl
   pkgs.pkgconfig
   pkgs.carnix
+  pkgs.cargo-make
+  pkgs.curl
  ]
+ ++ (if pkgs.stdenv.isLinux then [ pkgs.kcov ] else [])
  ++ (pkgs.callPackage ./clippy { }).buildInputs
  ++ (pkgs.callPackage ./fmt { }).buildInputs
  ++ (pkgs.callPackage ./manifest { }).buildInputs
