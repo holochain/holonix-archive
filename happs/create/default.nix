@@ -11,7 +11,6 @@ let
     cd ''${1:-"Notes-hApp-Template"}
     cp ui_src/.env.example ui_src/.env
     yarn hc:install
-    yarn start
   '';
 in
 {
