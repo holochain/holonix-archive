@@ -3,7 +3,7 @@
 set -euxo pipefail
 
 owner=holochain
-repo=holochain-rust
+repo=holonix
 box=${1:-sim2h_server}
 branch=${2:-$( git rev-parse --abbrev-ref HEAD )}
 tag="$owner/$repo:$box.$branch"
