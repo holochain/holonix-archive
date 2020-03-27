@@ -44,9 +44,9 @@ teardown () {
  echo '# sim2h_server should be installed now' >&3
  [ -x "$( command -v sim2h_server )" ]
 
- version="$( sim2h_server -V )"
+ version="$( sim2h_server -V 2>/dev/null )"
  echo "# smoke test sim2h_server version result: $version" >&3
- [[ "$version" == "sim2h_server 0.0."* ]]
+ [[ "$version" == "sim2h-server 0.0."* ]]
 
  echo '# uninstall sim2h_server' >&3
  nix-env -e sim2h_server

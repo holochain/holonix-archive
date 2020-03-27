@@ -7,11 +7,13 @@
  git,
  linux,
  n3h,
+ newrelic,
  node,
  openssl,
  release,
  rust,
- test
+ test,
+ happs
 }:
 {
  name = "holonix-shell";
@@ -35,6 +37,14 @@
  RELEASE_TAG = release.config.release.tag;
 
  OPENSSL_STATIC = openssl.static;
+
+ # needed so bindgen can find libclang.so
+ LIBCLANG_PATH="${pkgs.llvmPackages.libclang}/lib";
+
+ # needed for newrelic to compile its dependencies
+ # this is a hack to workaround this:
+ # https://github.com/NixOS/nixpkgs/issues/18995
+ hardeningDisable = [ "fortify" ];
 
  shellHook = ''
  # cargo should install binaries into this repo rather than globally
@@ -70,6 +80,9 @@
 
   # simple dev feedback loop
   pkgs.unixtools.watch
+
+  #flame graph dep
+  pkgs.flamegraph
  ]
  ++ (pkgs.callPackage ./flush { }).buildInputs
  ++ aws.buildInputs
@@ -79,10 +92,12 @@
  ++ git.buildInputs
  ++ linux.buildInputs
  ++ n3h.buildInputs
+ ++ newrelic.buildInputs
  ++ node.buildInputs
  ++ openssl.buildInputs
  ++ release.buildInputs
  ++ rust.buildInputs
  ++ test.buildInputs
+ ++ happs.buildInputs
  ;
 }

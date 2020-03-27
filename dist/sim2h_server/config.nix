@@ -2,8 +2,8 @@
  name = "sim2h_server";
 
  sha256 = {
-  linux = "0xh7v3san6zb5pzhlfqjbwla3ira2f5jn4f6d9apdmsw3dgsfj1p";
-  darwin = "1r57rr6gvlwk6pbzlv3kw9293bkklgfv366x3fdzhdrq3niv31ll";
+  linux = "1n4qilya8gj77z8vlxbvajjl304hz7mjaxgdbwvybkiaqmyd1df0";
+  darwin = "1kd0hh5x4r99mpx7wdsmdza16xd6qspiwdjq27vl84hmg5d28n77";
  };
 
  binary = "sim2h_server";
