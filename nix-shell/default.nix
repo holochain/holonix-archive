@@ -68,6 +68,7 @@
  export CARGO_CACHE_RUSTC_INFO=1
  export PATH="$CARGO_INSTALL_ROOT/bin:$PATH"
  export NIX_LDFLAGS="${darwin.ld-flags}$NIX_LDFLAGS"
+ export NIX_BUILD_SHELL=${pkgs.bashInteractive}/bin/bash
 
  # https://github.com/holochain/holonix/issues/12
  export TMP=$( mktemp -p /tmp -d )
