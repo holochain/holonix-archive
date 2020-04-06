@@ -8,7 +8,7 @@ let
     # https://hackmd.io/ShgxFyDVR52gnqK7oQsuiQ
     channel = {
       name = "nightly";
-      date = "2019-11-16";
+      date = "2020-04-06";
     };
 
     # the target used by rust when compiling wasm
@@ -80,7 +80,7 @@ let
 
     compile = base.compile // {
       # @see https://llogiq.github.io/2017/06/01/perf-pitfalls.html
-      flags ="-D ${base.compile.deny} -Z external-macro-backtrace -Z ${base.compile.lto} -C codegen-units=${base.compile.codegen-units} -C opt-level=${base.compile.optimization-level} -C debuginfo=${base.compile.debug-level}";
+      flags ="-D ${base.compile.deny} -Z macro-backtrace -Z ${base.compile.lto} -C codegen-units=${base.compile.codegen-units} -C opt-level=${base.compile.optimization-level} -C debuginfo=${base.compile.debug-level}";
     };
 
     test = {
