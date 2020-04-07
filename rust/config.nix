@@ -1,14 +1,15 @@
 let
   base = {
 
-    # our rust nightly version
-    # find a version that hits clippy and fmt support
+    # our rust version is by default stable
+    # to use rust nightly define the date by
+    # finding a version that hits clippy and fmt support
     # https://rust-lang.github.io/rustup-components-history/
     # read more about version management
     # https://hackmd.io/ShgxFyDVR52gnqK7oQsuiQ
-    channel = {
-      name = "nightly";
-      date = "2019-11-16";
+    channel = rec {
+      name = "stable";
+      date = (if (name != "stable") then "2020-04-06" else null);
     };
 
     # the target used by rust when compiling wasm
@@ -75,12 +76,15 @@ let
   derived = {
 
     channel = base.channel // {
-      version = "${base.channel.name}-${base.channel.date}";
+      version = if base.channel.date != null then "${base.channel.name}-${base.channel.date}" else "${base.channel.name}";
     };
 
     compile = base.compile // {
       # @see https://llogiq.github.io/2017/06/01/perf-pitfalls.html
-      flags ="-D ${base.compile.deny} -Z external-macro-backtrace -Z ${base.compile.lto} -C codegen-units=${base.compile.codegen-units} -C opt-level=${base.compile.optimization-level} -C debuginfo=${base.compile.debug-level}";
+      flags = if base.channel.date != null then
+                "-D ${base.compile.deny} -Z external-macro-backtrace -Z ${base.compile.lto} -C codegen-units=${base.compile.codegen-units} -C opt-level=${base.compile.optimization-level} -C debuginfo=${base.compile.debug-level}"
+              else
+                "-D ${base.compile.deny} -C codegen-units=${base.compile.codegen-units} -C opt-level=${base.compile.optimization-level} -C debuginfo=${base.compile.debug-level}";
     };
 
     test = {
