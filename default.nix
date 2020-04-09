@@ -48,6 +48,7 @@ let
   release = release;
   rust = rust;
   test = test;
+  happs = pkgs.callPackage ./happs { };
  };
 
  # override and overrideDerivation cannot be handled by mkDerivation

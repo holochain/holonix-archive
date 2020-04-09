@@ -2,6 +2,85 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.0.72] - 2020-03-27
+
+### Added
+
+### Changed
+
+- Updated to holochain v0.0.46-alpha1
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [0.0.71] - 2020-03-13
+
+### Added
+
+### Changed
+
+- update to holochain v0.0.45-alpha1 (correctly this time)
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [0.0.70] - 2020-03-13
+
+### Added
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [0.0.69] - 2020-03-13
+
+### Added
+
+### Changed
+
+- Updated to holochain v0.0.45-alpha1
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [0.0.68] - 2020-03-11
+
+### Added
+- kcov (if linux - technically should work on macOs, but something is broken with the nix package)
+- cargo-make (build scripting support - makes it easier to run kcov)
+- curl (needed for publishing coverage results to codecov.io)
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
 ## [0.0.67] - 2020-03-03
 
 ### Added
