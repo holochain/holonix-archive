@@ -27,7 +27,6 @@
  # https://github.com/rust-lang/rustup.rs#environment-variables
  # https://github.com/NixOS/nix/issues/903
  RUSTUP_TOOLCHAIN = rust.channel.version;
- RUSTFLAGS = rust.compile.flags;
  CARGO_INCREMENTAL = rust.compile.incremental;
  RUST_LOG = rust.log;
  NUM_JOBS = rust.compile.jobs;
@@ -59,6 +58,14 @@
    then export NIX_ENV_PREFIX=/home/vagrant
    else export NIX_ENV_PREFIX=`pwd`
   fi
+ fi
+
+ # stable rust doesn't support all the debugging flags we are using
+ if [[ $( rustc --version ) == *nightly ]]
+ then
+  export RUSTFLAGS="${rust.compile.flags}"
+ else
+  export RUSTFLAGS="${rust.compile.stable-flags}"
  fi
 
  export CARGO_HOME="$NIX_ENV_PREFIX/.cargo"
