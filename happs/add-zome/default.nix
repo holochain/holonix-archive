@@ -1,6 +1,6 @@
 { pkgs }:
 let
-  name = "hn-happ-add-zome";
+  name = "hc-happ-add-zome";
 
   script = pkgs.writeShellScriptBin name
   ''
