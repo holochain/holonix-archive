@@ -7,7 +7,7 @@ let
   ''
     ''${1?"Command Usage Error: ARG 1 - PATH TO SCHEMA REQUIRED"}
     [[ $(mimetype -b "''${1}") != "application/json" ]] && { echo "Command Usage Error: ARG 1 - JSON FILE TYPE REQUIRED"; exit 1; }
-    curl -L -o happ-scaffold.tar.gz https://github.com/holochain/RAD-Tools-Phase-2/archive/master.tar.gz
+    curl -L -o happ-scaffold.tar.gz https://github.com/holochain/RAD-Tools-Phase-2/archive/merge-first-ui-w-first-dna.tar.gz
     mkdir "''${2:-"My-New-App"}"
     tar -zxvf happ-scaffold.tar.gz --strip-components=1 -C ./"''${2:-"My-New-App"}"
     rm happ-scaffold.tar.gz
@@ -17,11 +17,18 @@ let
     curl -L -o ./setup/type-spec.json "file:///$(readlink -f ../''${1})"
     [ -f "./sample-type-spec.json" ] && rm -rf ./sample-type-spec.json
     [ -d "./ui" ] && mv ./ui ./setup/ui-setup
-    hc init dna-src
+    cd ./setup/ui-setup/ui_template && npm i && cd ../../../
     mkdir ui-src
+    mkdir keystores
+    cp ./.env.example ./.env
+    mv ./conductor-config.example.toml ./conductor-config.toml
+    hc keygen -n --path ./keystores/agent1_AGENT_1_PUB_KEY.keystore | sed -ne 's/^Public address:\.*//p' | xargs -I {} mv ./keystores/agent1_AGENT_1_PUB_KEY.keystore ./keystores/agent1_{}.keystore; sed -i "s/AGENT_1_PUB_KEY/{}" ./conductor-config.toml
     npm i
-    npm run hc-generate:dna
     npm run generate:ui
+    hc init dna-src
+    npm run hc-generate:dna-1
+    cd dna-src
+    hc package | sed -ne 's/^DNA hash: \.*//p' | xargs -I {} sed -i "s/DNA_HASH/{}" ./conductor-config.toml
   '';
 in
 {
