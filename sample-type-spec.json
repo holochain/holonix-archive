@@ -1,0 +1,12 @@
+{
+  "types": { 
+    "Note": {
+      "title": "string",
+      "text": "string"
+    },
+    "User": {
+      "name": "string",
+      "avatar_url": "string"
+    }
+  }
+}

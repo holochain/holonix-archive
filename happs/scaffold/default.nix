@@ -23,13 +23,13 @@ let
     mkdir keystores
     cp ./.env.example ./.env
     mv ./conductor-config.example.toml ./conductor-config.toml
-    hc keygen -n --path ./keystores/agent1_AGENT_1_PUB_KEY.keystore | sed -ne 's/^Public address:\.*//p' | xargs -I {} mv ./keystores/agent1_AGENT_1_PUB_KEY.keystore ./keystores/agent1_{}.keystore; sed -i "s/AGENT_1_PUB_KEY/{}" ./conductor-config.toml
+    hc keygen -n --path ./keystores/agent1_AGENT_1_PUB_KEY.keystore | sed -ne 's/^Public address:\.*//p' | xargs -I {} mv ./keystores/agent1_AGENT_1_PUB_KEY.keystore ./keystores/agent1_{}.keystore; sed -i "s/AGENT_1_PUB_KEY/{}/" ./conductor-config.toml
     npm i
     npm run generate:ui
     hc init dna-src
     npm run hc-generate:dna
     cd dna-src
-    hc package | sed -ne 's/^DNA hash: \.*//p' | xargs -I {} sed -i "s/DNA_HASH/{}" ./conductor-config.toml
+    hc package | sed -ne 's/^DNA hash: \.*//p' | xargs -I {} sed -i "s/DNA_HASH/{}/" ../conductor-config.toml
     cd ../setup
     rm -rf dna-setup
     rm -rf ui-setup
