@@ -1,8 +1,9 @@
 { pkgs }:
 let
-  ## ie: hc-happ-scaffold <path-to-package-file> <app-name>
+  # ie: hc-happ-scaffold <path-to-package-file> <app-name>
   name = "hc-happ-scaffold";
 
+  # nb: currently the curling from wip branch on rad-tool-phase2. Will eventually need to repoint to master branch. 
   script = pkgs.writeShellScriptBin name
   ''
     ''${1?"Command Usage Error: ARG 1 - PATH TO SCHEMA REQUIRED"}
@@ -26,7 +27,7 @@ let
     npm i
     npm run generate:ui
     hc init dna-src
-    npm run hc-generate:dna-1
+    npm run hc-generate:dna
     cd dna-src
     hc package | sed -ne 's/^DNA hash: \.*//p' | xargs -I {} sed -i "s/DNA_HASH/{}" ./conductor-config.toml
   '';
