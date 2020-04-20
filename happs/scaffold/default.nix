@@ -30,6 +30,9 @@ let
     npm run hc-generate:dna
     cd dna-src
     hc package | sed -ne 's/^DNA hash: \.*//p' | xargs -I {} sed -i "s/DNA_HASH/{}" ./conductor-config.toml
+    cd ../setup
+    rm -rf dna-setup
+    rm -rf ui-setup
   '';
 in
 {
