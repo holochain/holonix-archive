@@ -8,6 +8,8 @@ let
   ''
     ''${1?"Command Usage Error: ARG 1 - PATH TO SCHEMA REQUIRED"}
     [[ $(mimetype -b "''${1}") != "application/json" ]] && { echo "Command Usage Error: ARG 1 - JSON FILE TYPE REQUIRED"; exit 1; }
+    STARTING_DIRECTORY=$(pwd -P)
+    echo $STARTING_DIRECTORY
     curl -L -o happ-scaffold.tar.gz https://github.com/holochain/RAD-Tools-Phase-2/archive/merge-first-ui-w-first-dna.tar.gz
     mkdir "''${2:-"My-New-App"}"
     tar -zxvf happ-scaffold.tar.gz --strip-components=1 -C ./"''${2:-"My-New-App"}"
@@ -15,7 +17,7 @@ let
     cd ''${2:-"My-New-App"}
     sed -i "s/RAD-Tools-Phase-2/"''${2:-"My-New-App"}"/g" package.json
     [ ! -d "./setup" ] && mkdir setup
-    curl -L -o ./setup/type-spec.json "file:///$(realpath -e ''${1})"
+    curl -L -o ./setup/type-spec.json "file://$(readlink -f $(realpath --relative-to=$(pwd -P) $STARTING_DIRECTORY)/''${1})"
     [ -f "./sample-type-spec.json" ] && rm -rf ./sample-type-spec.json
     [ -d "./ui" ] && mv ./ui ./setup/ui-setup
     cd ./setup/ui-setup/ui_template && npm i && cd ../../../
