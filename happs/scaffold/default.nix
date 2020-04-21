@@ -9,7 +9,6 @@ let
     ''${1?"Command Usage Error: ARG 1 - PATH TO SCHEMA REQUIRED"}
     [[ $(mimetype -b "''${1}") != "application/json" ]] && { echo "Command Usage Error: ARG 1 - JSON FILE TYPE REQUIRED"; exit 1; }
     STARTING_DIRECTORY=$(pwd -P)
-    echo $STARTING_DIRECTORY
     curl -L -o happ-scaffold.tar.gz https://github.com/holochain/RAD-Tools-Phase-2/archive/merge-first-ui-w-first-dna.tar.gz
     mkdir "''${2:-"My-New-App"}"
     tar -zxvf happ-scaffold.tar.gz --strip-components=1 -C ./"''${2:-"My-New-App"}"
