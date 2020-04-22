@@ -22,9 +22,10 @@ let
     cd ./setup/ui-setup/ui_template && npm i && cd ../../../
     mkdir ui-src
     mkdir keystores
+    mkdir keystores/agent1
     cp ./.env.example ./.env
     mv ./conductor-config.example.toml ./conductor-config.toml
-    hc keygen -n --path ./keystores/agent1_AGENT_1_PUB_KEY.keystore | sed -ne 's/^Public address:\.*//p' | xargs -I {} sh -c 'mv ./keystores/agent1_AGENT_1_PUB_KEY.keystore ./keystores/agent1_{}.keystore; sed -i "s/AGENT_1_PUB_KEY/{}/" ./conductor-config.toml'
+    hc keygen -n --path ./keystores/agent1/AGENT_1_PUB_KEY.keystore | sed -ne 's/^Public address:\.*//p' | xargs -I {} sh -c 'mv ./keystores/agent1/AGENT_1_PUB_KEY.keystore ./keystores/agent1/{}.keystore; sed -i "s/AGENT_1_PUB_KEY/{}/" ./conductor-config.toml'
     npm i
     npm run generate:ui
     hc init dna-src
