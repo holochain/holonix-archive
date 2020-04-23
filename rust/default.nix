@@ -7,7 +7,7 @@ rust //
  buildInputs = []
  # https://github.com/NixOS/nixpkgs/blob/master/doc/languages-frameworks/rust.section.md
  ++ [
-  (pkgs.rustChannelOfTargets rust.channel.name rust.channel.date [ rust.wasm-target rust.generic-linux-target  ])
+  (pkgs.rustChannelOfTargets rust.channel.name rust.channel.date [ rust.wasm-target rust.generic-linux-target rust.android-aarch64 rust.android-arm rust.android-i686 ])
   pkgs.binutils
   pkgs.gcc
   pkgs.gnumake

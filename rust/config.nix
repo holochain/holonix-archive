@@ -17,6 +17,11 @@ let
     # the target used by all linux when we don't have a specific target
     generic-linux-target = "x86_64-unknown-linux-gnu";
 
+    # Android targets
+    android-aarch64 = "aarch64-linux-android";
+    android-arm = "armv7-linux-androideabi";
+    android-i686 = "i686-linux-android";
+
     # the target used by all mac
     generic-mac-target = "x86_64-apple-darwin";
 
