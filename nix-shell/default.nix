@@ -61,7 +61,7 @@
  fi
 
  # stable rust doesn't support all the debugging flags we are using
- if [[ $( rustc --version ) == *nightly ]]
+ if [[ $( rustc --version ) == *nightly* ]]
  then
   export RUSTFLAGS="${rust.compile.flags}"
  else
