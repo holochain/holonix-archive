@@ -5,14 +5,17 @@
 {
  # allow consumers to pass in their own config
  # fallback to empty sets
- config ? import ./config.nix
+ config ? import ./config.nix,
+ use-stable-rust ? false
 }:
 let
  pkgs = import ./nixpkgs;
 
  aws = pkgs.callPackage ./aws { };
  darwin = pkgs.callPackage ./darwin { };
- rust = pkgs.callPackage ./rust { };
+ rust = pkgs.callPackage ./rust {
+  config = config // { holonix.use-stable-rust = use-stable-rust; };
+ };
  node = pkgs.callPackage ./node { };
  git = pkgs.callPackage ./git { };
  linux = pkgs.callPackage ./linux { };
