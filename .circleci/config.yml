@@ -202,6 +202,7 @@ workflows:
          - master
          - develop
          - 2019-12-19-exam-boxes
+         - 2019-12-27-feature-manjaro
       requires:ld
    - docker-build-minimal:
       filters:
@@ -211,6 +212,7 @@ workflows:
          - master
          - develop
          - 2019-12-19-exam-boxes
+         - docker.build.manjaro
       requires:
        - build
    - docker-build-trycp_server:
