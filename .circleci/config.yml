@@ -31,6 +31,7 @@ jobs:
 
    # run shell tests
    - run: nix-shell --run hn-test
+   - run: nix-shell --run hn-test --arg use-stable-rust true
 
  debian:
   docker:
@@ -44,6 +45,7 @@ jobs:
        nix-shell --run echo
        ./test/nix-env.sh
        nix-shell --run hn-test
+       nix-shell --run hn-test --arg use-stable-rust true
 
  ubuntu:
   docker:
@@ -57,6 +59,7 @@ jobs:
        nix-shell --run echo
        ./test/nix-env.sh
        nix-shell --run hn-test
+       nix-shell --run hn-test --arg use-stable-rust true
 
  manjaro:
   docker:
@@ -104,6 +107,7 @@ jobs:
        nix-shell --run echo
        ./test/nix-env.sh
        nix-shell --run hn-test
+       nix-shell --run hn-test --arg use-stable-rust true
 
  docker-build-latest:
   resource_class: large
@@ -171,7 +175,7 @@ workflows:
          - love
          - master
          - develop
-         - 2019-12-19-exam-boxes
+         - 2019-12-24-docker-aws
       requires:
        - build
    - docker-build-ubuntu:
@@ -181,7 +185,7 @@ workflows:
          - love
          - master
          - develop
-         - 2019-12-19-exam-boxes
+         - 2019-12-24-docker-aws
       requires:
        - build
    - docker-build-debian:
@@ -191,7 +195,7 @@ workflows:
          - love
          - master
          - develop
-         - 2019-12-19-exam-boxes
+         - 2019-12-24-docker-aws
       requires:
        - build
    - docker.build.manjaro:
@@ -213,6 +217,7 @@ workflows:
          - develop
          - 2019-12-19-exam-boxes
          - docker.build.manjaro
+         - 2019-12-24-docker-aws
       requires:
        - build
    - docker-build-trycp_server:

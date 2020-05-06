@@ -5,12 +5,15 @@
  dist,
  docs,
  git,
+ linux,
  n3h,
+ newrelic,
  node,
  openssl,
  release,
  rust,
- test
+ test,
+ happs
 }:
 {
  name = "holonix-shell";
@@ -24,7 +27,6 @@
  # https://github.com/rust-lang/rustup.rs#environment-variables
  # https://github.com/NixOS/nix/issues/903
  RUSTUP_TOOLCHAIN = rust.channel.version;
- RUSTFLAGS = rust.compile.flags;
  CARGO_INCREMENTAL = rust.compile.incremental;
  RUST_LOG = rust.log;
  NUM_JOBS = rust.compile.jobs;
@@ -34,6 +36,14 @@
  RELEASE_TAG = release.config.release.tag;
 
  OPENSSL_STATIC = openssl.static;
+
+ # needed so bindgen can find libclang.so
+ LIBCLANG_PATH="${pkgs.llvmPackages.libclang}/lib";
+
+ # needed for newrelic to compile its dependencies
+ # this is a hack to workaround this:
+ # https://github.com/NixOS/nixpkgs/issues/18995
+ hardeningDisable = [ "fortify" ];
 
  shellHook = ''
  # cargo should install binaries into this repo rather than globally
@@ -50,11 +60,22 @@
   fi
  fi
 
+ # stable rust doesn't support all the debugging flags we are using
+ if [[ $( rustc --version ) == *nightly* ]]
+ then
+  export RUSTFLAGS="${rust.compile.flags}"
+ else
+  export RUSTFLAGS="${rust.compile.stable-flags}"
+ fi
+
  export CARGO_HOME="$NIX_ENV_PREFIX/.cargo"
  export CARGO_INSTALL_ROOT="$NIX_ENV_PREFIX/.cargo"
  export HC_TARGET_PREFIX=$NIX_ENV_PREFIX
+ export CARGO_TARGET_DIR="$HC_TARGET_PREFIX/target"
+ export CARGO_CACHE_RUSTC_INFO=1
  export PATH="$CARGO_INSTALL_ROOT/bin:$PATH"
  export NIX_LDFLAGS="${darwin.ld-flags}$NIX_LDFLAGS"
+ export NIX_BUILD_SHELL=${pkgs.bashInteractive}/bin/bash
 
  # https://github.com/holochain/holonix/issues/12
  export TMP=$( mktemp -p /tmp -d )
@@ -67,6 +88,9 @@
 
   # simple dev feedback loop
   pkgs.unixtools.watch
+
+  #flame graph dep
+  pkgs.flamegraph
  ]
  ++ (pkgs.callPackage ./flush { }).buildInputs
  ++ aws.buildInputs
@@ -74,11 +98,14 @@
  ++ dist.buildInputs
  ++ docs.buildInputs
  ++ git.buildInputs
+ ++ linux.buildInputs
  ++ n3h.buildInputs
+ ++ newrelic.buildInputs
  ++ node.buildInputs
  ++ openssl.buildInputs
  ++ release.buildInputs
  ++ rust.buildInputs
  ++ test.buildInputs
+ ++ happs.buildInputs
  ;
 }

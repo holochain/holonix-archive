@@ -3,3 +3,4 @@ result
 .cargo
 Cargo.lock
 target
+.DS_Store

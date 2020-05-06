@@ -2,7 +2,10 @@
 
 set -euxo pipefail
 
+owner=holochain
+repo=holonix
 box=${1:-sim2h_server}
 branch=${2:-$( git rev-parse --abbrev-ref HEAD )}
+tag="$owner/$repo:$box.$branch"
 
-docker build ./docker --build-arg DOCKER_BRANCH=$branch -f ./docker/Dockerfile.$box -t "holochain/holonix:$box.$branch" --no-cache
+docker build ./docker --build-arg DOCKER_BRANCH=$branch -f ./docker/Dockerfile.$box -t $tag --no-cache

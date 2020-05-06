@@ -5,16 +5,20 @@
 {
  # allow consumers to pass in their own config
  # fallback to empty sets
- config ? import ./config.nix
+ config ? import ./config.nix,
+ use-stable-rust ? false
 }:
 let
  pkgs = import ./nixpkgs;
 
  aws = pkgs.callPackage ./aws { };
  darwin = pkgs.callPackage ./darwin { };
- rust = pkgs.callPackage ./rust { };
+ rust = pkgs.callPackage ./rust {
+  config = config // { holonix.use-stable-rust = use-stable-rust; };
+ };
  node = pkgs.callPackage ./node { };
  git = pkgs.callPackage ./git { };
+ linux = pkgs.callPackage ./linux { };
  dist = pkgs.callPackage ./dist {
   rust = rust;
   node = node;
@@ -23,6 +27,7 @@ let
  };
  docs = pkgs.callPackage ./docs { };
  n3h = pkgs.callPackage ./n3h { };
+ newrelic = pkgs.callPackage ./newrelic { };
  openssl = pkgs.callPackage ./openssl { };
  release = pkgs.callPackage ./release {
   config = config;
@@ -38,12 +43,15 @@ let
   dist = dist;
   docs = docs;
   git = git;
+  linux = linux;
   n3h = n3h;
+  newrelic = newrelic;
   node = node;
   openssl = openssl;
   release = release;
   rust = rust;
   test = test;
+  happs = pkgs.callPackage ./happs { };
  };
 
  # override and overrideDerivation cannot be handled by mkDerivation
