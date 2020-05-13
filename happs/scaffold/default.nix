@@ -22,23 +22,15 @@ let
     [ -d "./ui" ] && mv ./ui ./src/ui-setup
     npm i
     npm run happ:generate ./src/setup/type-specs/type-spec.json
-    npm run hc:generate-conductor
     rm -rf ./package.json
     mv ./src/setup/root-package.json ./package.json
     npm i
     [ ! -d "./setup" ] && mkdir ./setup
     mv ./src/setup/* ./setup
-    cp ./.env.example ./.env
-    rm -rf ./.env.example
-    rm -rf ./conductor-config.example.toml
+    rm -rf ./conductor-config.template.toml
     rm -rf src
   '';
 in
 {
  buildInputs = [ script ];
 }
-  # mkdir keystores
-  #   mkdir keystores/agent1
-  #   hc keygen -n --path ./keystores/agent1/AGENT_1_PUB_KEY.keystore | sed -ne 's/^Public address:\.*//p' | xargs -I {} sh -c 'mv ./keystores/agent1/AGENT_1_PUB_KEY.keystore ./keystores/agent1/{}.keystore; sed -i "s/<AGENT_1_PUB_KEY>/{}/" ./conductor-config.toml'
-  #   cd dna-src
-  #   hc package | sed -ne 's/^DNA hash: \.*//p' | xargs -I {} sed -i "s/<DNA_HASH>/{}/" ../conductor-config.toml
