@@ -7,7 +7,7 @@
 }
 
 @test "watch is installed" {
- [[ $( watch -v ) == "watch from procps-ng 3.3.15" ]]
+ [[ $( watch -v ) == "watch from procps-ng 3.3.16" ]]
  }
 
 @test "rust backtrace is set in shell" {

@@ -4,5 +4,5 @@
 @test "perf version" {
  result="$( perf --version )"
  echo $result
- [[ "$result" == "perf version 4.19.81" ]]
+ [[ "$result" == "perf version 5.4.36" ]]
 }

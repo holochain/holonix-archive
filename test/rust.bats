@@ -5,7 +5,7 @@
 @test "rustc version" {
  result="$( rustc --version )"
  echo $result
- [[ "$result" == *2019-11-15* || "$result" == *2020-04-20* ]]
+ [[ "$result" == *2019-11-15* || "$result" == *2020-05-04* ]]
 }
 
 # the rust fmt version should be roughly the rustc version
