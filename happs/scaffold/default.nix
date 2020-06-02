@@ -3,7 +3,6 @@ let
   # ie: hc-happ-scaffold <path-to-package-file> <app-name>
   name = "hc-happ-scaffold";
 
-  # nb: currently the curling from wip branch on integration-testing-tryorama-fix-1. Will eventually need to repoint to master branch, once merged.
   script = pkgs.writeShellScriptBin name
   ''
     ''${1?"Command Usage Error: ARG 1 - PATH TO SCHEMA REQUIRED"}
