@@ -24,13 +24,9 @@ let
     rm -rf ./src ./package.json ./config.nix ./default.nix README.md ./CHANGELOG.md ./node_modules
     mv ./happ/* ./
     rm -rf ./happ
-
     npm i
   '';
 in
 {
  buildInputs = [ script ];
 }
-
-# sed -i "s/happ-name/"''${2:-"My-New-App"}"/g" ./package.json
-# sed -i "s/happ-name/"''${2:-"My-New-App"}"/g" ./ui-src/package.json
