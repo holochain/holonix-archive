@@ -1,6 +1,6 @@
 { pkgs }:
 let
-  # ie: hc-happ-scaffold <path-to-package-file> <app-name>
+  # ie: hc-happ-scaffold <path-to-package-file> <path-to-new-happ-dir>
   name = "hc-happ-scaffold";
 
   script = pkgs.writeShellScriptBin name
