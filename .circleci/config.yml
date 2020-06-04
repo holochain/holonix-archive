@@ -207,7 +207,6 @@ workflows:
          - develop
          - 2019-12-19-exam-boxes
          - 2019-12-27-feature-manjaro
-      requires:ld
    - docker-build-minimal:
       filters:
        branches:
