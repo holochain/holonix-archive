@@ -8,7 +8,7 @@ let
     # https://hackmd.io/ShgxFyDVR52gnqK7oQsuiQ
     channel = {
       name = "stable";
-      date = "2020-02-27";
+      date = "2020-06-04";
     };
 
     # the target used by rust when compiling wasm
