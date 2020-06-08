@@ -96,28 +96,28 @@ jobs:
        nix-shell --run hn-test --arg use-stable-rust true
 
  docker-build-latest:
-  resource_class: large
+  resource_class: xlarge
   machine: true
   steps:
    - build-docker:
       box: latest
 
  docker-build-ubuntu:
-  resource_class: large
+  resource_class: xlarge
   machine: true
   steps:
    - build-docker:
       box: ubuntu
 
  docker-build-debian:
-  resource_class: large
+  resource_class: xlarge
   machine: true
   steps:
    - build-docker:
       box: debian
 
  docker-build-minimal:
-  resource_class: large
+  resource_class: xlarge
   machine: true
   steps:
    - build-docker:
