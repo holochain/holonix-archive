@@ -7,7 +7,7 @@ let
   ''
     ''${1?"Command Usage Error: ARG 1 - PATH TO SCHEMA REQUIRED"}
     IS_URL=false
-    [[ $(mimetype -b "''${1}") != "application/json" ]] && {
+    [[ $(file -b -N --mime-type "''${1}") != "application/json" ]] && {
       if [[ $1 =~ https?://.* ]]; then
         IS_URL=true
       else
@@ -39,5 +39,5 @@ let
   '';
 in
 {
- buildInputs = [ script ];
+ buildInputs = [ script pkgs.file ];
 }
