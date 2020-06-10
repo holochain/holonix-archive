@@ -1,4 +1,4 @@
-{ pkgs, use-stable-rust ? false }:
+{ pkgs, config }:
 let
  # self tests for holonix
  # mostly smoke tests on various platforms
@@ -14,7 +14,7 @@ ${if pkgs.stdenv.isLinux then "bats ./test/perf.bats" else ""}
 bats ./test/rust-manifest-list-unpinned.bats
 bats ./test/rust.bats
 bats ./test/flamegraph.bats
-${if use-stable-rust == false then "bats ./test/happs.bats" else ""}
+${if config.holonix.use-stable-rust == false then "bats ./test/happs.bats" else ""}
 '';
 
 in
