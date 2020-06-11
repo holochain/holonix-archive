@@ -2,6 +2,40 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.0.75] - 2020-05-28
+
+### Added
+
+### Changed
+- Updated to holochain v0.0.49-alpha1
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [0.0.74] - 2020-05-14
+
+### Added
+
+- rust: introduce use-stable-rust config variable
+
+### Changed
+
+- Updated to holochain v0.0.48-alpha1
+- nix-shell: use bash from nixpkgs explicitly
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
 ## [0.0.73] - 2020-04-09
 
 ### Added
