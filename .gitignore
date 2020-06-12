@@ -4,3 +4,4 @@ result
 Cargo.lock
 target
 .DS_Store
+tmp
