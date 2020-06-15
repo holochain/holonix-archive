@@ -40,3 +40,18 @@
   ! [[ -d "$FILE" ]]
 }
 
+@test "hc-happ-create smoke test" {
+  FILE="./tmp"
+
+  # run the hc-happ-create cmd
+  hc-happ-create $FILE
+  # Checking if the folder was created
+  [[ -d "$FILE" ]]
+  [[ -d "$FILE/dna_src" ]]
+  [[ -d "$FILE/ui_src" ]]
+  [[ -f "$FILE/example.conductor-config.toml" ]]
+  # remove the created happ
+  rm -rf "$FILE"
+  # Checking if the file was removed
+  ! [[ -d "$FILE" ]]
+}
