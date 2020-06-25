@@ -205,7 +205,7 @@ Likely to already be installed on a development machine.</p>
 <h2 id="install-nix-tooling">Install Nix Tooling</h2>
 
 <p><a href="https://nixos.org/nix/download.html">Nix installation</a> is the same on Linux and Mac:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">curl https://nixos.org/nix/install <span class="p">|</span> sh</code></pre></div>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">sh &lt;<span class="o">(</span>curl -L https://nixos.org/nix/install<span class="o">)</span></code></pre></div>
 <p>Once installation is finished it will tell you to source the new configuration. Run the command the installer tells you to run.</p>
 
 <p>Once everything is installed and configured the <code>nix-shell</code> should work. Test it out by pulling up the help docs.</p>

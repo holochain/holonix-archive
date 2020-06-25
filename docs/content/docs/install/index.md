@@ -34,7 +34,7 @@ apt-get install -y sudo curl
 [Nix installation](https://nixos.org/nix/download.html) is the same on Linux and Mac:
 
 ```bash
-curl https://nixos.org/nix/install | sh
+sh <(curl -L https://nixos.org/nix/install)
 ```
 
 Once installation is finished it will tell you to source the new configuration. Run the command the installer tells you to run.

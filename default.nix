@@ -16,6 +16,7 @@ let
  rust = pkgs.callPackage ./rust {
   config = config // { holonix.use-stable-rust = use-stable-rust; };
  };
+
  node = pkgs.callPackage ./node { };
  git = pkgs.callPackage ./git { };
  linux = pkgs.callPackage ./linux { };
@@ -34,6 +35,7 @@ let
  };
  test = pkgs.callPackage ./test {
    pkgs = pkgs;
+   config = { holonix.use-stable-rust = use-stable-rust; };
  };
 
  holonix-shell = pkgs.callPackage ./nix-shell {
