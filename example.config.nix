@@ -21,7 +21,7 @@
    #       the sha here changes (the sha is the cache key for downloads)
    # note: to get a new sha, get nix to try and download a bad sha
    #       it will complain and tell you the right sha
-   sha256 = "0q2gw9fa5xv5a9y2yr8dfjn5pq7mda3nnldpw1cl48a1vvxamf5x";
+   sha256 = "0q2gw9fb5xv5a9y2yr8dfjn5pq7mda3nnldpw1cl48a1vvxamf5x";
 
    # the github owner of the holonix repo
    owner = "holochain";
@@ -62,7 +62,7 @@ echo "All finished!!!"
   # the commit hash that the release process should target
   # this will always be behind what ends up being deployed
   # the release process needs to add some commits for changelog etc.
-  commit = "34f09a4c2f467c13f8411f90fdd53f17248ad33d";
+  commit = "81f6099f238e4e26acbe31310dae935e3e7d6ff0";
 
   # the semver for prev and current releases
   # the previous version will be scanned/bumped by release scripts
