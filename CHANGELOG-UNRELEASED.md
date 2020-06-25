@@ -14,7 +14,5 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ### Fixed
 
-* CI scripts involving Nix installation fixed for Nix installer 2.3.6
-
 ### Security
 
