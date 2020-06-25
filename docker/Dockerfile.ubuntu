@@ -32,7 +32,7 @@ WORKDIR /home/docker
 
 # https://nixos.wiki/wiki/Nix_Installation_Guide#Single-user_install
 RUN sudo install -d -m755 -o $(id -u) -g $(id -g) /nix
-RUN curl https://nixos.org/nix/install | sh
+RUN sh <(curl https://nixos.org/nix/install)
 
 # warm nix and avoid warnings about missing channels
 # https://github.com/NixOS/nixpkgs/issues/40165
