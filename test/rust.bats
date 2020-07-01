@@ -20,5 +20,5 @@
 @test "RUSTFLAGS value" {
  result="$( echo $RUSTFLAGS )"
  echo $result
- [[ "$result" == '-D warnings -Z external-macro-backtrace -Z thinlto -C codegen-units=10 -C opt-level=z -C debuginfo=2' ]]
+ [[ "$result" == '-D warnings -Z external-macro-backtrace -Z thinlto -C codegen-units=10' ]]
 }
