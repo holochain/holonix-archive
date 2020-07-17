@@ -2,6 +2,21 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.0.80] - 2020-07-14
+
+### Added
+
+### Changed
+- Updated to holochain v0.0.50-alpha4
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
 ## [0.0.79] - 2020-06-25
 
 ### Added
