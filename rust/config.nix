@@ -7,8 +7,17 @@ let
     # read more about version management
     # https://hackmd.io/ShgxFyDVR52gnqK7oQsuiQ
     channel = {
-      name = "nightly";
-      date = "2019-11-16";
+      nightly = {
+       name = "nightly";
+       date = "2019-11-16";
+      };
+
+      # releases here https://github.com/rust-lang/rust/blob/master/RELEASES.md
+      stable = {
+       name = "stable";
+       date = "2020-08-03";
+      };
+
     };
 
     # the target used by rust when compiling wasm
@@ -75,7 +84,7 @@ let
   derived = {
 
     channel = base.channel // {
-      version = "${base.channel.name}-${base.channel.date}";
+      version = "${base.channel.nightly.name}-${base.channel.nightly.date}";
     };
 
     compile = base.compile // {
