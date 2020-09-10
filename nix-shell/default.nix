@@ -27,7 +27,6 @@
  # https://github.com/rust-lang/rustup.rs#environment-variables
  # https://github.com/NixOS/nix/issues/903
  RUSTUP_TOOLCHAIN = rust.channel.version;
- RUSTFLAGS = rust.compile.flags;
  CARGO_INCREMENTAL = rust.compile.incremental;
  RUST_LOG = rust.log;
  NUM_JOBS = rust.compile.jobs;
@@ -61,6 +60,14 @@
   fi
  fi
 
+ # stable rust doesn't support all the debugging flags we are using
+ if [[ $( rustc --version ) == *nightly* ]]
+ then
+  export RUSTFLAGS="${rust.compile.flags}"
+ else
+  export RUSTFLAGS="${rust.compile.stable-flags}"
+ fi
+
  export CARGO_HOME="$NIX_ENV_PREFIX/.cargo"
  export CARGO_INSTALL_ROOT="$NIX_ENV_PREFIX/.cargo"
  export HC_TARGET_PREFIX=$NIX_ENV_PREFIX
@@ -68,6 +75,7 @@
  export CARGO_CACHE_RUSTC_INFO=1
  export PATH="$CARGO_INSTALL_ROOT/bin:$PATH"
  export NIX_LDFLAGS="${darwin.ld-flags}$NIX_LDFLAGS"
+ export NIX_BUILD_SHELL=${pkgs.bashInteractive}/bin/bash
 
  # https://github.com/holochain/holonix/issues/12
  export TMP=$( mktemp -p /tmp -d )

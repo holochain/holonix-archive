@@ -31,6 +31,7 @@ jobs:
 
    # run shell tests
    - run: nix-shell --run hn-test
+   - run: nix-shell --run hn-test --arg use-stable-rust true
 
  debian:
   docker:
@@ -44,6 +45,7 @@ jobs:
        nix-shell --run echo
        ./test/nix-env.sh
        nix-shell --run hn-test
+       nix-shell --run hn-test --arg use-stable-rust true
 
  ubuntu:
   docker:
@@ -57,6 +59,7 @@ jobs:
        nix-shell --run echo
        ./test/nix-env.sh
        nix-shell --run hn-test
+       nix-shell --run hn-test --arg use-stable-rust true
 
  # THIS IS SECURITY SENSITVE
  # READ THESE
@@ -85,11 +88,12 @@ jobs:
    - run:
       name: Standard tests
       command: |
-       curl https://nixos.org/nix/install | sh
+       sh <(curl -L https://nixos.org/nix/install)
        . /Users/distiller/.nix-profile/etc/profile.d/nix.sh
        nix-shell --run echo
        ./test/nix-env.sh
        nix-shell --run hn-test
+       nix-shell --run hn-test --arg use-stable-rust true
 
  docker-build-latest:
   resource_class: large

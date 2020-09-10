@@ -16,6 +16,7 @@ in
    clang
    pkgs.yarn
  ]
+ ++ (pkgs.callPackage ./scaffold { }).buildInputs
  ++ (pkgs.callPackage ./create { }).buildInputs
  ++ (pkgs.callPackage ./add-zome { }).buildInputs
  ;

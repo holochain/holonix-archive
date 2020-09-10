@@ -2,6 +2,161 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.0.82] - 2020-08-28
+
+### Added
+
+### Changed
+
+- pinned the stable version of rust
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [0.0.81] - 2020-07-31
+
+### Added
+
+### Changed
+- Updated to holochain v0.0.51-alpha1
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [0.0.80] - 2020-07-14
+
+### Added
+
+### Changed
+- Updated to holochain v0.0.50-alpha4
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [0.0.79] - 2020-06-25
+
+### Added
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [0.0.78] - 2020-06-25
+
+### Added
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+* CI scripts involving Nix installation fixed for Nix installer 2.3.6
+
+### Security
+
+## [0.0.77] - 2020-06-25
+
+### Added
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [0.0.76] - 2020-06-25
+
+### Added
+- hc-happ-scaffold command
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [0.0.75] - 2020-05-28
+
+### Added
+
+### Changed
+- Updated to holochain v0.0.49-alpha1
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [0.0.74] - 2020-05-14
+
+### Added
+
+- rust: introduce use-stable-rust config variable
+
+### Changed
+
+- Updated to holochain v0.0.48-alpha1
+- nix-shell: use bash from nixpkgs explicitly
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [0.0.73] - 2020-04-09
+
+### Added
+
+### Changed
+
+- Updated to holochain v0.0.47-alpha1
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
 ## [0.0.72] - 2020-03-27
 
 ### Added

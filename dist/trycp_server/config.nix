@@ -1,12 +1,12 @@
 {
- name = "trycp_server";
+  name = "trycp_server";
 
- sha256 = {
-  linux = "1qnz2fsdjdj9s7mcl9jwgbjk5qf38zd35l696ckvwv2n9fgmz7mi";
-  darwin = "1v6ph20j200cal14hjd1gv5kfbi59pkqcsipd8lrqhxnbyl70lhx";
- };
+  sha256 = {
+   linux = "0xigbhs3m4lg6nmhwrvvipgdaiync8n5wrcj9d957vp1cg3xi7vk";
+   darwin = "0ghrbqkl46y0fpx4aylxv158vbyiqkmd83ap0z0zvfl932axvbj0";
+  };
 
- binary = "trycp_server";
+  binary = "trycp_server";
 
- deps = [];
+  deps = [];
 }

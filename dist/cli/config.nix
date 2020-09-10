@@ -1,10 +1,10 @@
 {
- name = "cli";
+  name = "cli";
 
- sha256 = {
-  linux = "1g24npkwh6hqham3lbzvx1akjsfclfz7brbzysjpbqi3dg823jnb";
-  darwin = "0m4d2b4fkvcl71zd7v4hfig5y02ncfjnfg35pbswfgq0vp3ycd27";
- };
+  sha256 = {
+   linux = "10wcwz5ns2nx9bcmpphdah1jmczmk59ggq9qjbd7wmc1jqh2bni1";
+   darwin = "003cczrl5xbxiyyclr5b4vx5i6hc64xbrpdh6mcy79njzzxizqa3";
+  };
 
- binary = "hc";
+  binary = "hc";
 }

@@ -1,12 +1,12 @@
 {
- name = "sim2h_server";
+  name = "sim2h_server";
 
- sha256 = {
-  linux = "1n4qilya8gj77z8vlxbvajjl304hz7mjaxgdbwvybkiaqmyd1df0";
-  darwin = "1kd0hh5x4r99mpx7wdsmdza16xd6qspiwdjq27vl84hmg5d28n77";
- };
+  sha256 = {
+    linux = "0yh187s0irxq5wj33ql203498g1yvw6k1nmpg0w3rb1h7zzdzizc";
+    darwin = "0vsj6bv10pmramdx97hwhl0c45ij8d1gay320029p4sjy7qpki56";
+  };
 
- binary = "sim2h_server";
+  binary = "sim2h_server";
 
- deps = [];
+  deps = [];
 }

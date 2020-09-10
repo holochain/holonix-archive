@@ -7,8 +7,17 @@ let
     # read more about version management
     # https://hackmd.io/ShgxFyDVR52gnqK7oQsuiQ
     channel = {
-      name = "stable";
-      date = "2020-06-04";
+      nightly = {
+       name = "nightly";
+       date = "2019-11-16";
+      };
+
+      # releases here https://github.com/rust-lang/rust/blob/master/RELEASES.md
+      stable = {
+       name = "stable";
+       date = "2020-08-03";
+      };
+
     };
 
     # the target used by rust when compiling wasm
@@ -70,12 +79,13 @@ let
   derived = {
 
     channel = base.channel // {
-      version = "${base.channel.name}-${base.channel.date}";
+      version = "${base.channel.nightly.name}-${base.channel.nightly.date}";
     };
 
     compile = base.compile // {
       # @see https://llogiq.github.io/2017/06/01/perf-pitfalls.html
-      flags ="-D ${base.compile.deny} -C codegen-units=${base.compile.codegen-units}";
+      flags ="-D ${base.compile.deny} -Z external-macro-backtrace -Z ${base.compile.lto} -C codegen-units=${base.compile.codegen-units}";
+      stable-flags = "-D ${base.compile.deny} -C codegen-units=${base.compile.codegen-units}";
     };
 
     test = {
