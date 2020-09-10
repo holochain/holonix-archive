@@ -42,6 +42,8 @@ let
       # @see https://github.com/rust-unofficial/patterns/blob/master/anti_patterns/deny-warnings.md
       deny = "warnings";
 
+      lto = "thinlto";
+
       # significantly improves cache hit rate when recompiling
       # much more reliable than default timestamp based compiler caching
       # often (e.g. on CI/windows) we lose timestamp info from the OS
