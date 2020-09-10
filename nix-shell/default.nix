@@ -2,7 +2,7 @@
  pkgs,
  aws,
  darwin,
- #dist,
+ dist,
  docs,
  git,
  linux,
@@ -95,7 +95,7 @@
  ++ (pkgs.callPackage ./flush { }).buildInputs
  ++ aws.buildInputs
  ++ darwin.buildInputs
- #++ dist.buildInputs
+ ++ dist.buildInputs
  ++ docs.buildInputs
  ++ git.buildInputs
  ++ linux.buildInputs

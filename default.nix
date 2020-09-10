@@ -20,12 +20,12 @@ let
  node = pkgs.callPackage ./node { };
  git = pkgs.callPackage ./git { };
  linux = pkgs.callPackage ./linux { };
- #dist = pkgs.callPackage ./dist {
- # rust = rust;
- # node = node;
- # git = git;
- # darwin = darwin;
- #};
+ dist = pkgs.callPackage ./dist {
+  rust = rust;
+  node = node;
+  git = git;
+  darwin = darwin;
+ };
  docs = pkgs.callPackage ./docs { };
  n3h = pkgs.callPackage ./n3h { };
  newrelic = pkgs.callPackage ./newrelic { };
@@ -42,7 +42,7 @@ let
   pkgs = pkgs;
   aws = aws;
   darwin = darwin;
-  #dist = dist;
+  dist = dist;
   docs = docs;
   git = git;
   linux = linux;
@@ -69,10 +69,10 @@ in
 
  # needed for nix-env to discover install attributes
  holochain = {
-  #hc = dist.cli.derivation;
-  #holochain = dist.holochain.derivation;
-  #sim2h_server = dist.sim2h_server.derivation;
-  #trycp_server = dist.trycp_server.derivation;
+  hc = dist.cli.derivation;
+  holochain = dist.holochain.derivation;
+  sim2h_server = dist.sim2h_server.derivation;
+  trycp_server = dist.trycp_server.derivation;
  };
 
  # expose other things
