@@ -73,10 +73,7 @@ let
       # 3 = aggressive
       # s = size
       # z = size min
-      optimization-level = "z";
-
-      debug-level = "2";
-
+      #optimization-level = "z";
     };
 
   };
@@ -89,8 +86,8 @@ let
 
     compile = base.compile // {
       # @see https://llogiq.github.io/2017/06/01/perf-pitfalls.html
-      flags ="-D ${base.compile.deny} -Z external-macro-backtrace -Z ${base.compile.lto} -C codegen-units=${base.compile.codegen-units} -C opt-level=${base.compile.optimization-level} -C debuginfo=${base.compile.debug-level}";
-      stable-flags = "-D ${base.compile.deny} -C codegen-units=${base.compile.codegen-units} -C opt-level=${base.compile.optimization-level} -C debuginfo=${base.compile.debug-level}";
+      flags ="-D ${base.compile.deny} -Z external-macro-backtrace -Z ${base.compile.lto} -C codegen-units=${base.compile.codegen-units}";
+      stable-flags = "-D ${base.compile.deny} -C codegen-units=${base.compile.codegen-units}";
     };
 
     test = {
