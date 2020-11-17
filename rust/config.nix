@@ -15,7 +15,7 @@ let
       # releases here https://github.com/rust-lang/rust/blob/master/RELEASES.md
       stable = {
        name = "stable";
-       date = "2020-08-03";
+       date = "2020-10-07";
       };
 
     };
