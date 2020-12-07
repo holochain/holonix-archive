@@ -1,9 +1,9 @@
 let
-  # nixos channel latest 19.09
+  # nixos channel latest 20.09
   # keep the Dockerfile in sync with this!
   nixpkgs = fetchTarball {
-    url = "https://github.com/NixOS/nixpkgs/archive/821c7ed030bca86c8217e6d20df1f01c6474adf4.tar.gz";
-    sha256 = "0varkgzi5nbx4kb6mjmllk1a48pc5nmad6jfikj627yqrb4wcyfw";
+    url = "https://github.com/NixOS/nixpkgs/archive/3a02dc9edb283beb9580c9329f242ad705a721c3.tar.gz";
+    sha256 = "1d1lqjqqqskfg5b0hyy9q94yqzgwsnb5i0pcl71q378hl8wbgj6x";
   };
 
   # the mozilla rust overlay
