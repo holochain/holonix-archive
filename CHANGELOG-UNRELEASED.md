@@ -7,6 +7,7 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 ### Added
 
 ### Changed
+* perf: 4.19.81 -> 5.4.81
 
 ### Deprecated
 

@@ -27,6 +27,7 @@
  # https://github.com/rust-lang/rustup.rs#environment-variables
  # https://github.com/NixOS/nix/issues/903
  RUSTUP_TOOLCHAIN = rust.channel.version;
+ # TODO: clarify if we want incremental builds in release mode, as they're enabled by default on non-release builds: https://github.com/rust-lang/cargo/pull/4817
  CARGO_INCREMENTAL = rust.compile.incremental;
  RUST_LOG = rust.log;
  NUM_JOBS = rust.compile.jobs;
@@ -85,9 +86,6 @@
  buildInputs = [
   # for mktemp
   pkgs.coreutils
-
-  # simple dev feedback loop
-  pkgs.unixtools.watch
 
   #flame graph dep
   pkgs.flamegraph

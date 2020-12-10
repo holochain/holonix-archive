@@ -5,7 +5,8 @@
    # wabt needs cmake
    pkgs.cmake
    pkgs.binaryen
-   pkgs.wasm-gc
+  # missing
+  #  pkgs.wasm-gc
    pkgs.wabt
  ]
  ;

@@ -6,10 +6,6 @@
  [[ $TMP == $TMPDIR ]]
 }
 
-@test "watch is installed" {
- [[ $( watch -v ) == "watch from procps-ng 3.3.15" ]]
- }
-
 @test "rust backtrace is set in shell" {
   [ "$RUST_BACKTRACE" == "1" ]
 }
