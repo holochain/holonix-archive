@@ -1,167 +1,167 @@
 version: 2.1
 
 commands:
-   build-docker:
-      description: "Build and deploy a docker box"
-      parameters:
-         box:
-            type: string
-            default: "minimal"
-      steps:
-         - checkout
-         - run: ./docker/login
-         - run:
-              no_output_timeout: 30m
-              command: ./docker/build << parameters.box >> $CIRCLE_BRANCH
-         - run: ./docker/push << parameters.box >> $CIRCLE_BRANCH
+  build-docker:
+    description: "Build and deploy a docker box"
+    parameters:
+      box:
+        type: string
+        default: "minimal"
+    steps:
+      - checkout
+      - run: ./docker/login
+      - run:
+          no_output_timeout: 30m
+          command: ./docker/build << parameters.box >> $CIRCLE_BRANCH
+      - run: ./docker/push << parameters.box >> $CIRCLE_BRANCH
 
 jobs:
-   build:
-      docker:
-         - image: holochain/holonix:latest
-      steps:
-         - checkout
+  build:
+    docker:
+      - image: holochain/holonix:latest
+    steps:
+      - checkout
 
-         # warm nix
-         - run: nix-shell --run echo
+      # warm nix
+      - run: nix-shell --run echo
 
-         # run env tests
-         - run: ./test/environment.sh
+      # run env tests
+      - run: ./test/environment.sh
 
-         # run shell tests
-         - run: nix-shell --run hn-test
+      # run shell tests
+      - run: nix-shell --run hn-test
 
-   debian:
-      docker:
-         - image: holochain/holonix:debian
-      steps:
-         - checkout
+  debian:
+    docker:
+      - image: holochain/holonix:debian
+    steps:
+      - checkout
 
-         - run:
-              command: |
-                 . /home/docker/.nix-profile/etc/profile.d/nix.sh
-                 nix-shell --run echo
-                 nix-shell --run hn-test
+      - run:
+          command: |
+            . /home/docker/.nix-profile/etc/profile.d/nix.sh
+            nix-shell --run echo
+            nix-shell --run hn-test
 
-   ubuntu:
-      docker:
-         - image: holochain/holonix:ubuntu
-      steps:
-         - checkout
+  ubuntu:
+    docker:
+      - image: holochain/holonix:ubuntu
+    steps:
+      - checkout
 
-         - run:
-              command: |
-                 . /home/docker/.nix-profile/etc/profile.d/nix.sh
-                 nix-shell --run echo
-                 nix-shell --run hn-test
+      - run:
+          command: |
+            . /home/docker/.nix-profile/etc/profile.d/nix.sh
+            nix-shell --run echo
+            nix-shell --run hn-test
 
-   # THIS IS SECURITY SENSITVE
-   # READ THESE
-   # https://circleci.com/blog/deploying-documentation-to-github-pages-with-continuous-integration/
-   # https://discuss.circleci.com/t/adding-ssh-keys-fails/7747/24
-   deploy-github-pages:
-      docker:
-         - image: holochain/holonix:latest
-      steps:
-         - add_ssh_keys:
-              fingerprints:
-                 - "52:70:20:1e:fe:e3:1c:74:cc:b9:5e:b4:04:30:03:e6"
-         - checkout
-         - run:
-              name: Deploy github pages
-              command: |
-                 git config user.name "$GITHUB_PAGES_DEPLOY_USER"
-                 git config user.email "$GITHUB_PAGES_DEPLOY_EMAIL"
-                 nix-shell --run hn-docs-github-pages
+  # THIS IS SECURITY SENSITVE
+  # READ THESE
+  # https://circleci.com/blog/deploying-documentation-to-github-pages-with-continuous-integration/
+  # https://discuss.circleci.com/t/adding-ssh-keys-fails/7747/24
+  deploy-github-pages:
+    docker:
+      - image: holochain/holonix:latest
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "52:70:20:1e:fe:e3:1c:74:cc:b9:5e:b4:04:30:03:e6"
+      - checkout
+      - run:
+          name: Deploy github pages
+          command: |
+            git config user.name "$GITHUB_PAGES_DEPLOY_USER"
+            git config user.email "$GITHUB_PAGES_DEPLOY_EMAIL"
+            nix-shell --run hn-docs-github-pages
 
-   mac:
-      macos:
-         xcode: "10.2.0"
-      steps:
-         - checkout
-         - run:
-              name: Standard tests
-              command: |
-                 sh <(curl -L https://nixos.org/nix/install)
-                 . /Users/distiller/.nix-profile/etc/profile.d/nix.sh
-                 nix-shell --run echo
-                 nix-shell --run hn-test
+  mac:
+    macos:
+      xcode: "10.2.0"
+    steps:
+      - checkout
+      - run:
+          name: Standard tests
+          command: |
+            sh <(curl -L https://nixos.org/nix/install)
+            . /Users/distiller/.nix-profile/etc/profile.d/nix.sh
+            nix-shell --run echo
+            nix-shell --run hn-test
 
-   docker-build-latest:
-      resource_class: large
-      machine: true
-      steps:
-         - build-docker:
-              box: latest
+  docker-build-latest:
+    resource_class: large
+    machine: true
+    steps:
+      - build-docker:
+          box: latest
 
-   docker-build-ubuntu:
-      resource_class: large
-      machine: true
-      steps:
-         - build-docker:
-              box: ubuntu
+  docker-build-ubuntu:
+    resource_class: large
+    machine: true
+    steps:
+      - build-docker:
+          box: ubuntu
 
-   docker-build-debian:
-      resource_class: large
-      machine: true
-      steps:
-         - build-docker:
-              box: debian
+  docker-build-debian:
+    resource_class: large
+    machine: true
+    steps:
+      - build-docker:
+          box: debian
 
-   docker-build-minimal:
-      resource_class: large
-      machine: true
-      steps:
-         - build-docker:
-              box: minimal
+  docker-build-minimal:
+    resource_class: large
+    machine: true
+    steps:
+      - build-docker:
+          box: minimal
 
 workflows:
-   version: 2
-   tests:
-      jobs:
-         - build
-         - debian
-         - ubuntu
-         - mac
-         - docker-build-latest:
-              filters:
-                 branches:
-                    only:
-                       - love
-                       - master
-                       - develop
-              requires:
-                 - build
-         - docker-build-ubuntu:
-              filters:
-                 branches:
-                    only:
-                       - love
-                       - master
-                       - develop
-              requires:
-                 - build
-         - docker-build-debian:
-              filters:
-                 branches:
-                    only:
-                       - love
-                       - master
-                       - develop
-              requires:
-                 - build
-         - docker-build-minimal:
-              filters:
-                 branches:
-                    only:
-                       - love
-                       - master
-                       - develop
-              requires:
-                 - build
-         - deploy-github-pages:
-              filters:
-                 branches:
-                    only: love
-              requires:
-                 - build
+  version: 2
+  tests:
+    jobs:
+      - build
+      - debian
+      - ubuntu
+      - mac
+      - docker-build-latest:
+          filters:
+            branches:
+              only:
+                - love
+                - master
+                - develop
+          requires:
+            - build
+      - docker-build-ubuntu:
+          filters:
+            branches:
+              only:
+                - love
+                - master
+                - develop
+          requires:
+            - build
+      - docker-build-debian:
+          filters:
+            branches:
+              only:
+                - love
+                - master
+                - develop
+          requires:
+            - build
+      - docker-build-minimal:
+          filters:
+            branches:
+              only:
+                - love
+                - master
+                - develop
+          requires:
+            - build
+      - deploy-github-pages:
+          filters:
+            branches:
+              only: love
+          requires:
+            - build
