@@ -14,29 +14,10 @@ let
   lib = lib;
  };
 
- sim2h_server = pkgs.callPackage ./sim2h_server {
-  lib = lib;
- };
-
- trycp_server = pkgs.callPackage ./trycp_server {
-  lib = lib;
-  holochain = holochain;
- };
-
- cli = pkgs.callPackage ./cli {
-  lib = lib;
-  holochain = holochain;
-  node = node;
-  git = git;
-  rust = rust;
- };
 in
 {
  # exposed derivations to allow nix-env install
- cli = cli;
  holochain = holochain;
- sim2h_server = sim2h_server;
- trycp_server = trycp_server;
 
  buildInputs =
  [
@@ -46,17 +27,11 @@ in
  ]
  ++ (pkgs.callPackage ./audit {
   dist = config;
-  cli = cli;
   holochain = holochain;
-  sim2h_server = sim2h_server;
-  trycp_server = trycp_server;
   lib = lib;
   rust = rust;
  }).buildInputs
 
- ++ cli.buildInputs
  ++ holochain.buildInputs
- ++ sim2h_server.buildInputs
- ++ trycp_server.buildInputs
  ;
 }
