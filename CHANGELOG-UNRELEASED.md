@@ -12,6 +12,14 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 ### Deprecated
 
 ### Removed
+* cli (hc)
+* n3c
+* wasm tools
+* rust nightly
+* sim2h_server
+* newrelic tooling
+* saml2aws tool and AWS specific CI jobs
+* trycp_server
 
 ### Fixed
 

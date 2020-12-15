@@ -1,13 +1,10 @@
 {
  pkgs,
- aws,
  darwin,
  dist,
  docs,
  git,
  linux,
- n3h,
- newrelic,
  node,
  openssl,
  release,
@@ -26,7 +23,7 @@
  # rust version through this environment variable.
  # https://github.com/rust-lang/rustup.rs#environment-variables
  # https://github.com/NixOS/nix/issues/903
- RUSTUP_TOOLCHAIN = rust.channel.version;
+ RUSTUP_TOOLCHAIN = rust.version;
  # TODO: clarify if we want incremental builds in release mode, as they're enabled by default on non-release builds: https://github.com/rust-lang/cargo/pull/4817
  CARGO_INCREMENTAL = rust.compile.incremental;
  RUST_LOG = rust.log;
@@ -40,11 +37,6 @@
 
  # needed so bindgen can find libclang.so
  LIBCLANG_PATH="${pkgs.llvmPackages.libclang}/lib";
-
- # needed for newrelic to compile its dependencies
- # this is a hack to workaround this:
- # https://github.com/NixOS/nixpkgs/issues/18995
- hardeningDisable = [ "fortify" ];
 
  shellHook = ''
  # cargo should install binaries into this repo rather than globally
@@ -61,13 +53,7 @@
   fi
  fi
 
- # stable rust doesn't support all the debugging flags we are using
- if [[ $( rustc --version ) == *nightly* ]]
- then
-  export RUSTFLAGS="${rust.compile.flags}"
- else
-  export RUSTFLAGS="${rust.compile.stable-flags}"
- fi
+ export RUSTFLAGS="${rust.compile.stable-flags}"
 
  export CARGO_HOME="$NIX_ENV_PREFIX/.cargo"
  export CARGO_INSTALL_ROOT="$NIX_ENV_PREFIX/.cargo"
@@ -89,21 +75,18 @@
 
   #flame graph dep
   pkgs.flamegraph
- ]
- ++ (pkgs.callPackage ./flush { }).buildInputs
- ++ aws.buildInputs
- ++ darwin.buildInputs
- ++ dist.buildInputs
- ++ docs.buildInputs
- ++ git.buildInputs
- ++ linux.buildInputs
- ++ n3h.buildInputs
- ++ newrelic.buildInputs
- ++ node.buildInputs
- ++ openssl.buildInputs
- ++ release.buildInputs
- ++ rust.buildInputs
- ++ test.buildInputs
- ++ happs.buildInputs
- ;
+ ] ++ builtins.foldl' (sum: elem: sum ++ elem.buildInputs) [] [
+  (pkgs.callPackage ./flush { })
+  darwin
+  dist
+  docs
+  git
+  linux
+  node
+  openssl
+  release
+  rust
+  test
+  happs
+ ];
 }

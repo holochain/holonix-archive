@@ -30,7 +30,6 @@ jobs:
 
          # run shell tests
          - run: nix-shell --run hn-test
-         - run: nix-shell --run hn-test --arg use-stable-rust true
 
    debian:
       docker:
@@ -43,7 +42,6 @@ jobs:
                  . /home/docker/.nix-profile/etc/profile.d/nix.sh
                  nix-shell --run echo
                  nix-shell --run hn-test
-                 nix-shell --run hn-test --arg use-stable-rust true
 
    ubuntu:
       docker:
@@ -56,7 +54,6 @@ jobs:
                  . /home/docker/.nix-profile/etc/profile.d/nix.sh
                  nix-shell --run echo
                  nix-shell --run hn-test
-                 nix-shell --run hn-test --arg use-stable-rust true
 
    # THIS IS SECURITY SENSITVE
    # READ THESE
@@ -89,7 +86,6 @@ jobs:
                  . /Users/distiller/.nix-profile/etc/profile.d/nix.sh
                  nix-shell --run echo
                  nix-shell --run hn-test
-                 nix-shell --run hn-test --arg use-stable-rust true
 
    docker-build-latest:
       resource_class: large
@@ -119,20 +115,6 @@ jobs:
          - build-docker:
               box: minimal
 
-   docker-build-sim2h_server:
-      resource_class: large
-      machine: true
-      steps:
-         - build-docker:
-              box: sim2h_server
-
-   docker-build-trycp_server:
-      resource_class: large
-      machine: true
-      steps:
-         - build-docker:
-              box: trycp_server
-
 workflows:
    version: 2
    tests:
@@ -148,7 +130,6 @@ workflows:
                        - love
                        - master
                        - develop
-                       - 2019-12-24-docker-aws
               requires:
                  - build
          - docker-build-ubuntu:
@@ -158,7 +139,6 @@ workflows:
                        - love
                        - master
                        - develop
-                       - 2019-12-24-docker-aws
               requires:
                  - build
          - docker-build-debian:
@@ -168,7 +148,6 @@ workflows:
                        - love
                        - master
                        - develop
-                       - 2019-12-24-docker-aws
               requires:
                  - build
          - docker-build-minimal:
@@ -178,15 +157,8 @@ workflows:
                        - love
                        - master
                        - develop
-                       - 2019-12-24-docker-aws
               requires:
                  - build
-         - docker-build-trycp_server:
-              requires:
-                 - docker-build-minimal
-         - docker-build-sim2h_server:
-              requires:
-                 - docker-build-minimal
          - deploy-github-pages:
               filters:
                  branches:
