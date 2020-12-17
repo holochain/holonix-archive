@@ -14,14 +14,7 @@ rust //
   pkgs.pkgconfig
   pkgs.cargo-make
   pkgs.curl
- (pkgs.rustChannelOfTargets
-    # channel, accepts stable versions. e.g. "1.45.2"
-    rust.version
-    # date
-    null
-    # targets
-    [ rust.wasm-target rust.generic-linux-target ]
-  )
+  pkgs.rust.packages.stable.rust.rustc
  ]
  ++ (if pkgs.stdenv.isLinux then [ pkgs.kcov ] else [])
  ++ (pkgs.callPackage ./clippy { }).buildInputs

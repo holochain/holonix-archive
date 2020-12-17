@@ -1,7 +1,6 @@
 {
  pkgs,
  darwin,
- dist,
  docs,
  git,
  linux,
@@ -78,7 +77,6 @@
  ] ++ builtins.foldl' (sum: elem: sum ++ elem.buildInputs) [] [
   (pkgs.callPackage ./flush { })
   darwin
-  dist
   docs
   git
   linux
