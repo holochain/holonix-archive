@@ -77,13 +77,20 @@ jobs:
   mac:
     macos:
       xcode: "12.0.0"
+    environment:
+      NIXPKGS_ALLOW_UNFREE: 1
     steps:
       - checkout
       - run:
           name: Standard tests
+          no_output_timeout: 30m
           command: |
-            sh <(curl -L https://nixos.org/nix/install)
+            # fix for "too many open files" that breaks tokio and lmdb
+            ulimit -n 10240
+            # catalina nixos install
+            sh <(curl -L https://nixos.org/nix/install) --darwin-use-unencrypted-nix-store-volume
             . /Users/distiller/.nix-profile/etc/profile.d/nix.sh
+            # do tests
             nix-shell --run echo
             nix-shell --run hn-test
 
