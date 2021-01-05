@@ -14,6 +14,7 @@ ${if pkgs.stdenv.isLinux then "bats ./test/perf.bats" else ""}
 bats ./test/rust-manifest-list-unpinned.bats
 bats ./test/rust.bats
 bats ./test/flamegraph.bats
+bats ./test/holochain-binaries.bats
 # TODO: refactor the happ scaffolding tests for RSM
 # bats ./test/happs.bats
 '';

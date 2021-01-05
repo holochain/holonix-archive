@@ -10,6 +10,7 @@
  rust,
  test,
  happs
+, extraBuildInputs
 }:
 {
  name = "holonix-shell";
@@ -86,5 +87,5 @@
   rust
   test
   happs
- ];
+ ] ++ extraBuildInputs;
 }

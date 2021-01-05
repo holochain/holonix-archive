@@ -56,6 +56,7 @@ let
     test
     happs
     ;
+  extraBuildInputs = builtins.attrValues holochain;
  };
 
  # override and overrideDerivation cannot be handled by mkDerivation
