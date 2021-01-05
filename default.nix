@@ -56,7 +56,7 @@ let
     test
     happs
     ;
-  extraBuildInputs = builtins.attrValues holochain;
+  extraBuildInputs = if !pkgs.stdenv.isDarwin then (builtins.attrValues holochain) else [];
  };
 
  # override and overrideDerivation cannot be handled by mkDerivation
