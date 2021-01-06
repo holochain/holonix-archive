@@ -6,8 +6,15 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ### Added
 
+#### RSM binaries for Linux
+* holochain: 0.0.1
+* dna-util: 0.0.1 lair-keystore
+* lair-keystore: 0.0.1-alpha.10
+
+The macOS build is not tested upstream and is currently broken.
+
 ### Changed
-* perf: 4.19.81 -> 5.4.81
+* perf: 4.19 -> 5.4
 
 ### Deprecated
 

@@ -5,7 +5,7 @@
 @test "clippy version" {
  result="$( cargo clippy --version )"
  echo $result
- [[ "$result" == *2019-11-14* || "$result" == *2020-03-17* ]]
+ [[ "$result" == *0.0.212* ]]
 }
 
 @test "clippy smoke test" {

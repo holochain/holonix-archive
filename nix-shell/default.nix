@@ -1,7 +1,6 @@
 {
  pkgs,
  darwin,
- dist,
  docs,
  git,
  linux,
@@ -11,6 +10,7 @@
  rust,
  test,
  happs
+, extraBuildInputs
 }:
 {
  name = "holonix-shell";
@@ -78,7 +78,6 @@
  ] ++ builtins.foldl' (sum: elem: sum ++ elem.buildInputs) [] [
   (pkgs.callPackage ./flush { })
   darwin
-  dist
   docs
   git
   linux
@@ -88,5 +87,5 @@
   rust
   test
   happs
- ];
+ ] ++ extraBuildInputs;
 }

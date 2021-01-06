@@ -22,6 +22,10 @@ jobs:
     steps:
       - checkout
 
+      - run: 
+          name: Set up Holo's Hydra cache
+          command: ./ci/setup-hydra-cache.sh
+
       # warm nix
       - run: nix-shell --run echo
 
@@ -36,9 +40,9 @@ jobs:
       - image: holochain/holonix:debian
     steps:
       - checkout
-
       - run:
           command: |
+            ./ci/setup-hydra-cache.sh
             . /home/docker/.nix-profile/etc/profile.d/nix.sh
             nix-shell --run echo
             nix-shell --run hn-test
@@ -48,7 +52,9 @@ jobs:
       - image: holochain/holonix:ubuntu
     steps:
       - checkout
-
+      - run: 
+          name: Set up Holo's Hydra cache
+          command: ./ci/setup-hydra-cache.sh
       - run:
           command: |
             . /home/docker/.nix-profile/etc/profile.d/nix.sh
@@ -76,14 +82,24 @@ jobs:
 
   mac:
     macos:
-      xcode: "10.2.0"
+      xcode: "12.0.0"
+    environment:
+      NIXPKGS_ALLOW_UNFREE: 1
     steps:
       - checkout
+      - run: 
+          name: Set up Holo's Hydra cache
+          command: ./ci/setup-hydra-cache.sh
       - run:
           name: Standard tests
+          no_output_timeout: 30m
           command: |
-            sh <(curl -L https://nixos.org/nix/install)
+            # fix for "too many open files" that breaks tokio and lmdb
+            ulimit -n 10240
+            # catalina nixos install
+            sh <(curl -L https://nixos.org/nix/install) --darwin-use-unencrypted-nix-store-volume
             . /Users/distiller/.nix-profile/etc/profile.d/nix.sh
+            # do tests
             nix-shell --run echo
             nix-shell --run hn-test
 
