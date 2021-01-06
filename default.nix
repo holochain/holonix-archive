@@ -10,6 +10,7 @@
    url = "https://github.com/Holo-Host/holo-nixpkgs/archive/b2ce4c5f1a96d11899396a3439e7ed6e6ab4833a.tar.gz";
    sha256 = "1c8arx55ndlhsgs8g7imm2g0dpzv6576pi7ym8275r3qs03ryyvs";
  }) {}
+ , includeHolochainBinaries ? (!pkgs.stdenv.isDarwin)
 }:
 let
 
@@ -56,7 +57,10 @@ let
     test
     happs
     ;
-  extraBuildInputs = if !pkgs.stdenv.isDarwin then (builtins.attrValues holochain) else [];
+  extraBuildInputs = 
+    if includeHolochainBinaries
+    then (builtins.attrValues holochain) 
+    else [];
  };
 
  # override and overrideDerivation cannot be handled by mkDerivation
