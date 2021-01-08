@@ -14,7 +14,7 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 * dna-util: 0.0.1 lair-keystore
 * lair-keystore: 0.0.1-alpha.10
 
-The macOS build is not tested upstream and is currently broken.
+Binaries are available for Darwin and Linux on `x86_64-linux` and `arm64`.
 
 ### Changed
 * perf: 4.19 -> 5.4
@@ -34,4 +34,3 @@ The macOS build is not tested upstream and is currently broken.
 ### Fixed
 
 ### Security
-
