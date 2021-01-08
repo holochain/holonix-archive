@@ -66,6 +66,7 @@ let
         holochain
         dna-util
         lair-keystore
+        kitsune-p2p-proxy
       ]
       else []
       )

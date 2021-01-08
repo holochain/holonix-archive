@@ -17,3 +17,9 @@
   echo $result
   [[ "$result" == *" 0.0.1-alpha.10" ]]
 }
+
+@test "expected kitsune-p2p-proxy version available" {
+  result="$(kitsune-p2p-proxy --version)"
+  echo $result
+  [[ "$result" == *" 0.0.1" ]]
+}
