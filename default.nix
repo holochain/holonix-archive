@@ -6,13 +6,22 @@
  # allow consumers to pass in their own config
  # fallback to empty sets
  config ? import ./config.nix
- , pkgs ? import (fetchTarball {
+ , holo-nixpkgs ? import (fetchTarball {
    url = "https://github.com/Holo-Host/holo-nixpkgs/archive/b2ce4c5f1a96d11899396a3439e7ed6e6ab4833a.tar.gz";
    sha256 = "1c8arx55ndlhsgs8g7imm2g0dpzv6576pi7ym8275r3qs03ryyvs";
  }) {}
- , includeHolochainBinaries ? (!pkgs.stdenv.isDarwin)
+ , includeHolochainBinaries ? (!holo-nixpkgs.stdenv.isDarwin)
 }:
 let
+ pkgs = import holo-nixpkgs.path {
+  overlays = holo-nixpkgs.overlays
+    ++ [
+      (self: super: {
+        holonix = self.callPackage ./pkgs/holonix.nix { };
+      })
+    ]
+    ;
+};
 
  darwin = pkgs.callPackage ./darwin { };
  rust = pkgs.callPackage ./rust {
@@ -35,14 +44,6 @@ let
  };
  happs = pkgs.callPackage ./happs { };
 
- holochain = {
-   inherit (pkgs)
-    holochain
-    dna-util
-    lair-keystore
-    ;
- };
-
  holonix-shell = pkgs.callPackage ./nix-shell {
   inherit
     pkgs
@@ -57,17 +58,27 @@ let
     test
     happs
     ;
-  extraBuildInputs = 
-    if includeHolochainBinaries
-    then (builtins.attrValues holochain) 
-    else [];
+  extraBuildInputs = [
+    ]
+    ++ (
+      if includeHolochainBinaries
+      then with pkgs; [
+        holochain
+        dna-util
+        lair-keystore
+      ]
+      else []
+      )
+    ;
  };
 
  # override and overrideDerivation cannot be handled by mkDerivation
  derivation-safe-holonix-shell = (removeAttrs holonix-shell ["override" "overrideDerivation"]);
-in
+
+in rec
 {
  inherit
+  holo-nixpkgs
   pkgs
   # expose other things
   rust
@@ -79,7 +90,4 @@ in
  # holonix-shell provides canonical dev shell for generic work
  shell = derivation-safe-holonix-shell;
  main = pkgs.mkShell derivation-safe-holonix-shell;
-
- # needed for nix-env to discover install attributes
- inherit holochain;
 }
