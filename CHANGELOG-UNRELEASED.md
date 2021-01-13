@@ -5,6 +5,9 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 {{ version-heading }}
 
 ### Added
+* Convenient script for running the holonix shell. The short-term command will look like this:
+
+    `nix-build https://holochain.love --no-link -A pkgs.holonix`
 
 #### RSM binaries for Linux
 * holochain: 0.0.1
