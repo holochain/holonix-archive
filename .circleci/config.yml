@@ -22,7 +22,7 @@ jobs:
     steps:
       - checkout
 
-      - run: 
+      - run:
           name: Set up Holo's Hydra cache
           command: ./ci/setup-hydra-cache.sh
 
@@ -52,7 +52,7 @@ jobs:
       - image: holochain/holonix:ubuntu
     steps:
       - checkout
-      - run: 
+      - run:
           name: Set up Holo's Hydra cache
           command: ./ci/setup-hydra-cache.sh
       - run:
@@ -87,7 +87,7 @@ jobs:
       NIXPKGS_ALLOW_UNFREE: 1
     steps:
       - checkout
-      - run: 
+      - run:
           name: Set up Holo's Hydra cache
           command: ./ci/setup-hydra-cache.sh
       - run:
