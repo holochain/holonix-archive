@@ -37,6 +37,12 @@ apt-get install -y sudo curl
 sh <(curl -L https://nixos.org/nix/install)
 ```
 
+On macOS 10.15 (Catalina), use the following:
+
+```bash
+sh <(curl https://nixos.org/nix/install) --darwin-use-unencrypted-nix-store-volume
+```
+
 Once installation is finished it will tell you to source the new configuration. Run the command the installer tells you to run.
 
 Once everything is installed and configured the `nix-shell` should work. Test it out by pulling up the help docs.
