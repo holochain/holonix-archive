@@ -7,8 +7,8 @@
  # fallback to empty sets
  config ? import ./config.nix
  , holo-nixpkgs ? import (fetchTarball {
-   url = "https://github.com/Holo-Host/holo-nixpkgs/archive/b2ce4c5f1a96d11899396a3439e7ed6e6ab4833a.tar.gz";
-   sha256 = "1c8arx55ndlhsgs8g7imm2g0dpzv6576pi7ym8275r3qs03ryyvs";
+   url = "https://github.com/Holo-Host/holo-nixpkgs/archive/7663ff8421a6504cd02658b1d5c44c52e307f001.tar.gz";
+   sha256 = "0adz6gip6pkx332yh3l7qg47kkgxmfxvdzyfvmkrxq2p3sv2bd6g";
  }) {}
  , includeHolochainBinaries ? (!holo-nixpkgs.stdenv.isDarwin)
 }:
