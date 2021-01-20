@@ -46,6 +46,7 @@ jobs:
             . /home/docker/.nix-profile/etc/profile.d/nix.sh
             nix-shell --run echo
             nix-shell --run hn-test
+            $(nix-build . --no-link -A pkgs.holonix)/bin/holonix --run hn-test
 
   ubuntu:
     docker:
@@ -60,6 +61,7 @@ jobs:
             . /home/docker/.nix-profile/etc/profile.d/nix.sh
             nix-shell --run echo
             nix-shell --run hn-test
+            $(nix-build . --no-link -A pkgs.holonix)/bin/holonix --run hn-test
 
   # THIS IS SECURITY SENSITVE
   # READ THESE
@@ -102,6 +104,7 @@ jobs:
             # do tests
             nix-shell --run echo
             nix-shell --run hn-test
+            $(nix-build . --no-link -A pkgs.holonix)/bin/holonix --run hn-test
 
   docker-build-latest:
     resource_class: large

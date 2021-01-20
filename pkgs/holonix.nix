@@ -9,7 +9,7 @@ let
     "cache.holo.host-1:lNXIXtJgS9Iuw4Cu6X0HINLu9sTfcjEntnrgwMQIMcE="
     "cache.holo.host-2:ZJCkX3AUYZ8soxTLfTb60g+F3MkWD7hkH9y8CgqwhDQ="
   ];
-in pkgs.writeScriptBin "holonix" ''
+in pkgs.writeShellScriptBin "holonix" ''
   export GC_ROOT_DIR="''${HOME:-/tmp}/.holonix"
   export SHELL_DRV="''${GC_ROOT_DIR}/shellDrv"
   export LOG="''${GC_ROOT_DIR}/log"
@@ -34,30 +34,38 @@ in pkgs.writeScriptBin "holonix" ''
   Building...
   EOF
 
-  set -eou pipefail
+  set -Eeou pipefail
   mkdir -p "''${GC_ROOT_DIR}"
   (
   exec 2>&1
-  nix-instantiate --no-build-output --quiet --add-root "''${SHELL_DRV}" --indirect ${builtins.toString ./.} -A main
+  set -Eeou pipefail
+  SHELL_DRV_TMP=$(mktemp)
+  rm ''${SHELL_DRV_TMP}
+
+  nix-instantiate --no-build-output --quiet --add-root "''${SHELL_DRV_TMP}" --indirect ${builtins.toString ./.}/.. -A main
   nix-store \
-      --add-root "''${SHELL_DRV}/refquery" --indirect \
-      --query --references "''${SHELL_DRV}" > "''${GC_ROOT_DIR}/log" | \
+      --add-root "''${GC_ROOT_DIR}/refquery" --indirect \
+      --query --references "''${SHELL_DRV_TMP}" | \
       xargs sudo -E nix-store --realise \
       --option extra-substituters "${builtins.concatStringsSep " " extraSubstitutors}" \
       --option trusted-public-keys  "${builtins.concatStringsSep " " trustedPublicKeys}" \
       --add-root "''${GC_ROOT_DIR}/allrefs" --indirect
+  mv ''${SHELL_DRV_TMP} ''${SHELL_DRV}
   )  >> "''${LOG}" || {
   rc=$?
-  echo WARNING: Errors during build. Please see "''${LOG}" for details.
-  if test -e "''${SHELL_DRV}"; then
+  echo -n "Errors during build. "
+  if [[ -e ''${SHELL_DRV} ]]; then
+      echo Please see "''${LOG}" for details.
       echo Falling back to cached version
   else
+      cat "''${LOG}"
       exit $rc
   fi
   }
+
   echo -n Ready!
   export NIX_BUILD_SHELL=${pkgs.bashInteractive}/bin/bash
   nix-shell \
-  --add-root "''${GC_ROOT_DIR}/shell" \
-  "''${SHELL_DRV}" ''${@}
+  --add-root "''${GC_ROOT_DIR}/finalShell" --indirect \
+  "''${SHELL_DRV}" "''${@}"
 ''
