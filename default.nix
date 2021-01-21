@@ -17,7 +17,7 @@ let
   overlays = holo-nixpkgs.overlays
     ++ [
       (self: super: {
-        holonix = self.callPackage ./pkgs/holonix.nix { };
+        holonix = ((import <nixpkgs> {}).callPackage or self.callPackage) ./pkgs/holonix.nix { };
       })
     ]
     ;
