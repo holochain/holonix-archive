@@ -1,6 +1,6 @@
 baseURL = "/"
 languageCode = "en-us"
-title = "Hugo Whisper Theme"
+title = "Holonix"
 themesDir = "themes"
 theme = "hugo-whisper-theme"
 
@@ -8,34 +8,26 @@ pygmentsCodeFences = true
 pygmentsCodefencesGuessSyntax = true
 pygmentsUseClasses = true
 
-[[menu.main]]
-    name = "Home"
-    url = "/"
-    weight = 1
-
-[[menu.main]]
-    name = "Docs"
-    url = "/docs/"
-    weight = 2
-
 [params]
-  google_analytics_id=""
-  homepage_button_link = '/docs'
-  homepage_button_text = 'Read The Docs'
-  homepage_intro = 'Whisper is a documentation theme built with Hugo. The design and functionality is intentionally minimal.'
-  homepage_image = '/images/terminal.gif'
+  hompage_button = false
+  homepage_intro = 'Holonix is the development commons for Holochain. Productive. Portable. Predictable.'
+
+  [params.redirect]
+    enable = true
+    url = "https://developer.holochain.org/docs/install"
+    delay = 10
 
   [params.homepage_meta_tags]
-    meta_description = "Hugo Whisper is a documentation theme built with Hugo."
-    meta_og_title = "Hugo Whisper Theme"
+    meta_description = "Holonix is a nix-shell environment for Holochain hApp Development"
+    meta_og_title = "Holonix"
     meta_og_type = "website"
-    meta_og_url = "https://hugo-whisper.netlify.com"
-    meta_og_image = "https://raw.githubusercontent.com/JugglerX/hugo-whisper-theme/master/images/tn.png"
+    meta_og_url = "https://github.com/holochain/holonix"
+    meta_og_image = "/images/79f6577e3c8102e1f0caf8d2f43d4fcf472a3e34.png"
     meta_og_description = "Hugo Whisper is a documentation theme built with Hugo."
     meta_twitter_card = "summary"
-    meta_twitter_site = "@zerostaticio"
-    meta_twitter_creator = "@zerostaticio"
+    meta_twitter_site = "@holochain"
+    meta_twitter_creator = "@holochain"
 
   [params.logo]
-      mobile = "/images/logo-mobile.svg"
-      standard  = "/images/logo.svg"
+      mobile = "/images/79f6577e3c8102e1f0caf8d2f43d4fcf472a3e34.png"
+      standard  = "/images/79f6577e3c8102e1f0caf8d2f43d4fcf472a3e34.png"
