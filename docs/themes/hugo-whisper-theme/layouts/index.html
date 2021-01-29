@@ -13,6 +13,9 @@
 <meta name="twitter:card" content="{{ .Site.Params.homepage_meta_tags.meta_twitter_card }}" />
 <meta name="twitter:site" content="{{ .Site.Params.homepage_meta_tags.meta_twitter_site }}" />
 <meta name="twitter:creator" content="{{ .Site.Params.homepage_meta_tags.meta_twitter_creator }}" />
+{{ if .Site.Params.redirect.enable }}
+<meta http-equiv="refresh" content="{{ .Site.Params.redirect.delay }}; URL={{ .Site.Params.redirect.url }}">
+{{ end }}
 {{ end }}
 
 {{ define "main" }}
@@ -28,9 +31,14 @@
           <p>{{ .Site.Params.homepage_intro }}</p>
           {{ end }}
         </div>
+        {{ if .Site.Params.redirect.enable }}
+        <p>Please follow <a href="{{ .Site.Params.redirect.delay }}">this link</a> if you're not redirected within {{ .Site.Params.redirect.delay }} seconds.</p>
+        {{ end }}
+        {{ if .Site.Params.homepage_button }}
         <a class="button button-primary mb-2" href="{{ .Site.Params.homepage_button_link | relURL }}">
           {{ .Site.Params.homepage_button_text }}
         </a>
+        {{ end }}
       </div>
     </div>
   </div>
@@ -42,13 +50,7 @@
     <div class="row justify-content-center">
       <div class="col-12 col-md-10">
         <div class="terminal">
-          <script
-           id="asciicast-UmfOjCwZerYbq4FEp5OH7Cl9X"
-           src="https://asciinema.org/a/UmfOjCwZerYbq4FEp5OH7Cl9X.js"
-           data-autoplay="true"
-           data-theme="solarized-light"
-           async>
-          </script>
+          <img src="{{ .Site.Params.homepage_image | relURL}}" />
         </div>
       </div>
     </div>
