@@ -2,8 +2,9 @@
 
 Whisper is a minimal documentation theme built for Hugo. The design and functionality is intentionally minimal.
 
-[Live Demo](https://hugo-whisper.netlify.com/) |
-[Zerostatic Themes](https://www.zerostatic.io/theme/hugo-whisper/)
+
+[Live Demo](https://hugo-whisper.netlify.app/) |
+[Zerostatic Themes](https://www.zerostatic.io/)
 
 ![Hugo Whisper Theme screenshot](https://github.com/JugglerX/hugo-whisper-theme/blob/master/images/screenshot-with-border.png)
 
@@ -121,3 +122,7 @@ hugo server
 ```
 
 Now enter [`localhost:1313`](http://localhost:1313) in the address bar of your browser.
+
+## License
+
+If you fork or copy this theme the LICENSE file and the copyright notice on line 3 (where I am listed as the author) must not be changed. You cannot just replace the copyright line with your own name. Attribution in your README.md or on your site is also welcome but not required.

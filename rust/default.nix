@@ -12,17 +12,14 @@ rust //
   pkgs.gnumake
   pkgs.openssl
   pkgs.pkgconfig
-  pkgs.carnix
   pkgs.cargo-make
   pkgs.curl
+  pkgs.rust.packages.stable.rust.rustc
  ]
- ++ (if (builtins.hasAttr "holonix" config && config.holonix.use-stable-rust) then [ (pkgs.rustChannelOfTargets "stable" null [ rust.wasm-target rust.generic-linux-target  ]) ]
-                                       else [ (pkgs.rustChannelOfTargets rust.channel.name rust.channel.date [ rust.wasm-target rust.generic-linux-target  ]) ])
  ++ (if pkgs.stdenv.isLinux then [ pkgs.kcov ] else [])
  ++ (pkgs.callPackage ./clippy { }).buildInputs
  ++ (pkgs.callPackage ./fmt { }).buildInputs
  ++ (pkgs.callPackage ./manifest { }).buildInputs
- ++ (pkgs.callPackage ./wasm { }).buildInputs
  ++ (pkgs.callPackage ./flush { }).buildInputs
  ;
 }
