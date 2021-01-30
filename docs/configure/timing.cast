@@ -1,7 +1,0 @@
-{"version": 2, "width": 235, "height": 59, "timestamp": 1566271694, "idle_time_limit": 2.0, "env": {"SHELL": "/run/current-system/sw/bin/bash", "TERM": "xterm-256color"}, "title": "nix shell timing"}
-[0.105718, "o", "\r\r\n\u001b[1;32m[\u001b]0;thedavidmeister@nixos: ~/holonix\u0007thedavidmeister@nixos:~/holonix]$\u001b[0m "]
-[8.315685, "o", "time nix-shell --run 'holochain -V'"]
-[8.701965, "o", "\r\n"]
-[19.655984, "o", "holochain 0.0.27-alpha1\r\n"]
-[19.658178, "o", "\r\nreal\t0m10.956s\r\nuser\t0m8.042s\r\nsys\t0m3.250s\r\n"]
-[19.658399, "o", "\r\r\n\u001b[1;32m[\u001b]0;thedavidmeister@nixos: ~/holonix\u0007thedavidmeister@nixos:~/holonix]$\u001b[0m "]
