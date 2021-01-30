@@ -5,77 +5,90 @@
 {
  # allow consumers to pass in their own config
  # fallback to empty sets
- config ? import ./config.nix,
- use-stable-rust ? false
+ config ? import ./config.nix
+ , holo-nixpkgs ? import (fetchTarball {
+   url = "https://github.com/Holo-Host/holo-nixpkgs/archive/7663ff8421a6504cd02658b1d5c44c52e307f001.tar.gz";
+   sha256 = "0adz6gip6pkx332yh3l7qg47kkgxmfxvdzyfvmkrxq2p3sv2bd6g";
+ }) {}
+ , includeHolochainBinaries ? true
 }:
 let
- pkgs = import ./nixpkgs;
+ pkgs = import holo-nixpkgs.path {
+  overlays = holo-nixpkgs.overlays
+    ++ [
+      (self: super: {
+        holonix = ((import <nixpkgs> {}).callPackage or self.callPackage) ./pkgs/holonix.nix { };
+      })
+    ]
+    ;
+};
 
- aws = pkgs.callPackage ./aws { };
  darwin = pkgs.callPackage ./darwin { };
  rust = pkgs.callPackage ./rust {
-  config = config // { holonix.use-stable-rust = use-stable-rust; };
+  inherit config;
  };
 
  node = pkgs.callPackage ./node { };
  git = pkgs.callPackage ./git { };
  linux = pkgs.callPackage ./linux { };
- dist = pkgs.callPackage ./dist {
-  rust = rust;
-  node = node;
-  git = git;
-  darwin = darwin;
- };
  docs = pkgs.callPackage ./docs { };
- n3h = pkgs.callPackage ./n3h { };
- newrelic = pkgs.callPackage ./newrelic { };
  openssl = pkgs.callPackage ./openssl { };
  release = pkgs.callPackage ./release {
   config = config;
  };
  test = pkgs.callPackage ./test {
-   pkgs = pkgs;
-   config = { holonix.use-stable-rust = use-stable-rust; };
+   inherit
+    pkgs
+    config
+    ;
  };
+ happs = pkgs.callPackage ./happs { };
 
  holonix-shell = pkgs.callPackage ./nix-shell {
-  pkgs = pkgs;
-  aws = aws;
-  darwin = darwin;
-  dist = dist;
-  docs = docs;
-  git = git;
-  linux = linux;
-  n3h = n3h;
-  newrelic = newrelic;
-  node = node;
-  openssl = openssl;
-  release = release;
-  rust = rust;
-  test = test;
-  happs = pkgs.callPackage ./happs { };
+  inherit
+    pkgs
+    darwin
+    docs
+    git
+    linux
+    node
+    openssl
+    release
+    rust
+    test
+    happs
+    ;
+  extraBuildInputs = [
+    ]
+    ++ (
+      if includeHolochainBinaries
+      then with pkgs; [
+        holochain
+        dna-util
+        lair-keystore
+        kitsune-p2p-proxy
+      ]
+      else []
+      )
+    ;
  };
 
  # override and overrideDerivation cannot be handled by mkDerivation
  derivation-safe-holonix-shell = (removeAttrs holonix-shell ["override" "overrideDerivation"]);
-in
+
+in rec
 {
- pkgs = pkgs;
+ inherit
+  holo-nixpkgs
+  pkgs
+  # expose other things
+  rust
+  darwin
+  ;
+
  # export the set used to build shell alongside the main derivation
  # downstream devs can extend/override the shell as needed
  # holonix-shell provides canonical dev shell for generic work
  shell = derivation-safe-holonix-shell;
- main = pkgs.stdenv.mkDerivation derivation-safe-holonix-shell;
-
- # needed for nix-env to discover install attributes
- holochain = {
-  hc = dist.cli.derivation;
-  holochain = dist.holochain.derivation;
-  sim2h_server = dist.sim2h_server.derivation;
-  trycp_server = dist.trycp_server.derivation;
- };
-
- # expose other things
- rust = rust;
- darwin = darwin;
+ main = pkgs.mkShell derivation-safe-holonix-shell;
 }

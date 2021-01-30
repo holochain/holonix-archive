@@ -5,7 +5,7 @@
 @test "rustc version" {
  result="$( rustc --version )"
  echo $result
- [[ "$result" == *2019-11-15* || "$result" == *2020-04-20* ]]
+ [[ "$result" == *1.48.0* ]]
 }
 
 # the rust fmt version should be roughly the rustc version
@@ -13,7 +13,7 @@
 @test "fmt version" {
  result="$( cargo fmt --version )"
  echo $result
- [[ "$result" == *2019-10-07* || "$result" == *2020-03-11* ]]
+ [[ "$result" == *1.4.24-stable* ]]
 }
 
 # RUSTFLAGS should be set correctly
