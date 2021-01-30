@@ -32,7 +32,7 @@
           {{ end }}
         </div>
         {{ if .Site.Params.redirect.enable }}
-        <p>Please follow <a href="{{ .Site.Params.redirect.delay }}">this link</a> if you're not redirected within {{ .Site.Params.redirect.delay }} seconds.</p>
+        <p>Please follow <a href="{{ .Site.Params.redirect.url }}">this link</a> if you're not redirected within {{ .Site.Params.redirect.delay }} seconds.</p>
         {{ end }}
         {{ if .Site.Params.homepage_button }}
         <a class="button button-primary mb-2" href="{{ .Site.Params.homepage_button_link | relURL }}">
