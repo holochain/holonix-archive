@@ -18,6 +18,12 @@ let
     ++ [
       (self: super: {
         holonix = ((import <nixpkgs> {}).callPackage or self.callPackage) ./pkgs/holonix.nix { };
+
+        # these are referenced in holochain-s merge script.
+        # ideally we'd expose all packages in this repository in this way.
+        hnRustClippy = builtins.elemAt (self.callPackage ./rust/clippy {}).buildInputs 0;
+        hnRustFmtCheck = builtins.elemAt (self.callPackage ./rust/fmt/check {}).buildInputs 0;
+        hnRustFmtFmt = builtins.elemAt (self.callPackage ./rust/fmt/fmt {}).buildInputs 0;
       })
     ]
     ;
