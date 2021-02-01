@@ -10,9 +10,11 @@
 
 @test "clippy smoke test" {
  hn-rust-clippy
+ hn-rust-fmt-check
+ hn-rust-fmt-fmt
 
  # the clippy target directory should have been created
- clippy_target_dir="$HC_TARGET_PREFIX/target/clippy"
+ clippy_target_dir="$CARGO_TARGET_DIR/clippy"
  [[ "$clippy_target_dir" == "$PWD"/target/clippy ]]
  [ -d "$clippy_target_dir" ]
 }
