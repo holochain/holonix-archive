@@ -19,6 +19,7 @@ Binaries are available for Darwin and Linux on `x86_64-linux` and `arm64`.
 
 ### Changed
 * perf: 4.19 -> 5.4
+* Removed the `HC_TARGET_PREFIX` env var in favor of the `NIX_ENV_PREFIX` env var
 
 ### Deprecated
 

@@ -76,6 +76,9 @@ jobs:
             - "52:70:20:1e:fe:e3:1c:74:cc:b9:5e:b4:04:30:03:e6"
       - checkout
       - run:
+          name: Set up Holo's Hydra cache
+          command: ./ci/setup-hydra-cache.sh
+      - run:
           name: Deploy github pages
           command: |
             git config user.name "$GITHUB_PAGES_DEPLOY_USER"
