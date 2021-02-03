@@ -35,6 +35,7 @@ RUN sudo install -d -m755 -o $(id -u) -g $(id -g) /nix
 RUN curl -L https://nixos.org/nix/install | sh
 
 # Set up Holo's Hydra cache
+ADD ./ci/setup-hydra-cache.sh ci/setup-hydra-cache.sh
 RUN ./ci/setup-hydra-cache.sh
 
 # warm nix and avoid warnings about missing channels
