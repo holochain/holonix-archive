@@ -1,5 +1,0 @@
-[package]
-name = "holonix_fake_crate"
-version = "0.0.1"
-description = "a fake crate used to test commands"
-license = "GPL-3.0-only"
