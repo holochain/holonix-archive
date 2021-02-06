@@ -3,7 +3,7 @@
 @test "expected holochain version available" {
   result="$(holochain --version)"
   echo $result
-  [[ "$result" == *" 0.0.1" ]]
+  [[ "$result" == *" 0.0.100" ]]
 }
 
 @test "expected dna-util version available" {

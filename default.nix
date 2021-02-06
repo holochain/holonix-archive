@@ -6,18 +6,46 @@
  # allow consumers to pass in their own config
  # fallback to empty sets
  config ? import ./config.nix
- , holo-nixpkgs ? import (fetchTarball {
-   url = "https://github.com/Holo-Host/holo-nixpkgs/archive/7663ff8421a6504cd02658b1d5c44c52e307f001.tar.gz";
-   sha256 = "0adz6gip6pkx332yh3l7qg47kkgxmfxvdzyfvmkrxq2p3sv2bd6g";
- }) {}
+ , holo-nixpkgs ? config.holo-nixpkgs.importFn {}
  , includeHolochainBinaries ? true
+
+ # either of: hpos, develop, main, custom. when "custom" is set, `holochainVersion` needs to be specified
+ , holochainVersionId? "develop"
+ , holochainVersion ? (if holochainVersionId == "custom"
+                       then null
+                       else builtins.getAttr holochainVersionId holo-nixpkgs.holochainVersions
+                      )
+ , holochainOtherDepsNames ? [ "lair-keystore" ]
 }:
+
+assert (holochainVersionId == "custom") -> holochainVersion != null;
+
 let
  pkgs = import holo-nixpkgs.path {
   overlays = holo-nixpkgs.overlays
     ++ [
       (self: super: {
         holonix = ((import <nixpkgs> {}).callPackage or self.callPackage) ./pkgs/holonix.nix { };
+        holonixIntrospect = self.callPackage ./pkgs/holonix-introspect.nix { pkgsOfInterest = self.holochainBinaries; };
+
+        # these are referenced in holochain-s merge script.
+        # ideally we'd expose all packages in this repository in this way.
+        hnRustClippy = builtins.elemAt (self.callPackage ./rust/clippy {}).buildInputs 0;
+        hnRustFmtCheck = builtins.elemAt (self.callPackage ./rust/fmt/check {}).buildInputs 0;
+        hnRustFmtFmt = builtins.elemAt (self.callPackage ./rust/fmt/fmt {}).buildInputs 0;
+        inherit holochainVersionId;
+        holochainBinaries =
+          if !includeHolochainBinaries then {} else
+          if holochainVersionId == "custom" then
+            holo-nixpkgs.mkHolochainAllBinariesWithDeps (holochainVersion // {
+              otherDeps =
+                builtins.map (name: builtins.getAttr name holo-nixpkgs)
+                  holochainOtherDepsNames
+                  ;
+            })
+          else
+            (builtins.getAttr holochainVersionId holo-nixpkgs.holochainAllBinariesWithDeps)
+          ;
       })
     ]
     ;
@@ -59,17 +87,9 @@ let
     happs
     ;
   extraBuildInputs = [
+      pkgs.holonixIntrospect
     ]
-    ++ (
-      if includeHolochainBinaries
-      then with pkgs; [
-        holochain
-        dna-util
-        lair-keystore
-        kitsune-p2p-proxy
-      ]
-      else []
-      )
+    ++ (builtins.attrValues pkgs.holochainBinaries)
     ;
  };
 
