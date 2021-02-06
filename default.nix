@@ -10,7 +10,7 @@
  , includeHolochainBinaries ? true
 
  # either of: hpos, develop, main, custom. when "custom" is set, `holochainVersion` needs to be specified
- , holochainVersionId? "develop"
+ , holochainVersionId? "main"
  , holochainVersion ? (if holochainVersionId == "custom"
                        then null
                        else builtins.getAttr holochainVersionId holo-nixpkgs.holochainVersions
