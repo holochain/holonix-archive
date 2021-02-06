@@ -14,3 +14,8 @@
  [ "$RELEASE_VERSION" == "_._._" ]
  [ "$RELEASE_TAG" == "v_._._" ]
 }
+
+@test "hn-introspect lists holochain" {
+ hn-introspect | egrep '.*- holochain: https://github.com/holochain/holochain/archive/.*.tar.gz.*'
+
+}
