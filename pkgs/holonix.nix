@@ -1,4 +1,4 @@
-{ pkgs }:
+{ pkgs, holochainVersionId, holochainVersion }:
 
 let
   extraSubstitutors = [
@@ -85,7 +85,9 @@ in pkgs.writeShellScriptBin "holonix" ''
     SHELL_DRV_TMP=$(mktemp)
     rm ''${SHELL_DRV_TMP}
 
-    nix-instantiate --add-root "''${SHELL_DRV_TMP}" --indirect ${builtins.toString ./.}/.. -A main
+    nix-instantiate --add-root "''${SHELL_DRV_TMP}" --indirect ${builtins.toString ./.}/.. -A main \
+      --argstr holochainVersionId ${holochainVersionId} \
+      --arg holochainVersion '{ rev = "${holochainVersion.rev}"; sha256 = "${holochainVersion.sha256}"; cargoSha256 = "${holochainVersion.cargoSha256}"; }'
     for ref in `nix-store \
                 --add-root "''${GC_ROOT_DIR}/refquery" --indirect \
                 --query --references "''${SHELL_DRV_TMP}"`;
