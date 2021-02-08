@@ -25,7 +25,9 @@ let
   overlays = holo-nixpkgs.overlays
     ++ [
       (self: super: {
-        holonix = ((import <nixpkgs> {}).callPackage or self.callPackage) ./pkgs/holonix.nix { };
+        holonix = ((import <nixpkgs> {}).callPackage or self.callPackage) ./pkgs/holonix.nix {
+          inherit holochainVersionId holochainVersion;
+        };
         holonixIntrospect = self.callPackage ./pkgs/holonix-introspect.nix { pkgsOfInterest = self.holochainBinaries; };
 
         # these are referenced in holochain-s merge script.
@@ -39,9 +41,10 @@ let
           if holochainVersionId == "custom" then
             holo-nixpkgs.mkHolochainAllBinariesWithDeps (holochainVersion // {
               otherDeps =
-                builtins.map (name: builtins.getAttr name holo-nixpkgs)
-                  holochainOtherDepsNames
-                  ;
+                super.lib.attrsets.filterAttrs (name: value:
+                  super.lib.lists.any (elem: elem == name) holochainOtherDepsNames
+                ) holo-nixpkgs
+                ;
             })
           else
             (builtins.getAttr holochainVersionId holo-nixpkgs.holochainAllBinariesWithDeps)
