@@ -12,7 +12,7 @@ l
 
 #### RSM binaries for Linux
 * holochain: 0.0.1
-* dna-util: 0.0.1 lair-keystore
+* hc: 0.1.0
 * lair-keystore: 0.0.1-alpha.10
 * kitsune-p2p-proxy: 0.0.1
 
