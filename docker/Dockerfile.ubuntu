@@ -1,5 +1,5 @@
 # keep this in sync with Dockerfile.debian
-FROM ubuntu:xenial
+FROM ubuntu:20.10
 
 # @see
 # https://github.com/TerrorJack/pixie/blob/master/.circleci/debian.Dockerfile
@@ -18,9 +18,6 @@ RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 # nix expects the nixbld group
 RUN addgroup --system nixbld
 RUN adduser docker nixbld
-
-# keep this matching nix-shell!
-ENV NIX_PATH nixpkgs=channel:nixos-19.09
 
 # sandbox doesn't play nice with ubuntu (at least in docker)
 RUN mkdir -p /etc/nix && echo 'sandbox = false' > /etc/nix/nix.conf
