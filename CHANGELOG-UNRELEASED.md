@@ -1,7 +1,7 @@
 # Changelog
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
-l
+
 {{ version-heading }}
 
 ### Added
@@ -50,7 +50,6 @@ Binaries are available for Darwin and Linux on `x86_64-linux` and `arm64`.
 ### Deprecated
 
 ### Removed
-* cli (hc)
 * n3c
 * wasm tools
 * rust nightly
