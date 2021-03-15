@@ -6,10 +6,10 @@
   [[ "$result" == *" 0.0.100" ]]
 }
 
-@test "expected dna-util version available" {
-  result="$(dna-util --version)"
+@test "expected hc version available" {
+  result="$(hc --version)"
   echo $result
-  [[ "$result" == *" 0.0.1" ]]
+  [[ "$result" == *" 0.1.0" ]]
 }
 
 @test "expected lair-keystore version available" {
