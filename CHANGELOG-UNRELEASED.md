@@ -46,7 +46,7 @@ Binaries are available for Darwin and Linux on `x86_64-linux` and `arm64`.
 ### Changed
 * perf: 4.19 -> 5.4
 * perf: 5.4 -> 5.10
-* rust: 1.48 -> 1.51
+* rust: 1.48 -> 1.52
 * clippy: 0.0.212 -> 0.1.51
 * Removed the `HC_TARGET_PREFIX` env var in favor of the `NIX_ENV_PREFIX` env var
 
