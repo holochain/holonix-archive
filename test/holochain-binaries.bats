@@ -15,7 +15,7 @@
 @test "expected lair-keystore version available" {
   result="$(lair-keystore --version)"
   echo $result
-  [[ "$result" == *" 0.0.1-alpha.10" ]]
+  [[ "$result" == *" 0.0.1-alpha.12" ]]
 }
 
 @test "expected kitsune-p2p-proxy version available" {
