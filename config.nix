@@ -36,14 +36,14 @@ echo "<your publishing script here>"
   github = rec {
    # can be any github ref
    # branch, tag, commit, etc.
-   ref = "9087a5475208794482ce326c09951e9cd658ea87";
+   ref = "136c236fca858473fe8ac1806659cbfba8bd3597";
 
    # the sha of what is downloaded from the above ref
    # note: even if you change the above ref it will not be redownloaded until
    #       the sha here changes (the sha is the cache key for downloads)
    # note: to get a new sha, get nix to try and download a bad sha
    #       it will complain and tell you the right sha
-   sha256 = "049pl17ijdfjm1x7xgm959x8iafyy986nxddczl36ci6zjv2pbv7";
+   sha256 = "05j5yphbw3q9a3k1il74nbb4wnqni877jz6kpjv86dp4a3q26m0f";
 
    # the github owner of the holonix repo
    owner = "Holo-Host";
