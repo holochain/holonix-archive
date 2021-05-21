@@ -13,7 +13,7 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 #### RSM binaries for Linux
 * holochain: 0.0.1
 * hc: 0.1.0
-* lair-keystore: 0.0.1-alpha.10
+* lair-keystore: 0.0.1-alpha.12
 * kitsune-p2p-proxy: 0.0.1
 
 Binaries are available for Darwin and Linux on `x86_64-linux` and `arm64`.
@@ -45,6 +45,9 @@ Binaries are available for Darwin and Linux on `x86_64-linux` and `arm64`.
 
 ### Changed
 * perf: 4.19 -> 5.4
+* perf: 5.4 -> 5.10
+* rust: 1.48 -> 1.52
+* clippy: 0.0.212 -> 0.1.51
 * Removed the `HC_TARGET_PREFIX` env var in favor of the `NIX_ENV_PREFIX` env var
 
 ### Deprecated

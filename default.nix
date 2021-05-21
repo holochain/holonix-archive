@@ -37,7 +37,6 @@ let
         hnRustFmtFmt = builtins.elemAt (self.callPackage ./rust/fmt/fmt {}).buildInputs 0;
         inherit holochainVersionId;
         holochainBinaries =
-          if !includeHolochainBinaries then {} else
           if holochainVersionId == "custom" then
             holo-nixpkgs.mkHolochainAllBinariesWithDeps (holochainVersion // {
               otherDeps =
@@ -54,7 +53,6 @@ let
     ;
 };
 
- darwin = pkgs.callPackage ./darwin { };
  rust = pkgs.callPackage ./rust {
   inherit config;
  };
@@ -78,7 +76,6 @@ let
  holonix-shell = pkgs.callPackage ./nix-shell {
   inherit
     pkgs
-    darwin
     docs
     git
     linux
@@ -92,7 +89,9 @@ let
   extraBuildInputs = [
       pkgs.holonixIntrospect
     ]
-    ++ (builtins.attrValues pkgs.holochainBinaries)
+    ++ (if !includeHolochainBinaries then [] else
+      (builtins.attrValues pkgs.holochainBinaries)
+    )
     ;
  };
 
@@ -106,12 +105,11 @@ in rec
   pkgs
   # expose other things
   rust
-  darwin
   ;
 
  # export the set used to build shell alongside the main derivation
  # downstream devs can extend/override the shell as needed
  # holonix-shell provides canonical dev shell for generic work
  shell = derivation-safe-holonix-shell;
- main = pkgs.mkShell derivation-safe-holonix-shell;
+ main = derivation-safe-holonix-shell;
 }
