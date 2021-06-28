@@ -9,7 +9,7 @@
 @test "expected hc version available" {
   result="$(hc --version)"
   echo $result
-  [[ "$result" == *" 0.1.0" ]]
+  [[ "$result" == *" 0.0.1-dev.0" ]]
 }
 
 @test "expected lair-keystore version available" {
