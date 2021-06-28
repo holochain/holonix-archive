@@ -7,10 +7,3 @@
  echo $result
  [[ "$result" == *0.1.53* ]]
 }
-
-@test "clippy smoke test" {
- # the clippy target directory should have been created
- clippy_target_dir="$CARGO_TARGET_DIR/clippy"
- [[ "$clippy_target_dir" == "$PWD"/target/clippy ]]
- [ -d "$clippy_target_dir" ]
-}
