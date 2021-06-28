@@ -5,6 +5,8 @@ let
  name = "hn-test";
 
  script = pkgs.writeShellScriptBin name ''
+set -e
+
 bats ./test/clippy.bats
 # TODO: revisit when decided on a new gihtub-release binary
 # bats ./test/github-release.bats
