@@ -3,13 +3,13 @@
 @test "expected holochain version available" {
   result="$(holochain --version)"
   echo $result
-  [[ "$result" == *" 0.0.100" ]]
+  [[ "$result" == *" 0.0.101" ]]
 }
 
 @test "expected hc version available" {
   result="$(hc --version)"
   echo $result
-  [[ "$result" == *" 0.0.1-dev.0" ]]
+  [[ "$result" == *" 0.0.2" ]]
 }
 
 @test "expected lair-keystore version available" {
