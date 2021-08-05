@@ -7,7 +7,8 @@
  # fallback to empty sets
  config ? import ./config.nix
  , holo-nixpkgs ? config.holo-nixpkgs.importFn {}
- , includeHolochainBinaries ? true
+ , includeHolochainBinaries ? include.holochainBinaries or true
+ , include ? { }
 
  # either of: hpos, develop, main, custom. when "custom" is set, `holochainVersion` needs to be specified
  , holochainVersionId? "develop"
@@ -51,38 +52,52 @@ let
       })
     ]
     ;
+
 };
 
- rust = pkgs.callPackage ./rust {
-  inherit config;
+ components = {
+  rust = pkgs.callPackage ./rust {
+     inherit config;
+  };
+  node = pkgs.callPackage ./node { };
+  git = pkgs.callPackage ./git { };
+  linux = pkgs.callPackage ./linux { };
+  docs = pkgs.callPackage ./docs { };
+  openssl = pkgs.callPackage ./openssl { };
+  release = pkgs.callPackage ./release {
+   config = config;
+  };
+  test = pkgs.callPackage ./test {
+    inherit
+     pkgs
+     config
+     ;
+  };
+  happs = pkgs.callPackage ./happs { };
  };
 
- node = pkgs.callPackage ./node { };
- git = pkgs.callPackage ./git { };
- linux = pkgs.callPackage ./linux { };
- docs = pkgs.callPackage ./docs { };
- openssl = pkgs.callPackage ./openssl { };
- release = pkgs.callPackage ./release {
-  config = config;
- };
- test = pkgs.callPackage ./test {
-   inherit
-    pkgs
-    config
-    ;
- };
- happs = pkgs.callPackage ./happs { };
+ optionalComponents = pkgs.lib.mapAttrs (name: value:
+    if include."${name}" or true
+    then value
+    else { buildInputs = []; }
+ ) components;
 
  holonix-shell = pkgs.callPackage ./nix-shell {
   inherit
     pkgs
+    ;
+
+  inherit (components)
+    rust
+    ;
+
+  inherit (optionalComponents)
     docs
     git
     linux
     node
     openssl
     release
-    rust
     test
     happs
     ;
@@ -104,6 +119,9 @@ in rec
   holo-nixpkgs
   pkgs
   # expose other things
+  ;
+
+inherit (components)
   rust
   ;
 
