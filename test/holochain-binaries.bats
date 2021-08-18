@@ -3,23 +3,23 @@
 @test "expected holochain version available" {
   result="$(holochain --version)"
   echo $result
-  [[ "$result" == *" 0.0.100" ]]
+  [[ "$result" == *" 0.0.103" ]]
 }
 
 @test "expected hc version available" {
   result="$(hc --version)"
   echo $result
-  [[ "$result" == *" 0.0.1-dev.0" ]]
+  [[ "$result" == *" 0.0.4" ]]
 }
 
 @test "expected lair-keystore version available" {
   result="$(lair-keystore --version)"
   echo $result
-  [[ "$result" == *" 0.0.1-alpha.12" ]]
+  [[ "$result" == *" 0.0.3" ]]
 }
 
 @test "expected kitsune-p2p-proxy version available" {
   result="$(kitsune-p2p-proxy --version)"
   echo $result
-  [[ "$result" == *" 0.0.1" ]]
+  [[ "$result" == *" 0.0.3" ]]
 }

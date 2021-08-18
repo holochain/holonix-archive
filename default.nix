@@ -6,7 +6,7 @@
  # allow consumers to pass in their own config
  # fallback to empty sets
  config ? import ./config.nix
- , holo-nixpkgs ? config.holo-nixpkgs.importFn {}
+ , holochain-nixpkgs ? config.holochain-nixpkgs.importFn {}
  , includeHolochainBinaries ? include.holochainBinaries or true
  , include ? { }
 
@@ -14,16 +14,16 @@
  , holochainVersionId? "develop"
  , holochainVersion ? (if holochainVersionId == "custom"
                        then null
-                       else builtins.getAttr holochainVersionId holo-nixpkgs.holochainVersions
+                       else builtins.getAttr holochainVersionId holochain-nixpkgs.packages.holochainVersions
                       )
- , holochainOtherDepsNames ? [ "lair-keystore" ]
+ , holochainOtherDepsNames ? [ ]
 }:
 
 assert (holochainVersionId == "custom") -> holochainVersion != null;
 
 let
- pkgs = import holo-nixpkgs.path {
-  overlays = holo-nixpkgs.overlays
+ pkgs = import holochain-nixpkgs.pkgs.path {
+  overlays = (builtins.attrValues holochain-nixpkgs.overlays)
     ++ [
       (self: super: {
         holonix = ((import <nixpkgs> {}).callPackage or self.callPackage) ./pkgs/holonix.nix {
@@ -39,15 +39,15 @@ let
         inherit holochainVersionId;
         holochainBinaries =
           if holochainVersionId == "custom" then
-            holo-nixpkgs.mkHolochainAllBinariesWithDeps (holochainVersion // {
-              otherDeps =
-                super.lib.attrsets.filterAttrs (name: value:
-                  super.lib.lists.any (elem: elem == name) holochainOtherDepsNames
-                ) holo-nixpkgs
-                ;
+            holochain-nixpkgs.packages.mkHolochainAllBinariesWithDeps (holochainVersion // {
+              # otherDeps =
+              #   super.lib.attrsets.filterAttrs (name: value:
+              #     super.lib.lists.any (elem: elem == name) holochainOtherDepsNames
+              #   ) holochain-nixpkgs.pkgs
+              #   ;
             })
           else
-            (builtins.getAttr holochainVersionId holo-nixpkgs.holochainAllBinariesWithDeps)
+            (builtins.getAttr holochainVersionId holochain-nixpkgs.packages.holochainAllBinariesWithDeps)
           ;
       })
     ]
@@ -116,7 +116,7 @@ let
 in rec
 {
  inherit
-  holo-nixpkgs
+  holochain-nixpkgs
   pkgs
   # expose other things
   ;

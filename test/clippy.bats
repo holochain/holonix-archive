@@ -5,5 +5,5 @@
 @test "clippy version" {
  result="$( cargo clippy --version )"
  echo $result
- [[ "$result" == *0.1.53* ]]
+ [[ "$result" == *0.1.* ]]
 }
