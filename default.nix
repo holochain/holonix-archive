@@ -16,6 +16,7 @@
                        then null
                        else builtins.getAttr holochainVersionId holochain-nixpkgs.packages.holochainVersions
                       )
+  # DEPRECRATED: this is no longer used
  , holochainOtherDepsNames ? [ ]
 }:
 
@@ -39,13 +40,7 @@ let
         inherit holochainVersionId;
         holochainBinaries =
           if holochainVersionId == "custom" then
-            holochain-nixpkgs.packages.mkHolochainAllBinariesWithDeps (holochainVersion // {
-              # otherDeps =
-              #   super.lib.attrsets.filterAttrs (name: value:
-              #     super.lib.lists.any (elem: elem == name) holochainOtherDepsNames
-              #   ) holochain-nixpkgs.pkgs
-              #   ;
-            })
+            holochain-nixpkgs.packages.mkHolochainAllBinariesWithDeps holochainVersion
           else
             (builtins.getAttr holochainVersionId holochain-nixpkgs.packages.holochainAllBinariesWithDeps)
           ;

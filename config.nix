@@ -59,14 +59,15 @@ echo "<your publishing script here>"
    path = ../holochain-nixpkgs;
   };
 
-  importFn = _: import (
-     if use-github
-     then builtins.fetchTarball (with github; {
-        url = "https://github.com/${owner}/${repo}/archive/${ref}.tar.gz";
-        inherit sha256; }
-       )
-     else local.path
-    ) {}
+  pathFn = _:
+    if use-github
+    then builtins.fetchTarball (with github; {
+       url = "https://github.com/${owner}/${repo}/archive/${ref}.tar.gz";
+       inherit sha256; }
+      )
+    else local.path
     ;
+
+  importFn = _: import (pathFn { }) {};
  };
 }

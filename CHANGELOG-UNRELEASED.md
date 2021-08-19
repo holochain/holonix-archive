@@ -18,30 +18,15 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 Binaries are available for Darwin and Linux on `x86_64-linux` and `arm64`.
 
-#### Configurable holochain/holo-nixpkgs versions
-* Add a section for holo-nixpkgs to config.nix
+#### Configurable holochain/holochain-nixpkgs versions
+* Add a section for holochain-nixpkgs to config.nix
 * Introduce arguments for choosing the included holochain binaries:
+
   * holochainVersionId: can be one of "hpos", "main", "develop", or "custom" as of now.
-  * holochainVersion: if `holochainVersionId` is "custom", this specifies a set with holochain source information. Example:
-    ```nix
-      version = "2021-02-05";
-      rev = "fd8049a48ac12ef3e190b48a79ffe8d8b5948caa";
-      sha256 = "065kkmmr8b5ngjqpr7amd7l4dcakj2njx168qvr5z47mmqs9xbgw";
-      cargoSha256 = "1ix8ihlizjsmx8xaaxknbl0wkyck3kc98spipx5alav8ln4wf46s";
-    ```
+  * holochainVersion: if `holochainVersionId` is "custom", this specifies a set with holochain source information.
+  * include: a set that controls which components to include in the shell
 
-    Altogether the invocation could look like:
-    ```console
-        nix-shell . --argstr holochainVersionId "custom" --arg holochainVersion '{
-          version = "custom";
-          rev = "fd8049a48ac12ef3e190b48a79ffe8d8b5948caa";
-          sha256 = "065kkmmr8b5ngjqpr7amd7l4dcakj2njx168qvr5z47mmqs9xbgw";
-          cargoSha256 = "1ix8ihlizjsmx8xaaxknbl0wkyck3kc98spipx5alav8ln4wf46s";
-        }'
-    ```
-  * holochainOtherDepsNames: list of package names to include in the shell. Names are keys to `holo-nixpkgs`. Example that is also the default: `[ "lair-keystore" ]`
-
-
+    Please see the files in _examples/_ for a usage examples.
 
 ### Changed
 * perf: 4.19 -> 5.4
