@@ -5,7 +5,7 @@
 @test "rustc version" {
  result="$( rustc --version )"
  echo $result
- [[ "$result" == *1.53.0* ]]
+ [[ "$result" == *1.54.0* ]]
 }
 
 # the rust fmt version should be roughly the rustc version

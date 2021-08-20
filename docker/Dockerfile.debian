@@ -19,9 +19,6 @@ RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 RUN addgroup --system nixbld
 RUN adduser docker nixbld
 
-# keep this matching nix-shell!
-ENV NIX_PATH nixpkgs=channel:nixos-19.09
-
 # sandbox doesn't play nice with ubuntu (at least in docker)
 RUN mkdir -p /etc/nix && echo 'sandbox = false' > /etc/nix/nix.conf
 
@@ -33,11 +30,3 @@ WORKDIR /home/docker
 # https://nixos.wiki/wiki/Nix_Installation_Guide#Single-user_install
 RUN sudo install -d -m755 -o $(id -u) -g $(id -g) /nix
 RUN curl -L https://nixos.org/nix/install | sh
-
-# Set up Holo's Hydra cache
-ADD ./ci/setup-hydra-cache.sh ci/setup-hydra-cache.sh
-RUN ./ci/setup-hydra-cache.sh
-
-# warm nix and avoid warnings about missing channels
-# https://github.com/NixOS/nixpkgs/issues/40165
-RUN . /home/docker/.nix-profile/etc/profile.d/nix.sh; nix-channel --update; nix-shell https://holochain.love --run echo;
