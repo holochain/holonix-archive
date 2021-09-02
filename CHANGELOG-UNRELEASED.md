@@ -22,7 +22,7 @@ Binaries are available for Darwin and Linux on `x86_64-linux` and `arm64`.
 * Add a section for holochain-nixpkgs to config.nix
 * Introduce arguments for choosing the included holochain binaries:
 
-  * holochainVersionId: can be one of "hpos", "main", "develop", or "custom" as of now.
+  * holochainVersionId: can be one of "main", "develop", or "custom" as of now.
   * holochainVersion: if `holochainVersionId` is "custom", this specifies a set with holochain source information.
   * include: a set that controls which components to include in the shell
   * rustVersion: allows overriding the nix-shell's rust version. examples:
