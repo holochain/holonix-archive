@@ -1,14 +1,14 @@
 {
     "holochain-nixpkgs": {
-        "branch": "develop",
+        "branch": "pr/rust-version-selection",
         "description": null,
         "homepage": null,
         "owner": "holochain",
         "repo": "holochain-nixpkgs",
-        "rev": "d0f3b630accce342c8cb0f2d2a6b62c4c830b7b3",
-        "sha256": "16shl1nz2wymf4bp2055qi75j4lim517nikczgzbm2j9x00ilkf3",
+        "rev": "fa846e309438a7f982412eb2b3e72110d3da6332",
+        "sha256": "0n9hvjzmzvs07255rap99ijf3zv9vmnxaimsrbnclqci52dbvhwa",
         "type": "tarball",
-        "url": "https://github.com/holochain/holochain-nixpkgs/archive/d0f3b630accce342c8cb0f2d2a6b62c4c830b7b3.tar.gz",
+        "url": "https://github.com/holochain/holochain-nixpkgs/archive/fa846e309438a7f982412eb2b3e72110d3da6332.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "niv": {

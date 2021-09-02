@@ -18,7 +18,17 @@
                       )
   # DEPRECRATED: this is no longer used
  , holochainOtherDepsNames ? [ ]
+
+ , rustVersion ? {}
+ , rustc ? (if rustVersion == {}
+            then holochain-nixpkgs.pkgs.rust.packages.stable.rust.rustc
+            else holochain-nixpkgs.pkgs.rust.mkRust ({
+              track = "stable";
+              version = "1.54.0";
+            } // (if rustVersion != null then rustVersion else {}))
+           )
 }:
+
 
 assert (holochainVersionId == "custom") -> holochainVersion != null;
 
@@ -52,7 +62,7 @@ let
 
  components = {
   rust = pkgs.callPackage ./rust {
-     inherit config;
+     inherit config rustc;
   };
   node = pkgs.callPackage ./node { };
   git = pkgs.callPackage ./git { };

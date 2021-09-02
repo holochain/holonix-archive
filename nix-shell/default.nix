@@ -13,7 +13,7 @@
  happs
 , extraBuildInputs
 }:
-pkgs.mkShell {
+(pkgs.mkShell {
  name = "holonix-shell";
 
  # non-nixos OS can have a "dirty" setup with rustup installed for the current
@@ -91,4 +91,6 @@ pkgs.mkShell {
  ;
 
  inputsFrom = builtins.attrValues pkgs.holochainBinaries;
-}
+}).overrideAttrs(attrs: {
+  nativeBuildInputs = builtins.filter (el: (builtins.match ".*(rust|cargo).*" el.name) == null) attrs.nativeBuildInputs;
+})
