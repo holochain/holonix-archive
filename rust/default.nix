@@ -1,4 +1,4 @@
-{ pkgs, config }:
+{ pkgs, config, rustc ? pkgs.rust.packages.stable.rust.rustc }:
 let
   rust = import ./config.nix;
 in
@@ -14,7 +14,7 @@ rust //
   pkgs.pkgconfig
   pkgs.cargo-make
   pkgs.curl
-  pkgs.rust.packages.stable.rust.rustc
+  rustc
  ]
  ++ (if pkgs.stdenv.isLinux then [ pkgs.kcov ] else [])
  ++ (pkgs.callPackage ./clippy { }).buildInputs
