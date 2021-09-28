@@ -10,7 +10,7 @@
  , includeHolochainBinaries ? include.holochainBinaries or true
  , include ? { }
 
- # either of: hpos, develop, main, custom. when "custom" is set, `holochainVersion` needs to be specified
+ # either of: develop, main, custom. when "custom" is set, `holochainVersion` needs to be specified
  , holochainVersionId? "develop"
  , holochainVersion ? (if holochainVersionId == "custom"
                        then null

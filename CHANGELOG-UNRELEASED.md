@@ -11,10 +11,10 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 * `hn-introspect` script to list which holochain packages were pulled in for the nix-shell
 
 #### RSM binaries for Linux
-* holochain: 0.0.103
-* hc: 0.0.4
-* lair-keystore: 0.0.3
-* kitsune-p2p-proxy: 0.0.3
+* holochain: 0.0.107
+* hc: 0.0.8
+* lair-keystore: 0.0.4
+* kitsune-p2p-proxy: 0.0.6
 
 Binaries are available for Darwin and Linux on `x86_64-linux` and `arm64`.
 
