@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 set -xe
 mkdir -p ~/.config/nix/
 cat > ~/.config/nix/nix.conf << 'EOF'

@@ -1,3 +1,3 @@
 # Holonix
 
-Read all about it at https://docs.holochain.love
+Read all about it at https://developer.holochain.org/docs/install/

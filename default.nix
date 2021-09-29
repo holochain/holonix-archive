@@ -6,23 +6,35 @@
  # allow consumers to pass in their own config
  # fallback to empty sets
  config ? import ./config.nix
- , holo-nixpkgs ? config.holo-nixpkgs.importFn {}
- , includeHolochainBinaries ? true
+ , holochain-nixpkgs ? config.holochain-nixpkgs.importFn {}
+ , includeHolochainBinaries ? include.holochainBinaries or true
+ , include ? { }
 
- # either of: hpos, develop, main, custom. when "custom" is set, `holochainVersion` needs to be specified
+ # either of: develop, main, custom. when "custom" is set, `holochainVersion` needs to be specified
  , holochainVersionId? "main"
  , holochainVersion ? (if holochainVersionId == "custom"
                        then null
-                       else builtins.getAttr holochainVersionId holo-nixpkgs.holochainVersions
+                       else builtins.getAttr holochainVersionId holochain-nixpkgs.packages.holochainVersions
                       )
- , holochainOtherDepsNames ? [ "lair-keystore" ]
+  # DEPRECRATED: this is no longer used
+ , holochainOtherDepsNames ? [ ]
+
+ , rustVersion ? {}
+ , rustc ? (if rustVersion == {}
+            then holochain-nixpkgs.pkgs.rust.packages.stable.rust.rustc
+            else holochain-nixpkgs.pkgs.rust.mkRust ({
+              track = "stable";
+              version = "1.54.0";
+            } // (if rustVersion != null then rustVersion else {}))
+           )
 }:
+
 
 assert (holochainVersionId == "custom") -> holochainVersion != null;
 
 let
- pkgs = import holo-nixpkgs.path {
-  overlays = holo-nixpkgs.overlays
+ pkgs = import holochain-nixpkgs.pkgs.path {
+  overlays = (builtins.attrValues holochain-nixpkgs.overlays)
     ++ [
       (self: super: {
         holonix = ((import <nixpkgs> {}).callPackage or self.callPackage) ./pkgs/holonix.nix {
@@ -37,62 +49,69 @@ let
         hnRustFmtFmt = builtins.elemAt (self.callPackage ./rust/fmt/fmt {}).buildInputs 0;
         inherit holochainVersionId;
         holochainBinaries =
-          if !includeHolochainBinaries then {} else
           if holochainVersionId == "custom" then
-            holo-nixpkgs.mkHolochainAllBinariesWithDeps (holochainVersion // {
-              otherDeps =
-                super.lib.attrsets.filterAttrs (name: value:
-                  super.lib.lists.any (elem: elem == name) holochainOtherDepsNames
-                ) holo-nixpkgs
-                ;
-            })
+            holochain-nixpkgs.packages.mkHolochainAllBinariesWithDeps holochainVersion
           else
-            (builtins.getAttr holochainVersionId holo-nixpkgs.holochainAllBinariesWithDeps)
+            (builtins.getAttr holochainVersionId holochain-nixpkgs.packages.holochainAllBinariesWithDeps)
           ;
       })
     ]
     ;
+
 };
 
- darwin = pkgs.callPackage ./darwin { };
- rust = pkgs.callPackage ./rust {
-  inherit config;
+ components = {
+  rust = pkgs.callPackage ./rust {
+     inherit config rustc;
+  };
+  node = pkgs.callPackage ./node { };
+  git = pkgs.callPackage ./git { };
+  linux = pkgs.callPackage ./linux { };
+  docs = pkgs.callPackage ./docs { };
+  openssl = pkgs.callPackage ./openssl { };
+  release = pkgs.callPackage ./release {
+   config = config;
+  };
+  test = pkgs.callPackage ./test {
+    inherit
+     pkgs
+     config
+     ;
+  };
+  happs = pkgs.callPackage ./happs { };
  };
 
- node = pkgs.callPackage ./node { };
- git = pkgs.callPackage ./git { };
- linux = pkgs.callPackage ./linux { };
- docs = pkgs.callPackage ./docs { };
- openssl = pkgs.callPackage ./openssl { };
- release = pkgs.callPackage ./release {
-  config = config;
- };
- test = pkgs.callPackage ./test {
-   inherit
-    pkgs
-    config
-    ;
- };
- happs = pkgs.callPackage ./happs { };
+ optionalComponents = pkgs.lib.mapAttrs (name: value:
+    if include."${name}" or true
+    then value
+    else { buildInputs = []; }
+ ) components;
 
  holonix-shell = pkgs.callPackage ./nix-shell {
   inherit
     pkgs
-    darwin
+    ;
+
+  inherit (components)
+    rust
+    ;
+
+  inherit (optionalComponents)
     docs
     git
     linux
     node
     openssl
     release
-    rust
     test
     happs
     ;
   extraBuildInputs = [
       pkgs.holonixIntrospect
     ]
-    ++ (builtins.attrValues pkgs.holochainBinaries)
+    ++ (if !includeHolochainBinaries then [] else
+      (builtins.attrValues pkgs.holochainBinaries)
+    )
     ;
  };
 
@@ -102,16 +121,18 @@ let
 in rec
 {
  inherit
-  holo-nixpkgs
+  holochain-nixpkgs
   pkgs
   # expose other things
+  ;
+
+inherit (components)
   rust
-  darwin
   ;
 
  # export the set used to build shell alongside the main derivation
  # downstream devs can extend/override the shell as needed
  # holonix-shell provides canonical dev shell for generic work
  shell = derivation-safe-holonix-shell;
- main = pkgs.mkShell derivation-safe-holonix-shell;
+ main = derivation-safe-holonix-shell;
 }

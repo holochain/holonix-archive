@@ -30,43 +30,21 @@ echo "<your publishing script here>"
   };
  };
 
- holo-nixpkgs = rec {
+ holochain-nixpkgs = rec {
   use-github = true;
-
-  github = rec {
-   # can be any github ref
-   # branch, tag, commit, etc.
-   ref = "95bbba1f4618216814fdbda1d0077beda8b58942";
-
-   # the sha of what is downloaded from the above ref
-   # note: even if you change the above ref it will not be redownloaded until
-   #       the sha here changes (the sha is the cache key for downloads)
-   # note: to get a new sha, get nix to try and download a bad sha
-   #       it will complain and tell you the right sha
-   sha256 = "1nrp4466dvk8crz1xsal77ycsbd4hr6a6ah1al9n9j2kjz5a5w7v";
-
-   # the github owner of the holonix repo
-   owner = "Holo-Host";
-
-   # the name of the holonix repo
-   repo = "holo-nixpkgs";
-
-  };
 
   # configuration for when use-github = false
   local = {
    # the path to the local holonix copy
-   path = ../holo-nixpkgs;
+   path = ../holochain-nixpkgs;
   };
 
-  importFn = _: import (
-     if use-github
-     then builtins.fetchTarball (with github; {
-        url = "https://github.com/${owner}/${repo}/archive/${ref}.tar.gz";
-        inherit sha256; }
-       )
-     else local.path
-    ) {}
+  pathFn = _:
+    if use-github
+    then (import ./nix/sources.nix).holochain-nixpkgs
+    else local.path
     ;
+
+  importFn = _: import (pathFn { }) {};
  };
 }
