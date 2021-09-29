@@ -5,12 +5,5 @@
 @test "clippy version" {
  result="$( cargo clippy --version )"
  echo $result
- [[ "$result" == *0.0.212* ]]
-}
-
-@test "clippy smoke test" {
- # the clippy target directory should have been created
- clippy_target_dir="$CARGO_TARGET_DIR/clippy"
- [[ "$clippy_target_dir" == "$PWD"/target/clippy ]]
- [ -d "$clippy_target_dir" ]
+ [[ "$result" == *0.1.* ]]
 }

@@ -14,54 +14,53 @@ commands:
           no_output_timeout: 30m
           command: ./docker/build << parameters.box >> $CIRCLE_BRANCH
       - run: ./docker/push << parameters.box >> $CIRCLE_BRANCH
+  nix-prepare-test-push:
+    steps:
+      - checkout
+      - run:
+          name: prepare nix
+          command: |
+            . $HOME/.nix-profile/etc/profile.d/nix.sh
+            ./ci/setup-hydra-cache.sh
+            ./ci/cachix.sh setup
+      - run:
+          name: tests
+          command: |
+            . $HOME/.nix-profile/etc/profile.d/nix.sh
+            nix-shell --run echo
+            nix-shell --run hn-test
+            # TODO: decide whether or not we want to keep this
+            # HN_VERBOSE=true $(nix-build . --no-link -A pkgs.holonix)/bin/holonix --run hn-test
+      - run:
+          name: push to cachix
+          command: |
+            . $HOME/.nix-profile/etc/profile.d/nix.sh
+            ./ci/cachix.sh push
 
 jobs:
   build:
     docker:
-      - image: holochain/holonix:latest
+      - image: nixos/nix:latest
+        environment:
+          CACHIX_NAME: holochain-ci
     steps:
-      - checkout
-
-      - run:
-          name: Set up Holo's Hydra cache
-          command: ./ci/setup-hydra-cache.sh
-
-      # warm nix
-      - run: nix-shell --run echo
-
-      # run env tests
-      - run: ./test/environment.sh
-
-      # run shell tests
-      - run: nix-shell --run hn-test
+      - nix-prepare-test-push
 
   debian:
     docker:
       - image: holochain/holonix:debian
+        environment:
+          CACHIX_NAME: holochain-ci
     steps:
-      - checkout
-      - run:
-          command: |
-            ./ci/setup-hydra-cache.sh
-            . /home/docker/.nix-profile/etc/profile.d/nix.sh
-            nix-shell --run echo
-            nix-shell --run hn-test
-            HN_VERBOSE=true $(nix-build . --no-link -A pkgs.holonix)/bin/holonix --run hn-test
+      - nix-prepare-test-push
 
   ubuntu:
     docker:
       - image: holochain/holonix:ubuntu
+        environment:
+          CACHIX_NAME: holochain-ci
     steps:
-      - checkout
-      - run:
-          name: Set up Holo's Hydra cache
-          command: ./ci/setup-hydra-cache.sh
-      - run:
-          command: |
-            . /home/docker/.nix-profile/etc/profile.d/nix.sh
-            nix-shell --run echo
-            nix-shell --run hn-test
-            HN_VERBOSE=true $(nix-build . --no-link -A pkgs.holonix)/bin/holonix --run hn-test
+      - nix-prepare-test-push
 
   # THIS IS SECURITY SENSITVE
   # READ THESE
@@ -69,7 +68,7 @@ jobs:
   # https://discuss.circleci.com/t/adding-ssh-keys-fails/7747/24
   deploy-github-pages:
     docker:
-      - image: holochain/holonix:latest
+      - image: nixos/nix:latest
     steps:
       - add_ssh_keys:
           fingerprints:
@@ -78,6 +77,9 @@ jobs:
       - run:
           name: Set up Holo's Hydra cache
           command: ./ci/setup-hydra-cache.sh
+      - run:
+          name: Set up Cachix
+          command: ./ci/cachix.sh setup
       - run:
           name: Deploy github pages
           command: |
@@ -90,31 +92,17 @@ jobs:
       xcode: "12.0.0"
     environment:
       NIXPKGS_ALLOW_UNFREE: 1
+      CACHIX_NAME: holochain-ci
     steps:
       - checkout
       - run:
-          name: Set up Holo's Hydra cache
-          command: ./ci/setup-hydra-cache.sh
-      - run:
-          name: Standard tests
-          no_output_timeout: 30m
+          name: install nix
           command: |
             # fix for "too many open files" that breaks tokio and lmdb
             ulimit -n 10240
             # catalina nixos install
             sh <(curl -L https://nixos.org/nix/install) --darwin-use-unencrypted-nix-store-volume
-            . /Users/distiller/.nix-profile/etc/profile.d/nix.sh
-            # do tests
-            nix-shell --run echo
-            nix-shell --run hn-test
-            HN_VERBOSE=true $(nix-build . --no-link -A pkgs.holonix)/bin/holonix --run hn-test
-
-  docker-build-latest:
-    resource_class: large
-    machine: true
-    steps:
-      - build-docker:
-          box: latest
+      - nix-prepare-test-push
 
   docker-build-ubuntu:
     resource_class: large
@@ -130,13 +118,6 @@ jobs:
       - build-docker:
           box: debian
 
-  docker-build-minimal:
-    resource_class: large
-    machine: true
-    steps:
-      - build-docker:
-          box: minimal
-
 workflows:
   version: 2
   tests:
@@ -145,15 +126,6 @@ workflows:
       - debian
       - ubuntu
       - mac
-      - docker-build-latest:
-          filters:
-            branches:
-              only:
-                - love
-                - master
-                - develop
-          requires:
-            - build
       - docker-build-ubuntu:
           filters:
             branches:
@@ -164,15 +136,6 @@ workflows:
           requires:
             - build
       - docker-build-debian:
-          filters:
-            branches:
-              only:
-                - love
-                - master
-                - develop
-          requires:
-            - build
-      - docker-build-minimal:
           filters:
             branches:
               only:

@@ -19,3 +19,14 @@
  hn-introspect | egrep '.*- holochain: https://github.com/holochain/holochain/archive/.*.tar.gz.*'
 
 }
+
+@test "exclude components" {
+ nix-shell --pure ./default.nix --arg include '{ holochainBinaries = false; node = false; happs = false; }' --run '
+    for cmd in holochain hc node; do
+        if type -f $cmd; then
+            echo error: did not expect to find $cmd
+            exit 1
+        fi
+    done
+ '
+}

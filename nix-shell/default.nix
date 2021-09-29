@@ -1,5 +1,6 @@
 {
  pkgs,
+ stdenv,
  darwin,
  docs,
  git,
@@ -12,7 +13,7 @@
  happs
 , extraBuildInputs
 }:
-{
+(pkgs.mkShell {
  name = "holonix-shell";
 
  # non-nixos OS can have a "dirty" setup with rustup installed for the current
@@ -60,7 +61,6 @@
  export CARGO_TARGET_DIR="$NIX_ENV_PREFIX/target"
  export CARGO_CACHE_RUSTC_INFO=1
  export PATH="$CARGO_INSTALL_ROOT/bin:$PATH"
- export NIX_LDFLAGS="${darwin.ld-flags}$NIX_LDFLAGS"
  export NIX_BUILD_SHELL=${pkgs.bashInteractive}/bin/bash
 
  # https://github.com/holochain/holonix/issues/12
@@ -74,9 +74,9 @@
 
   #flame graph dep
   pkgs.flamegraph
- ] ++ builtins.foldl' (sum: elem: sum ++ elem.buildInputs) [] [
+ ]
+ ++ (builtins.foldl' (sum: elem: sum ++ elem.buildInputs) [] [
   (pkgs.callPackage ./flush { })
-  darwin
   docs
   git
   linux
@@ -86,5 +86,11 @@
   rust
   test
   happs
- ] ++ extraBuildInputs;
-}
+ ])
+ ++ extraBuildInputs
+ ;
+
+ inputsFrom = builtins.attrValues pkgs.holochainBinaries;
+}).overrideAttrs(attrs: {
+  nativeBuildInputs = builtins.filter (el: (builtins.match ".*(rust|cargo).*" el.name) == null) attrs.nativeBuildInputs;
+})
