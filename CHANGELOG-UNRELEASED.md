@@ -9,6 +9,8 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
     `$(nix-build https://nightly.holochain.love --no-link -A pkgs.holonix)/bin/holonix`
 
+* `binaryen` tool as part of the _happs_ component
+
 #### RSM binaries for `arm64`
 
 Binaries are now available for Darwin and Linux `arm64` as well

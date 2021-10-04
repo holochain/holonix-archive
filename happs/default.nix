@@ -15,6 +15,8 @@ in
    node
    clang
    pkgs.yarn
+
+   pkgs.binaryen
  ]
  ++ (pkgs.callPackage ./scaffold { }).buildInputs
  ++ (pkgs.callPackage ./create { }).buildInputs
