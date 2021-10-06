@@ -11,7 +11,7 @@
  , include ? { }
 
  # either of: develop, main, custom. when "custom" is set, `holochainVersion` needs to be specified
- , holochainVersionId? "develop"
+ , holochainVersionId? "main"
  , holochainVersion ? (if holochainVersionId == "custom"
                        then null
                        else builtins.getAttr holochainVersionId holochain-nixpkgs.packages.holochainVersions
