@@ -7,6 +7,7 @@ FROM ubuntu:20.10
 
 # linux docker does not ship with much
 RUN apt-get update
+RUN apt-get dist-upgrade
 RUN apt-get install -y sudo xz-utils curl
 
 # nix does not work under root

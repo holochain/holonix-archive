@@ -48,7 +48,7 @@ jobs:
 
   debian:
     docker:
-      - image: holochain/holonix:debian
+      - image: holochain/holonix:debian.develop
         environment:
           CACHIX_NAME: holochain-ci
     steps:
@@ -56,7 +56,7 @@ jobs:
 
   ubuntu:
     docker:
-      - image: holochain/holonix:ubuntu
+      - image: holochain/holonix:ubuntu.develop
         environment:
           CACHIX_NAME: holochain-ci
     steps:
@@ -89,7 +89,10 @@ jobs:
 
   mac:
     macos:
-      xcode: "12.0.0"
+      # reference the Big Sur + Xcode 12.5 preview image
+      xcode: 12.5.1
+    # use the Big Sur preview resource class
+    resource_class: m2.medium
     environment:
       NIXPKGS_ALLOW_UNFREE: 1
       CACHIX_NAME: holochain-ci
