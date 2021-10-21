@@ -37,10 +37,14 @@ let
   overlays = (builtins.attrValues holochain-nixpkgs.overlays)
     ++ [
       (self: super: {
+        custom_rustc = rustc;
+
         holonix = ((import <nixpkgs> {}).callPackage or self.callPackage) ./pkgs/holonix.nix {
           inherit holochainVersionId holochainVersion;
         };
-        holonixIntrospect = self.callPackage ./pkgs/holonix-introspect.nix { pkgsOfInterest = self.holochainBinaries; };
+        holonixIntrospect = self.callPackage ./pkgs/holonix-introspect.nix {
+          inherit (self) holochainBinaries;
+        };
 
         # these are referenced in holochain-s merge script.
         # ideally we'd expose all packages in this repository in this way.
