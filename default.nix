@@ -16,9 +16,6 @@
                        then null
                        else builtins.getAttr holochainVersionId holochain-nixpkgs.packages.holochainVersions
                       )
-  # DEPRECRATED: this is no longer used
- , holochainOtherDepsNames ? [ ]
-
  , rustVersion ? {}
  , rustc ? (if rustVersion == {}
             then holochain-nixpkgs.pkgs.rust.packages.stable.rust.rustc
