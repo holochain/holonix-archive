@@ -16,7 +16,7 @@
 }
 
 @test "hn-introspect lists holochain" {
- hn-introspect | egrep '.*- holochain-.*: https://github.com/holochain/holochain/archive/.*.tar.gz.*'
+ hn-introspect | egrep '.*- holochain-.*: https://github.com/holochain/holochain.*'
 
 }
 

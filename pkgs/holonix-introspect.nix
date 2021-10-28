@@ -25,7 +25,13 @@ let
       ) + (
         if !builtins.hasAttr "src" value
         then ""
-        else ": " + (builtins.toString value.src.urls)
+        else
+          let
+            url = builtins.toString (value.src.urls or value.src.url or "<not found>");
+            delim = if lib.strings.hasInfix "github.com" url then "/tree/" else "#";
+            rev = builtins.toString value.src.rev or "<not found>";
+          in
+            ": " + url + delim + rev
       )
     )
   ) packages;
