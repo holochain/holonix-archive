@@ -25,7 +25,7 @@ let
       ) + (
         if !builtins.hasAttr "src" value
         then ""
-        else ": " + (builtins.toString value.src.urls)
+        else ": " + (builtins.toString (value.src.urls or value.src.url or "<not found>")) + "#" + (builtins.toString value.src.rev or "<not found>")
       )
     )
   ) packages;
