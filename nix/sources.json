@@ -1,14 +1,14 @@
 {
     "holochain-nixpkgs": {
-        "branch": "develop",
+        "branch": "staging",
         "description": null,
         "homepage": null,
         "owner": "holochain",
         "repo": "holochain-nixpkgs",
-        "rev": "a86631034fa3fcc31ebc82d58e7d16e628d605a2",
-        "sha256": "1x941g52bd1rbxkvscq0gw4aarm9r844m4hazapab4mn0x7iq2nf",
+        "rev": "205b2d96c19428469a6de96dca2a67792eb6b1c1",
+        "sha256": "1ljlpzl3041vv3y1rd15sp7n7qj2nsi5iz227748vyv2c7x593h0",
         "type": "tarball",
-        "url": "https://github.com/holochain/holochain-nixpkgs/archive/a86631034fa3fcc31ebc82d58e7d16e628d605a2.tar.gz",
+        "url": "https://github.com/holochain/holochain-nixpkgs/archive/205b2d96c19428469a6de96dca2a67792eb6b1c1.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     }
 }
