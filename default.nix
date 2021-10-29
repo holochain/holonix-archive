@@ -21,7 +21,7 @@
             then holochain-nixpkgs.pkgs.rust.packages.stable.rust.rustc
             else holochain-nixpkgs.pkgs.rust.mkRust ({
               track = "stable";
-              version = "1.54.0";
+              version = "latest";
             } // (if rustVersion != null then rustVersion else {}))
            )
 }:
