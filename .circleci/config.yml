@@ -20,13 +20,14 @@ commands:
       - run:
           name: prepare nix
           command: |
-            . $HOME/.nix-profile/etc/profile.d/nix.sh
+            . ./ci/source-nix-profile.sh
+
             ./ci/setup-hydra-cache.sh
             ./ci/cachix.sh setup
       - run:
           name: tests
           command: |
-            . $HOME/.nix-profile/etc/profile.d/nix.sh
+            . ./ci/source-nix-profile.sh
             nix-shell --run echo
             nix-shell --run hn-test
             # TODO: decide whether or not we want to keep this
@@ -106,7 +107,7 @@ jobs:
             # fix for "too many open files" that breaks tokio and lmdb
             ulimit -n 10240
             # catalina nixos install
-            sh <(curl -L https://releases.nixos.org/nix/nix-2.3.8/install) --darwin-use-unencrypted-nix-store-volume
+            sh <(curl -L https://releases.nixos.org/nix/nix-2.4/install) </dev/null
       - nix-prepare-test-push
 
   docker-build-ubuntu:
