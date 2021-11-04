@@ -25,6 +25,7 @@ commands:
 
             . ./ci/source-nix-profile.sh
 
+            ./ci/setup-hydra-cache.sh
             ./ci/cachix.sh setup
       - run:
           name: tests
