@@ -106,7 +106,7 @@ jobs:
             # fix for "too many open files" that breaks tokio and lmdb
             ulimit -n 10240
             # catalina nixos install
-            sh <(curl -L https://nixos.org/nix/install) --darwin-use-unencrypted-nix-store-volume
+            sh <(curl -L https://releases.nixos.org/nix/nix-2.3.8/install) --darwin-use-unencrypted-nix-store-volume
       - nix-prepare-test-push
 
   docker-build-ubuntu:
