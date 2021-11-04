@@ -20,6 +20,9 @@ commands:
       - run:
           name: prepare nix
           command: |
+            mkdir -p $HOME/.config/nix
+            echo "experimental-features = nix-command" >> $HOME/.config/nix/nix.conf
+
             . ./ci/source-nix-profile.sh
 
             ./ci/setup-hydra-cache.sh
