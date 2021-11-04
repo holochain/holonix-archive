@@ -1,7 +1,7 @@
 #! /usr/bin/env nix-shell
-#! nix-shell -i bash -p bash -p cachix -I nixpkgs="channel:nixos-21.05"
+#! nix-shell -i bash -p "((import ./config.nix).holochain-nixpkgs.importFn {}).pkgs.cachix"
 
-# nix-shell -i bash -p "((import ./config.nix).holochain-nixpkgs.importFn {}).pkgs.cachix"
+#  nix-shell -i bash -p bash -p cachix -I nixpkgs="channel:nixos-21.05"
 
 set -euo pipefail
 
