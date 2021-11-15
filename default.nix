@@ -14,7 +14,7 @@
  , holochainVersionId? "develop"
  , holochainVersion ? (if holochainVersionId == "custom"
                        then null
-                       else builtins.getAttr holochainVersionId holochain-nixpkgs.packages.holochainVersions
+                       else builtins.getAttr holochainVersionId holochain-nixpkgs.packages.holochain.holochainVersions
                       )
  , rustVersion ? {}
  , rustc ? (if rustVersion == {}
@@ -51,9 +51,9 @@ let
         inherit holochainVersionId;
         holochainBinaries =
           if holochainVersionId == "custom" then
-            holochain-nixpkgs.packages.mkHolochainAllBinariesWithDeps holochainVersion
+            holochain-nixpkgs.packages.holochain.mkHolochainAllBinariesWithDeps holochainVersion
           else
-            (builtins.getAttr holochainVersionId holochain-nixpkgs.packages.holochainAllBinariesWithDeps)
+            (builtins.getAttr holochainVersionId holochain-nixpkgs.packages.holochain.holochainAllBinariesWithDeps)
           ;
       })
     ]
