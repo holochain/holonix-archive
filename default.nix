@@ -28,6 +28,36 @@
 
 
 assert (holochainVersionId == "custom") -> holochainVersion != null;
+assert (holochainVersionId == "custom") -> (
+  let
+    deprecatedAttributes = builtins.filter (elem:  builtins.elem elem [ "cargoSha256" "bins" "lairKeystoreHashes" ]) (builtins.attrNames holochainVersion);
+  in
+
+  if [] != deprecatedAttributes
+  then (
+    let
+      holonixPath = builtins.toString ./.;
+    in
+
+    throw ''
+      The following attributes found in the 'holochainVersion' set are no longer supported:
+      ${builtins.concatStringsSep ", " deprecatedAttributes}
+
+      The structure of 'holochainVersion' changed in a breaking way,
+      and more supported values were added to 'holochainVersionId'.
+
+      Please see if a matching 'holochainVersionId' for your desired version already exists:
+      - ${holonixPath}/VERSIONS.md
+
+      If not please take a look at the updated readme and example files for custom holochain versions:
+      - ${holonixPath}/examples/custom-holochain
+
+      If you're in a hurry you can rollback to holonix revision
+      d326ee858e051a2525a1ddb0452cab3085c4aa98 or before.
+    ''
+  )
+  else true
+  );
 
 let
  pkgs = import holochain-nixpkgs.pkgs.path {
