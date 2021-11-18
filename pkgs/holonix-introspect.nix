@@ -44,7 +44,7 @@ let
 in
 writeShellScriptBin "hn-introspect" ''
   function hcInfo() {
-    echo holochainVersionId: ${holochainVersionId}
+    echo ${holochainVersionId}
     ${builtins.concatStringsSep "\n" (namesVersionsStringPkgs holochainBinaries)}
   }
 

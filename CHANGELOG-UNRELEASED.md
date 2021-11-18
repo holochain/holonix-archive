@@ -5,19 +5,10 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 {{ version-heading }}
 
 ### Changed
-* Bumped holochain binaries
-    * holochain 0.0.108
-    * hc 0.0.9
-    * lair-keystore 0.0.6
-    * kitsune-p2p-proxy 0.0.7
+* Introduced the _VERSIONS.md_ file which is regenerated when updating nix sources are updated via the _nix/update.sh_ script.
+  It lists all pre-built _holochainVersionId_s with their version information, as well as common binaries and their version.
 
-### Added
-* Convenient script for running the holonix RSM alpha shell. The short-term command will look like this:
+* Breaking changes to _holochainVersion_.
 
-    `$(nix-build https://nightly.holochain.love --no-link -A pkgs.holonix)/bin/holonix`
-
-* `binaryen` tool as part of the _happs_ component
-
-#### RSM binaries for `arm64`
-
-Binaries are now available for Darwin and Linux `arm64` as well
+  With [a change in holonchain-nixpkgs](https://github.com/holochain/holochain-nixpkgs/pull/17) the attributes "cargoSha256" "bins" "lairKeystoreHashes" are no longer supported by _holochainVersion_.
+  If you rely on using a custom Holochain version that is not pre-built please take a look at the provided example in [./examples/custom-holochain/][].
