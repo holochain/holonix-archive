@@ -5,7 +5,7 @@ This value has been separated into a file to make it easier to programmatically 
 You can do generate this file with following command:
 
 ```shell
-nix run -f https://github.com/holochain/holochain-nixpkgs/archive/staging.tar.gz \
+nix run -f https://github.com/holochain/holochain-nixpkgs/archive/develop.tar.gz \
     packages.update-holochain-versions \
     -c update-holochain-versions \
         --git-src=revision:holochain-0.0.115 \
