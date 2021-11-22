@@ -175,6 +175,5 @@ inherit (components)
  # export the set used to build shell alongside the main derivation
  # downstream devs can extend/override the shell as needed
  # holonix-shell provides canonical dev shell for generic work
- shell = derivation-safe-holonix-shell;
  main = derivation-safe-holonix-shell;
 }

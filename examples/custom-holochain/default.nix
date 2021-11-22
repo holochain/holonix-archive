@@ -6,7 +6,7 @@ let
   };
   nixpkgs = holonix.pkgs;
 in nixpkgs.mkShell {
-  inputsFrom = [ holonix.shell ];
+  inputsFrom = [ holonix.main ];
   packages = [
     # additional packages go here
   ];
