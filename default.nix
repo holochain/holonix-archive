@@ -10,12 +10,9 @@
  , includeHolochainBinaries ? include.holochainBinaries or true
  , include ? { }
 
- # either of: develop, main, custom. when "custom" is set, `holochainVersion` needs to be specified
- , holochainVersionId? "develop"
- , holochainVersion ? (if holochainVersionId == "custom"
-                       then null
-                       else builtins.getAttr holochainVersionId holochain-nixpkgs.packages.holochain.holochainVersions
-                      )
+ # either one listed in VERSIONS.md or "custom". when "custom" is set, `holochainVersion` needs to be specified
+ , holochainVersionId ? "develop"
+ , holochainVersion ? null
  , rustVersion ? {}
  , rustc ? (if rustVersion == {}
             then holochain-nixpkgs.pkgs.rust.packages.stable.rust.rustc
@@ -26,11 +23,30 @@
            )
 }:
 
+let
+  holochainVersionFinal =
+    if holochainVersionId == "custom"
+    then
+      if holochainVersion == null
+      then throw ''When 'holochainVersionId' is set to "custom" a value to 'holochainVersion' must be provided.''
+      else holochainVersion
+    else (
+      let
+        value = builtins.getAttr holochainVersionId holochain-nixpkgs.packages.holochain.holochainVersions;
+      in
 
-assert (holochainVersionId == "custom") -> holochainVersion != null;
+      if holochainVersion != null
+      then builtins.trace ''WARNING: ignoring the value of `holochainVersion` because `holochainVersionId` is not set to "custom"'' value
+      else value
+    )
+  ;
+in
+
 assert (holochainVersionId == "custom") -> (
   let
-    deprecatedAttributes = builtins.filter (elem:  builtins.elem elem [ "cargoSha256" "bins" "lairKeystoreHashes" ]) (builtins.attrNames holochainVersion);
+    deprecatedAttributes = builtins.filter
+      (elem: builtins.elem elem [ "cargoSha256" "bins" "lairKeystoreHashes" ])
+      (builtins.attrNames holochainVersionFinal);
   in
 
   if [] != deprecatedAttributes
@@ -79,12 +95,7 @@ let
         hnRustFmtCheck = builtins.elemAt (self.callPackage ./rust/fmt/check {}).buildInputs 0;
         hnRustFmtFmt = builtins.elemAt (self.callPackage ./rust/fmt/fmt {}).buildInputs 0;
         inherit holochainVersionId;
-        holochainBinaries =
-          if holochainVersionId == "custom" then
-            holochain-nixpkgs.packages.holochain.mkHolochainAllBinariesWithDeps holochainVersion
-          else
-            (builtins.getAttr holochainVersionId holochain-nixpkgs.packages.holochain.holochainAllBinariesWithDeps)
-          ;
+        holochainBinaries = holochain-nixpkgs.packages.holochain.mkHolochainAllBinariesWithDeps holochainVersionFinal;
       })
     ]
     ;
