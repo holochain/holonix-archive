@@ -16,7 +16,7 @@
 }
 
 @test "hn-introspect lists holochain" {
- hn-introspect | egrep '.*- holochain-.*: https://github.com/holochain/holochain/archive/.*.tar.gz.*'
+ hn-introspect | egrep '.*- holochain-.*: https://github.com/holochain/holochain.*'
 
 }
 
@@ -29,4 +29,10 @@
         fi
     done
  '
+}
+
+@test "error on obsolete holochainVersion attribute" {
+    run nix-shell --argstr holochainVersionId 'custom' --arg holochainVersion '{ cargoSha256 = "..."; }'
+    [ $status -ne 0 ]
+    [[ "$output" == "error: The following attributes found in the 'holochainVersion' set are no longer supported:"* ]]
 }

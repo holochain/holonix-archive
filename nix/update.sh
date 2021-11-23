@@ -1,20 +1,11 @@
-#! /usr/bin/env nix-shell 
+#! /usr/bin/env nix-shell
 #! nix-shell -p niv -i bash
 niv update
 
-cat << EOF | git commit nix/sources.* -F -
+nix/regen_versions.sh
 
-update holochain-nixpkgs
+cat << EOF | git commit VERSIONS.md nix/sources.* -F -
+update nix sources
 
----
-the following versions are now available via their respective holochainVersionId:
-
-$(nix-shell --pure --argstr holochainVersionId main --run 'hn-introspect hc')
-
-$(nix-shell --pure --argstr holochainVersionId develop --run 'hn-introspect hc')
-
----
-as well as the following common commands of interest:
-
-$(nix-shell --pure --argstr holochainVersionId develop --run 'hn-introspect common')
+see VERSIONS.md for the exact changes
 EOF
