@@ -10,27 +10,70 @@
  , includeHolochainBinaries ? include.holochainBinaries or true
  , include ? { }
 
- # either of: develop, main, custom. when "custom" is set, `holochainVersion` needs to be specified
- , holochainVersionId? "main"
- , holochainVersion ? (if holochainVersionId == "custom"
-                       then null
-                       else builtins.getAttr holochainVersionId holochain-nixpkgs.packages.holochainVersions
-                      )
-  # DEPRECRATED: this is no longer used
- , holochainOtherDepsNames ? [ ]
-
+ # either one listed in VERSIONS.md or "custom". when "custom" is set, `holochainVersion` needs to be specified
+ , holochainVersionId ? "main"
+ , holochainVersion ? null
  , rustVersion ? {}
  , rustc ? (if rustVersion == {}
             then holochain-nixpkgs.pkgs.rust.packages.stable.rust.rustc
             else holochain-nixpkgs.pkgs.rust.mkRust ({
               track = "stable";
-              version = "1.54.0";
+              version = "latest";
             } // (if rustVersion != null then rustVersion else {}))
            )
 }:
 
+let
+  holochainVersionFinal =
+    if holochainVersionId == "custom"
+    then
+      if holochainVersion == null
+      then throw ''When 'holochainVersionId' is set to "custom" a value to 'holochainVersion' must be provided.''
+      else holochainVersion
+    else (
+      let
+        value = builtins.getAttr holochainVersionId holochain-nixpkgs.packages.holochain.holochainVersions;
+      in
 
-assert (holochainVersionId == "custom") -> holochainVersion != null;
+      if holochainVersion != null
+      then builtins.trace ''WARNING: ignoring the value of `holochainVersion` because `holochainVersionId` is not set to "custom"'' value
+      else value
+    )
+  ;
+in
+
+assert (holochainVersionId == "custom") -> (
+  let
+    deprecatedAttributes = builtins.filter
+      (elem: builtins.elem elem [ "cargoSha256" "bins" "lairKeystoreHashes" ])
+      (builtins.attrNames holochainVersionFinal);
+  in
+
+  if [] != deprecatedAttributes
+  then (
+    let
+      holonixPath = builtins.toString ./.;
+    in
+
+    throw ''
+      The following attributes found in the 'holochainVersion' set are no longer supported:
+      ${builtins.concatStringsSep ", " deprecatedAttributes}
+
+      The structure of 'holochainVersion' changed in a breaking way,
+      and more supported values were added to 'holochainVersionId'.
+
+      Please see if a matching 'holochainVersionId' for your desired version already exists:
+      - ${holonixPath}/VERSIONS.md
+
+      If not please take a look at the updated readme and example files for custom holochain versions:
+      - ${holonixPath}/examples/custom-holochain
+
+      If you're in a hurry you can rollback to holonix revision
+      d326ee858e051a2525a1ddb0452cab3085c4aa98 or before.
+    ''
+  )
+  else true
+  );
 
 let
  pkgs = import holochain-nixpkgs.pkgs.path {
@@ -52,12 +95,7 @@ let
         hnRustFmtCheck = builtins.elemAt (self.callPackage ./rust/fmt/check {}).buildInputs 0;
         hnRustFmtFmt = builtins.elemAt (self.callPackage ./rust/fmt/fmt {}).buildInputs 0;
         inherit holochainVersionId;
-        holochainBinaries =
-          if holochainVersionId == "custom" then
-            holochain-nixpkgs.packages.mkHolochainAllBinariesWithDeps holochainVersion
-          else
-            (builtins.getAttr holochainVersionId holochain-nixpkgs.packages.holochainAllBinariesWithDeps)
-          ;
+        holochainBinaries = holochain-nixpkgs.packages.holochain.mkHolochainAllBinariesWithDeps holochainVersionFinal;
       })
     ]
     ;
@@ -137,6 +175,5 @@ inherit (components)
  # export the set used to build shell alongside the main derivation
  # downstream devs can extend/override the shell as needed
  # holonix-shell provides canonical dev shell for generic work
- shell = derivation-safe-holonix-shell;
  main = derivation-safe-holonix-shell;
 }
