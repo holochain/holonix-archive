@@ -42,6 +42,8 @@ let
         else value
       )
   ;
+
+  sources = import nix/sources.nix { };
 in
 
 assert (holochainVersionId == "custom") -> (
@@ -126,6 +128,7 @@ let
     happs = pkgs.callPackage ./happs { };
     introspection = { buildInputs = [ pkgs.holonixIntrospect ]; };
     holochainBinaries = { buildInputs = (builtins.attrValues pkgs.holochainBinaries); };
+    scaffolding = pkgs.callPackage ./scaffolding { inherit sources; };
   };
 
   componentsFiltered =
