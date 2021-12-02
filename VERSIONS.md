@@ -12,21 +12,21 @@ The following binaries are the same version regardless of the _holochainVersionI
 Each of the following headings represent one pre-built _holochainVersionId_ and their corresponding holochain version information.
 
 ### main
-- hc-0.0.18: https://github.com/holochain/holochain/tree/b194f98a007a1dc9e34f7997cd6e6a33f65807f8
-- holochain-0.0.117: https://github.com/holochain/holochain/tree/b194f98a007a1dc9e34f7997cd6e6a33f65807f8
-- kitsune-p2p-proxy-0.0.14: https://github.com/holochain/holochain/tree/b194f98a007a1dc9e34f7997cd6e6a33f65807f8
+- hc-0.0.19: https://github.com/holochain/holochain/tree/8a0cd9283fd881ddbc467b1d0d97ee2fcd49d992
+- holochain-0.0.118: https://github.com/holochain/holochain/tree/8a0cd9283fd881ddbc467b1d0d97ee2fcd49d992
+- kitsune-p2p-proxy-0.0.14: https://github.com/holochain/holochain/tree/8a0cd9283fd881ddbc467b1d0d97ee2fcd49d992
 - lair-keystore-0.0.9: https://github.com/holochain/lair/tree/v0.0.9
 
 ### develop
-- hc-0.0.17: https://github.com/holochain/holochain/tree/9702c767e89ba73393a7166aa0cecc6f15a26aed
-- holochain-0.0.116: https://github.com/holochain/holochain/tree/9702c767e89ba73393a7166aa0cecc6f15a26aed
-- kitsune-p2p-proxy-0.0.13: https://github.com/holochain/holochain/tree/9702c767e89ba73393a7166aa0cecc6f15a26aed
+- hc-0.0.18: https://github.com/holochain/holochain/tree/6d853bed86f59fa8a0a716d81c07e089b0d42f16
+- holochain-0.0.117: https://github.com/holochain/holochain/tree/6d853bed86f59fa8a0a716d81c07e089b0d42f16
+- kitsune-p2p-proxy-0.0.14: https://github.com/holochain/holochain/tree/6d853bed86f59fa8a0a716d81c07e089b0d42f16
 - lair-keystore-0.0.9: https://github.com/holochain/lair/tree/v0.0.9
 
 ### develop_lair_0_1
-- hc-0.0.17: https://github.com/holochain/holochain/tree/9702c767e89ba73393a7166aa0cecc6f15a26aed
-- holochain-0.0.116: https://github.com/holochain/holochain/tree/9702c767e89ba73393a7166aa0cecc6f15a26aed
-- kitsune-p2p-proxy-0.0.13: https://github.com/holochain/holochain/tree/9702c767e89ba73393a7166aa0cecc6f15a26aed
+- hc-0.0.18: https://github.com/holochain/holochain/tree/6d853bed86f59fa8a0a716d81c07e089b0d42f16
+- holochain-0.0.117: https://github.com/holochain/holochain/tree/6d853bed86f59fa8a0a716d81c07e089b0d42f16
+- kitsune-p2p-proxy-0.0.14: https://github.com/holochain/holochain/tree/6d853bed86f59fa8a0a716d81c07e089b0d42f16
 - lair-keystore-0.1.0: https://github.com/holochain/lair/tree/v0.1.0
 
 ### v0_0_110
