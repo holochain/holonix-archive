@@ -1,25 +1,11 @@
-{ pkgs }:
+{ callPackage, binaryen, lib }:
 let
-  node = pkgs.nodejs-12_x;
-  clang = pkgs.clang;
+  node = callPackage ../node/default.nix { };
 in
+lib.attrsets.recursiveUpdate node
 {
-  clang = clang;
   buildInputs =
     [
-      # node and yarn version used in:
-      # - binary building
-      # - app spec tests
-      # - deploy scripts
-      # - node conductor management
-      node
-      clang
-      pkgs.yarn
-
-      pkgs.binaryen
-    ]
-    ++ (pkgs.callPackage ./scaffold { }).buildInputs
-    ++ (pkgs.callPackage ./create { }).buildInputs
-    ++ (pkgs.callPackage ./add-zome { }).buildInputs
-  ;
+      binaryen
+    ];
 }

@@ -104,7 +104,6 @@ let
       })
     ]
     ;
-
   };
 
   components = {
@@ -125,59 +124,33 @@ let
         ;
     };
     happs = pkgs.callPackage ./happs { };
+    introspection = { buildInputs = [ pkgs.holonixIntrospect ]; };
+    holochainBinaries = { buildInputs = (builtins.attrValues pkgs.holochainBinaries); };
   };
 
-  optionalComponents = pkgs.lib.mapAttrs
-    (name: value:
-      if include."${name}" or true
-      then value
-      else { buildInputs = [ ]; }
-    )
-    components;
+  componentsFiltered =
+    pkgs.lib.attrsets.filterAttrs
+      (name: value: include."${name}" or true)
+      components
+  ;
 
   holonix-shell = pkgs.callPackage ./nix-shell {
-    inherit
-      pkgs
-      ;
-
-    inherit (components)
-      rust
-      ;
-
-    inherit (optionalComponents)
-      docs
-      git
-      linux
-      node
-      openssl
-      release
-      test
-      happs
-      ;
-    extraBuildInputs = [
-      pkgs.holonixIntrospect
-      pkgs.holonixVersions
-    ]
-    ++ (if !includeHolochainBinaries then [ ] else
-    (builtins.attrValues pkgs.holochainBinaries)
-    )
-    ;
+    inherit holochain-nixpkgs;
+    holonixComponents = builtins.attrValues componentsFiltered;
   };
 
   # override and overrideDerivation cannot be handled by mkDerivation
   derivation-safe-holonix-shell = (removeAttrs holonix-shell [ "override" "overrideDerivation" ]);
 
 in
-rec
 {
   inherit
     holochain-nixpkgs
     pkgs
-    # expose other things
-    ;
 
-  inherit (components)
-    rust
+    # expose other things
+    components
+    componentsFiltered
     ;
 
   # export the set used to build shell alongside the main derivation

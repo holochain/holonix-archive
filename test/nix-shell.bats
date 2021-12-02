@@ -10,9 +10,8 @@
   [ "$RUST_BACKTRACE" == "1" ]
 }
 
-@test "default release tag is set" {
- [ "$RELEASE_VERSION" == "_._._" ]
- [ "$RELEASE_TAG" == "v_._._" ]
+@test "CARGO_HOME is set and not directly at root" {
+  [ "$CARGO_HOME" != "" ] && [ "$CARGO_HOME" != "/.cargo" ]
 }
 
 @test "hn-introspect lists holochain" {
