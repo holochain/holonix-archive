@@ -40,7 +40,7 @@ commands:
 jobs:
   build:
     docker:
-      - image: nixos/nix:latest
+      - image: nixos/nix:2.3.12
         environment:
           CACHIX_NAME: holochain-ci
     steps:
@@ -68,7 +68,7 @@ jobs:
   # https://discuss.circleci.com/t/adding-ssh-keys-fails/7747/24
   deploy-github-pages:
     docker:
-      - image: nixos/nix:latest
+      - image: nixos/nix:2.3.12
     steps:
       - add_ssh_keys:
           fingerprints:
