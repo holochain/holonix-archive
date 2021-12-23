@@ -6,27 +6,27 @@ The following binaries are the same version regardless of the _holochainVersionI
 - rustc: rustc 1.55.0 (c8dfcfe04 2021-09-06)
 - cargo fmt: rustfmt 1.4.37-stable (c8dfcfe 2021-09-06)
 - cargo clippy: clippy 0.1.55 (c8dfcfe 2021-09-06)
-- perf: perf version 5.10.84
+- perf: perf version 5.10.87
 
 ## Available _holochainVersionId_ options
 Each of the following headings represent one pre-built _holochainVersionId_ and their corresponding holochain version information.
 
 ### main
-- hc-0.0.21: https://github.com/holochain/holochain/tree/7fb0c818e8aa84ad48a17ff1af9c9c7e17408c1f
-- holochain-0.0.120: https://github.com/holochain/holochain/tree/7fb0c818e8aa84ad48a17ff1af9c9c7e17408c1f
-- kitsune-p2p-proxy-0.0.15: https://github.com/holochain/holochain/tree/7fb0c818e8aa84ad48a17ff1af9c9c7e17408c1f
+- hc-0.0.22: https://github.com/holochain/holochain/tree/77ebba75f48fe86e98f14a4fe3bfdd306bad5cfb
+- holochain-0.0.121: https://github.com/holochain/holochain/tree/77ebba75f48fe86e98f14a4fe3bfdd306bad5cfb
+- kitsune-p2p-proxy-0.0.15: https://github.com/holochain/holochain/tree/77ebba75f48fe86e98f14a4fe3bfdd306bad5cfb
 - lair-keystore-0.0.9: https://github.com/holochain/lair/tree/v0.0.9
 
 ### develop
-- hc-0.0.21: https://github.com/holochain/holochain/tree/fe6f159c4c681d189e29d25576e253384b22bb38
-- holochain-0.0.120: https://github.com/holochain/holochain/tree/fe6f159c4c681d189e29d25576e253384b22bb38
-- kitsune-p2p-proxy-0.0.15: https://github.com/holochain/holochain/tree/fe6f159c4c681d189e29d25576e253384b22bb38
+- hc-0.0.22: https://github.com/holochain/holochain/tree/e2473451628cc39f4362ebd216c3b04d46ad6713
+- holochain-0.0.121: https://github.com/holochain/holochain/tree/e2473451628cc39f4362ebd216c3b04d46ad6713
+- kitsune-p2p-proxy-0.0.15: https://github.com/holochain/holochain/tree/e2473451628cc39f4362ebd216c3b04d46ad6713
 - lair-keystore-0.0.9: https://github.com/holochain/lair/tree/v0.0.9
 
 ### develop_lair_0_1
-- hc-0.0.21: https://github.com/holochain/holochain/tree/fe6f159c4c681d189e29d25576e253384b22bb38
-- holochain-0.0.120: https://github.com/holochain/holochain/tree/fe6f159c4c681d189e29d25576e253384b22bb38
-- kitsune-p2p-proxy-0.0.15: https://github.com/holochain/holochain/tree/fe6f159c4c681d189e29d25576e253384b22bb38
+- hc-0.0.22: https://github.com/holochain/holochain/tree/e2473451628cc39f4362ebd216c3b04d46ad6713
+- holochain-0.0.121: https://github.com/holochain/holochain/tree/e2473451628cc39f4362ebd216c3b04d46ad6713
+- kitsune-p2p-proxy-0.0.15: https://github.com/holochain/holochain/tree/e2473451628cc39f4362ebd216c3b04d46ad6713
 - lair-keystore-0.1.0: https://github.com/holochain/lair/tree/v0.1.0
 
 ### v0_0_110
