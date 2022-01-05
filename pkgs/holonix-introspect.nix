@@ -3,35 +3,34 @@
 , writeShellScriptBin
 , holochainVersionId
 , holochainBinaries
-, pkgsOfInterest ? {}
+, pkgsOfInterest ? lib.optionalAttrs pkgs.stdenv.isLinux { inherit (pkgs.linuxPackages) perf; }
 , cmdsOfInterest ? [
     "rustc"
     "cargo fmt"
     "cargo clippy"
-    "perf"
   ]
-, gnugrep
 }:
 
 let
-  namesVersionsStringPkgs = packages: lib.attrsets.mapAttrsToList (name: value:
+  namesVersionsStringPkgs = { packages, run }: lib.attrsets.mapAttrsToList (name: value:
     if !builtins.isAttrs value
     then ""
     else (
-      "echo \- ${name}-" + (
+      "echo \- ${name}" + (
         if builtins.hasAttr "version" value
-        then "${value.version}"
-        else "$(${name} --version | cut -d' ' -f2-)"
+        then "-${value.version}"
+        else if run == true then "-$(${name} --version | cut -d' ' -f2-)"
+        else ""
       ) + (
-        if !builtins.hasAttr "src" value
-        then ""
+        if !builtins.hasAttr "src" value then ""
         else
           let
-            url = builtins.toString (value.src.urls or value.src.url or "<not found>");
-            delim = if lib.strings.hasInfix "github.com" url then "/tree/" else "#";
-            rev = builtins.toString value.src.rev or "<not found>";
+            url = builtins.toString (value.src.urls or value.src.url or "");
+            prefix = if url == "" then "" else ": ";
+            rev = if url == "" then "" else builtins.toString value.src.rev or "";
+            delim = if rev == "" then "" else if lib.strings.hasInfix "github.com" url then "/tree/" else "#";
           in
-            ": " + url + delim + rev
+            prefix + url + delim + rev
       )
     )
   ) packages;
@@ -45,12 +44,12 @@ in
 writeShellScriptBin "hn-introspect" ''
   function hcInfo() {
     echo ${holochainVersionId}
-    ${builtins.concatStringsSep "\n" (namesVersionsStringPkgs holochainBinaries)}
+    ${builtins.concatStringsSep "\n" (namesVersionsStringPkgs { packages = holochainBinaries; run = true; })}
   }
 
   function commonInfo() {
-    ${builtins.concatStringsSep "\n" (namesVersionsStringPkgs pkgsOfInterest)}
     ${builtins.concatStringsSep "\n" (namesVersionsStringBins cmdsOfInterest)}
+    ${builtins.concatStringsSep "\n" (namesVersionsStringPkgs { packages = pkgsOfInterest; run = false; } )}
   }
 
   case "$1" in
