@@ -1,14 +1,14 @@
 {
     "holochain-nixpkgs": {
-        "branch": "release-20220106.093622",
+        "branch": "develop",
         "description": null,
         "homepage": null,
         "owner": "holochain",
         "repo": "holochain-nixpkgs",
-        "rev": "b419560a01bfb3301a2219aeeeb1d14ce3c0b934",
-        "sha256": "0f3w2c87mbnlilgs049czmcv4nwd0fdlpmbaq8mk52mx2p2fk333",
+        "rev": "1e2067cecb4d7c02fc38ac407ec84f3c6e25a402",
+        "sha256": "03db0r4kmm7mqnv9kjzfnrm4fkrw32dprybf59lra2qd2f9i8889",
         "type": "tarball",
-        "url": "https://github.com/holochain/holochain-nixpkgs/archive/b419560a01bfb3301a2219aeeeb1d14ce3c0b934.tar.gz",
+        "url": "https://github.com/holochain/holochain-nixpkgs/archive/1e2067cecb4d7c02fc38ac407ec84f3c6e25a402.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     }
 }
