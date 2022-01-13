@@ -32,11 +32,20 @@ commands:
             # TODO: decide whether or not we want to keep this
             # HN_VERBOSE=true $(nix-build . --no-link -A pkgs.holonix)/bin/holonix --run hn-test
       - run:
+          name: run the update script
+          command: |
+            . $HOME/.nix-profile/etc/profile.d/nix.sh
+            nix-shell -p git --run '
+              git config --global user.email "ci@holochain.org"
+              git config --global user.name "Holochain CI"
+              ./nix/update.sh
+              PAGER="" git show
+            '
+      - run:
           name: push to cachix
           command: |
             . $HOME/.nix-profile/etc/profile.d/nix.sh
             ./ci/cachix.sh push
-
 jobs:
   build:
     docker:
