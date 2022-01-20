@@ -63,3 +63,9 @@ Each of the following headings represent one pre-built _holochainVersionId_ and 
 - holochain-0.0.122: https://github.com/holochain/holochain/tree/holochain-0.0.122
 - kitsune-p2p-proxy-0.0.15: https://github.com/holochain/holochain/tree/holochain-0.0.122
 - lair-keystore-0.0.9: https://github.com/holochain/lair/tree/v0.0.9
+
+### v0_0_123
+- hc-0.0.24: https://github.com/holochain/holochain/tree/holochain-0.0.123
+- holochain-0.0.123: https://github.com/holochain/holochain/tree/holochain-0.0.123
+- kitsune-p2p-proxy-0.0.15: https://github.com/holochain/holochain/tree/holochain-0.0.123
+- lair-keystore-0.0.9: https://github.com/holochain/lair/tree/v0.0.9
