@@ -4,8 +4,9 @@
 The following binaries are the same version regardless of the _holochainVersionId_ argument.
 
 - rustc: rustc 1.55.0 (c8dfcfe04 2021-09-06)
-- cargo fmt: rustfmt 1.4.37-stable (c8dfcfe0 2021-09-06)
-- cargo clippy: clippy 0.1.55 (c8dfcfe0 2021-09-06)
+- cargo fmt: rustfmt 1.4.37-stable (c8dfcfe 2021-09-06)
+- cargo clippy: clippy 0.1.55 (c8dfcfe 2021-09-06)
+- perf: mirror://kernel/linux/kernel/v5.x/linux-5.10.93.tar.xz
 
 ## Available _holochainVersionId_ options
 Each of the following headings represent one pre-built _holochainVersionId_ and their corresponding holochain version information.
@@ -68,4 +69,10 @@ Each of the following headings represent one pre-built _holochainVersionId_ and 
 - hc-0.0.24: https://github.com/holochain/holochain/tree/holochain-0.0.123
 - holochain-0.0.123: https://github.com/holochain/holochain/tree/holochain-0.0.123
 - kitsune-p2p-proxy-0.0.15: https://github.com/holochain/holochain/tree/holochain-0.0.123
+- lair-keystore-0.0.9: https://github.com/holochain/lair/tree/v0.0.9
+
+### v0_0_124
+- hc-0.0.25: https://github.com/holochain/holochain/tree/holochain-0.0.124
+- holochain-0.0.124: https://github.com/holochain/holochain/tree/holochain-0.0.124
+- kitsune-p2p-proxy-0.0.15: https://github.com/holochain/holochain/tree/holochain-0.0.124
 - lair-keystore-0.0.9: https://github.com/holochain/lair/tree/v0.0.9
