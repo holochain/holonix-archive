@@ -4,22 +4,23 @@
 The following binaries are the same version regardless of the _holochainVersionId_ argument.
 
 - rustc: rustc 1.55.0 (c8dfcfe04 2021-09-06)
-- cargo fmt: rustfmt 1.4.37-stable (c8dfcfe0 2021-09-06)
-- cargo clippy: clippy 0.1.55 (c8dfcfe0 2021-09-06)
+- cargo fmt: rustfmt 1.4.37-stable (c8dfcfe 2021-09-06)
+- cargo clippy: clippy 0.1.55 (c8dfcfe 2021-09-06)
+- perf: mirror://kernel/linux/kernel/v5.x/linux-5.10.93.tar.xz
 
 ## Available _holochainVersionId_ options
 Each of the following headings represent one pre-built _holochainVersionId_ and their corresponding holochain version information.
 
 ### main
-- hc-0.0.24: https://github.com/holochain/holochain/tree/1767dfc2d73ed107ac20dddc3fa56e46856c45cd
-- holochain-0.0.123: https://github.com/holochain/holochain/tree/1767dfc2d73ed107ac20dddc3fa56e46856c45cd
-- kitsune-p2p-proxy-0.0.15: https://github.com/holochain/holochain/tree/1767dfc2d73ed107ac20dddc3fa56e46856c45cd
+- hc-0.0.25: https://github.com/holochain/holochain/tree/4a449ee985053f5b8ee0f0688b949bd26bfcb3fc
+- holochain-0.0.124: https://github.com/holochain/holochain/tree/4a449ee985053f5b8ee0f0688b949bd26bfcb3fc
+- kitsune-p2p-proxy-0.0.15: https://github.com/holochain/holochain/tree/4a449ee985053f5b8ee0f0688b949bd26bfcb3fc
 - lair-keystore-0.0.9: https://github.com/holochain/lair/tree/v0.0.9
 
 ### develop
-- hc-0.0.24: https://github.com/holochain/holochain/tree/9e96a37f3afc1c125b98b02c67ad2c011418f8fd
-- holochain-0.0.123: https://github.com/holochain/holochain/tree/9e96a37f3afc1c125b98b02c67ad2c011418f8fd
-- kitsune-p2p-proxy-0.0.15: https://github.com/holochain/holochain/tree/9e96a37f3afc1c125b98b02c67ad2c011418f8fd
+- hc-0.0.25: https://github.com/holochain/holochain/tree/005a258735716b5be95d9d2e96d219ed8e95413e
+- holochain-0.0.124: https://github.com/holochain/holochain/tree/005a258735716b5be95d9d2e96d219ed8e95413e
+- kitsune-p2p-proxy-0.0.15: https://github.com/holochain/holochain/tree/005a258735716b5be95d9d2e96d219ed8e95413e
 - lair-keystore-0.0.9: https://github.com/holochain/lair/tree/v0.0.9
 
 ### develop_lair_0_1
@@ -68,4 +69,10 @@ Each of the following headings represent one pre-built _holochainVersionId_ and 
 - hc-0.0.24: https://github.com/holochain/holochain/tree/holochain-0.0.123
 - holochain-0.0.123: https://github.com/holochain/holochain/tree/holochain-0.0.123
 - kitsune-p2p-proxy-0.0.15: https://github.com/holochain/holochain/tree/holochain-0.0.123
+- lair-keystore-0.0.9: https://github.com/holochain/lair/tree/v0.0.9
+
+### v0_0_124
+- hc-0.0.25: https://github.com/holochain/holochain/tree/holochain-0.0.124
+- holochain-0.0.124: https://github.com/holochain/holochain/tree/holochain-0.0.124
+- kitsune-p2p-proxy-0.0.15: https://github.com/holochain/holochain/tree/holochain-0.0.124
 - lair-keystore-0.0.9: https://github.com/holochain/lair/tree/v0.0.9
