@@ -1,5 +1,5 @@
 # keep this in sync with Dockerfile.debian
-FROM ubuntu:20.10
+FROM ubuntu:22.04
 
 # @see
 # https://github.com/TerrorJack/pixie/blob/master/.circleci/debian.Dockerfile
