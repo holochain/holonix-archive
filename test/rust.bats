@@ -13,7 +13,7 @@
 @test "fmt version" {
  result="$( cargo fmt --version )"
  echo $result
- [[ "$result" == *1.4.37-stable* ]]
+ [[ "$result" == *-stable* ]]
 }
 
 # RUSTFLAGS should be set correctly
