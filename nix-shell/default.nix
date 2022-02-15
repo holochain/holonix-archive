@@ -61,7 +61,7 @@
  export CARGO_TARGET_DIR="$NIX_ENV_PREFIX/target"
  export CARGO_CACHE_RUSTC_INFO=1
  export PATH="$CARGO_INSTALL_ROOT/bin:$PATH"
- export NIX_BUILD_SHELL=${pkgs.bashInteractive}/bin/bash
+ export NIX_BUILD_SHELL="${pkgs.runtimeShell}"
 
  # https://github.com/holochain/holonix/issues/12
  export TMP=$( mktemp -p /tmp -d )
