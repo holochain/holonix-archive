@@ -105,7 +105,7 @@ in pkgs.writeShellScriptBin "holonix" ''
   )
 
   echo Spawning shell..
-  export NIX_BUILD_SHELL=${pkgs.bashInteractive}/bin/bash
+  export NIX_BUILD_SHELL="${pkgs.runtimeShell}"
   nix-shell \
     --add-root "''${GC_ROOT_DIR}/finalShell" --indirect \
     "''${SHELL_DRV}" "''${@}"
