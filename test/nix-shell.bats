@@ -16,8 +16,7 @@
 }
 
 @test "hn-introspect lists holochain" {
- hn-introspect | egrep '.*- holochain-.*: https://github.com/holochain/holochain.*'
-
+ hn-introspect | egrep '.*- holochain-.+: (https|git)://.*holochain.*'
 }
 
 @test "exclude components" {
