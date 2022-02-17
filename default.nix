@@ -8,7 +8,7 @@
   config ? import ./config.nix
 , holochain-nixpkgs ? config.holochain-nixpkgs.importFn { }
 , includeHolochainBinaries ? include.holochainBinaries or true
-, include ? { }
+, include ? { test = false; }
 
   # either one listed in VERSIONS.md or "custom". when "custom" is set, `holochainVersion` needs to be specified
 , holochainVersionId ? "develop"
