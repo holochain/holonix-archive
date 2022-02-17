@@ -1,10 +1,10 @@
 { pkgs, config }:
 {
- buildInputs = []
+  buildInputs = [ ]
 
- ++ (pkgs.callPackage ./manual {
-  config = config;
- }).buildInputs
+    ++ (pkgs.callPackage ./manual {
+    config = config;
+  }).buildInputs
 
- ;
+  ;
 }

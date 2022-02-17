@@ -28,7 +28,7 @@ commands:
           command: |
             . $HOME/.nix-profile/etc/profile.d/nix.sh
             nix-shell --run echo
-            nix-shell --run hn-test
+            nix-shell --arg include '{ test = true; }' --run hn-test
             # TODO: decide whether or not we want to keep this
             # HN_VERBOSE=true $(nix-build . --no-link -A pkgs.holonix)/bin/holonix --run hn-test
       - run:
