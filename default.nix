@@ -89,6 +89,8 @@ let
           inherit (self) holochainBinaries;
         };
 
+        holonixVersions = self.callPackage ./pkgs/holonix-versions.nix { };
+
         # these are referenced in holochain-s merge script.
         # ideally we'd expose all packages in this repository in this way.
         hnRustClippy = builtins.elemAt (self.callPackage ./rust/clippy {}).buildInputs 0;
@@ -150,6 +152,7 @@ let
     ;
   extraBuildInputs = [
       pkgs.holonixIntrospect
+      pkgs.holonixVersions
     ]
     ++ (if !includeHolochainBinaries then [] else
       (builtins.attrValues pkgs.holochainBinaries)
