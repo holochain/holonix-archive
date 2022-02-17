@@ -12,33 +12,38 @@
 }:
 
 let
-  namesVersionsStringPkgs = { packages, run }: lib.attrsets.mapAttrsToList (name: value:
-    if !builtins.isAttrs value
-    then ""
-    else (
-      "echo \- ${name}" + (
-        if builtins.hasAttr "version" value
-        then "-${value.version}"
-        else if run == true then "-$(${name} --version | cut -d' ' -f2-)"
-        else ""
-      ) + (
-        if !builtins.hasAttr "src" value then ""
-        else
-          let
-            url = builtins.toString (value.src.urls or value.src.url or "");
-            prefix = if url == "" then "" else ": ";
-            rev = if url == "" then "" else builtins.toString value.src.rev or "";
-            delim = if rev == "" then "" else if lib.strings.hasInfix "github.com" url then "/tree/" else "#";
-          in
-            prefix + url + delim + rev
-      )
+  namesVersionsStringPkgs = { packages, run }: lib.attrsets.mapAttrsToList
+    (name: value:
+      if !builtins.isAttrs value
+      then ""
+      else
+        (
+          "echo \- ${name}" + (
+            if builtins.hasAttr "version" value
+            then "-${value.version}"
+            else if run == true then "-$(${name} --version | cut -d' ' -f2-)"
+            else ""
+          ) + (
+            if !builtins.hasAttr "src" value then ""
+            else
+              let
+                url = builtins.toString (value.src.urls or value.src.url or "");
+                prefix = if url == "" then "" else ": ";
+                rev = if url == "" then "" else builtins.toString value.src.rev or "";
+                delim = if rev == "" then "" else if lib.strings.hasInfix "github.com" url then "/tree/" else "#";
+              in
+              prefix + url + delim + rev
+          )
+        )
     )
-  ) packages;
+    packages;
 
-  namesVersionsStringBins = cmds: builtins.map (bin:
-    "echo \- ${bin}: $(${bin} --version)"
+  namesVersionsStringBins = cmds: builtins.map
+    (bin:
+      "echo \- ${bin}: $(${bin} --version)"
       # else "$(${name} --version | ${gawk}/bin/awk '{ print $2}')"
-  ) cmds;
+    )
+    cmds;
 
 in
 writeShellScriptBin "hn-introspect" ''

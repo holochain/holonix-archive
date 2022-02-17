@@ -11,14 +11,15 @@ let
   ];
 
   buildCmd = ''
-      $(command -v nix-store) \
-          --option extra-substituters "${builtins.concatStringsSep " " extraSubstitutors}" \
-          --option trusted-public-keys  "${builtins.concatStringsSep " " trustedPublicKeys}" \
-          --add-root "''${GC_ROOT_DIR}/allrefs" --indirect \
-          --realise "''${ref}"
+    $(command -v nix-store) \
+        --option extra-substituters "${builtins.concatStringsSep " " extraSubstitutors}" \
+        --option trusted-public-keys  "${builtins.concatStringsSep " " trustedPublicKeys}" \
+        --add-root "''${GC_ROOT_DIR}/allrefs" --indirect \
+        --realise "''${ref}"
   '';
 
-in pkgs.writeShellScriptBin "holonix" ''
+in
+pkgs.writeShellScriptBin "holonix" ''
   export GC_ROOT_DIR="''${HOME:-/tmp}/.holonix"
   export SHELL_DRV="''${GC_ROOT_DIR}/shellDrv"
   export LOG="''${GC_ROOT_DIR}/log"

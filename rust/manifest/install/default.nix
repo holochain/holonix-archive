@@ -1,12 +1,12 @@
 { pkgs }:
 let
- name = "hn-rust-manifest-install";
+  name = "hn-rust-manifest-install";
 
- script = pkgs.writeShellScriptBin name
- ''
- cargo install cargo-edit
- '';
+  script = pkgs.writeShellScriptBin name
+    ''
+      cargo install cargo-edit
+    '';
 in
 {
- buildInputs = [ script ];
+  buildInputs = [ script ];
 }
