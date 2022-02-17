@@ -33,5 +33,5 @@
 @test "error on obsolete holochainVersion attribute" {
     run nix-shell --argstr holochainVersionId 'custom' --arg holochainVersion '{ cargoSha256 = "..."; }'
     [ $status -ne 0 ]
-    [[ "$output" == "error: The following attributes found in the 'holochainVersion' set are no longer supported:"* ]]
+    [[ "$output" =~ "error: The following attributes found in the 'holochainVersion' set are no longer supported:"* ]]
 }

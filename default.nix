@@ -121,7 +121,6 @@ let
     };
     test = pkgs.callPackage ./test {
       inherit
-        pkgs
         config
         ;
     };
