@@ -1,7 +1,7 @@
-{ pkgs }:
+{ stdenv, lib, linuxPackages }:
 {
   buildInputs = [ ]
-    ++ pkgs.lib.optionals pkgs.stdenv.isLinux [
-    pkgs.linuxPackages.perf
+    ++ lib.optionals stdenv.isLinux [
+    linuxPackages.perf
   ];
 }

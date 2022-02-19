@@ -1,10 +1,10 @@
-{ pkgs }:
+{ git, gitAndTools, cacert }:
 {
   buildInputs =
     [
-      pkgs.git
-      pkgs.gitAndTools.git-hub
-      pkgs.cacert
+      git
+      gitAndTools.git-hub
+      cacert
       # need the haskellPackages version for darwin support
       # broken
       # pkgs.haskellPackages.github-release

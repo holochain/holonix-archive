@@ -1,10 +1,12 @@
-{ pkgs }:
-let
-  node = pkgs.nodejs-12_x;
-  clang = pkgs.clang;
-in
+{ pkgs
+, callPackage
+, nodejs_latest
+, clang
+, yarn
+, python
+}:
+
 {
-  clang = clang;
   buildInputs =
     [
       # node and yarn version used in:
@@ -12,13 +14,13 @@ in
       # - app spec tests
       # - deploy scripts
       # - node conductor management
-      node
+      nodejs_latest
       clang
-      pkgs.yarn
+      yarn
 
       # needed by node-gyp
-      pkgs.python
+      python
     ]
-    ++ (pkgs.callPackage ./flush { }).buildInputs
+    ++ (callPackage ./flush { }).buildInputs
   ;
 }
