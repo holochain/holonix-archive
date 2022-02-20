@@ -4,6 +4,8 @@
 , coreutils
 , flamegraph
 , nixUnstable
+, niv
+
 , holochain-nixpkgs
 , holonixComponents
 }:
@@ -43,6 +45,7 @@ let
 
     buildInputs = [
       nixUnstable
+      niv
 
       # for mktemp
       coreutils
