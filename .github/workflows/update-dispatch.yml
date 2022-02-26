@@ -3,7 +3,7 @@ on:
   # push:
   #   branches: [pr-periodic-updates]
   schedule:
-    - cron: "0 6 * * *" # at 6 AM every day
+    - cron: "0 8 * * *" # at 8:00 every day
   workflow_dispatch:
     inputs:
       only-base-ref:
