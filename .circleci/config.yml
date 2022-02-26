@@ -71,6 +71,14 @@ jobs:
     steps:
       - nix-prepare-test-push
 
+  all-jobs-succeed:
+    docker:
+      - image: bash
+    steps:
+      - run:
+          name: echo
+          command: echo
+
   # THIS IS SECURITY SENSITVE
   # READ THESE
   # https://circleci.com/blog/deploying-documentation-to-github-pages-with-continuous-integration/
@@ -140,6 +148,12 @@ workflows:
       - debian
       - ubuntu
       - mac
+      - all-jobs-succeed:
+          requires:
+            - build
+            - debian
+            - ubuntu
+            - mac
       - docker-build-ubuntu:
           filters:
             branches:
