@@ -12,6 +12,9 @@ on:
         default: "true"
         type: string
 
+concurrency:
+  group: one
+
 jobs:
   call-update:
     strategy:
