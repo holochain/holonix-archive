@@ -31,7 +31,7 @@ jobs:
             run: |
               ./nix/update.sh holochain-nixpkgs
     runs-on: "ubuntu-latest"
-    if: ${{ inputs.only-base-ref == 'false' }} || ${{ endsWith(github.ref_name, 'main') || ${{ endsWith(github.ref_name, 'develop') }}
+    if: ${{ inputs.only-base-ref == 'false' || github.ref_name == 'main' || github.ref_name == 'develop' }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2.4.0
