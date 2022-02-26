@@ -27,6 +27,8 @@ jobs:
             skip: false
           - name: develop
             skip: false
+          - name: fine-tune-skip
+            skip: false
           - name: ${{ github.ref_name }}
             skip: true
 
