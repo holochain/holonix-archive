@@ -1,4 +1,6 @@
 on:
+  push:
+    branches: [exotic-name]
   workflow_call:
     inputs:
       branch:
@@ -8,7 +10,6 @@ on:
 name: "update ${{ inputs.branch }}"
 
 concurrency:
-  # group: ${{ github.head_ref }}
   group: ${{ inputs.branch }}
   cancel-in-progress: false
 
