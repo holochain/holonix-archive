@@ -17,7 +17,7 @@ runs:
     - name: Checkout repository
       uses: actions/checkout@v2.4.0
       with:
-        ref: ${{ github.events.inputs.branch }}
+        ref: ${{ inputs.branch }}
     - name: Install nix
       uses: cachix/install-nix-action@v16
     - name: Setup cachix
@@ -31,16 +31,16 @@ runs:
       run: |
         git config --global user.email "hrabot@holochain.org"
         git config --global user.name "Holochain Release Automation"
-    - name: ${{ matrix.command.name }}
+    - name: run the update script
       shell: bash
-      run: ${{ matrix.command.run }}
+      run: ./nix/update.sh holochain-nixpkgs
     - name: create pull request
       uses: peter-evans/create-pull-request@v3
       id: cpr1
       with:
         token: ${{ inputs.HRA_GITHUB_TOKEN }}
-        title: ${{ matrix.command.name }}
-        branch: auto-update/${{ github.events.inputs.branch }}
+        title: update ${{ inputs.branch }}
+        branch: auto-update/${{ inputs.branch }}
         labels: |
           release
         draft: false
