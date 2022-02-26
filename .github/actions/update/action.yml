@@ -31,7 +31,7 @@ runs:
       run: |
         git config --global user.email "hrabot@holochain.org"
         git config --global user.name "Holochain Release Automation"
-    - name: run the update script
+    - name: update holochain-nixpkgs
       shell: bash
       run: ./nix/update.sh holochain-nixpkgs
     - name: create pull request

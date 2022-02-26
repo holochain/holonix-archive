@@ -24,10 +24,6 @@ jobs:
           - main
           - develop
           - ${{ github.ref_name }}
-        command:
-          - name: update holochain-nixpkgs
-            run: |
-              ./nix/update.sh holochain-nixpkgs
     runs-on: "ubuntu-latest"
     steps:
       - name: Evaluate skip
