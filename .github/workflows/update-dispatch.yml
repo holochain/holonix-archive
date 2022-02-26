@@ -1,0 +1,39 @@
+name: "update dispatch"
+on:
+  schedule:
+    - cron: "0 6 * * *" # at 6 AM every day
+  workflow_dispatch:
+    inputs:
+      only-base-ref:
+        description: when this is set to 'true', updating of main and devleop branch will be skipped
+        required: false
+        default: "false"
+        type: string
+
+jobs:
+  update:
+    strategy:
+      fail-fast: false
+      matrix:
+        branch:
+          - main
+          - develop
+          - ${{ github.ref_name }}
+        command:
+          - name: update holochain-nixpkgs
+            run: |
+              ./nix/update.sh holochain-nixpkgs
+    runs-on: "ubuntu-latest"
+    steps:
+      - name: Evaluate skip
+        id: skip
+        if: ${{ inputs.only-base-ref == 'false' }} || ${{ endsWith(github.ref_name, matrix.branch) }}
+        run: ":"
+      - name: Run auto-update workflow
+        uses: ./.github/actions/update
+        with:
+          branch: ${{ matrix.branch }}
+  all-jobs-succeed:
+    runs-on: "ubuntu-latest"
+    needs: [update]
+    steps: [{ name: "all-jobs-succeed", run: ":" }]

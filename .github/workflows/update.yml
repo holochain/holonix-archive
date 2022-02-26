@@ -1,6 +1,4 @@
 on:
-  push:
-    branches: [exotic-name]
   workflow_call:
     inputs:
       branch:
