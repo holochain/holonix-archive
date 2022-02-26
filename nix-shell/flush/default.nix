@@ -1,13 +1,13 @@
 { pkgs }:
 let
- name = "hn-flush";
+  name = "hn-flush";
 
- script = pkgs.writeShellScriptBin name
- ''
- hn-node-flush
- hn-rust-flush
- '';
+  script = pkgs.writeShellScriptBin name
+    ''
+      hn-node-flush
+      hn-rust-flush
+    '';
 in
 {
- buildInputs = [ script ];
+  buildInputs = [ script ];
 }

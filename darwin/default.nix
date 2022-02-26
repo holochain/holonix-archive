@@ -1,12 +1,14 @@
-{ pkgs }:
+{ stdenv, lib, darwin }:
 let
- # https://stackoverflow.com/questions/51161225/how-can-i-make-macos-frameworks-available-to-clang-in-a-nix-environment
- frameworks = if pkgs.stdenv.isDarwin then pkgs.darwin.apple_sdk.frameworks else {};
- ld-flags = if pkgs.stdenv.isDarwin then "-F${frameworks.CoreFoundation}/Library/Frameworks -framework CoreFoundation " else "";
+  # https://stackoverflow.com/questions/51161225/how-can-i-make-macos-frameworks-available-to-clang-in-a-nix-environment
+  frameworks = darwin.apple_sdk.frameworks;
+  ld-flags = "-F${frameworks.CoreFoundation}/Library/Frameworks -framework CoreFoundation ";
 in
-{
- frameworks = frameworks;
- ld-flags = ld-flags;
- buildInputs = []
- ++ pkgs.lib.optionals pkgs.stdenv.isDarwin [ frameworks.Security frameworks.CoreFoundation frameworks.CoreServices ];
+
+lib.attrsets.optionalAttrs stdenv.isDarwin {
+  buildInputs = [ frameworks.Security frameworks.CoreFoundation frameworks.CoreServices ];
+
+  shellHook = ''
+    LD_FLAGS="$LDFLAGS${ld-flags}";
+  '';
 }

@@ -28,7 +28,7 @@ commands:
           command: |
             . $HOME/.nix-profile/etc/profile.d/nix.sh
             nix-shell --run echo
-            nix-shell --run hn-test
+            nix-shell --arg include '{ test = true; }' --run hn-test
             # TODO: decide whether or not we want to keep this
             # HN_VERBOSE=true $(nix-build . --no-link -A pkgs.holonix)/bin/holonix --run hn-test
       - run:
@@ -70,6 +70,14 @@ jobs:
           CACHIX_NAME: holochain-ci
     steps:
       - nix-prepare-test-push
+
+  all-jobs-succeed:
+    docker:
+      - image: bash
+    steps:
+      - run:
+          name: echo
+          command: echo
 
   # THIS IS SECURITY SENSITVE
   # READ THESE
@@ -140,6 +148,12 @@ workflows:
       - debian
       - ubuntu
       - mac
+      - all-jobs-succeed:
+          requires:
+            - build
+            - debian
+            - ubuntu
+            - mac
       - docker-build-ubuntu:
           filters:
             branches:
