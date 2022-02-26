@@ -29,13 +29,13 @@ jobs:
     steps:
       - name: Evaluate skip
         id: skip
-        if: ${{ inputs.only-base-ref == 'false' }} || ${{ endsWith(github.ref_name, matrix.branch) }}
+        if: ${{ github.events.inputs.only-base-ref == 'false' }} || ${{ endsWith(github.ref_name, matrix.branch) }}
         run: ":"
       - name: Checkout repository
         if: ${{ steps.skip.outcome != 'skipped' }}
         uses: actions/checkout@v2.4.0
         with:
-          ref: ${{ inputs.branch }}
+          ref: ${{ matrix.branch }}
       - name: Call the update workflow
         if: ${{ steps.skip.outcome != 'skipped' }}
         uses: ./.github/actions/update/
