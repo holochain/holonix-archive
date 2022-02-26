@@ -2,7 +2,8 @@
 #! nix-shell --pure --keep NIX_PATH
 #! nix-shell -p cacert -p nixUnstable -p git
 #! nix-shell -p niv -i bash
-niv update
+set -e
+niv update ${@}
 
 nix/regen_versions.sh
 
