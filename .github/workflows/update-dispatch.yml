@@ -32,7 +32,7 @@ jobs:
         if: ${{ inputs.only-base-ref == 'false' }} || ${{ endsWith(github.ref_name, matrix.branch) }}
         run: ":"
       - name: Run auto-update workflow
-        uses: ./.github/actions/update.yml
+        uses: ./.github/actions/update
         with:
           branch: ${{ matrix.branch }}
   all-jobs-succeed:
