@@ -41,6 +41,8 @@ jobs:
         uses: ./.github/actions/update/
         with:
           branch: ${{ matrix.branch }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          HRA_GITHUB_TOKEN: ${{ secrets.HRA_GITHUB_TOKEN }}
   all-jobs-succeed:
     runs-on: "ubuntu-latest"
     needs: [update]
