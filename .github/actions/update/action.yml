@@ -27,10 +27,12 @@ runs:
         signingKey: "${{ inputs.CACHIX_SIGNING_KEY }}"
         authToken: "${{ inputs.CACHIX_AUTH_TOKEN }}"
     - name: set up git config
+      shell: bash
       run: |
         git config --global user.email "hrabot@holochain.org"
         git config --global user.name "Holochain Release Automation"
     - name: ${{ matrix.command.name }}
+      shell: bash
       run: ${{ matrix.command.run }}
     - name: create pull request
       uses: peter-evans/create-pull-request@v3
