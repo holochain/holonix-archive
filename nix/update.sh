@@ -6,6 +6,11 @@
 set -e
 niv update ${@}
 
+if git diff --exit-code --quiet nix/sources.*; then
+    echo no changes, exiting..
+    exit 0
+fi
+
 nix/regen_versions.sh
 
 cat << EOF | git commit VERSIONS.md nix/sources.* -F -
