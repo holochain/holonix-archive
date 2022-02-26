@@ -29,9 +29,8 @@ jobs:
     steps:
       - name: Evaluate skip
         id: skip
-        if: ${{ github.events.inputs.only-base-ref != 'true' || endsWith(github.ref_name, matrix.branch) }}
-        run: |
-          echo ${{ github.events.inputs.only-base-ref != 'true' || endsWith(github.ref_name, matrix.branch) }}
+        if: ${{ !( github.events.inputs.only-base-ref == 'true' || !endsWith(github.ref_name, matrix.branch) ) }}
+        run: echo
       - name: Checkout repository
         if: ${{ steps.skip.outcome != 'skipped' }}
         uses: actions/checkout@v2.4.0
