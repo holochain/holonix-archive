@@ -38,7 +38,7 @@ jobs:
           ref: ${{ matrix.branch }}
       - name: Call the update workflow
         if: ${{ steps.skip.outcome != 'skipped' }}
-        uses: ./.github/workflows/update.yml
+        uses: ./.github/actions/update
         with:
           branch: ${{ matrix.branch }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
