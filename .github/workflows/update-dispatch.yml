@@ -30,7 +30,8 @@ jobs:
       - name: Evaluate skip
         id: skip
         if: ${{ github.events.inputs.only-base-ref == 'false' }} || ${{ endsWith(github.ref_name, matrix.branch) }}
-        run: ":"
+        run: |
+          echo ${{ github.events.inputs.only-base-ref == 'false' }} || ${{ endsWith(github.ref_name, matrix.branch) }}
       - name: Checkout repository
         if: ${{ steps.skip.outcome != 'skipped' }}
         uses: actions/checkout@v2.4.0
