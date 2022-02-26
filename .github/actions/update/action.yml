@@ -4,6 +4,11 @@ on:
       branch:
         required: true
         type: string
+    secrets:
+      GITHUB_TOKEN:
+        required: true
+      HRA_GITHUB_TOKEN:
+        required: true
 
 name: "update ${{ inputs.branch }}"
 
