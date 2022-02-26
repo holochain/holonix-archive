@@ -24,8 +24,8 @@ runs:
       uses: cachix/cachix-action@v10
       with:
         name: holochain-ci
-        signingKey: "${{ secrets.CACHIX_SIGNING_KEY }}"
-        authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
+        signingKey: "${{ inputs.CACHIX_SIGNING_KEY }}"
+        authToken: "${{ inputs.CACHIX_AUTH_TOKEN }}"
     - name: set up git config
       run: |
         git config --global user.email "hrabot@holochain.org"
@@ -36,7 +36,7 @@ runs:
       uses: peter-evans/create-pull-request@v3
       id: cpr1
       with:
-        token: ${{ secrets.HRA_GITHUB_TOKEN }}
+        token: ${{ inputs.HRA_GITHUB_TOKEN }}
         title: ${{ matrix.command.name }}
         branch: auto-update/${{ github.events.inputs.branch }}
         labels: |
@@ -48,12 +48,12 @@ runs:
       if: steps.cpr1.outputs.pull-request-operation != 'closed'
       uses: peter-evans/enable-pull-request-automerge@v1
       with:
-        token: ${{ secrets.HRA_GITHUB_TOKEN}}
+        token: ${{ inputs.HRA_GITHUB_TOKEN}}
         pull-request-number: ${{ steps.cpr1.outputs.pull-request-number }}
         merge-method: squash
     - name: Auto approve Pull Request
       if: steps.cpr1.outputs.pull-request-operation != 'closed'
       uses: juliangruber/approve-pull-request-action@v1
       with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
+        github-token: ${{ inputs.GITHUB_TOKEN }}
         number: ${{ steps.cpr1.outputs.pull-request-number }}
