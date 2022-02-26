@@ -45,7 +45,6 @@ jobs:
         run: |
           echo ${{ !( github.event.inputs.only-base-ref == 'true' && !endsWith(github.ref_name, matrix.branch) ) }}
           echo ${{ !( github.event.inputs.only-base-ref != 'true' && endsWith(github.ref_name, matrix.branch) && matrix.branch.skip == true ) }}
-          }}
       - name: Checkout repository
         if: ${{ steps.skip.outcome != 'skipped' }}
         uses: actions/checkout@v2.4.0
