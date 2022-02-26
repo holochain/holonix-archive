@@ -39,14 +39,12 @@ jobs:
         if: |
           ${{
             !( github.event.inputs.only-base-ref == 'true' && !endsWith(github.ref_name, matrix.branch) )
-            ||
+            &&
             !( github.event.inputs.only-base-ref != 'true' && endsWith(github.ref_name, matrix.branch) && matrix.branch.skip == true )
           }}
         run: |
-          echo ${{
-            !( github.event.inputs.only-base-ref == 'true' && !endsWith(github.ref_name, matrix.branch) )
-            ||
-            !( github.event.inputs.only-base-ref != 'true' && endsWith(github.ref_name, matrix.branch) && matrix.branch.skip == true )
+          echo ${{ !( github.event.inputs.only-base-ref == 'true' && !endsWith(github.ref_name, matrix.branch) ) }}
+          echo ${{ !( github.event.inputs.only-base-ref != 'true' && endsWith(github.ref_name, matrix.branch) && matrix.branch.skip == true ) }}
           }}
       - name: Checkout repository
         if: ${{ steps.skip.outcome != 'skipped' }}
