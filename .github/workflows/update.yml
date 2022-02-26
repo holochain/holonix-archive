@@ -4,8 +4,14 @@ on:
   #   branches:
   #     - pr-periodic-updates
   schedule:
-    - cron: "40 14 * * *" # at 6 AM every day
-  workflow_dispatch: {}
+    - cron: "0 6 * * *" # at 6 AM every day
+  workflow_dispatch:
+    inputs:
+      only-base-ref:
+        description: when this is set to 'true', updating of main and devleop branch will be skipped
+        required: false
+        default: "false"
+        type: string
 concurrency:
   # group: ${{ github.head_ref }}
   group: one
@@ -16,14 +22,21 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
+        branch:
+          - main
+          - develop
+          - ${{ github.ref_name }}
         command:
           - name: update holochain-nixpkgs
             run: |
               ./nix/update.sh holochain-nixpkgs
     runs-on: "ubuntu-latest"
+    if: ${{ inputs.only-base-ref == 'false' || endsWith(${{ github.ref_name }}, ${{ matrix.branch }}) }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2.4.0
+        with:
+          ref: ${{ matrix.branch }}
       - name: Install nix
         uses: cachix/install-nix-action@v16
       - name: Setup cachix
