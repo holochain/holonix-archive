@@ -9,7 +9,7 @@ on:
       only-base-ref:
         description: when this is set to 'true', updating of main and devleop branch will be skipped
         required: false
-        default: "false"
+        default: "true"
         type: string
 
 jobs:
