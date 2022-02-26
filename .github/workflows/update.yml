@@ -44,7 +44,7 @@ jobs:
         with:
           token: ${{ secrets.HRA_GITHUB_TOKEN }}
           title: ${{ matrix.command.name }}
-          branch: auto-update/${{ inputs.branch }}
+          branch: auto-update/${{ github.events.inputs.branch }}
           labels: |
             release
           draft: false
