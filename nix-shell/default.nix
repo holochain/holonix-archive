@@ -1,96 +1,72 @@
-{
- pkgs,
- stdenv,
- darwin,
- docs,
- git,
- linux,
- node,
- openssl,
- release,
- rust,
- test,
- happs
-, extraBuildInputs
+{ stdenv
+, mkShell
+, bashInteractive
+, coreutils
+, flamegraph
+, nixUnstable
+, niv
+
+, holochain-nixpkgs
+, holonixComponents
 }:
-(pkgs.mkShell {
- name = "holonix-shell";
 
- # non-nixos OS can have a "dirty" setup with rustup installed for the current
- # user.
- # `nix-shell` can inherit this e.g. through sourcing `.bashrc`.
- # even `nix-shell --pure` will still source some files and inherit paths.
- # for those users we can at least give the OS a clue that we want our pinned
- # rust version through this environment variable.
- # https://github.com/rust-lang/rustup.rs#environment-variables
- # https://github.com/NixOS/nix/issues/903
- RUSTUP_TOOLCHAIN = rust.version;
- # TODO: clarify if we want incremental builds in release mode, as they're enabled by default on non-release builds: https://github.com/rust-lang/cargo/pull/4817
- CARGO_INCREMENTAL = rust.compile.incremental;
- RUST_LOG = rust.log;
- NUM_JOBS = rust.compile.jobs;
- RUST_BACKTRACE = rust.backtrace;
+let
+  base = {
 
- RELEASE_VERSION = release.config.release.version.current;
- RELEASE_TAG = release.config.release.tag;
 
- OPENSSL_STATIC = openssl.static;
+    shellHook = ''
+      # cargo should install binaries into this repo rather than globally
+      # https://github.com/rust-lang/rustup.rs/issues/994
+      #
+      # cargo should NOT install binaries into this repo in vagrant as this breaks
+      # under windows with virtualbox shared folders
 
- # needed so bindgen can find libclang.so
- LIBCLANG_PATH="${pkgs.llvmPackages.libclang}/lib";
+      if [[ -z $NIX_ENV_PREFIX ]]
+      then
+       if [[ $( whoami ) == "vagrant" ]]
+        then export NIX_ENV_PREFIX=/home/vagrant
+        else export NIX_ENV_PREFIX=`pwd`
+       fi
+      fi
 
- shellHook = ''
- # cargo should install binaries into this repo rather than globally
- # https://github.com/rust-lang/rustup.rs/issues/994
- #
- # cargo should NOT install binaries into this repo in vagrant as this breaks
- # under windows with virtualbox shared folders
+      export CARGO_HOME="$NIX_ENV_PREFIX/.cargo"
+      export CARGO_INSTALL_ROOT="$NIX_ENV_PREFIX/.cargo"
+      export CARGO_TARGET_DIR="$NIX_ENV_PREFIX/target"
+      export CARGO_CACHE_RUSTC_INFO=1
+      export PATH="$CARGO_INSTALL_ROOT/bin:$PATH"
+      export NIX_BUILD_SHELL="${bashInteractive}/bin/bash"
+      export NIX_PATH="nixpkgs=${holochain-nixpkgs.pkgs.path}"
 
- if [[ -z $NIX_ENV_PREFIX ]]
- then
-  if [[ $( whoami ) == "vagrant" ]]
-   then export NIX_ENV_PREFIX=/home/vagrant
-   else export NIX_ENV_PREFIX=`pwd`
-  fi
- fi
+      # https://github.com/holochain/holonix/issues/12
+      export TMP=$( mktemp -p /tmp -d )
+      export TMPDIR=$TMP
 
- export RUSTFLAGS="${rust.compile.stable-flags}"
+    '';
 
- export CARGO_HOME="$NIX_ENV_PREFIX/.cargo"
- export CARGO_INSTALL_ROOT="$NIX_ENV_PREFIX/.cargo"
- export CARGO_TARGET_DIR="$NIX_ENV_PREFIX/target"
- export CARGO_CACHE_RUSTC_INFO=1
- export PATH="$CARGO_INSTALL_ROOT/bin:$PATH"
- export NIX_BUILD_SHELL="${pkgs.runtimeShell}"
+    buildInputs = [
+      nixUnstable
+      niv
 
- # https://github.com/holochain/holonix/issues/12
- export TMP=$( mktemp -p /tmp -d )
- export TMPDIR=$TMP
- '';
+      # for mktemp
+      coreutils
 
- buildInputs = [
-  # for mktemp
-  pkgs.coreutils
+      #flame graph dep
+      flamegraph
 
-  #flame graph dep
-  pkgs.flamegraph
- ]
- ++ (builtins.foldl' (sum: elem: sum ++ elem.buildInputs) [] [
-  (pkgs.callPackage ./flush { })
-  docs
-  git
-  linux
-  node
-  openssl
-  release
-  rust
-  test
-  happs
- ])
- ++ extraBuildInputs
- ;
+    ];
+  };
 
- inputsFrom = builtins.attrValues pkgs.holochainBinaries;
-}).overrideAttrs(attrs: {
+in
+
+(mkShell {
+  name = "holonix-shell";
+
+  inputsFrom = holonixComponents
+    ++
+    # this list is reversed [0] and we want the base shell to be first as the shellHook sets the NIX_ENV_PREFIX
+    # [0]: https://github.com/NixOS/nixpkgs/blob/966a7403df58a4a72295bce08414de90bb80bbc6/pkgs/build-support/mkshell/default.nix#L42
+    [ base ]
+  ;
+}).overrideAttrs (attrs: {
   nativeBuildInputs = builtins.filter (el: (builtins.match ".*(rust|cargo).*" el.name) == null) attrs.nativeBuildInputs;
 })

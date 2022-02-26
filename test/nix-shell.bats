@@ -10,9 +10,8 @@
   [ "$RUST_BACKTRACE" == "1" ]
 }
 
-@test "default release tag is set" {
- [ "$RELEASE_VERSION" == "_._._" ]
- [ "$RELEASE_TAG" == "v_._._" ]
+@test "CARGO_HOME is set and not directly at root" {
+  [ "$CARGO_HOME" != "" ] && [ "$CARGO_HOME" != "/.cargo" ]
 }
 
 @test "hn-introspect lists holochain" {
@@ -33,5 +32,5 @@
 @test "error on obsolete holochainVersion attribute" {
     run nix-shell --argstr holochainVersionId 'custom' --arg holochainVersion '{ cargoSha256 = "..."; }'
     [ $status -ne 0 ]
-    [[ "$output" == "error: The following attributes found in the 'holochainVersion' set are no longer supported:"* ]]
+    [[ "$output" =~ "error: The following attributes found in the 'holochainVersion' set are no longer supported:"* ]]
 }

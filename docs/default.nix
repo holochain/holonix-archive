@@ -1,14 +1,14 @@
-{ pkgs }:
+{ callPackage, hugo, asciinema, writeShellScriptBin }:
 {
- buildInputs =
- [
-  pkgs.hugo
-  pkgs.asciinema
+  buildInputs =
+    [
+      hugo
+      asciinema
 
-  (pkgs.writeShellScriptBin "hn-docs" ''
-(cd docs && hugo serve )
-  '')
- ]
- ++ (pkgs.callPackage ./github-pages { pkgs = pkgs; }).buildInputs
- ;
+      (writeShellScriptBin "hn-docs" ''
+        (cd docs && hugo serve )
+      '')
+    ]
+    ++ (callPackage ./github-pages { }).buildInputs
+  ;
 }

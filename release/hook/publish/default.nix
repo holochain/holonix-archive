@@ -1,10 +1,10 @@
 { pkgs, config }:
 {
- buildInputs = []
+  buildInputs = [ ]
 
- ++ (pkgs.callPackage ./crates-io {
-  config = config;
- }).buildInputs
+    ++ (pkgs.callPackage ./crates-io {
+    config = config;
+  }).buildInputs
 
- ;
+  ;
 }
