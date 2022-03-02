@@ -19,7 +19,7 @@
 }
 
 @test "expected kitsune-p2p-proxy version available" {
-  result="$(kitsune-p2p-proxy --version)"
+  result="$(kitsune-p2p-proxy --version || kitsune-p2p-tx2-proxy --version)"
   echo $result
   [[ "$result" == *" 0.0."* ]]
 }
