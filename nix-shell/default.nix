@@ -8,6 +8,7 @@
 
 , holochain-nixpkgs
 , holonixComponents
+, holonixVersions
 }:
 
 let
@@ -53,6 +54,7 @@ let
       #flame graph dep
       flamegraph
 
+      holonixVersions
     ];
   };
 
