@@ -3,7 +3,7 @@ on:
   # push:
   #   branches: [pr-periodic-updates]
   schedule:
-    - cron: "0 6 * * *" # at 6 AM every day
+    - cron: "0 8 * * *" # at 8:00 every day
   workflow_dispatch:
     inputs:
       only-base-ref:
@@ -23,14 +23,22 @@ jobs:
       fail-fast: false
       matrix:
         branch:
-          - main
-          - develop
-          - ${{ github.ref_name }}
+          - name: main
+            skip: false
+          - name: develop
+            skip: false
+          - name: ${{ github.ref_name }}
+            skip: true
     runs-on: "ubuntu-latest"
     steps:
       - name: Evaluate skip
         id: skip
-        if: ${{ !( github.event.inputs.only-base-ref == 'true' && !endsWith(github.ref_name, matrix.branch) ) }}
+        if: ${{
+          !(
+          (github.event.inputs.only-base-ref == 'true' && !endsWith(github.ref_name, matrix.branch.name))
+          || (github.event.inputs.only-base-ref != 'true' && endsWith(github.ref_name, matrix.branch.name) && matrix.branch.skip == true)
+          )
+          }}
         run: echo
       - name: Checkout repository
         if: ${{ steps.skip.outcome != 'skipped' }}
@@ -39,7 +47,7 @@ jobs:
         if: ${{ steps.skip.outcome != 'skipped' }}
         uses: ./.github/actions/update
         with:
-          branch: ${{ matrix.branch }}
+          branch: ${{ matrix.branch.name }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           HRA_GITHUB_TOKEN: ${{ secrets.HRA_GITHUB_TOKEN }}
   all-jobs-succeed:
