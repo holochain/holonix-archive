@@ -8,7 +8,7 @@ concurrency:
 
 jobs:
   tests:
-    timeout-minutes: 60
+    timeout-minutes: 100
     strategy:
       fail-fast: false
       matrix:
