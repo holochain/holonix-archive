@@ -8,7 +8,10 @@
   config ? import ./config.nix
 , holochain-nixpkgs ? config.holochain-nixpkgs.importFn { }
 , includeHolochainBinaries ? include.holochainBinaries or true
-, include ? { test = false; }
+, include ? {
+    test = false;
+    scaffolding = false;
+  }
 
   # either one listed in VERSIONS.md or "custom". when "custom" is set, `holochainVersion` needs to be specified
 , holochainVersionId ? "main"
@@ -42,6 +45,8 @@ let
         else value
       )
   ;
+
+  sources = import nix/sources.nix { };
 in
 
 assert (holochainVersionId == "custom") -> (
@@ -126,6 +131,7 @@ let
     happs = pkgs.callPackage ./happs { };
     introspection = { buildInputs = [ pkgs.holonixIntrospect ]; };
     holochainBinaries = { buildInputs = (builtins.attrValues pkgs.holochainBinaries); };
+    scaffolding = pkgs.callPackage ./scaffolding { inherit sources; };
   };
 
   componentsFiltered =

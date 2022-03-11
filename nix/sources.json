@@ -5,10 +5,22 @@
         "homepage": null,
         "owner": "holochain",
         "repo": "holochain-nixpkgs",
-        "rev": "0754b020f737dc3bcc4b9a295f5c570e8150d281",
-        "sha256": "1i5vrg2kbrmb1cv57bncmg37wvxa6cbq22a24ljcc6w2ippsvlqb",
+        "rev": "ff746eb159b0a8c1be830bc29b03566f7c54f2ee",
+        "sha256": "0gv42c3y1kjk74rkay28vxh7m5x90iyikb2shabxfdahrm0mqvlq",
         "type": "tarball",
-        "url": "https://github.com/holochain/holochain-nixpkgs/archive/0754b020f737dc3bcc4b9a295f5c570e8150d281.tar.gz",
+        "url": "https://github.com/holochain/holochain-nixpkgs/archive/ff746eb159b0a8c1be830bc29b03566f7c54f2ee.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "scaffolding": {
+        "branch": "main",
+        "description": "RAD tools to quickly scaffold a new holochain application",
+        "homepage": null,
+        "owner": "holochain",
+        "repo": "scaffolding",
+        "rev": "87a6ce42da38d29afb237c5b35e06f2d1653c4a6",
+        "sha256": "11g8cjf885g3ma01sljyk45rkrvkyldc3v2z7iis65mfnlczk5si",
+        "type": "tarball",
+        "url": "https://github.com/holochain/scaffolding/archive/87a6ce42da38d29afb237c5b35e06f2d1653c4a6.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     }
 }

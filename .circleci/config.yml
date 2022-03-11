@@ -47,14 +47,6 @@ commands:
             . $HOME/.nix-profile/etc/profile.d/nix.sh
             ./ci/cachix.sh push
 jobs:
-  build:
-    docker:
-      - image: nixos/nix:2.3.12
-        environment:
-          CACHIX_NAME: holochain-ci
-    steps:
-      - nix-prepare-test-push
-
   debian:
     docker:
       - image: holochain/holonix:debian.develop
@@ -79,53 +71,6 @@ jobs:
           name: echo
           command: echo
 
-  # THIS IS SECURITY SENSITVE
-  # READ THESE
-  # https://circleci.com/blog/deploying-documentation-to-github-pages-with-continuous-integration/
-  # https://discuss.circleci.com/t/adding-ssh-keys-fails/7747/24
-  deploy-github-pages:
-    docker:
-      - image: nixos/nix:2.3.12
-    steps:
-      - add_ssh_keys:
-          fingerprints:
-            - "52:70:20:1e:fe:e3:1c:74:cc:b9:5e:b4:04:30:03:e6"
-      - checkout
-      - run:
-          name: Set up Holo's Hydra cache
-          command: ./ci/setup-hydra-cache.sh
-      - run:
-          name: Set up Cachix
-          command: ./ci/cachix.sh setup
-      - run:
-          name: Deploy github pages
-          command: |
-            git config user.name "$GITHUB_PAGES_DEPLOY_USER"
-            git config user.email "$GITHUB_PAGES_DEPLOY_EMAIL"
-            nix-shell --run hn-docs-github-pages
-
-  mac:
-    macos:
-      # reference the Big Sur + Xcode 12.5 preview image
-      xcode: 12.5.1
-    environment:
-      NIXPKGS_ALLOW_UNFREE: 1
-      CACHIX_NAME: holochain-ci
-    steps:
-      - checkout
-      - run:
-          name: install nix
-          command: |
-            set -ET
-            shopt -s inherit_errexit || {
-              echo warning: could not enable inherit_errexit
-            }
-            # fix for "too many open files" that breaks tokio and lmdb
-            ulimit -n 10240
-            # catalina nixos install
-            sh <(curl -L https://releases.nixos.org/nix/nix-2.3.8/install) --darwin-use-unencrypted-nix-store-volume
-      - nix-prepare-test-push
-
   docker-build-ubuntu:
     resource_class: large
     machine: true
@@ -144,37 +89,21 @@ workflows:
   version: 2
   tests:
     jobs:
-      - build
       - debian
       - ubuntu
-      - mac
       - all-jobs-succeed:
           requires:
-            - build
             - debian
             - ubuntu
-            - mac
       - docker-build-ubuntu:
           filters:
             branches:
               only:
-                - love
-                - master
+                - main
                 - develop
-          requires:
-            - build
       - docker-build-debian:
           filters:
             branches:
               only:
-                - love
-                - master
+                - main
                 - develop
-          requires:
-            - build
-      - deploy-github-pages:
-          filters:
-            branches:
-              only: love
-          requires:
-            - build
