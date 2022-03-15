@@ -17,4 +17,3 @@ nix-shell https://github.com/holochain/holochain-nixpkgs/archive/develop.tar.gz 
 ```
 
 `holochain-0.1.129` can be replaced with any commit hash or tag from the [Holochain repo](https://github.com/holochain/holochain), and `~0.0` can be replaced with any [SemVer specification](https://doc.rust-lang.org/cargo/reference/specifying-dependencies.html) for [lair_keystore](https://crates.io/crates/lair_keystore)
-
