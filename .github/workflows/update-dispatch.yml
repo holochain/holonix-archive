@@ -29,6 +29,9 @@ jobs:
             skip: false
           - name: ${{ github.ref_name }}
             skip: true
+        update_source:
+          - holochain-nixpkgs
+          - scaffolding
     runs-on: "ubuntu-latest"
     steps:
       - name: Evaluate skip
@@ -48,8 +51,11 @@ jobs:
         uses: ./.github/actions/update
         with:
           branch: ${{ matrix.branch.name }}
+          update_source: ${{ matrix.update_source }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           HRA_GITHUB_TOKEN: ${{ secrets.HRA_GITHUB_TOKEN }}
+          CACHIX_SIGNING_KEY: ${{ secrets.CACHIX_SIGNING_KEY }}
+          CACHIX_AUTH_TOKEN: ${{ secrets.CACHIX_AUTH_TOKEN }}
   all-jobs-succeed:
     runs-on: "ubuntu-latest"
     needs: [call-update]
