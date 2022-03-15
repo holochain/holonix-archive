@@ -21,8 +21,7 @@ let
     bats ./test/rust-manifest-list-unpinned.bats
     bats ./test/rust.bats
     bats ./test/flamegraph.bats
-    # TODO: refactor the happ scaffolding tests for RSM
-    # bats ./test/happs.bats
+    bats ./test/happs.bats
     bats ./test/holochain-binaries.bats
   '';
 
