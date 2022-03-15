@@ -2,6 +2,7 @@
 #! nix-shell ../default.nix
 #! nix-shell --pure
 #! nix-shell --keep GITHUB_TOKEN
+#! nix-shell --keep NIX_PATH
 #! nix-shell -i bash
 
 set -e
