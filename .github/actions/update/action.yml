@@ -13,6 +13,12 @@ inputs:
   HRA_GITHUB_TOKEN:
     description: ""
     required: true
+  CACHIX_SIGNING_KEY:
+    description: ""
+    required: true
+  CACHIX_AUTH_TOKEN:
+    description: ""
+    required: true
 
 runs:
   using: "composite"
