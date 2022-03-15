@@ -37,19 +37,6 @@ jobs:
               set -e
               hn-test
             '
-      - name: update script
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          set -e
-          nix-shell --pure --keep GITHUB_TOKEN --keep NIX_PATH --run '
-            set -e
-
-            git config --global user.email "ci@holochain.org"
-            git config --global user.name "Holochain CI"
-            ./nix/update.sh
-            PAGER="" git show
-          '
 
   ci-jobs-succeed:
     needs: [tests]
