@@ -4,6 +4,9 @@ inputs:
   branch:
     description: ""
     required: true
+  update_source:
+    description: "passed to ./nix/update.sh"
+    required: true
   GITHUB_TOKEN:
     description: ""
     required: true
@@ -33,14 +36,14 @@ runs:
         git config --global user.name "Holochain Release Automation"
     - name: update holochain-nixpkgs
       shell: bash
-      run: ./nix/update.sh holochain-nixpkgs
+      run: ./nix/update.sh ${{ inputs.update_source }}
     - name: create pull request
       uses: peter-evans/create-pull-request@v3
       id: cpr1
       with:
         token: ${{ inputs.HRA_GITHUB_TOKEN }}
-        title: update ${{ inputs.branch }}
-        branch: auto-update/${{ inputs.branch }}
+        title: update ${{ inputs.update_source }} on ${{ inputs.branch }}
+        branch: auto-update/${{ inputs.branch }}/${{ inputs.update_source }}
         labels: |
           release
         draft: false
