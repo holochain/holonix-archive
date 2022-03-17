@@ -23,8 +23,6 @@ jobs:
       fail-fast: false
       matrix:
         branch:
-          - name: main
-            skip: false
           - name: develop
             skip: false
           - name: ${{ github.ref_name }}
