@@ -13,7 +13,7 @@
   }
 
   # either one listed in VERSIONS.md or "custom". when "custom" is set, `holochainVersion` needs to be specified
-, holochainVersionId ? "develop"
+, holochainVersionId ? "main"
 , holochainVersion ? null
 , rustVersion ? { }
 , rustc ? (if rustVersion == { }
