@@ -1,6 +1,7 @@
 #! /usr/bin/env nix-shell
 #! nix-shell ../default.nix
 #! nix-shell --pure
+#! nix-shell --arg include '{ node = false; scaffolding = false; rust = false; }'
 #! nix-shell --keep GITHUB_TOKEN
 #! nix-shell -i bash
 
