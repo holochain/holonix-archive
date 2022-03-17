@@ -14,7 +14,7 @@ jobs:
         uses: peter-evans/create-pull-request@v3
         id: cpr1
         with:
-          token: ${{ inputs.HRA_GITHUB_TOKEN }}
+          token: ${{ secrets.HRA_GITHUB_TOKEN }}
           title: update main from develop
           branch: auto-update/develop-to-main
           base: main
@@ -27,12 +27,12 @@ jobs:
         if: steps.cpr1.outputs.pull-request-operation == 'created' || steps.cpr1.outputs.pull-request-operation == 'updated'
         uses: peter-evans/enable-pull-request-automerge@v1
         with:
-          token: ${{ inputs.HRA_GITHUB_TOKEN}}
+          token: ${{ secrets.HRA_GITHUB_TOKEN}}
           pull-request-number: ${{ steps.cpr1.outputs.pull-request-number }}
           merge-method: merge
       - name: Auto approve Pull Request
         if: steps.cpr1.outputs.pull-request-operation == 'created' || steps.cpr1.outputs.pull-request-operation == 'updated'
         uses: juliangruber/approve-pull-request-action@v1
         with:
-          github-token: ${{ inputs.GITHUB_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           number: ${{ steps.cpr1.outputs.pull-request-number }}
