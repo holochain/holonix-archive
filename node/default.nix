@@ -1,6 +1,6 @@
 { pkgs
 , callPackage
-, nodejs_latest
+, nodejs-16_x
 , clang
 , yarn
 , python
@@ -14,7 +14,7 @@
       # - app spec tests
       # - deploy scripts
       # - node conductor management
-      nodejs_latest
+      nodejs-16_x
       clang
       yarn
 
