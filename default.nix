@@ -10,7 +10,6 @@
 , includeHolochainBinaries ? include.holochainBinaries or true
 , include ? {
     test = false;
-    scaffolding = false;
   }
 
   # either one listed in VERSIONS.md or "custom". when "custom" is set, `holochainVersion` needs to be specified

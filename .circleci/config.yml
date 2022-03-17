@@ -26,16 +26,17 @@ commands:
       - run:
           name: tests
           command: |
+            set -x
             . $HOME/.nix-profile/etc/profile.d/nix.sh
-            nix-shell --run echo
-            nix-shell --arg include '{ test = true; }' --run hn-test
+            nix-shell --pure --run echo
+            nix-shell --pure --arg include '{ test = true; }' --run hn-test
             # TODO: decide whether or not we want to keep this
             # HN_VERBOSE=true $(nix-build . --no-link -A pkgs.holonix)/bin/holonix --run hn-test
       - run:
           name: run the update script
           command: |
             . $HOME/.nix-profile/etc/profile.d/nix.sh
-            nix-shell -p git --run '
+            nix-shell --pure -p git --run '
               git config --global user.email "ci@holochain.org"
               git config --global user.name "Holochain CI"
               ./nix/update.sh

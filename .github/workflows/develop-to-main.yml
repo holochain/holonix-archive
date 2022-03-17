@@ -1,0 +1,38 @@
+on:
+  workflow_dispatch: {}
+  push:
+    branches:
+      - develop
+
+jobs:
+  create-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2.4.0
+      - name: create pull request
+        uses: peter-evans/create-pull-request@v3
+        id: cpr1
+        with:
+          token: ${{ secrets.HRA_GITHUB_TOKEN }}
+          title: update main from develop
+          branch: auto-update/develop-to-main
+          base: main
+          labels: |
+            release
+          draft: false
+          delete-branch: true
+          reviewers: steveej
+      - name: Enable Pull Request Automerge
+        if: steps.cpr1.outputs.pull-request-operation == 'created' || steps.cpr1.outputs.pull-request-operation == 'updated'
+        uses: peter-evans/enable-pull-request-automerge@v1
+        with:
+          token: ${{ secrets.HRA_GITHUB_TOKEN}}
+          pull-request-number: ${{ steps.cpr1.outputs.pull-request-number }}
+          merge-method: merge
+      - name: Auto approve Pull Request
+        if: steps.cpr1.outputs.pull-request-operation == 'created' || steps.cpr1.outputs.pull-request-operation == 'updated'
+        uses: juliangruber/approve-pull-request-action@v1
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          number: ${{ steps.cpr1.outputs.pull-request-number }}
