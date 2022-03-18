@@ -41,6 +41,9 @@ jobs:
   ci-jobs-succeed:
     needs: [tests]
     runs-on: ubuntu-latest
+    if: always()
     steps:
-      - name: echo
-        run: echo
+      - name: Check status
+        env:
+          RESULTS: "${{ toJSON(needs.*.result) }}"
+        run: "[[ $(jq -n 'env.RESULTS | fromjson | unique == [\"success\"]') == \"true\" ]]\n"
