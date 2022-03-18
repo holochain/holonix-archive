@@ -57,4 +57,9 @@ jobs:
   all-jobs-succeed:
     runs-on: "ubuntu-latest"
     needs: [call-update]
-    steps: [{ name: "all-jobs-succeed", run: ":" }]
+    if: always()
+    steps:
+      - name: Check status
+        env:
+          RESULTS: "${{ toJSON(needs.*.result) }}"
+        run: "[[ $(jq -n 'env.RESULTS | fromjson | unique == [\"success\"]') == \"true\" ]]\n"
