@@ -46,7 +46,7 @@ let
 
     buildInputs = [
       nixUnstable
-      niv
+      # niv
 
       # for mktemp
       coreutils
