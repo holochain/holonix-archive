@@ -1,7 +1,4 @@
 rec {
-  # releases here https://github.com/rust-lang/rust/blob/master/RELEASES.md
-  version = "1.45.2";
-
   # the target used by rust when compiling wasm
   wasm-target = "wasm32-unknown-unknown";
 

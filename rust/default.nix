@@ -50,7 +50,7 @@ mkShell {
     # rust version through this environment variable.
     # https://github.com/rust-lang/rustup.rs#environment-variables
     # https://github.com/NixOS/nix/issues/903
-    export RUSTUP_TOOLCHAIN="${rustConfig.version}"
+    export RUSTUP_TOOLCHAIN="${rustc.version}"
     # TODO: clarify if we want incremental builds in release mode, as they're enabled by default on non-release builds: https://github.com/rust-lang/cargo/pull/4817
     export CARGO_INCREMENTAL="${rustConfig.compile.incremental}"
     export RUST_LOG="${rustConfig.log}"
