@@ -130,6 +130,9 @@ let
     happs = pkgs.callPackage ./happs { };
     introspection = { buildInputs = [ pkgs.holonixIntrospect ]; };
     holochainBinaries = { buildInputs = (builtins.attrValues pkgs.holochainBinaries); };
+    holochainDependencies = pkgs.mkShell {
+      inputsFrom = (builtins.attrValues pkgs.holochainBinaries);
+    };
     scaffolding = pkgs.callPackage ./scaffolding { inherit sources; };
   };
 
