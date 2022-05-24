@@ -34,7 +34,7 @@ jobs:
         run: |
           set -ex
 
-          if [[ "${GITHUB_HEAD_REF}" =~ "auto-update/.*/scaffolding" ]]; then
+          if [[ ${GITHUB_HEAD_REF} =~ auto-update/.*/scaffolding ]]; then
             include_arg="{ test = true; scaffolding = true; }"
           else
             include_arg="{ test = true; }"
