@@ -21,7 +21,7 @@ let
     bats ./test/rust-manifest-list-unpinned.bats
     bats ./test/rust.bats
     bats ./test/flamegraph.bats
-    bats ./test/happs.bats
+    bats ./test/scaffolding.bats
     bats ./test/holochain-binaries.bats
   '';
 
