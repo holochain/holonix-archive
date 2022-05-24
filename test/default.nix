@@ -1,4 +1,5 @@
 { config
+, include
 , stdenv
 , writeShellScriptBin
 , bats
@@ -21,7 +22,7 @@ let
     bats ./test/rust-manifest-list-unpinned.bats
     bats ./test/rust.bats
     bats ./test/flamegraph.bats
-    bats ./test/happs.bats
+    ${if (include.scaffolding or false) then "bats ./test/scaffolding.bats" else ""}
     bats ./test/holochain-binaries.bats
   '';
 
