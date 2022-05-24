@@ -6,7 +6,7 @@ The following binaries are the same version regardless of the _holochainVersionI
 - rustc: rustc 1.60.0 (7737e0b5c 2022-04-04)
 - cargo fmt: rustfmt 1.4.38-stable (7737e0b 2022-04-04)
 - cargo clippy: clippy 0.1.60 (7737e0b 2022-04-04)
-- perf: mirror://kernel/linux/kernel/v5.x/linux-5.10.115.tar.xz
+- perf: mirror://kernel/linux/kernel/v5.x/linux-5.10.117.tar.xz
 
 ## Available _holochainVersionId_ options
 Each of the following headings represent one pre-built _holochainVersionId_ and their corresponding holochain version information.
@@ -18,9 +18,9 @@ Each of the following headings represent one pre-built _holochainVersionId_ and 
 - lair-keystore-0.0.10: https://github.com/holochain/lair/tree/v0.0.10
 
 ### develop
-- hc-0.0.38: https://github.com/holochain/holochain/tree/ec4b0e6002d30d662ba2e667f6a8ab07185425ec
-- holochain-0.0.140: https://github.com/holochain/holochain/tree/ec4b0e6002d30d662ba2e667f6a8ab07185425ec
-- kitsune-p2p-tx2-proxy-0.0.24: https://github.com/holochain/holochain/tree/ec4b0e6002d30d662ba2e667f6a8ab07185425ec
+- hc-0.0.38: https://github.com/holochain/holochain/tree/0c8865b034061980d82ea499fcff848f482b743e
+- holochain-0.0.140: https://github.com/holochain/holochain/tree/0c8865b034061980d82ea499fcff848f482b743e
+- kitsune-p2p-tx2-proxy-0.0.24: https://github.com/holochain/holochain/tree/0c8865b034061980d82ea499fcff848f482b743e
 - lair-keystore-0.0.10: https://github.com/holochain/lair/tree/v0.0.10
 
 ### develop_lair_0_1
