@@ -10,6 +10,7 @@
 , includeHolochainBinaries ? include.holochainBinaries or true
 , include ? {
     test = false;
+    scaffolding = false;
   }
 
   # either one listed in VERSIONS.md or "custom". when "custom" is set, `holochainVersion` needs to be specified
@@ -125,7 +126,9 @@ let
     test = pkgs.callPackage ./test {
       inherit
         config
+        include
         ;
+
     };
     happs = pkgs.callPackage ./happs { };
     introspection = { buildInputs = [ pkgs.holonixIntrospect ]; };
@@ -138,7 +141,7 @@ let
 
   componentsFiltered =
     pkgs.lib.attrsets.filterAttrs
-      (name: value: include."${name}" or true)
+      (name: value: include."${name}" or (if name == "scaffolding" then false else true))
       components
   ;
 
