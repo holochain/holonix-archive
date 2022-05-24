@@ -7,10 +7,11 @@
 # - $AWS_SECRET_ACCESS_KEY
 
 set -euo pipefail
-dir=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+# dir=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 
 echo "$DOCKER_PASS" | docker login --username $DOCKER_USER --password-stdin
 
-while read region; do
- $( aws ecr get-login --no-include-email --region $region )
-done < $dir/aws-regions.txt
+# We don't need this anymore
+# while read region; do
+#  $( aws ecr get-login --no-include-email --region $region )
+# done < $dir/aws-regions.txt
