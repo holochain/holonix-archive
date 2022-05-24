@@ -32,8 +32,15 @@ jobs:
 
       - name: hn-test
         run: |
-          set -e
-          nix-shell --pure --keep NIX_PATH --arg include '{ test = true; }' --run '
+          set -ex
+
+          if [[ ${GITHUB_HEAD_REF} =~ "auto-update/.*/scaffolding" ]]; then
+            include_arg="{ test = true; scaffolding = true; }"
+          else
+            include_arg="{ test = true; }"
+          fi
+
+          nix-shell --pure --keep NIX_PATH --arg include "${include_arg}"  --run '
               set -e
               hn-test
             '
