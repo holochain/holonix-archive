@@ -18,9 +18,9 @@ Each of the following headings represent one pre-built _holochainVersionId_ and 
 - lair-keystore-0.0.11: https://github.com/holochain/lair/tree/v0.0.11
 
 ### develop
-- hc-0.0.44: https://github.com/holochain/holochain/tree/6c55655e51f41260eb639cded2adb8b629a1bd2a
-- holochain-0.0.146: https://github.com/holochain/holochain/tree/6c55655e51f41260eb639cded2adb8b629a1bd2a
-- kitsune-p2p-tx2-proxy-0.0.26: https://github.com/holochain/holochain/tree/6c55655e51f41260eb639cded2adb8b629a1bd2a
+- hc-0.0.44: https://github.com/holochain/holochain/tree/f5a832e33c50f4a2e3aef534d84bf6e21f338ccb
+- holochain-0.0.146: https://github.com/holochain/holochain/tree/f5a832e33c50f4a2e3aef534d84bf6e21f338ccb
+- kitsune-p2p-tx2-proxy-0.0.26: https://github.com/holochain/holochain/tree/f5a832e33c50f4a2e3aef534d84bf6e21f338ccb
 - lair-keystore-0.0.11: https://github.com/holochain/lair/tree/v0.0.11
 
 ### develop_lair_0_1
