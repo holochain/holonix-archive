@@ -137,6 +137,7 @@ let
       inputsFrom = (builtins.attrValues pkgs.holochainBinaries);
     };
     scaffolding = pkgs.callPackage ./scaffolding { inherit sources; };
+    niv = { buildInputs = [ pkgs.niv ]; };
   };
 
   componentsFiltered =
