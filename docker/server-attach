@@ -1,8 +1,0 @@
-#!/usr/bin/env bash
-
-set -euxo pipefail
-
-box=${1:-sim2h_server}
-branch=${2:-$( git rev-parse --abbrev-ref HEAD )}
-
-docker attach $box.$branch
