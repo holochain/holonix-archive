@@ -1,25 +1,25 @@
 #!/usr/bin/env bats
 
-@test "expected holochain version available" {
+@test "expected holochain available" {
   result="$(holochain --version)"
   echo $result
-  [[ "$result" == *" 0.0."* ]]
+  [[ "$result" == "holochain"* ]]
 }
 
 @test "expected hc version available" {
   result="$(hc --version)"
   echo $result
-  [[ "$result" == *" 0.0."* ]]
+  [[ "$result" == "holochain_cli"* ]]
 }
 
-@test "expected lair-keystore version available" {
+@test "expected lair-keystore available" {
   result="$(lair-keystore --version)"
   echo $result
-  [[ "$result" == *" 0.0."* ]]
+  [[ "$result" == "lair-keystore"* ]]
 }
 
-@test "expected kitsune-p2p-proxy version available" {
+@test "expected kitsune-p2p-proxy available" {
   result="$(kitsune-p2p-proxy --version || kitsune-p2p-tx2-proxy --version)"
   echo $result
-  [[ "$result" == *" 0.0."* ]]
+  [[ "$result" == "kitsune-p2p"* ]]
 }
