@@ -15,7 +15,7 @@
 @test "expected lair-keystore available" {
   result="$(lair-keystore --version)"
   echo $result
-  [[ "$result" == "lair-keystore"* ]]
+  [[ "$result" =~ ^lair[-_]keystore.* ]]
 }
 
 @test "expected kitsune-p2p-proxy available" {
