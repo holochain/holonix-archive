@@ -12,10 +12,10 @@ The following binaries are the same version regardless of the _holochainVersionI
 Each of the following headings represent one pre-built _holochainVersionId_ and their corresponding holochain version information.
 
 ### main
-- hc-0.0.51: https://github.com/holochain/holochain/tree/695e6f9571550c351900e778a793205f13298c8c
-- holochain-0.0.154: https://github.com/holochain/holochain/tree/695e6f9571550c351900e778a793205f13298c8c
-- kitsune-p2p-tx2-proxy-0.0.29: https://github.com/holochain/holochain/tree/695e6f9571550c351900e778a793205f13298c8c
-- lair-keystore-0.0.11: https://github.com/holochain/lair/tree/v0.0.11
+- hc-0.0.52: https://github.com/holochain/holochain/tree/ab8c5552111da73971554ea3d80e473c97b5c650
+- holochain-0.0.155: https://github.com/holochain/holochain/tree/ab8c5552111da73971554ea3d80e473c97b5c650
+- kitsune-p2p-tx2-proxy-0.0.30: https://github.com/holochain/holochain/tree/ab8c5552111da73971554ea3d80e473c97b5c650
+- lair-keystore-0.2.0: https://github.com/holochain/lair/tree/lair_keystore_api-v0.2.0
 
 ### develop
 - hc-0.0.52: https://github.com/holochain/holochain/tree/70eef4d12c6943e26e3e8866d3bc9a24c839bff5
