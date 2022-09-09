@@ -12,15 +12,15 @@ The following binaries are the same version regardless of the _holochainVersionI
 Each of the following headings represent one pre-built _holochainVersionId_ and their corresponding holochain version information.
 
 ### main
-- hc-0.0.55: https://github.com/holochain/holochain/tree/1a291fb210f5e9e506339721f3a8a9d5760f3af6
-- holochain-0.0.160: https://github.com/holochain/holochain/tree/1a291fb210f5e9e506339721f3a8a9d5760f3af6
-- kitsune-p2p-tx2-proxy-0.0.31: https://github.com/holochain/holochain/tree/1a291fb210f5e9e506339721f3a8a9d5760f3af6
+- hc-0.0.56: https://github.com/holochain/holochain/tree/cf8adc073596f4f5fc3dcf31c30bc8ade47a6f93
+- holochain-0.0.161: https://github.com/holochain/holochain/tree/cf8adc073596f4f5fc3dcf31c30bc8ade47a6f93
+- kitsune-p2p-tx2-proxy-0.0.32: https://github.com/holochain/holochain/tree/cf8adc073596f4f5fc3dcf31c30bc8ade47a6f93
 - lair-keystore-0.2.0: https://github.com/holochain/lair/tree/lair_keystore_api-v0.2.0
 
 ### develop
-- hc-0.0.55: https://github.com/holochain/holochain/tree/bc621e3e06e998d35750b2bac6b0e1f0d371c2a2
-- holochain-0.0.160: https://github.com/holochain/holochain/tree/bc621e3e06e998d35750b2bac6b0e1f0d371c2a2
-- kitsune-p2p-tx2-proxy-0.0.31: https://github.com/holochain/holochain/tree/bc621e3e06e998d35750b2bac6b0e1f0d371c2a2
+- hc-0.0.56: https://github.com/holochain/holochain/tree/631cbf4c745333a50d1aabd8cfdc72153c785aa9
+- holochain-0.0.161: https://github.com/holochain/holochain/tree/631cbf4c745333a50d1aabd8cfdc72153c785aa9
+- kitsune-p2p-tx2-proxy-0.0.32: https://github.com/holochain/holochain/tree/631cbf4c745333a50d1aabd8cfdc72153c785aa9
 - lair-keystore-0.2.0: https://github.com/holochain/lair/tree/lair_keystore_api-v0.2.0
 
 ### develop_lair_0_1
@@ -28,12 +28,6 @@ Each of the following headings represent one pre-built _holochainVersionId_ and 
 - holochain-0.0.135: https://github.com/holochain/holochain/tree/c0d982ad7f4253aca85f27a252346a52ce1d8e1d
 - kitsune-p2p-tx2-proxy-0.0.22: https://github.com/holochain/holochain/tree/c0d982ad7f4253aca85f27a252346a52ce1d8e1d
 - lair-keystore-0.1.0: https://github.com/holochain/lair/tree/v0.1.0
-
-### v0_0_154
-- hc-0.0.51: https://github.com/holochain/holochain/tree/holochain-0.0.154
-- holochain-0.0.154: https://github.com/holochain/holochain/tree/holochain-0.0.154
-- kitsune-p2p-tx2-proxy-0.0.29: https://github.com/holochain/holochain/tree/holochain-0.0.154
-- lair-keystore-0.2.0: https://github.com/holochain/lair/tree/lair_keystore_api-v0.2.0
 
 ### v0_0_155
 - hc-0.0.52: https://github.com/holochain/holochain/tree/holochain-0.0.155
@@ -69,4 +63,10 @@ Each of the following headings represent one pre-built _holochainVersionId_ and 
 - hc-0.0.55: https://github.com/holochain/holochain/tree/holochain-0.0.160
 - holochain-0.0.160: https://github.com/holochain/holochain/tree/holochain-0.0.160
 - kitsune-p2p-tx2-proxy-0.0.31: https://github.com/holochain/holochain/tree/holochain-0.0.160
+- lair-keystore-0.2.0: https://github.com/holochain/lair/tree/lair_keystore_api-v0.2.0
+
+### v0_0_161
+- hc-0.0.56: https://github.com/holochain/holochain/tree/holochain-0.0.161
+- holochain-0.0.161: https://github.com/holochain/holochain/tree/holochain-0.0.161
+- kitsune-p2p-tx2-proxy-0.0.32: https://github.com/holochain/holochain/tree/holochain-0.0.161
 - lair-keystore-0.2.0: https://github.com/holochain/lair/tree/lair_keystore_api-v0.2.0
