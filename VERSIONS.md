@@ -18,16 +18,10 @@ Each of the following headings represent one pre-built _holochainVersionId_ and 
 - lair-keystore-0.2.1: https://github.com/holochain/lair/tree/lair_keystore_api-v0.2.1
 
 ### develop
-- hc-0.0.58: https://github.com/holochain/holochain/tree/2f916e72c6f0cf45fb1303d2beb7143b0d9c8321
-- holochain-0.0.163: https://github.com/holochain/holochain/tree/2f916e72c6f0cf45fb1303d2beb7143b0d9c8321
-- kitsune-p2p-tx2-proxy-0.0.34: https://github.com/holochain/holochain/tree/2f916e72c6f0cf45fb1303d2beb7143b0d9c8321
+- hc-0.0.59: https://github.com/holochain/holochain/tree/31e7e1daa1a8ea5f9cf914a543acd477e9c07477
+- holochain-0.0.164: https://github.com/holochain/holochain/tree/31e7e1daa1a8ea5f9cf914a543acd477e9c07477
+- kitsune-p2p-tx2-proxy-0.0.35: https://github.com/holochain/holochain/tree/31e7e1daa1a8ea5f9cf914a543acd477e9c07477
 - lair-keystore-0.2.1: https://github.com/holochain/lair/tree/lair_keystore_api-v0.2.1
-
-### v0_0_156
-- hc-0.0.52: https://github.com/holochain/holochain/tree/holochain-0.0.156
-- holochain-0.0.156: https://github.com/holochain/holochain/tree/holochain-0.0.156
-- kitsune-p2p-tx2-proxy-0.0.30: https://github.com/holochain/holochain/tree/holochain-0.0.156
-- lair-keystore-0.2.0: https://github.com/holochain/lair/tree/lair_keystore_api-v0.2.0
 
 ### v0_0_157
 - hc-0.0.53: https://github.com/holochain/holochain/tree/holochain-0.0.157
@@ -69,4 +63,10 @@ Each of the following headings represent one pre-built _holochainVersionId_ and 
 - hc-0.0.58: https://github.com/holochain/holochain/tree/holochain-0.0.163
 - holochain-0.0.163: https://github.com/holochain/holochain/tree/holochain-0.0.163
 - kitsune-p2p-tx2-proxy-0.0.34: https://github.com/holochain/holochain/tree/holochain-0.0.163
+- lair-keystore-0.2.1: https://github.com/holochain/lair/tree/lair_keystore_api-v0.2.1
+
+### v0_0_164
+- hc-0.0.59: https://github.com/holochain/holochain/tree/holochain-0.0.164
+- holochain-0.0.164: https://github.com/holochain/holochain/tree/holochain-0.0.164
+- kitsune-p2p-tx2-proxy-0.0.35: https://github.com/holochain/holochain/tree/holochain-0.0.164
 - lair-keystore-0.2.1: https://github.com/holochain/lair/tree/lair_keystore_api-v0.2.1
