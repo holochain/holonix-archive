@@ -5,10 +5,10 @@
         "homepage": null,
         "owner": "holochain",
         "repo": "holochain-nixpkgs",
-        "rev": "b96a9d9a06919a5a2fccbceef3ec5273a2c217ee",
-        "sha256": "1bjrnri1wv85pcccxnzqm13ji9rvjhabkic775fccw53wcq23qqx",
+        "rev": "38cd0f8dc9119453cd7880d25c2959996d2663e4",
+        "sha256": "1grk7gln46hhdfd3vc4wn2dqninl44vwl0jy2hhv98y87v0crhdx",
         "type": "tarball",
-        "url": "https://github.com/holochain/holochain-nixpkgs/archive/b96a9d9a06919a5a2fccbceef3ec5273a2c217ee.tar.gz",
+        "url": "https://github.com/holochain/holochain-nixpkgs/archive/38cd0f8dc9119453cd7880d25c2959996d2663e4.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "scaffolding": {
