@@ -17,3 +17,7 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
   With [a change in holonchain-nixpkgs](https://github.com/holochain/holochain-nixpkgs/pull/17) the attributes "cargoSha256" "bins" "lairKeystoreHashes" are no longer supported by _holochainVersion_.
   If you rely on using a custom Holochain version that is not pre-built please take a look at [the provided example](./examples/custom-holochain/).
+
+### Removed
+
+* Removed the _docs_ component as the site has been obsoleted long ago.

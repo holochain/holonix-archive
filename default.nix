@@ -118,7 +118,6 @@ let
     node = pkgs.callPackage ./node { };
     git = pkgs.callPackage ./git { };
     linux = pkgs.callPackage ./linux { };
-    docs = pkgs.callPackage ./docs { };
     openssl = pkgs.callPackage ./openssl { };
     release = pkgs.callPackage ./release {
       config = config;
