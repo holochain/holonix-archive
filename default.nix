@@ -9,8 +9,20 @@
 , holochain-nixpkgs ? config.holochain-nixpkgs.importFn { }
 , includeHolochainBinaries ? include.holochainBinaries or true
 , include ? {
+    holochainBinaries = true;
+    rust = true;
+    niv = true;
     test = false;
     scaffolding = false;
+    node = false;
+    git = false;
+    linux = false;
+    docs = false;
+    openssl = false;
+    release = false;
+    happs = false;
+    introspection = false;
+    holochainDependencies = false;
   }
 
   # either one listed in VERSIONS.md or "custom". when "custom" is set, `holochainVersion` needs to be specified
