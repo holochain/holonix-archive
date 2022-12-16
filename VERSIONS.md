@@ -23,12 +23,6 @@ Each of the following headings represent one pre-built _holochainVersionId_ and 
 - kitsune-p2p-tx2-proxy-0.0.39: https://github.com/holochain/holochain/tree/f089da580fa7962e7b243cb57c47c052a4cc5dac
 - lair-keystore-0.2.2: https://github.com/holochain/lair/tree/lair_keystore_api-v0.2.2
 
-### v0_0_168
-- hc-0.0.63: https://github.com/holochain/holochain/tree/holochain-0.0.168
-- holochain-0.0.168: https://github.com/holochain/holochain/tree/holochain-0.0.168
-- kitsune-p2p-tx2-proxy-0.0.36: https://github.com/holochain/holochain/tree/holochain-0.0.168
-- lair-keystore-0.2.1: https://github.com/holochain/lair/tree/lair_keystore_api-v0.2.1
-
 ### v0_0_169
 - hc-0.0.64: https://github.com/holochain/holochain/tree/holochain-0.0.169
 - holochain-0.0.169: https://github.com/holochain/holochain/tree/holochain-0.0.169
@@ -70,3 +64,9 @@ Each of the following headings represent one pre-built _holochainVersionId_ and 
 - holochain-0.0.175: https://github.com/holochain/holochain/tree/holochain-0.0.175
 - kitsune-p2p-tx2-proxy-0.0.39: https://github.com/holochain/holochain/tree/holochain-0.0.175
 - lair-keystore-0.2.2: https://github.com/holochain/lair/tree/lair_keystore_api-v0.2.2
+
+### v0_1_0-beta-rc_0
+- hc-0.1.0-beta-rc.0: https://github.com/holochain/holochain/tree/holochain-0.1.0-beta-rc.0
+- holochain-0.1.0-beta-rc.0: https://github.com/holochain/holochain/tree/holochain-0.1.0-beta-rc.0
+- kitsune-p2p-tx2-proxy-0.1.0-beta-rc.0: https://github.com/holochain/holochain/tree/holochain-0.1.0-beta-rc.0
+- lair-keystore-0.2.3: https://github.com/holochain/lair/tree/lair_keystore_api-v0.2.3
