@@ -12,6 +12,7 @@
     test = false;
     scaffolding = false;
   }
+, includeFn ? (name: value: include."${name}" or (if name == "scaffolding" then false else true))
 
   # either one listed in VERSIONS.md or "custom". when "custom" is set, `holochainVersion` needs to be specified
 , holochainVersionId ? "develop"
@@ -37,7 +38,11 @@ let
     else
       (
         let
-          value = builtins.getAttr holochainVersionId holochain-nixpkgs.packages.holochain.holochainVersions;
+          value' = builtins.getAttr holochainVersionId holochain-nixpkgs.packages.holochain.holochainVersions;
+          value = (value' // {
+            scaffolding = if (includeFn "scaffolding") == true then (value'.scaffolding or null) else null;
+            launcher = if (includeFn "launcher") == true then (value'.launcher or null) else null;
+          });
         in
 
         if holochainVersion != null
@@ -111,7 +116,7 @@ let
     ;
   };
 
-  components = {
+  components = rec {
     rust = pkgs.callPackage ./rust {
       inherit config rustc;
     };
@@ -135,13 +140,14 @@ let
     holochainDependencies = pkgs.mkShell {
       inputsFrom = (builtins.attrValues pkgs.holochainBinaries);
     };
-    scaffolding = pkgs.callPackage ./scaffolding { inherit sources; };
+    scaffolding = pkgs.callPackage ./mk-holochain-sub-binary { inherit sources holochainBinaries; name = "scaffolding"; };
+    launcher = pkgs.callPackage ./mk-holochain-sub-binary { inherit sources holochainBinaries; name = "launcher"; };
     niv = { buildInputs = [ pkgs.niv ]; };
   };
 
   componentsFiltered =
     pkgs.lib.attrsets.filterAttrs
-      (name: value: include."${name}" or (if name == "scaffolding" then false else true))
+      includeFn
       components
   ;
 
