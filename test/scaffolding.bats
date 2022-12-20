@@ -10,6 +10,12 @@ teardown() {
   rm -rf "${BATS_TMPDIR:?}"
 }
 
+@test "expected hc-launch to be available" {
+  result="$(hc-scaffold --version)"
+  echo $result
+  [[ "$result" == "holochain_scaffolding_cli"* ]]
+}
+
 @test "hApp scaffolding with hn-init" {
   hn-init
   cd my-app

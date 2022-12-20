@@ -9,6 +9,10 @@
     "cargo fmt"
     "cargo clippy"
   ]
+, binaryNameMapping ? {
+    launcher = "hc-launch";
+    scaffolding = "hc-scaffold";
+  }
 }:
 
 let
@@ -21,7 +25,7 @@ let
           "echo \- ${name}" + (
             if builtins.hasAttr "version" value
             then "-${value.version}"
-            else if run == true then "-$(${name} --version | cut -d' ' -f2-)"
+            else if run == true then "-$(${binaryNameMapping."${name}" or name} --version | cut -d' ' -f2-)"
             else ""
           ) + (
             if !builtins.hasAttr "src" value then ""
