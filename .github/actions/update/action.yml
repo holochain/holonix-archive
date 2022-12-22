@@ -46,6 +46,8 @@ runs:
     - name: update holochain-nixpkgs
       shell: bash
       run: ./nix/update.sh ${{ inputs.update_source }}
+      env:
+        GITHUB_TOKEN: ${{ inputs.HRA_GITHUB_TOKEN }}
     - name: create pull request
       uses: peter-evans/create-pull-request@v3
       id: cpr1
