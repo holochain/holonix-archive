@@ -1,5 +1,6 @@
 { config
-, include
+, isIncludedFn
+, holochainVersionFinal
 , stdenv
 , writeShellScriptBin
 , bats
@@ -22,8 +23,9 @@ let
     bats ./test/rust-manifest-list-unpinned.bats
     bats ./test/rust.bats
     bats ./test/flamegraph.bats
-    ${if (include.scaffolding or false) then "bats ./test/scaffolding.bats" else ""}
     bats ./test/holochain-binaries.bats
+    ${if (isIncludedFn "launcher" && (holochainVersionFinal.launcher or null) != null) then "bats ./test/launcher.bats" else ""}
+    ${if (isIncludedFn "scaffolding" && (holochainVersionFinal.scaffolding or null) != null) then "bats ./test/scaffolding.bats" else ""}
   '';
 
 in

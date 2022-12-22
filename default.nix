@@ -12,6 +12,7 @@
     test = false;
     scaffolding = false;
   }
+, isIncludedFn ? (name: include."${name}" or (if name == "scaffolding" then false else true))
 
   # either one listed in VERSIONS.md or "custom". when "custom" is set, `holochainVersion` needs to be specified
 , holochainVersionId ? "main"
@@ -37,7 +38,11 @@ let
     else
       (
         let
-          value = builtins.getAttr holochainVersionId holochain-nixpkgs.packages.holochain.holochainVersions;
+          value' = builtins.getAttr holochainVersionId holochain-nixpkgs.packages.holochain.holochainVersions;
+          value = (value' // {
+            scaffolding = if isIncludedFn "scaffolding" == true then (value'.scaffolding or null) else null;
+            launcher = if isIncludedFn "launcher" == true then (value'.launcher or null) else null;
+          });
         in
 
         if holochainVersion != null
@@ -104,7 +109,7 @@ let
         hnRustClippy = builtins.elemAt (self.callPackage ./rust/clippy { }).buildInputs 0;
         hnRustFmtCheck = builtins.elemAt (self.callPackage ./rust/fmt/check { }).buildInputs 0;
         hnRustFmtFmt = builtins.elemAt (self.callPackage ./rust/fmt/fmt { }).buildInputs 0;
-        inherit holochainVersionId;
+        inherit holochainVersionId holochainVersionFinal;
         holochainBinaries = holochain-nixpkgs.packages.holochain.mkHolochainAllBinariesWithDeps holochainVersionFinal;
       })
     ]
@@ -125,7 +130,7 @@ let
     test = pkgs.callPackage ./test {
       inherit
         config
-        include
+        isIncludedFn
         ;
 
     };
@@ -135,13 +140,14 @@ let
     holochainDependencies = pkgs.mkShell {
       inputsFrom = (builtins.attrValues pkgs.holochainBinaries);
     };
-    scaffolding = pkgs.callPackage ./scaffolding { inherit sources; };
+    scaffolding = pkgs.callPackage ./mk-holochain-sub-binary { inherit sources; inherit (pkgs) holochainBinaries; name = "scaffolding"; };
+    launcher = pkgs.callPackage ./mk-holochain-sub-binary { inherit sources; inherit (pkgs) holochainBinaries; name = "launcher"; };
     niv = { buildInputs = [ pkgs.niv ]; };
   };
 
   componentsFiltered =
     pkgs.lib.attrsets.filterAttrs
-      (name: value: include."${name}" or (if name == "scaffolding" then false else true))
+      (name: _value: isIncludedFn name)
       components
   ;
 
