@@ -23,47 +23,11 @@ Each of the following headings represent one pre-built _holochainVersionId_ and 
 - kitsune-p2p-tx2-proxy-0.1.0-beta-rc.0: https://github.com/holochain/holochain/tree/ca75e980f926c72d1d082239c8a7252a71254421
 - lair-keystore-0.2.3: https://github.com/holochain/lair/tree/lair_keystore_api-v0.2.3
 
-### v0_0_170
-- hc-0.0.65: https://github.com/holochain/holochain/tree/holochain-0.0.170
-- holochain-0.0.170: https://github.com/holochain/holochain/tree/holochain-0.0.170
-- kitsune-p2p-tx2-proxy-0.0.37: https://github.com/holochain/holochain/tree/holochain-0.0.170
-- lair-keystore-0.2.1: https://github.com/holochain/lair/tree/lair_keystore_api-v0.2.1
-
-### v0_0_171
-- hc-0.0.66: https://github.com/holochain/holochain/tree/holochain-0.0.171
-- holochain-0.0.171: https://github.com/holochain/holochain/tree/holochain-0.0.171
-- kitsune-p2p-tx2-proxy-0.0.37: https://github.com/holochain/holochain/tree/holochain-0.0.171
-- lair-keystore-0.2.1: https://github.com/holochain/lair/tree/lair_keystore_api-v0.2.1
-
-### v0_0_172
-- hc-0.0.67: https://github.com/holochain/holochain/tree/holochain-0.0.172
-- holochain-0.0.172: https://github.com/holochain/holochain/tree/holochain-0.0.172
-- kitsune-p2p-tx2-proxy-0.0.37: https://github.com/holochain/holochain/tree/holochain-0.0.172
-- lair-keystore-0.2.1: https://github.com/holochain/lair/tree/lair_keystore_api-v0.2.1
-
-### v0_0_173
-- hc-0.0.68: https://github.com/holochain/holochain/tree/holochain-0.0.173
-- holochain-0.0.173: https://github.com/holochain/holochain/tree/holochain-0.0.173
-- kitsune-p2p-tx2-proxy-0.0.38: https://github.com/holochain/holochain/tree/holochain-0.0.173
-- lair-keystore-0.2.2: https://github.com/holochain/lair/tree/lair_keystore_api-v0.2.2
-
-### v0_0_174
-- hc-0.0.69: https://github.com/holochain/holochain/tree/holochain-0.0.174
-- holochain-0.0.174: https://github.com/holochain/holochain/tree/holochain-0.0.174
-- kitsune-p2p-tx2-proxy-0.0.39: https://github.com/holochain/holochain/tree/holochain-0.0.174
-- lair-keystore-0.2.2: https://github.com/holochain/lair/tree/lair_keystore_api-v0.2.2
-
 ### v0_0_175
 - hc-0.0.70: https://github.com/holochain/holochain/tree/holochain-0.0.175
 - holochain-0.0.175: https://github.com/holochain/holochain/tree/holochain-0.0.175
 - kitsune-p2p-tx2-proxy-0.0.39: https://github.com/holochain/holochain/tree/holochain-0.0.175
 - lair-keystore-0.2.2: https://github.com/holochain/lair/tree/lair_keystore_api-v0.2.2
-
-### v0_1_0-beta-rc_0
-- hc-0.1.0-beta-rc.0: https://github.com/holochain/holochain/tree/holochain-0.1.0-beta-rc.0
-- holochain-0.1.0-beta-rc.0: https://github.com/holochain/holochain/tree/holochain-0.1.0-beta-rc.0
-- kitsune-p2p-tx2-proxy-0.1.0-beta-rc.0: https://github.com/holochain/holochain/tree/holochain-0.1.0-beta-rc.0
-- lair-keystore-0.2.3: https://github.com/holochain/lair/tree/lair_keystore_api-v0.2.3
 
 ### v0_1_0-beta-rc_1
 - hc-0.1.0-beta-rc.1: https://github.com/holochain/holochain/tree/holochain-0.1.0-beta-rc.1
