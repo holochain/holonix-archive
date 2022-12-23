@@ -10,9 +10,8 @@
 , includeHolochainBinaries ? include.holochainBinaries or true
 , include ? {
     test = false;
-    scaffolding = false;
   }
-, isIncludedFn ? (name: include."${name}" or (if name == "scaffolding" then false else true))
+, isIncludedFn ? (name: include."${name}" or true)
 
   # either one listed in VERSIONS.md or "custom". when "custom" is set, `holochainVersion` needs to be specified
 , holochainVersionId ? "develop"
