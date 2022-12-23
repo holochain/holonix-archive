@@ -65,6 +65,7 @@ Each of the following headings represent one pre-built _holochainVersionId_ and 
 - kitsune-p2p-tx2-proxy-0.1.0-beta-rc.0: https://github.com/holochain/holochain/tree/holochain-0.1.0-beta-rc.1
 - lair-keystore-0.2.3: https://github.com/holochain/lair/tree/lair_keystore_api-v0.2.3
 - launcher-0.0.3-alpha.2: https://github.com/holochain/launcher/tree/holochain_cli_launch-0.0.3-alpha.2
+- scaffolding-0.0.5: https://github.com/holochain/scaffolding/tree/holochain_scaffolding_cli-v0.0.5-alpha.0
 
 ### v0_1_0-beta-rc_2
 - hc-0.1.0-beta-rc.2: https://github.com/holochain/holochain/tree/holochain-0.1.0-beta-rc.2
@@ -72,3 +73,4 @@ Each of the following headings represent one pre-built _holochainVersionId_ and 
 - kitsune-p2p-tx2-proxy-0.1.0-beta-rc.0: https://github.com/holochain/holochain/tree/holochain-0.1.0-beta-rc.2
 - lair-keystore-0.2.3: https://github.com/holochain/lair/tree/lair_keystore_api-v0.2.3
 - launcher-0.0.3-alpha.2: https://github.com/holochain/launcher/tree/holochain_cli_launch-0.0.3-alpha.2
+- scaffolding-0.0.5: https://github.com/holochain/scaffolding/tree/holochain_scaffolding_cli-v0.0.5-alpha.0
