@@ -34,6 +34,17 @@ let
       if holochainVersion == null
       then throw ''When 'holochainVersionId' is set to "custom" a value to 'holochainVersion' must be provided.''
       else holochainVersion
+    else if holochainVersionId == "main"
+    then
+      # make "main" the equivalent of the highest known version
+      # we introduce this behavior because we currently don't have hc-{scaffold,launch} for branch names
+      # makes use of the natural sorting of attribute sets
+
+      let
+        values = builtins.attrValues holochain-nixpkgs.packages.holochain.holochainVersions;
+        lastIndex = (builtins.length values)-1;
+      in
+        builtins.elemAt values lastIndex
     else
       (
         let
