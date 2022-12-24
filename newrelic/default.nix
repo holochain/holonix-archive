@@ -1,7 +1,1 @@
-{ pkgs }:
-{
-  buildInputs =
-    [
-      pkgs.pcre
-    ];
-}
+{ pkgs }: { buildInputs = [ pkgs.pcre ]; }

@@ -10,7 +10,4 @@ let
      -not -path "**/.cargo/**" | xargs -I {} \
      sed -i 's/${config.release.version.previous}/${config.release.version.current}/g' {}
   '';
-in
-{
-  buildInputs = [ script ];
-}
+in { buildInputs = [ script ]; }

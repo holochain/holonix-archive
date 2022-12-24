@@ -40,10 +40,10 @@
     };
 
     pathFn = _:
-      if use-github
-      then (import ./nix/sources.nix).holochain-nixpkgs
-      else local.path
-    ;
+      if use-github then
+        (import ./nix/sources.nix).holochain-nixpkgs
+      else
+        local.path;
 
     importFn = _: import (pathFn { }) { };
   };

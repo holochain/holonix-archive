@@ -1,12 +1,10 @@
-{ perl, openssl }:
-{
-  buildInputs =
-    [
-      # the OpenSSL static installation provided by native-tls rust module on linux
-      # environments uses perl under the hood to configure and install the
-      # statically linked openssl lib
-      perl
-    ];
+{ perl, openssl }: {
+  buildInputs = [
+    # the OpenSSL static installation provided by native-tls rust module on linux
+    # environments uses perl under the hood to configure and install the
+    # statically linked openssl lib
+    perl
+  ];
 
   shellHook = ''
     # used by the OPENSSL_STATIC environment variable

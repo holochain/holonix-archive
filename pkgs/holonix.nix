@@ -1,9 +1,7 @@
 { pkgs, holochainVersionId, holochainVersion }:
 
 let
-  extraSubstitutors = [
-    "https://cache.holo.host"
-  ];
+  extraSubstitutors = [ "https://cache.holo.host" ];
   trustedPublicKeys = [
     "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
     "cache.holo.host-1:lNXIXtJgS9Iuw4Cu6X0HINLu9sTfcjEntnrgwMQIMcE="
@@ -12,14 +10,17 @@ let
 
   buildCmd = ''
     $(command -v nix-store) \
-        --option extra-substituters "${builtins.concatStringsSep " " extraSubstitutors}" \
-        --option trusted-public-keys  "${builtins.concatStringsSep " " trustedPublicKeys}" \
+        --option extra-substituters "${
+          builtins.concatStringsSep " " extraSubstitutors
+        }" \
+        --option trusted-public-keys  "${
+          builtins.concatStringsSep " " trustedPublicKeys
+        }" \
         --add-root "''${GC_ROOT_DIR}/allrefs" --indirect \
         --realise "''${ref}"
   '';
 
-in
-pkgs.writeShellScriptBin "holonix" ''
+in pkgs.writeShellScriptBin "holonix" ''
   export GC_ROOT_DIR="''${HOME:-/tmp}/.holonix"
   export SHELL_DRV="''${GC_ROOT_DIR}/shellDrv"
   export LOG="''${GC_ROOT_DIR}/log"
@@ -86,7 +87,9 @@ pkgs.writeShellScriptBin "holonix" ''
     SHELL_DRV_TMP=$(mktemp)
     rm ''${SHELL_DRV_TMP}
 
-    nix-instantiate --add-root "''${SHELL_DRV_TMP}" --indirect ${builtins.toString ./.}/.. -A main \
+    nix-instantiate --add-root "''${SHELL_DRV_TMP}" --indirect ${
+      builtins.toString ./.
+    }/.. -A main \
       --argstr holochainVersionId ${holochainVersionId} \
       --arg holochainVersion '{ rev = "${holochainVersion.rev}"; sha256 = "${holochainVersion.sha256}"; cargoSha256 = "${holochainVersion.cargoSha256}"; }'
     for ref in `nix-store \
