@@ -5,10 +5,10 @@
         "homepage": null,
         "owner": "holochain",
         "repo": "holochain-nixpkgs",
-        "rev": "b6277bf7c288bc8d4520d23f6411cd67cefb25bb",
-        "sha256": "1kly7vchkyrvgy6ml3rrjyzgayx5qx6f1illwq9bgc8qc6nd1xks",
+        "rev": "6302e89918884c177e6170d47db7dd4d0baa9ba9",
+        "sha256": "0yhg2fs71232xkgldrphv303f3ck2n769xmxcrg8z1ig6g3p18gx",
         "type": "tarball",
-        "url": "https://github.com/holochain/holochain-nixpkgs/archive/b6277bf7c288bc8d4520d23f6411cd67cefb25bb.tar.gz",
+        "url": "https://github.com/holochain/holochain-nixpkgs/archive/6302e89918884c177e6170d47db7dd4d0baa9ba9.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "scaffolding": {
@@ -17,10 +17,10 @@
         "homepage": null,
         "owner": "holochain",
         "repo": "scaffolding",
-        "rev": "8df3acba836c1de243df78cdde736e8882eb7a72",
-        "sha256": "0zlsnsra0xv4807dhd619f2fx8qw5s51k0dxrbyf5ign0fp5sj03",
+        "rev": "49e86d9c27ce6a582d7c6df9857e4b548a248f74",
+        "sha256": "1jh7q5yw37vi2nps1jlcwvnvqff97hkxrrwphfpryki6gl5gxwwp",
         "type": "tarball",
-        "url": "https://github.com/holochain/scaffolding/archive/8df3acba836c1de243df78cdde736e8882eb7a72.tar.gz",
+        "url": "https://github.com/holochain/scaffolding/archive/49e86d9c27ce6a582d7c6df9857e4b548a248f74.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     }
 }
