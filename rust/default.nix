@@ -1,38 +1,14 @@
-{ config
-, stdenv
-, mkShell
-, rust
-, rustc ? rust.packages.stable.rust.rustc
+{ config, stdenv, mkShell, rust, rustc ? rust.packages.stable.rust.rustc
 
-, callPackage
-, kcov
-, binutils
-, gcc
-, gnumake
-, openssl
-, pkgconfig
-, cargo-make
-, curl
-}:
-let
-  rustConfig = import ./config.nix;
-in
+, callPackage, kcov, binutils, gcc, gnumake, openssl, pkgconfig, cargo-make
+, curl }:
+let rustConfig = import ./config.nix;
 
-mkShell {
+in mkShell {
 
   # https://github.com/NixOS/nixpkgs/blob/master/doc/languages-frameworks/rust.section.md
-  buildInputs = [
-    binutils
-    gcc
-    gnumake
-    openssl
-    pkgconfig
-    cargo-make
-    curl
-    rustc
-  ]
-  ++ (if stdenv.isLinux then [ kcov ] else [ ])
-  ;
+  buildInputs = [ binutils gcc gnumake openssl pkgconfig cargo-make curl rustc ]
+    ++ (if stdenv.isLinux then [ kcov ] else [ ]);
 
   inputsFrom = builtins.map (path: callPackage path { }) [
     ./clippy

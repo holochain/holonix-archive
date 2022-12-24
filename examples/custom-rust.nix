@@ -1,7 +1,8 @@
 # Example: mkShell based environment with a custom rust toolchain
 
-{ holonixPath ? builtins.fetchTarball { url = "https://github.com/holochain/holonix/archive/develop.tar.gz"; }
-}:
+{ holonixPath ? builtins.fetchTarball {
+  url = "https://github.com/holochain/holonix/archive/develop.tar.gz";
+} }:
 
 let
   holonix = import (holonixPath) {
@@ -13,10 +14,10 @@ let
 
   nixpkgs = holonix.pkgs;
 
-in
-nixpkgs.mkShell {
+in nixpkgs.mkShell {
   inputsFrom = [ holonix.main ];
-  buildInputs = with nixpkgs; [
-    # custom packages go here
-  ];
+  buildInputs = with nixpkgs;
+    [
+      # custom packages go here
+    ];
 }

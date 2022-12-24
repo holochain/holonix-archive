@@ -1,11 +1,5 @@
-{ config
-, isIncludedFn
-, holochainVersionFinal
-, stdenv
-, writeShellScriptBin
-, bats
-, nix
-}:
+{ config, isIncludedFn, holochainVersionFinal, stdenv, writeShellScriptBin, bats
+, nix }:
 let
   # self tests for holonix
   # mostly smoke tests on various platforms
@@ -24,12 +18,19 @@ let
     bats ./test/rust.bats
     bats ./test/flamegraph.bats
     bats ./test/holochain-binaries.bats
-    ${if (isIncludedFn "launcher" && (holochainVersionFinal.launcher or null) != null) then "bats ./test/launcher.bats" else ""}
-    ${if (isIncludedFn "scaffolding" && (holochainVersionFinal.scaffolding or null) != null) then "bats ./test/scaffolding.bats" else ""}
+    ${if (isIncludedFn "launcher" && (holochainVersionFinal.launcher or null)
+      != null) then
+      "bats ./test/launcher.bats"
+    else
+      ""}
+    ${if (isIncludedFn "scaffolding"
+      && (holochainVersionFinal.scaffolding or null) != null) then
+      "bats ./test/scaffolding.bats"
+    else
+      ""}
   '';
 
-in
-{
+in {
   buildInputs = [
     script
     # test system for bash
