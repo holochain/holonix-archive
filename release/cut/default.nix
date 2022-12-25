@@ -23,7 +23,4 @@ let
     ${config.release.hook.publish}
     echo "** END PUBLISH HOOK **"
   '';
-in
-{
-  buildInputs = [ script ];
-}
+in { buildInputs = [ script ]; }

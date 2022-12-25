@@ -1,18 +1,9 @@
-{ stdenv
-, mkShell
-, bashInteractive
-, coreutils
-, flamegraph
-, nixUnstable
+{ stdenv, mkShell, bashInteractive, coreutils, flamegraph, nixUnstable
 
-, holochain-nixpkgs
-, holonixComponents
-, holonixVersions
-}:
+, holochain-nixpkgs, holonixComponents, holonixVersions }:
 
 let
   base = {
-
 
     shellHook = ''
       # cargo should install binaries into this repo rather than globally
@@ -56,17 +47,15 @@ let
     ];
   };
 
-in
-
-(mkShell {
+in (mkShell {
   name = "holonix-shell";
 
-  inputsFrom = holonixComponents
-    ++
+  inputsFrom = holonixComponents ++
     # this list is reversed [0] and we want the base shell to be first as the shellHook sets the NIX_ENV_PREFIX
     # [0]: https://github.com/NixOS/nixpkgs/blob/966a7403df58a4a72295bce08414de90bb80bbc6/pkgs/build-support/mkshell/default.nix#L42
-    [ base ]
-  ;
+    [ base ];
 }).overrideAttrs (attrs: {
-  nativeBuildInputs = builtins.filter (el: (builtins.match ".*(rust|cargo).*" el.name) == null) attrs.nativeBuildInputs;
+  nativeBuildInputs =
+    builtins.filter (el: (builtins.match ".*(rust|cargo).*" el.name) == null)
+    attrs.nativeBuildInputs;
 })

@@ -13,7 +13,4 @@ let
      ;;
     esac
   '';
-in
-{
-  buildInputs = [ script ];
-}
+in { buildInputs = [ script ]; }

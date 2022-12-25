@@ -1,7 +1,4 @@
-{ pkgs }:
-{
-  buildInputs = [ ]
-    ++ (pkgs.callPackage ./check { }).buildInputs
-    ++ (pkgs.callPackage ./fmt { }).buildInputs
-  ;
+{ pkgs }: {
+  buildInputs = [ ] ++ (pkgs.callPackage ./check { }).buildInputs
+    ++ (pkgs.callPackage ./fmt { }).buildInputs;
 }

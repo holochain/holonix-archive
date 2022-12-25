@@ -13,34 +13,20 @@ let
       upstream = "origin";
     };
   };
-in
-{
+in {
   buildInputs = [ ]
 
-    ++ (pkgs.callPackage ./branch {
-    config = release-config;
-  }).buildInputs
+    ++ (pkgs.callPackage ./branch { config = release-config; }).buildInputs
 
-    ++ (pkgs.callPackage ./changelog {
-    config = release-config;
-  }).buildInputs
+    ++ (pkgs.callPackage ./changelog { config = release-config; }).buildInputs
 
-    ++ (pkgs.callPackage ./cut {
-    config = release-config;
-  }).buildInputs
+    ++ (pkgs.callPackage ./cut { config = release-config; }).buildInputs
 
-    ++ (pkgs.callPackage ./github {
-    config = release-config;
-  }).buildInputs
+    ++ (pkgs.callPackage ./github { config = release-config; }).buildInputs
 
-    ++ (pkgs.callPackage ./hook {
-    config = release-config;
-  }).buildInputs
+    ++ (pkgs.callPackage ./hook { config = release-config; }).buildInputs
 
-    ++ (pkgs.callPackage ./push {
-    config = release-config;
-  }).buildInputs
-  ;
+    ++ (pkgs.callPackage ./push { config = release-config; }).buildInputs;
 
   config = release-config;
 }

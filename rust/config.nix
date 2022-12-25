@@ -57,7 +57,8 @@ rec {
     # TODO: see how many of these we can enable on stable today
     # @see https://llogiq.github.io/2017/06/01/perf-pitfalls.html
     # flags ="-D ${base.compile.deny} -Z external-macro-backtrace -Z ${base.compile.lto} -C codegen-units=${base.compile.codegen-units}";
-    stable-flags = "-D ${compile.deny} -C codegen-units=${compile.codegen-units}";
+    stable-flags =
+      "-D ${compile.deny} -C codegen-units=${compile.codegen-units}";
   };
 
   test = {
