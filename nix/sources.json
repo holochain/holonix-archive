@@ -17,10 +17,10 @@
         "homepage": null,
         "owner": "holochain",
         "repo": "scaffolding",
-        "rev": "db3096289691f88f505f1f5e3a61415dd4ab2e24",
-        "sha256": "0zq2qbqwv0yji5nwg9qwgbq1lqb4cbcvj46s7dxz9sgacnrmlvgk",
+        "rev": "71c22ed1d9ae349d1b28a82f6fcfd29777a9021f",
+        "sha256": "17bj466440m62gzq4387rs443iz169rsjqf7220i275xpa03wq4d",
         "type": "tarball",
-        "url": "https://github.com/holochain/scaffolding/archive/db3096289691f88f505f1f5e3a61415dd4ab2e24.tar.gz",
+        "url": "https://github.com/holochain/scaffolding/archive/71c22ed1d9ae349d1b28a82f6fcfd29777a9021f.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     }
 }
