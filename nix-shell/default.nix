@@ -1,4 +1,4 @@
-{ stdenv, mkShell, bashInteractive, coreutils, flamegraph, nixUnstable
+{ stdenv, mkShell, bashInteractive, coreutils, flamegraph, nix
 
 , holochain-nixpkgs, holonixComponents, holonixVersions }:
 
@@ -35,7 +35,7 @@ let
     '';
 
     buildInputs = [
-      nixUnstable
+      nix
 
       # for mktemp
       coreutils
