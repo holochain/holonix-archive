@@ -30,7 +30,6 @@ jobs:
             skip: true
         update_source:
           - holochain-nixpkgs
-          - scaffolding
     runs-on: "ubuntu-latest"
     steps:
       - name: Evaluate skip
