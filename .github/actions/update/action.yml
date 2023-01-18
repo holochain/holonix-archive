@@ -29,6 +29,8 @@ runs:
         ref: ${{ inputs.branch }}
     - name: Install nix
       uses: cachix/install-nix-action@v18
+      with:
+        install_url: https://releases.nixos.org/nix/nix-2.12.0/install
     - name: Setup cachix
       uses: cachix/cachix-action@v12
       with:
