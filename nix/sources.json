@@ -10,17 +10,5 @@
         "type": "tarball",
         "url": "https://github.com/holochain/holochain-nixpkgs/archive/b970ea4604efcea23055376049dbca643060f7d3.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
-    },
-    "scaffolding": {
-        "branch": "main",
-        "description": "RAD tools to quickly scaffold a new holochain application",
-        "homepage": null,
-        "owner": "holochain",
-        "repo": "scaffolding",
-        "rev": "87ecce6322f3a11936e22c90e149624a1d71dbdd",
-        "sha256": "1cz64zbc7nyka09f9ajqg27fdsqh2vkgcxc7ifk672fhb21n4yhr",
-        "type": "tarball",
-        "url": "https://github.com/holochain/scaffolding/archive/87ecce6322f3a11936e22c90e149624a1d71dbdd.tar.gz",
-        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     }
 }
