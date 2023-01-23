@@ -1,0 +1,62 @@
+name: update holochain proxy
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "42 * * * *" # run every hour at minute 42
+
+jobs:
+  update-holochain-reference:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          ref: develop
+
+      - name: Install nix
+        uses: cachix/install-nix-action@v18
+        with:
+          install_url: https://releases.nixos.org/nix/nix-2.12.0/install
+          extra_nix_config: |
+            experimental-features = flakes nix-command
+
+      - name: Setup cachix
+        uses: cachix/cachix-action@v12
+        with:
+          name: "${{ matrix.cachixName }}"
+          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
+
+      - name: set up git config
+        shell: bash
+        run: |
+          git config --global user.email "hrabot@holochain.org"
+          git config --global user.name "Holochain Release Automation"
+
+      - name: nix flake update
+        run: "nix flake update"
+
+      - name: create pull request
+        uses: peter-evans/create-pull-request@v3
+        id: cpr1
+        with:
+          token: ${{ secrets.HRA_GITHUB_TOKEN }}
+          title: update holochain reference
+          branch: auto-update
+          draft: false
+          delete-branch: true
+
+      - name: Enable Pull Request Automerge
+        if: steps.cpr1.outputs.pull-request-operation == 'created' || steps.cpr1.outputs.pull-request-operation == 'updated'
+        uses: peter-evans/enable-pull-request-automerge@v1
+        with:
+          token: ${{ secrets.HRA_GITHUB_TOKEN }}
+          pull-request-number: ${{ steps.cpr1.outputs.pull-request-number }}
+          merge-method: squash
+
+      - name: Auto approve Pull Request
+        if: steps.cpr1.outputs.pull-request-operation == 'created' || steps.cpr1.outputs.pull-request-operation == 'updated'
+        uses: juliangruber/approve-pull-request-action@v1
+        with:
+          github-token: ${{ secrets.HRA_GITHUB_TOKEN }}
+          number: ${{ steps.cpr1.outputs.pull-request-number }}
