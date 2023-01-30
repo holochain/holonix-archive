@@ -113,11 +113,11 @@
         "rust-overlay": "rust-overlay_2"
       },
       "locked": {
-        "lastModified": 1675065559,
-        "narHash": "sha256-b5ST0M7U3eo+7ngzHCemdjRVORGuEXIFbLE9vmne5Ik=",
+        "lastModified": 1675096109,
+        "narHash": "sha256-JNBS+lrUFqNbyi6BIshlrwt1bEIDmBYdW9AvgA36wgI=",
         "owner": "holochain",
         "repo": "holochain",
-        "rev": "9fae33f181f29749b18abeace25ab2b4d3f1304c",
+        "rev": "c145f085410645b4c751cca9b2a8d5b8cb833c79",
         "type": "github"
       },
       "original": {
