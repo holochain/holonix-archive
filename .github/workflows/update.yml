@@ -3,7 +3,7 @@ name: update holochain proxy
 on:
   workflow_dispatch:
   schedule:
-    - cron: "42 * * * *" # run every hour at minute 42
+    - cron: "0/17 * * * *" # At every 17th minute from 0 through 59.
 
 jobs:
   update-holochain-reference:
