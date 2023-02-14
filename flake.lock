@@ -187,11 +187,11 @@
         "versions": "versions"
       },
       "locked": {
-        "lastModified": 1676373551,
-        "narHash": "sha256-oy3KKUK3slOYUfjAQzTaVw1oc2pIfUhCh81eFMazVhA=",
+        "lastModified": 1676400706,
+        "narHash": "sha256-W0rIcBgdG8a1MpJRPQIlAi5nJFF+2tbC/3kJovAsGlU=",
         "owner": "holochain",
         "repo": "holochain",
-        "rev": "334eb59c58282090aacf6a1e7f56606d07c419e9",
+        "rev": "fb2bf492a8c8774287609ce5409215e2f7bec609",
         "type": "github"
       },
       "original": {
@@ -268,11 +268,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1676202775,
-        "narHash": "sha256-gV/RnfVZkGLHn+5rmX2GSh5aquVHpWOJw1cnpEV03tQ=",
+        "lastModified": 1676300157,
+        "narHash": "sha256-1HjRzfp6LOLfcj/HJHdVKWAkX9QRAouoh6AjzJiIerU=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "d917136f550a8c36efb1724390c7245105f79023",
+        "rev": "545c7a31e5dedea4a6d372712a18e00ce097d462",
         "type": "github"
       },
       "original": {
